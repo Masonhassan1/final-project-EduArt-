@@ -11,7 +11,7 @@
     background: linear-gradient(180deg, rgba(254, 254, 254, 1) 10%, rgba(237, 241, 240, 0.835) 30%);
     border-bottom-left-radius: 2rem;
     border-bottom-right-radius: 2rem;
-    --b-c:#cbdff1;
+    --b-c:#dee1e3;
 }
 .options-list {
     width: 17%;
@@ -24,7 +24,7 @@
     border-radius: 2rem;
     -webkit-border-radius: 2rem;
     -moz-border-radius: 2rem;
-  
+   
 }
 .options-list > div {
     width: 100%;
@@ -60,13 +60,13 @@
 .personal-data{
     width: 50%;
     height: 80%;
-   padding: .8rem;
+    padding: .8rem;
     display: grid;
     border-radius: 1.6rem;
     grid-template-columns: repeat(15,calc(100%/15));
     grid-template-rows: repeat(15,calc(100%/15));
     background-color: rgb(234, 236, 237);
- 
+    caret-color: rgb(0, 0, 255);
    
 }
 .personal-data >div , button , input{
@@ -185,10 +185,21 @@
     grid-row: 14/15;
     background-color: violet;
 }
+
+ .colors{
+    transition: .5s;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    -ms-transition: .5s;
+    -o-transition: .5s;
+}
+.colors:hover{
+    scale:1.4
+} 
 .user-profile-save-btn{
     grid-column: 13/15;
     grid-row: 15/16;
-    background-color: rgb(212, 223, 234);
+    background-color: rgb(241, 242, 244);
    font-size: 22px;
     font-weight: bold;
 }
@@ -223,7 +234,7 @@
     font-size: 25px;
 }
 ::placeholder{
-    color: #636363;
-    font-size: 23px;
+    color: #87bede;
+    font-size: 20px;
     padding-left: 10px;
 }

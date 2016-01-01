@@ -1,5 +1,4 @@
 import React,{useState,useEffect,useRef} from 'react'
-import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import "./UserProfile.css"
 
@@ -7,22 +6,39 @@ function UserProfile({userProfileData,isLoading,setError,error}) {
   const [edit,setEdit]=useState(false)
   const [profileLoading,setProfileLoading] = useState(false)
   const [isError,setIsError]=useState(false)
+  const [proColor,setProColor]= useState("")
+  
+  
 
-  const navigate = useNavigate()
+  function editHandler (){
+    setEdit(!edit)
+  }
+  useEffect(()=>{
+    document.querySelector(".user-gender").focus()
+   
+  })
+ useEffect(()=>{
+ 
+  setProColor(localStorage.getItem("color"))
+ },[])
+
+    function proStyleHandler (e){
+      if(edit && localStorage.getItem("color")){
+       localStorage.setItem("color", e.target.id)
+        setProColor(localStorage.getItem("color"))
+    
+     }  
+    }
+
+  const proStyle = {color:proColor }
+  const proBStyle = {backgroundColor:proColor }
   const genderEl = useRef(null)
   const birthdayEl = useRef(null)
   const originEl = useRef(null)
   const telEl = useRef(null)
-
-  useEffect(()=>{
-    document.querySelector(".user-gender").focus()
-  })
-  function editHandler (){
-    setEdit(!edit)
-  }
- 
-    
-
+  
+  
+  
 
   async function userDataUpdateHandler (e){
     if(edit){
@@ -34,12 +50,16 @@ function UserProfile({userProfileData,isLoading,setError,error}) {
       gender: genderEl.current.value,
       dateOfBirth:birthdayEl.current.value,
       origin:originEl.current.value, 
-      telephoneLandLine:telEl.current.value
+      telephoneLandLine:telEl.current.value,
+      profileColour:localStorage.getItem("color")
+     
 
     }
+  
     try {
       setProfileLoading(true)
-       await axios.patch(`http://localhost:4000/user/${localStorage.getItem("userId")}`,updatedUserData)
+      await axios.patch(`http://localhost:4000/user/${localStorage.getItem("userId")}`,updatedUserData)
+      
       setProfileLoading(false)
       window.location.reload()
       
@@ -56,7 +76,7 @@ function UserProfile({userProfileData,isLoading,setError,error}) {
     <div className={isLoading || profileLoading ?  "user-profile-opacity" : "user-profile"}>
         <section className='options-list'>
             <div className="user-my-profile">
-            <i className="fa-solid fa-user" style={{color:"dodgerblue"}}></i>
+            <i className="fa-solid fa-user" style={proStyle}></i>
             <div>My profile</div>
             </div>
             <div className="user-purchase">
@@ -75,9 +95,9 @@ function UserProfile({userProfileData,isLoading,setError,error}) {
         </section>  
         <section className='personal-data'>
          
-            <div id="user-bc" style={{backgroundColor:"dodgerblue"}}></div>
-            <div className="user-photo"><i className="fa-solid fa-user" style={{color:"dodgerblue"}}></i></div>
-            <div className="user-edit-btn" onClick={editHandler}><i className="fa-solid fa-pen-to-square"  style={{color:"steelblue"}}></i></div>
+            <div id="user-bc" style={proBStyle}></div>
+            <div className="user-photo"><i className="fa-solid fa-user" style={proStyle}></i></div>
+            <div className="user-edit-btn" onClick={editHandler}><i className="fa-solid fa-pen-to-square"  style={proStyle}></i></div>
             <div className="user-name font">{userProfileData.firstName} {userProfileData.lastName}</div>
             <div className="user-gender-icon font"><i className="fa-solid fa-venus-mars"
             style={{color:"royalblue"}}></i></div>
@@ -87,11 +107,11 @@ function UserProfile({userProfileData,isLoading,setError,error}) {
             <div className="user-tel-icon"><i className="fa-solid fa-phone"style={{color:"lightslategray"}}></i></div>
             <div className="user-profile-color-icon font"><i className="fa-solid fa-palette" style={{color:"darkorange"}}></i></div>
             <div className="user-profile-color font">User profile color</div>
-            <div className="dodgerblue"></div>
-            <div className="lightpink"></div>
-            <div className="lightsteelblue"></div>
-            <div className="violet"></div>
-            <button className='user-profile-save-btn'style={{color:"steelblue"}}
+            <div id="dodgerblue" className='colors dodgerblue'  onClick={proStyleHandler}></div>
+            <div id="lightpink " className='colors lightpink' onClick={proStyleHandler}></div>
+            <div id="lightsteelblue" className='colors lightsteelblue' onClick={proStyleHandler}></div>
+            <div id="violet" className='colors violet' onClick={proStyleHandler}></div>
+            <button className='user-profile-save-btn'style={proStyle}
             onClick={userDataUpdateHandler}>Save</button>
 
             {edit? <>
@@ -99,7 +119,8 @@ function UserProfile({userProfileData,isLoading,setError,error}) {
               <input className="user-birthday font user-profile-input" ref={birthdayEl} type="text" placeholder={userProfileData.dateOfBirth || "Date of birth"}/>
               <input className="user-location font user-profile-input" ref={originEl} type="text" placeholder={userProfileData.origin || "Origin"}/>
               <input className="user-tel font user-profile-input" ref={telEl} type="text" placeholder={userProfileData.telephoneLandLine || "Tel"}/>
-            
+  
+              
             </> :<>
            
             <div className="user-gender font">{userProfileData.gender || <p className='not-entered'>not entered</p>}</div>
