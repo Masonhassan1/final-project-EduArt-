@@ -115,5 +115,6 @@ i:hover,
   -moz-border-radius: 1rem;
 }
 .header-user-name{
+  width: 275px;
   min-width: fit-content;
 }
