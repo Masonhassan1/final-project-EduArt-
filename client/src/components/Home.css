@@ -334,6 +334,9 @@ button:hover{
     border-right: 1px solid #989175;
 
 }
+.vsc-app-workspace div {
+    margin-top: 10%;
+}
 .vsc-app-code-area{
     margin: 5% 0 0 5%;
     width: 64%;

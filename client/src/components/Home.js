@@ -50,8 +50,11 @@ function Home() {
               <i class="fa-solid fa-play"></i>
               <i class="fa-solid fa-bolt"></i>
               </div>
-              <div className="vsc-app-workspace"><span style={{color:"gold"}}>js </span>
+              <div className="vsc-app-workspace">
+                <div>
+                  <span style={{color:"gold"}}>js </span>
               index.js</div>
+                  </div>
               <div className="vsc-app-code-area"><div><span style={{color:"chocolate"}}>function </span>
               <span style={{color:"deepskyblue"}}>sum </span> <span style={{color:"gold"}}>(<span style={{color:"orange"}}>num1,num2</span>)</span>
               <span className='bracket-one'></span></div> <div><span style={{color:"dodgerblue"}}>let</span> <span style={{color:"darkcyan"}}>result  </span> <span style={{color:"gold"}}>= num1 + num2</span></div> <span style={{color:"crimson"}}>return </span><span style={{color:"darkcyan"}}>result</span><div className='bracket-two'></div>
