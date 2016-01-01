@@ -10,6 +10,14 @@ export default function CoursePage() {
   const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const bookCourse = ()=> {
+    /// check ob user eingelogged ist
+    // true:
+    console.log('book course');
+
+
+  }
+
   const getInfo = async (url) => {
     try {
       setLoading(true);
@@ -134,6 +142,7 @@ export default function CoursePage() {
               </div>
             </div>
           </div>
+          <button onClick={}>Book the course</button>
         </div>
       )}
     </div>
