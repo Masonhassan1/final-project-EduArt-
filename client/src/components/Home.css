@@ -288,11 +288,12 @@ button:hover {
 .vsc-toolbar span:hover {
     color: #e5cf77;
 }
-.vsc-toolbar span,
-.vsc-app-icons {
+.vsc-toolbar span
+ {
     transition: 0.5s;
     -webkit-transition: 0.5s;
     -moz-transition: 0.5s;
+    cursor: pointer;
 }
 
 .vsc-app-icons {
