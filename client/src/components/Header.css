@@ -38,7 +38,11 @@ i {
   -ms-transition: 0.6s;
   -o-transition: 0.6s;
 }
-
+.navy div:hover,
+i:hover,
+.show-ul li:hover {
+  color: #046fa5;
+}
 
 #user-profile {
   cursor: pointer;
