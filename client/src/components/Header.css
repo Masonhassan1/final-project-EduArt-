@@ -2,17 +2,18 @@
     margin-top: -3rem;
     display: flex;
     align-items: center;
-    column-gap: 32%;
+    column-gap: 36%;
     font-family: "Jura", sans-serif;
     font-weight: bold;
-    cursor: pointer;
+  
    
 }
 
 .logo {
     margin-left: 8%;
-    animation: flip-logo 12s linear infinite;
-    -webkit-animation: flip-logo 12s linear infinite;
+    cursor: pointer;
+    animation: flip-logo 14s linear infinite;
+    -webkit-animation: flip-logo 14s linear infinite;
 }
 .logo img {
   
@@ -29,7 +30,8 @@
 .navy div {
     position: relative;
     min-width: fit-content;
-    color: rgb(162, 161, 161);
+    color: #8b8b8b;
+    cursor: pointer;
     transition: 0.6s;
     -webkit-transition: 0.6s;
     -moz-transition: 0.6s;
@@ -53,13 +55,13 @@
     -o-border-radius: 8% 10% 86% 7% / 10% 10% 83% 12%;
 }
 .navy-home::before {
-    background-color: rgb(255, 196, 0);
+    background-color: #ffc400;
 }
 .navy-courses::before {
-    background-color: rgb(255, 0, 251);
+    background-color: #6e4cf7;
 }
 .navy-login::before {
-    background-color: rgb(70, 212, 4);
+    background-color: #fc8822;
 }
 @keyframes flip-logo {
     to {

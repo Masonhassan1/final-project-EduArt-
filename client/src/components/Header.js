@@ -1,4 +1,4 @@
-import React,{ useEffect }  from 'react'
+
 import "./Header.css"
 
 
@@ -10,7 +10,7 @@ function Header() {
   return (
   <div className='header'>
    
-    <div className="logo"><img className='img front' src={require ("../logo.png")} alt="" />
+    <div className="logo"><img className='img front' src={require ("../Images/logo.png")} alt="" />
    
     </div>
     <div className='navy'>
