@@ -49,7 +49,7 @@ function Home() {
             <div className="vsc-app">
               <div className="vsc-app-title">Visual Studio Code</div>
               <div className="vsc-toolbar"> <div>
-                <span>File</span> <span>Edit</span><span>Terminal </span><span>Help</span></div>
+                <span>File</span> <span>Edit </span><span>Terminal </span><span>Help</span></div>
                 </div> 
               <div className="vsc-app-icons">
                 <i class="fa-regular fa-file"></i>
