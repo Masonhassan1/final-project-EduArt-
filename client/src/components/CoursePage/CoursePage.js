@@ -118,7 +118,7 @@ export default function CoursePage({ isAuth }) {
                   <h3 className="coursePageNameCard">
                     {courseInfo.courseName}
                   </h3>
-                  <h5 className="coursePageDurationCard">{`${courseInfo.courseType} | ${courseInfo.courseDuration} months`}</h5>
+                  <h5 className="coursePageDurationCard">{`${courseInfo.courseType}`}</h5>
                 </div>
               </div>
               <p className="coursePageTextCard">
