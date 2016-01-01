@@ -190,22 +190,47 @@
   grid-row: 12/13;
   font-size: 30px;
 }
-.user-password {
-  position: relative;
-  grid-column: 10/15;
-  grid-row: 12/13;
-  background-color: var(--b-c);
-}
-.user-password p {
-  position: absolute;
-  top: -165%;
-  font-size: 50px;
-}
 .user-password-icon {
   grid-column: 9/10;
   grid-row: 12/13;
   font-size: 30px;
 }
+.password-container{
+  position: relative;
+  grid-column: 10/15;
+  grid-row: 12/13;
+  background-color: var(--b-c);
+  
+}
+.user-password-input {
+  width: 90%;
+  height: 100%;
+  position: absolute;
+  background-color: var(--b-c);
+}
+.user-profile-show-password{
+  position: absolute;
+  top: 22%;
+  left: 87%;
+  font-size: 20px;
+ 
+}
+.user-profile-show-password span i{
+  color: #2d7a82;
+}
+.user-password{
+  position: relative;
+  grid-column: 10/15;
+  grid-row: 12/13;
+  background-color: var(--b-c);
+}
+
+.user-password p {
+  position: absolute;
+  top: -170%;
+  font-size: 50px;
+}
+
 
 .cherry {
   cursor: pointer;

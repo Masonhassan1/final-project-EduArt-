@@ -3,7 +3,7 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  column-gap: 36%;
+  column-gap: 28%;
   font-family: "Jura", sans-serif;
   font-weight: bold;
   user-select: none;
@@ -113,4 +113,7 @@ i:hover,
   border-radius: 1rem;
   -webkit-border-radius: 1rem;
   -moz-border-radius: 1rem;
+}
+.header-user-name{
+  min-width: fit-content;
 }

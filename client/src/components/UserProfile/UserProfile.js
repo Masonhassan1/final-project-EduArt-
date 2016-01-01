@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {Image} from "cloudinary-react"
 import axios from "axios";
-/* import Purchase from "./Purchase"; */
+import Purchase from "./Purchase";
 import "./UserProfile.css";
 
 function UserProfile({
@@ -23,6 +23,7 @@ function UserProfile({
   const [userImg,setUserImg] = useState("")
   const [image,setImage]=useState(null)
   const [imageData,setImageData]=useState({})
+  const [showPassword, setShowPassword] = useState(false);
  
 
   function myProfileHandler (){
@@ -79,7 +80,7 @@ function setImageHandler(e){
     
   }
   
-/* console.log("NewImageData",newImageData) */
+
   useEffect(()=>{
     uploadUserImage()
    setUserImg(imageData.public_id || localStorage.getItem("imgId")) 
@@ -123,6 +124,9 @@ function setImageHandler(e){
         .querySelector(".user-edit-btn")
         .setAttribute("id", "edit-btn-id");
     }
+  }
+  function passwordHandler() {
+    if (passwordEl.current.value) setShowPassword(!showPassword);
   }
   function noticeHandler() {
     if (!edit) {
@@ -318,7 +322,21 @@ console.log("newUpdatedData",newUpdatedData)
               type="text"
               placeholder={userProfileData.telephoneLandLine || "Tel"}
             />
-            <input  className="user-password font user-profile-input" type="password" ref={passwordEl}/>
+            <div className="password-container">
+
+            <input  className="user-password-input font user-profile-input" type={showPassword ? "text" : "password"} ref={passwordEl}/>
+            <div className="user-profile-show-password" onClick={passwordHandler}>
+            {showPassword ? (
+              <span>
+                <i className="fa-solid fa-eye-slash"></i>
+              </span>
+            ) : (
+              <span>
+                <i className="fa-solid fa-eye"></i>
+              </span>
+            )}
+          </div>
+            </div>
           </>
         ) : (
           <>
@@ -346,7 +364,7 @@ console.log("newUpdatedData",newUpdatedData)
         )}
       </section>:""}
 
-     {/*  {purchase? <Purchase userProfileData={userProfileData} userImg={userImg}/>:""} */}
+      {purchase? <Purchase userProfileData={userProfileData} userImg={userImg}/>:""}
       {isLoading || profileLoading ? (
         <div className="profile-loading">loading...</div>
       ) : (

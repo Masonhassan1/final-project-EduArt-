@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Header.css";
 
-function Header({ isAuth, logout }) {
+function Header({ isAuth, logout,userName }) {
   const [showUserPro, setShowUserPro] = useState(false);
   const navigate = useNavigate();
 
@@ -54,6 +54,7 @@ function Header({ isAuth, logout }) {
         <img className="img front" src={require("../Images/logo.png")} alt="" />
       </div>
       <div className="navy">
+      <div className="header-user-name">{userName?userName:""}</div>
         <i
           className="fa-solid fa-user user-pro-color"
           id="user-profile"
