@@ -5,7 +5,7 @@ import Footer from './Footer'
 
 function Home() {
  
-  const [time , setTime]=useState(new Date())
+  const [time , setTime]=useState("")
   useEffect(()=>{
     document.querySelector(".bracket-one").textContent="{";
     document.querySelector(".bracket-two").textContent="};";
@@ -13,9 +13,11 @@ function Home() {
    
 
   },[])
-  useEffect(()=>{
-    setTime(new Date())
-  },[time])
+   useEffect(()=>{
+    setInterval(()=>{
+      setTime(new Date().toLocaleTimeString('de-DE'))
+    },1000)
+  },[time]) 
  
   return (
     <>
@@ -41,7 +43,7 @@ function Home() {
             <div className="nodejs"><img src={require("../Images/nodejs.png") } alt="" />
             </div>
             <div className="display"></div>
-            <div className="clock">{time.getHours()}:{time.getMinutes()}:{time.getSeconds()}</div>
+            <div className="clock">{time}</div>
             <div className="firefox"><img src={require("../Images/firefox.webp")} alt="" />
             </div>
             <div className="vsc"><img src={require("../Images/vsc.png")} alt="" /></div>

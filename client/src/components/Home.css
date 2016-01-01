@@ -6,7 +6,7 @@
 main {
     width: 98%;
     margin: -6rem auto;
-    height: 87vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,7 +59,7 @@ main {
     bottom: 30%;
     border: none;
     outline: none;
-    color: #898d90;
+    color: #676d71;
     font-size: 1.2rem;
     font-weight: bold;
     background-color: #dee2e6;
@@ -77,7 +77,7 @@ main {
 }
 .home-btn:hover {
     box-shadow:-1px -1px 8px 0px #bbbdbf;
-    color:#737577 ;
+    color:#007398 ;
   
 }
 .python,
