@@ -6,7 +6,7 @@ import "./Login.css"
 function Login({handelSuccessfullLogin}) {
   const [showPassword,setShowPassword] = useState(false)
   const [error, setError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
   
   useEffect(()=>{
     document.querySelector(".login-email").focus()
@@ -17,7 +17,7 @@ function Login({handelSuccessfullLogin}) {
   const passwordEl = useRef(null)
 
   const submitHandler = async (e) => {
-
+    setError(false)
     e.preventDefault();
     
     const data = {
@@ -26,12 +26,13 @@ function Login({handelSuccessfullLogin}) {
     }
     console.log(data)
     try {
-      setIsLoading(true);
+      setLoginLoading(true);
       const axiosResp = await axios.post("http://localhost:4000/login", data);
-      console.log("axiosResp.data:", axiosResp.data);
-      setIsLoading(false);
+      /* console.log("axiosResp.data:", axiosResp.data); */
+      setLoginLoading(false);
 
       if(axiosResp.data.error) {
+        setLoginLoading(false);
         setError(axiosResp.data.error);
         console.log("error",error)
         return;
@@ -40,7 +41,8 @@ function Login({handelSuccessfullLogin}) {
       setError("");
      handelSuccessfullLogin(axiosResp.data);
     } catch (error) {
-      console.error("Error while sending with axios", error);
+      setLoginLoading(false);
+     /*  console.error("Error while sending with axios", error); */
       setError(error);
       return;
     }
@@ -53,9 +55,9 @@ function Login({handelSuccessfullLogin}) {
   }
   return (
     <div className='login'>
-
-   <form className='log-form' ref={formEl}   method="post"
-        action='/login'  onSubmit={submitHandler}>
+    
+    <form className={loginLoading? "log-form log-form-opacity":"log-form"} ref={formEl}   method="post"
+    action='/login'  onSubmit={submitHandler}>
     <div>Login</div>
     <p>Don´t have an account? <Link className='link' to= "/register">register</Link> </p>
     <p>or sign in via email</p>
@@ -69,6 +71,7 @@ function Login({handelSuccessfullLogin}) {
     </div>
     <button className='login-btn' type='submit'>Login</button>
    </form>
+   {loginLoading? <div className='login-loading'>loading...</div>:""}  
     </div>
   )
 }

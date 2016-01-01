@@ -31,7 +31,9 @@
     -moz-border-radius: 1rem;
    
 }
-
+.log-form-opacity{
+    opacity: .3;
+}
 .login-input {
     margin-bottom: 2rem;
    padding-left: 1rem;
@@ -75,4 +77,14 @@
     position: absolute;
     top:8px;
     left: 302px;
+}
+
+.login-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    font-size: xx-large;
+    color: #351ee7;
+    font-style: italic;
 }

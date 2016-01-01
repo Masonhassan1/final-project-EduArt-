@@ -7,7 +7,7 @@ function Register() {
   
   const navigate = useNavigate()
   const [showPassword,setShowPassword] = useState(false)
-  const [isLoading,setIsLoading] = useState(false)
+  const [regLoading,setRegLoading] = useState(false)
   const [isError, setIsError] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [user,setUser]= useState("")
@@ -34,15 +34,15 @@ function Register() {
     }
     console.log(userData)
     try {
-      setIsLoading(true);
+      setRegLoading(true);
       const axiosResp = await axios.post("http://localhost:4000/register", userData);
-      setIsLoading(false);
+      setRegLoading(false);
      
       
       if(axiosResp.data.error) {
        console.log(axiosResp.data.error)
        setIsError(true)
-       setIsLoading(false)
+       setRegLoading(false)
         return;
       }
 
@@ -50,7 +50,7 @@ function Register() {
      
   }catch (error){
     setIsError(true)
-    setIsLoading(false)
+    setRegLoading(false)
   
     return;
   }
@@ -73,7 +73,7 @@ function Register() {
      
     <div className="reg-form-container">
 
-    <form ref={formEl} className={isLoading? "reg-form reg-form-opacity":"reg-form"} action="">
+    <form ref={formEl} className={regLoading? "reg-form reg-form-opacity":"reg-form"} action="">
      <div>Register</div>
      <br />
      <input className='reg-input f-name-input' ref={firstNameEl} type="text"  placeholder='First name'/>
@@ -89,7 +89,7 @@ function Register() {
      {isRegistered? <> <div > Hello <span style={{color:"darkorange",fontStyle:"italic"}}>{user}</span> you were successfully registered</div> <div>Your will be automatically directed to <span style={{color:"darkorange",fontStyle:"italic"}}>login</span> page</div></>:""}
      {isError? <div style={{color:"red"}}>Sorry.. something went wrong. please try again</div>:""}
     </form>
-       {isLoading? <div className='reg-loading'>loading...</div>:""}  
+       {regLoading? <div className='reg-loading'>loading...</div>:""}  
      
     </div>
       </div>

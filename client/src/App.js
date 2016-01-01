@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route , useNavigate} from "react-router-dom";
 import { useEffect, useState  } from 'react';
 import { isExpired, decodeToken } from "react-jwt";
 import axios from "axios"
@@ -11,6 +11,7 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 
 function App() {
+ 
   const [isAuth, setIsAuth] = useState(false);
   /* const [isLoading, setIsLoading] = useState(false); */
   /* const [error, setError] = useState(""); */
@@ -40,41 +41,9 @@ function App() {
   const logout = () => {
     localStorage.clear();
     setIsAuth(false);
-    /* setUserDetails(null); */
-  } 
- /*  const loadAndFetchUserDetails = async () => {
-
    
-    const errorMsgEl = <p>Something went wrong</p>;
-    try {
-      setIsLoading(true);
-      const axiosResp = await axios.post("http://localhost:4000/myAccount", {}, {
-        headers: {
-          'authorization': `Bearer ${localStorage.getItem("jwt")}`
-          }
-        });
-
-      setUserDetails(axiosResp.data);
-      console.log("axiosResp.data:", axiosResp.data);
-      setIsLoading(false);
-
-      if(axiosResp.data.error) {
-        setError( axiosResp.data.error.message );
-        console.error(axiosResp.data.error)
-        return errorMsgEl;
-      }
-      
-      setError(""); 
-    } catch (error) {
-      setIsLoading(false);
-      console.error("Error while sending with axios", error);
-      setError( error.message );
-      return errorMsgEl;
-    }
-
-    return 
   } 
- */
+ 
    useEffect(() => {
     if( hasClientValidToken() ) {
       setIsAuth(true);
@@ -87,7 +56,7 @@ function App() {
   return (
      <Router>
   
-      <Header/>
+      <Header isAuth={isAuth} logout={logout}/>
 
       <Routes>
       <Route path={"/"} element={<Home/>} />
