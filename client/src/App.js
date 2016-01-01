@@ -1,13 +1,7 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { isExpired, decodeToken } from "react-jwt";
-import axios from "axios";
 import "./App.css";
 import Header from "./components/Header";
 import Home from "./components/Home";

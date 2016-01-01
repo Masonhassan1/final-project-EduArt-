@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { findLDeskIdAndAddCourse } from "../CoursePage/CoursePage";
+import { addCourseOnDashborad } from "../CoursePage/CoursePage";
 import { MyContext } from "../../App";
 import axios from "axios";
 import "./Login.css";
@@ -30,11 +30,10 @@ function Login({ handelSuccessfullLogin, isAuth }) {
       eMail: emailEl.current.value,
       password: passwordEl.current.value,
     };
-    console.log(data);
     try {
       setLoginLoading(true);
       const axiosResp = await axios.post("http://localhost:4000/login", data);
-      /* console.log("axiosResp.data:", axiosResp.data); */
+      console.log("my axiosResp.data:", axiosResp.data);
       setLoginLoading(false);
 
       if (axiosResp.data.error) {
@@ -47,7 +46,7 @@ function Login({ handelSuccessfullLogin, isAuth }) {
       setError("");
       handelSuccessfullLogin(axiosResp.data);
       if (selectedCourse) {
-        await findLDeskIdAndAddCourse(selectedCourse);
+        await addCourseOnDashborad(selectedCourse);
         setSelectedCourse(null);
       }
     } catch (error) {

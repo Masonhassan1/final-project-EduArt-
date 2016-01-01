@@ -4,32 +4,15 @@ import axiosConfig from "../../util/axiosConfig";
 import "./CoursePage.css";
 import { MyContext } from "../../App";
 import baseURL from "../../util/constants";
+import { decodeToken } from "react-jwt";
 
-export const findLDeskIdAndAddCourse = async (courseid) => {
-  const userId = localStorage.getItem("userId");
-  const url = "/user";
-  const jwt = localStorage.getItem("jwt");
-
-  if (userId && jwt) {
-    const userData = await axiosConfig.get(`${url}/${userId}`, {
-      headers: {
-        authorization: `Bearer ${jwt}`,
-      },
-    });
-    const learningDeskId = userData.data.myLearningDesk._id;
-    console.log("learningDeskId", learningDeskId);
-    if (learningDeskId) {
-      const lDeskData = await addCourseOnDashborad(learningDeskId, courseid);
-      console.log("lDeskData", lDeskData);
-      //navigate('/dashboard');
-      //navigate("/"); // TODO dashboard
-    }
-  }
-};
-export const addCourseOnDashborad = async (learningDeskId, courseId) => {
-  console.log(learningDeskId, courseId);
+export const addCourseOnDashborad = async (courseId) => {
+  console.log(courseId);
   try {
     const jwt = localStorage.getItem("jwt");
+    const decodedToken = decodeToken(jwt);
+    const learningDeskId = decodedToken.learningDesk;
+    console.log("learning desk id", learningDeskId);
     if (learningDeskId && jwt) {
       const lDeskData = await axiosConfig.patch(
         `/mylearningdesk/${learningDeskId}`,
@@ -55,20 +38,23 @@ export default function CoursePage({ isAuth }) {
   const [courseStart, setCourseStart] = useState("");
   const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [courseMes, setCourseMes] = useState(false);
   const navigate = useNavigate();
   const bookCourse = async () => {
     /// check ob user eingelogged ist
-    // true:
     if (isAuth) {
       // id params -(learningDeskId)
       // body course_id
       try {
         setLoading(true);
-        await findLDeskIdAndAddCourse(courseid);
-        navigate("/"); /// TODO navigate to Dashboard
+        await addCourseOnDashborad(courseid);
         setLoading(false);
         setHasError(false);
-        console.log("book new course");
+        setCourseMes(true);
+        setTimeout(() => {
+          setCourseMes(false);
+          navigate("/"); /// TODO navigate to Dashboard
+        }, 2000);
       } catch (error) {
         setLoading(false);
         setHasError(true);
@@ -138,6 +124,7 @@ export default function CoursePage({ isAuth }) {
               <p className="coursePageTextCard">
                 {courseInfo.courseDescription}
               </p>
+
               <div className="buy-btn-wrapper" onClick={() => bookCourse()}>
                 <p>book now</p>
                 <div className="buy-btn-icon">
@@ -155,6 +142,9 @@ export default function CoursePage({ isAuth }) {
                   </svg>
                 </div>
               </div>
+              <p className="courseMes">
+                {courseMes ? "The course was booked successfully." : ""}
+              </p>
             </div>
             <div className="coursePagePicture">
               <img
