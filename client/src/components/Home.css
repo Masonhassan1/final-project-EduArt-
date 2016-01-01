@@ -74,11 +74,7 @@ p {
     left: 25%;
     font-size: xx-large;
     color: rgb(4, 54, 63);
-    transform: rotateX(90deg);
-    -webkit-transform: rotateX(90deg);
-    -moz-transform: rotateX(90deg);
-    -ms-transform: rotateX(90deg);
-    -o-transform: rotateX(90deg);
+    rotate: x 90deg;
     animation: show-paragraph 0.6s 0.3s linear forwards;
     -webkit-animation: show-paragraph 0.6s 0.3s linear forwards;
 }
@@ -100,11 +96,7 @@ button {
     -moz-border-radius: 1.2rem;
     -ms-border-radius: 1.2rem;
     -o-border-radius: 1.2rem;
-    transform: rotateX(90deg);
-    -webkit-transform: rotateX(90deg);
-    -moz-transform: rotateX(90deg);
-    -ms-transform: rotateX(90deg);
-    -o-transform: rotateX(90deg);
+    rotate: x 90deg;
     animation: show-paragraph 0.6s 0.9s linear forwards;
     -webkit-animation: show-paragraph 0.6s 0.9s linear forwards;
     -webkit-transition: .5s;
@@ -118,11 +110,7 @@ button:hover{
 }
 @keyframes show-paragraph {
     to {
-        transform: rotateX(0deg);
-        -webkit-transform: rotateX(0deg);
-        -moz-transform: rotateX(0deg);
-        -ms-transform: rotateX(0deg);
-        -o-transform: rotateX(0deg);
+       rotate: x 0deg;
     }
 }
 .python,
@@ -226,11 +214,7 @@ button:hover{
     width: 400px;
     height: 300px;
     border: 1px solid darkgray;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
+  translate: -50% -50%;
 }
 .display {
     background-image: url("../Images/desktop.jpg");
@@ -255,11 +239,13 @@ button:hover{
     top: 65%;
 }
 .clock {
-    position: absolute;
-    top: 7%;
-    left: 45%;
-    color: white;
+   position: absolute;
+   top: 7%;
+   left: 45%;
+   color: white;
+  scale: 1.5 1;
 }
+
 .vsc img,
 .chrome img,
 .firefox img {
@@ -330,8 +316,6 @@ button:hover{
     grid-row: 3/7;
     color: #989175;
     border-right: 1px solid #989175;
-    transform-origin: right,center;
- 
 }
 .vsc-app-icons i {
     transition: .5s;
@@ -384,11 +368,7 @@ button:hover{
 }
 @keyframes move-cover {
     to{
-        transform: scaleX(0);
-        -webkit-transform: scaleX(0);
-        -moz-transform: scaleX(0);
-        -ms-transform: scaleX(0);
-        -o-transform: scaleX(0);
+       scale: 0 1;
 }
 }
 .vsc-terminal-title{
