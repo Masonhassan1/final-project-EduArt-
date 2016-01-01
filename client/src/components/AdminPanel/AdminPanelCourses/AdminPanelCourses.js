@@ -65,17 +65,11 @@ export default function AdminPanelCourses() {
   const [showMessage, setShowMessage] = useState(false);
   const [messageText, setMessageText] = useState("");
 
-  const handleCourseImage = (img) => {
-    // const newImage = URL.createObjectURL(img);
-    console.log("image", img);
-  };
-
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
 
-    console.log("value", value);
     setSelectedModules(
       // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
@@ -104,7 +98,6 @@ export default function AdminPanelCourses() {
     try {
       setLoading(true);
       const apiData = await axiosConfig.get(url);
-      console.log("courses", apiData.data);
       setCourses([...apiData.data]);
       //   setModulesName(apiData.data.map((mod) => mod.name));
       //   setModulesSearchResult([...apiData.data]);
@@ -135,12 +128,15 @@ export default function AdminPanelCourses() {
     const formData = new FormData();
     formData.append("image", image);
     // formData.append("title", "photo title");
-
-    await axiosConfig.post("/images", formData, {
-      headers: {
-        authorization: `Bearer ${jwt}`,
-      },
-    });
+    try {
+      await axiosConfig.post("/images", formData, {
+        headers: {
+          authorization: `Bearer ${jwt}`,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const createCourse = async (event) => {
@@ -153,24 +149,21 @@ export default function AdminPanelCourses() {
 
     setCourseImage(`/images/${newCourseImage.name}`);
     setCourseIcon(`/images/${newCourseIcon.name}`);
-    console.log("name", courseName);
-    console.log("start date", courseStartDate);
-    console.log("type", courseType);
-    console.log("description", courseDescription);
-    console.log("language", courseLanguage);
-    console.log("price", coursePrice);
-    console.log("course icon", courseIcon);
-    console.log("course image", courseImage);
-    console.log("courseModules", courseModules);
 
     try {
       setLoading(true);
+      const tempArr = courseModules.map((modId) => {
+        return modules.find((mod) => mod._id === modId);
+      });
+      const duration = tempArr
+        .map((mod) => mod.noOfDays)
+        .reduce((acc, cur) => acc + cur, 0);
 
       const response = await axiosConfig.post(
         `/courses`,
         {
           courseName: courseName,
-          courseDuration: 0,
+          courseDuration: duration,
           dateOfStart: courseStartDate,
           courseInShort: courseName
             .substring(0, 10)
@@ -194,6 +187,7 @@ export default function AdminPanelCourses() {
       );
 
       resetCreateCourseForm();
+      event.target.reset();
       setShowMessage(true);
       setMessageText("The course was successfully created.");
       getCourses(`/courses`);
