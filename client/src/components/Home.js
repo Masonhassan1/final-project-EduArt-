@@ -5,8 +5,10 @@ import "./Home.css"
 function Home() {
 
   useEffect(()=>{
-    document.querySelector(".bracket-one").textContent="{"
-    document.querySelector(".bracket-two").textContent="};"
+    document.querySelector(".bracket-one").textContent="{";
+    document.querySelector(".bracket-two").textContent="};";
+    document.querySelector(".index-html").textContent="<>";
+
   },[])
   return (
     <main className='home'>
@@ -55,6 +57,12 @@ function Home() {
               </div>
               <div className="vsc-app-workspace">
                 <div>
+                  <span className='index-html' style={{color:"orange"}}> </span>
+              index.html</div>
+              <div>
+                  <span style={{color:"deepskyblue"}}># </span>
+              index.css</div>
+                  <div>
                   <span style={{color:"gold"}}>js </span>
               index.js</div>
                   </div>
