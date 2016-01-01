@@ -58,8 +58,8 @@
 }
 
 .personal-data{
-    width: 50%;
-    height: 80%;
+    width: 900px;
+    height: 650px;
     padding: .8rem;
     display: grid;
     border-radius: 1.6rem;
