@@ -61,10 +61,10 @@ main {
     bottom: 30%;
     border: none;
     outline: none;
-    color: #676d71;
+    color: white;
     font-size: 1.2rem;
     font-weight: bold;
-    background-color: #dee2e6;
+    background-color: #aab3b8;
     transition: 1s;
     border-radius: 1.2rem;
     -webkit-border-radius: 1.2rem;
@@ -74,12 +74,13 @@ main {
     -webkit-animation: show-paragraph 0.6s 0.9s linear forwards;
     -webkit-transition: 1s;
     -moz-transition: 1s;
-    box-shadow:   1px 1px 8px 0px #bbbdbf;
+    box-shadow: 4px 5px 12px #3e3d3d;
+    text-shadow: 4px 5px 12px #3e3d3d;
    
 }
 .home-btn:hover {
-    box-shadow:-1px -1px 8px 0px #bbbdbf;
-    color:#007398 ;
+    box-shadow: -2px -3px 8px #3e3d3d;
+   
   
 }
 .python,
@@ -89,6 +90,7 @@ main {
 .react,
 .nodejs {
     position: absolute;
+    
 }
 
 .python {
@@ -402,16 +404,17 @@ main {
     top: 85%;
     left: 92.2%;
     color: white;
-    background-color: #38a0d5;
-    box-shadow: 4px 5px 12px #2982ae;
+    background-color: #6a96af;
+    box-shadow: 4px 5px 12px #3e3d3d;
     cursor: pointer;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
+}.show-hide-chat i{
+    text-shadow: 3px 4px 12px #3e3d3d;
 }
-
 .chat {
     position: relative;
     width: 330px;
@@ -433,7 +436,7 @@ main {
 .chat-title{
     margin-bottom: 2rem;
   padding: .5rem;
-  color: #046fa5;
+  color: #4a6f81;
   background-color: #e7e5e5;
   border-radius: 1rem;
   -webkit-border-radius: 1rem;
@@ -455,7 +458,7 @@ main {
     display: block;
     padding: .5rem;
     color:  #e7e5e5;
-    background-color: #046fa5;
+    background-color: #528198;
     border-radius: 1rem;
   -webkit-border-radius: 1rem;
   -moz-border-radius: 1rem;
