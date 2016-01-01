@@ -13,9 +13,9 @@ import Register from "./components/Register/Register";
 function App() {
  
   const [isAuth, setIsAuth] = useState(false);
-   const [isLoading, setIsLoading] = useState(false); 
+   /* const [isLoading, setIsLoading] = useState(false); 
    const [error, setError] = useState(""); 
-   const [userDetails, setUserDetails] = useState(null); 
+   const [userDetails, setUserDetails] = useState(null);  */
 
 
   
@@ -41,7 +41,7 @@ function App() {
   const logout = () => {
     localStorage.clear();
     setIsAuth(false);
-    setUserDetails(null);
+   /*  setUserDetails(null); */
   } 
 
   /* const getUserDetails = async () => {
