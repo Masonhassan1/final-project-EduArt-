@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Jura:wght@600&display=swap");
 
 .course-list-page {
-  min-height: 75vh;
+  min-height: 74vh;
   margin: 0;
   background: rgba(250, 214, 185, 0.835);
   background: linear-gradient(
@@ -436,7 +436,7 @@ button:focus {
   margin: 1rem auto;
 }
 
-.no-course-mes {
+.no-results {
   width: 600px;
   height: 400px;
   background-image: url("../../Images/no-results.webp");
@@ -444,4 +444,11 @@ button:focus {
   background-size: cover;
   border-radius: 10px;
   margin: 1rem auto;
+}
+
+.no-results > p {
+  text-align: center;
+  font-family: "Jura", sans-serif;
+  font-size: 2rem;
+  padding-top: 1rem;
 }

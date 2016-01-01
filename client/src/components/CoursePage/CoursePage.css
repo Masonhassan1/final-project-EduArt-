@@ -2,6 +2,7 @@
 
 .coursePageWrapper-body {
   padding-bottom: 2rem;
+  min-height: 71vh;
   background: rgba(250, 214, 185, 0.835);
   background: linear-gradient(
     180deg,

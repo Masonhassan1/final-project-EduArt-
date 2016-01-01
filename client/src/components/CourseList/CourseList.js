@@ -7,7 +7,7 @@ import axios from "axios";
 export default function CourseList() {
   const [courseArr, setCourseArr] = useState([]);
   const searchInputRef = React.createRef(null);
-  const [hasError, setHasError] = useState(null);
+  const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
@@ -123,7 +123,9 @@ export default function CourseList() {
         ) : hasError ? (
           <div className="error-message"></div>
         ) : !courseArr.length ? (
-          <div className="no-course-mes"></div>
+          <div className="no-results">
+            <p>No results found</p>
+          </div>
         ) : (
           <div className="container">
             {courseArr.length && (
