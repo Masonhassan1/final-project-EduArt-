@@ -1,81 +1,80 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./CourseList.css";
 import { GoSearch } from "react-icons/go";
-
-const courseArr = [
-  {
-    name: "Web Development",
-    linkname: "webdevelopment",
-    duration: "12 months",
-    start: "01.02.2023",
-    id: 1,
-    src: "https://cdn.dribbble.com/users/1270214/screenshots/5646236/media/ef6ec26746b87842e916e5c0f5b6ec27.png?compress=1&resize=800x600&vertical=top",
-    text: "With our course, you will learn how to create dynamic websites and interactive web applications.",
-  },
-  {
-    name: "Web Design",
-    linkname: "webdesign",
-    duration: "6 months",
-    start: "05.03.2023",
-    id: 2,
-    src: "https://thumbs.dreamstime.com/z/developers-create-internet-app-software-engineering-computer-technology-website-development-web-application-coding-design-web-150140993.jpg",
-    text: "Students will gain the skills and project-based experience needed for entry into web design and development careers.",
-  },
-  {
-    name: "Web Development",
-    linkname: "webdevelopment",
-    duration: "12 months",
-    start: "08.04.2023",
-    id: 3,
-    src: "https://cdn.dribbble.com/users/1270214/screenshots/5646236/media/ef6ec26746b87842e916e5c0f5b6ec27.png?compress=1&resize=800x600&vertical=top",
-    text: "With our course, you will learn how to create dynamic websites and interactive web applications.",
-  },
-  {
-    name: "Web Design",
-    linkname: "webdesign",
-    duration: "6 months",
-    start: "11.05.2023",
-    id: 4,
-    src: "https://thumbs.dreamstime.com/z/developers-create-internet-app-software-engineering-computer-technology-website-development-web-application-coding-design-web-150140993.jpg",
-    text: "Students will gain the skills and project-based experience needed for entry into web design and development careers.",
-  },
-];
+import axios from "axios";
 
 export default function CourseList() {
-  // const navigate = useNavigate();
+  const [courseArr, setCourseArr] = useState([]);
+  const searchInputRef = React.createRef(null);
+
+  const getAllCourses = async (url) => {
+    const apiData = await axios.get(url);
+    setCourseArr(apiData.data);
+  };
+
+  useEffect(() => {
+    getAllCourses("http://localhost:3000/courses");
+  }, []);
+
   const submitForm = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
+    getAllCourses(
+      `http://localhost:3000/courses?name=${searchInputRef.current.value}`
+    );
   };
   return (
     <div>
+      <p className="courseListTitle">
+        Choose an online course and transform your career
+      </p>
       <form className="search-form" onSubmit={(e) => submitForm(e)}>
         <GoSearch className="search-icon" />
-        <input type="text" name="search" placeholder="Search" />
+        <input
+          type="text"
+          name="search"
+          placeholder="Search"
+          ref={searchInputRef}
+        />
       </form>
       <section className="courseListSection">
         {courseArr.map((course, id) => {
           return (
             <div key={id} className="courseCard">
-              <img src={course.src} alt={course.name} />
-              <h3 className="courseNameCard">{course.name}</h3>
-              <h5 className="courseDurationCard">{course.duration}</h5>
-              <h5 className="courseStartCard">Start: {course.start}</h5>
-              <p className="courseTextCard">{course.text}</p>
-              <Link
-                to={`/courselist/${course.linkname}`}
-                className="viewCourseBtn"
-              >
-                View course
+              <div className="cardHeader">
+                <img
+                  className="cardIcon"
+                  src={course.courseImage}
+                  alt={course.courseName}
+                />
+                <div className="cardTextHeader">
+                  <h3 className="courseNameCard">{course.courseName}</h3>
+                  <h5 className="courseDurationCard">{`full time | ${course.courseDuration} months`}</h5>
+                </div>
+              </div>
+              <p className="courseTextCard">{course.courseDescription}</p>
+              <Link to={`/courselist/${course._id}`} className="viewCourseBtn">
+                view course
+                <svg
+                  width="47"
+                  height="28"
+                  viewBox="0 0 47 28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M32.6875 1.5L44.9375 14L32.6875 26.5M44.9375 14H2.0625"
+                    stroke="white"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </Link>
 
-              {/*    <button
-                
-                onClick={() => navigate(":webdevelopment")}
-              >
-                View course
-              </button> */}
+              {/*  <h5 className="courseStartCard">
+                Start: {new Date(course.dateOfStart).toLocaleDateString()}
+              </h5> */}
             </div>
           );
         })}

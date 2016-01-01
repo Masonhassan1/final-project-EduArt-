@@ -24,7 +24,7 @@ function App() {
 
         <Routes>
           <Route path="/courselist" element={<CourseList />}></Route>
-          <Route path="/courselist/:coursename" element={<CoursePage />} />
+          <Route path="/courselist/:courseid" element={<CoursePage />} />
         </Routes>
       </div>
     </Router>
