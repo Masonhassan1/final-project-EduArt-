@@ -4,6 +4,7 @@ import axios from "axios"
 import "./Register.css"
 
 function Register() {
+  
   const navigate = useNavigate()
   const [showPassword,setShowPassword] = useState(false)
   const [isLoading,setIsLoading] = useState(false)
@@ -12,6 +13,7 @@ function Register() {
   const [user,setUser]= useState("")
  
   useEffect(()=>{
+    
     document.querySelector(".f-name-input").focus()
   })
   const formEl = useRef(null);
@@ -21,6 +23,7 @@ function Register() {
   const emailEl = useRef(null); 
   const passwordEl = useRef(null); 
   async function submitHandler(e){
+    setIsError(false)
     e.preventDefault();
     const userData ={
       firstName: firstNameEl.current.value,
@@ -51,6 +54,7 @@ function Register() {
   
     return;
   }
+  
   setUser(userData.firstName)
   setIsRegistered(true);
   formEl.current.reset();
@@ -79,7 +83,7 @@ function Register() {
      <div className="reg-password-div">
 
      <input  className='reg-input' ref={passwordEl} type={showPassword? "text":"password"}  placeholder='Password'/>
-     <div className='reg-show-password' onClick={passwordHandler}>{showPassword? <span><i class="fa-solid fa-eye-slash"></i></span>:<span><i class="fa-solid fa-eye"></i></span>}</div>
+     <div className='reg-show-password' onClick={passwordHandler}>{showPassword? <span><i className="fa-solid fa-eye-slash"></i></span>:<span><i className="fa-solid fa-eye"></i></span>}</div>
      </div>
      <button className='register-btn' onClick={submitHandler}>Register</button>
      {isRegistered? <> <div > Hello <span style={{color:"darkorange",fontStyle:"italic"}}>{user}</span> you were successfully registered</div> <div>Your will be automatically directed to <span style={{color:"darkorange",fontStyle:"italic"}}>login</span> page</div></>:""}

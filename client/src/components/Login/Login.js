@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import axios from "axios"
 import "./Login.css"
 
-function Login({handleSuccessfullLogin}) {
+function Login({handelSuccessfullLogin}) {
   const [showPassword,setShowPassword] = useState(false)
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +38,7 @@ function Login({handleSuccessfullLogin}) {
       }
       
       setError("");
-      handleSuccessfullLogin(axiosResp.data);
+      handelSuccessfullLogin(axiosResp.data);
     } catch (error) {
       console.error("Error while sending with axios", error);
       setError(error);
@@ -65,7 +65,7 @@ function Login({handleSuccessfullLogin}) {
     <div className="log-password-div">
 
     <input className='login-input' ref={passwordEl} type={showPassword? "text":"password"}  required placeholder='Password'/>
-    <div className='login-show-password' onClick={passwordHandler}>{showPassword? <span><i class="fa-solid fa-eye-slash"></i></span>:<span><i class="fa-solid fa-eye"></i></span>}</div>
+    <div className='login-show-password' onClick={passwordHandler}>{showPassword? <span><i className="fa-solid fa-eye-slash"></i></span>:<span><i className="fa-solid fa-eye"></i></span>}</div>
     </div>
     <button className='login-btn' type='submit'>Login</button>
    </form>

@@ -18,7 +18,7 @@ function App() {
 
   
 
-  const handleSuccessfullLogin = (respData) => {
+  const handelSuccessfullLogin = (respData) => {
 
     const decodedToken = decodeToken(respData.jwt);
     setIsAuth(true);
@@ -87,7 +87,7 @@ function App() {
 
       <Routes>
       <Route path={"/"} element={<Home/>} />
-      <Route path={"/login"}  element={<Login/>} handleSuccessfullLogin={handleSuccessfullLogin}/>
+      <Route path={"/login"}  element={<Login/>} handelSuccessfullLogin={handelSuccessfullLogin}/>
 
       <Route path="/courselist" element={<CourseList />}></Route>
           <Route path="/courselist/:courseid" element={<CoursePage />} />
