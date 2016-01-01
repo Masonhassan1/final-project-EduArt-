@@ -19,6 +19,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 
+import AdminCoursesSearch from "./AdminCoursesSearch/AdminCoursesSearch";
 import axiosConfig from "../../../util/axiosConfig";
 import baseURL from "../../../util/constants";
 
@@ -62,6 +63,8 @@ export default function AdminPanelCourses() {
   const [loading, setLoading] = useState(false);
   const [updateCourseMode, setUpdateCourseMode] = useState(false);
   const [selectedModules, setSelectedModules] = React.useState([]);
+  const [coursesSearchResult, setCoursesSearchResult] = useState([]);
+  const [coursesName, setCoursesName] = useState([]);
   const [showMessage, setShowMessage] = useState(false);
   const [messageText, setMessageText] = useState("");
 
@@ -79,6 +82,19 @@ export default function AdminPanelCourses() {
       return temp._id;
     });
     setCourseModules(idModules);
+  };
+
+  const getCoursesSearchResult = async (url) => {
+    try {
+      setLoading(true);
+      const apiData = await axiosConfig.get(url);
+      setCoursesSearchResult([...apiData.data]);
+      setLoading(false);
+      setHasError(false);
+    } catch (error) {
+      setLoading(false);
+      setHasError(true);
+    }
   };
 
   const resetCreateCourseForm = () => {
@@ -99,8 +115,8 @@ export default function AdminPanelCourses() {
       setLoading(true);
       const apiData = await axiosConfig.get(url);
       setCourses([...apiData.data]);
-      //   setModulesName(apiData.data.map((mod) => mod.name));
-      //   setModulesSearchResult([...apiData.data]);
+      setCoursesName(apiData.data.map((course) => course.courseName));
+      setCoursesSearchResult([...apiData.data]);
 
       setLoading(false);
       setHasError(false);
@@ -409,13 +425,13 @@ export default function AdminPanelCourses() {
           </form>
         </Box>
         <section className="adminModulesSearchSection">
-          {/* <AdminModulesSearch
-        modulesName={modulesName}
-        getModulesSearchResult={getModulesSearchResult}
-      /> */}
+          <AdminCoursesSearch
+            coursesName={coursesName}
+            getCoursesSearchResult={getCoursesSearchResult}
+          />
 
           <div className="modulesWrapper">
-            {courses.map((course) => {
+            {coursesSearchResult.map((course) => {
               return (
                 <Box
                   className="moduleWrapper adminCardWrapper"

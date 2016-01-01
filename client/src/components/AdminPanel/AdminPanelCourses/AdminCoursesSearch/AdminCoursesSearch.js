@@ -4,9 +4,9 @@ import TextField from "@mui/material/TextField";
 
 const filter = createFilterOptions();
 
-export default function AdminModulesSearch({
-  modulesName,
-  getModulesSearchResult,
+export default function AdminCoursesSearch({
+  coursesName,
+  getCoursesSearchResult,
 }) {
   const [value, setValue] = React.useState(null);
   return (
@@ -30,11 +30,10 @@ export default function AdminModulesSearch({
           } else {
             setValue(newValue);
           }
-
           if (newValue) {
-            getModulesSearchResult(`/modules?name=${newValue}`);
+            getCoursesSearchResult(`/courses?name=${newValue}`);
           } else {
-            getModulesSearchResult(`/modules`);
+            getCoursesSearchResult(`/courses`);
           }
         }}
         filterOptions={(options, params) => {
@@ -56,7 +55,7 @@ export default function AdminModulesSearch({
         clearOnBlur
         handleHomeEndKeys
         id="free-solo-with-text-demo"
-        options={modulesName}
+        options={coursesName}
         getOptionLabel={(option) => {
           // Value selected with enter, right from the input
           if (typeof option === "string") {
@@ -71,7 +70,7 @@ export default function AdminModulesSearch({
         }}
         renderOption={(props, option) => <li {...props}>{option}</li>}
         freeSolo
-        renderInput={(params) => <TextField {...params} label="Modules ..." />}
+        renderInput={(params) => <TextField {...params} label="Courses ..." />}
       />
     </form>
   );
