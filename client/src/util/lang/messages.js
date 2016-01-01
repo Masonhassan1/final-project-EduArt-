@@ -101,6 +101,11 @@ export const messages = {
     course_start: "Course start: ",
     course_price: "Course price: ",
     you_have_no_purchases: "You have no purchases",
+    // certificate page
+    this_certificate_presented_to: "This certificate presented to ",
+    for_successfully_completing: "for successfully completing",
+    course: "course", // for successfully completing **** course
+    download: "Download",
   },
   [LOCALES.RUSSIAN]: {
     // header
@@ -201,5 +206,10 @@ export const messages = {
     course_start: "Начало курса: ",
     course_price: "Стоимость курса: ",
     you_have_no_purchases: "У вас нет покупок",
+    // certificate page
+    this_certificate_presented_to: "Этот сертификат предоставляется",
+    for_successfully_completing: "за успешное завершение",
+    course: "курса", // for successfully completing **** course
+    download: "Скачать",
   },
 };

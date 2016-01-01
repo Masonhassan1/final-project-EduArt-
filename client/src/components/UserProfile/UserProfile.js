@@ -507,14 +507,19 @@ function UserProfile({
         ""
       )}
       {isLoading || profileLoading ? (
-        <div className="profile-loading">loading...</div>
+        <div className="profile-loading">
+          <FormattedMessage id="loading" defaultMessage="loading..." />
+        </div>
       ) : (
         ""
       )}
 
       {error || isError ? (
         <div className="profile-error">
-          Sorry.. something went wrong,please try again
+          <FormattedMessage
+            id="sorry"
+            defaultMessage="Sorry.. something went wrong. please try again"
+          />
         </div>
       ) : (
         ""
