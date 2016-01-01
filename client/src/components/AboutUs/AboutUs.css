@@ -9,11 +9,11 @@
   font-family: "Jura";
   font-style: normal;
   font-weight: 500;
-  font-size: 25px;
+  font-size: 23px;
   line-height: 30px;
   color: #5382a1;
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 0.7rem;
   margin-bottom: 0;
 }
 
@@ -23,8 +23,7 @@
   font-family: "Jura";
   font-style: normal;
   font-weight: 700;
-  font-size: 60px;
-  line-height: 71px;
+  font-size: 56px;
   color: #5382a1;
   text-align: center;
 }
@@ -38,14 +37,14 @@
   justify-content: space-between;
 }
 
-.team-info-wrapper .map-image {
+.team-info-wrapper .office-location-map {
   width: 250px;
   height: 250px;
-  background-position: center;
-  background-size: cover;
+  /* background-position: center;
+  background-size: cover; */
 }
 
-.team-info-card:nth-child(1) .map-image {
+/* .team-info-card:nth-child(1) .map-image {
   background-image: url("../../Images/cologne.png ");
 }
 
@@ -59,19 +58,19 @@
 
 .team-info-card:nth-child(4) .map-image {
   background-image: url("../../Images/Guetersloh.png");
-}
+} */
 
 .team-info-wrapper a {
   text-decoration: none;
 }
 
 .teammate-name {
-  margin-top: 4rem;
+  margin-top: 3rem;
   margin-bottom: 0;
   font-family: "Jura";
   font-style: normal;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 36px;
   line-height: 47px;
   color: #5382a1;
   text-align: center;
@@ -79,7 +78,7 @@
 
 .team-info-card .fa-github {
   font-size: 2.2rem;
-  margin-top: 0.8rem;
+  margin-top: 0.3rem;
   text-align: center;
   display: block;
   color: black;
@@ -93,14 +92,14 @@
   display: block;
   width: 100px;
   height: 25px;
-  margin: 1rem auto;
+  margin: 0.3rem auto;
 }
 
 .offices {
   width: 80%;
   display: flex;
   justify-content: space-between;
-  margin: 6rem auto 1rem auto;
+  margin: 4.5rem auto 1rem auto;
 }
 
 .office {
@@ -118,8 +117,7 @@
   font-family: "Jura";
   font-style: normal;
   font-weight: 700;
-  font-size: 25px;
-  line-height: 30px;
+  font-size: 23px;
   color: #5382a1;
 }
 

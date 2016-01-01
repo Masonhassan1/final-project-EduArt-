@@ -7,21 +7,29 @@ export default function AboutUs() {
       name: "Luay",
       github: "https://github.com/Luayabbas1981",
       linkedIn: "https://www.linkedin.com/in/luay-abbas-79531a24a/",
+      officeLocation:
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d160843.8259633896!2d6.6555251762457095!3d50.95728779588334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bf259169ab2fe5%3A0x42760fc4a2a77f0!2zS8O2bG4!5e0!3m2!1sde!2sde!4v1668500314929!5m2!1sde!2sde",
     },
     {
       name: "Mercedes",
       github: "https://github.com/aboutthatmery",
-      linkedIn: "https://www.linkedin.com/in/mercedes-girmanova",
+      linkedIn: "https://www.linkedin.com/in/mercedes-girmanova/",
+      officeLocation:
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d80387.86135621568!2d11.236055697664755!3d50.97696016673861!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a41ac631ed5ba9%3A0x4208ec174333640!2sWeimar!5e0!3m2!1sde!2sde!4v1668500490403!5m2!1sde!2sde",
     },
     {
       name: "Oxana",
       github: "https://github.com/OxanaDanilova",
       linkedIn: "https://www.linkedin.com/in/oxana-danilova-b082a0156/",
+      officeLocation:
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d80654.81800302186!2d12.808576389919756!3d50.822586184087974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a7465f01fd9de9%3A0x51ddf8280975d11c!2sChemnitz!5e0!3m2!1sde!2sde!4v1668499865739!5m2!1sde!2sde",
     },
     {
       name: "Joachim",
       github: "https://github.com/KazhimRycerz",
-      linkedIn: "/",
+      linkedIn: "https://www.linkedin.com/in/joachimr/",
+      officeLocation:
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d78750.66044150293!2d8.239829216761498!3d51.9164748478955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ba259303a94471%3A0x412fef90d24323c1!2sG%C3%BCtersloh!5e0!3m2!1sde!2sde!4v1668500569962!5m2!1sde!2sde",
     },
   ];
   return (
@@ -32,7 +40,18 @@ export default function AboutUs() {
         {arrData.map((teammate, id) => {
           return (
             <div className="team-info-card" key={id}>
-              <div className="map-image"></div>
+              {/* <div className="map-image"></div> */}
+              <iframe
+                title="office location"
+                className="office-location-map"
+                src={teammate.officeLocation}
+                width="250"
+                height="250"
+                style={{ border: 0 }}
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
               <p className="teammate-name">{teammate.name}</p>
               <a href={teammate.github} target="blank">
                 <i className="fa-brands fa-github"></i>
