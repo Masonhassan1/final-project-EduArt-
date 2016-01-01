@@ -81,27 +81,28 @@ export default function AboutUs() {
       <section className="offices">
         <div className="office">
           <i className="fa-solid fa-location-dot"></i>
+          <p className="officeName">Frontend Office</p>
+          <p className="officeTime">Mon-Fri 9am to 4pm</p>
+          <p className="officeLocation">Cologne</p>
+        </div>
+        <div className="office">
+          <i className="fa-solid fa-location-dot"></i>
           <p className="officeName">UX/UI Design Office</p>
           <p className="officeTime">Mon-Fri 9am to 4pm</p>
           <p className="officeLocation">Weimar</p>
         </div>
         <div className="office">
+          {/* */}
           <i className="fa-solid fa-location-dot"></i>
           <p className="officeName">Frontend Office</p>
           <p className="officeTime">Mon-Fri 9am to 4pm</p>
-          <p className="officeLocation">Cologne, Weimar, Chemnitz</p>
+          <p className="officeLocation">Chemnitz</p>
         </div>
         <div className="office">
           <i className="fa-solid fa-location-dot"></i>
           <p className="officeName">Backend Office</p>
           <p className="officeTime">Mon-Fri 9am to 4pm</p>
-          <p className="officeLocation">Chemnitz, Gütersloh</p>
-        </div>
-        <div className="office">
-          <i className="fa-solid fa-location-dot"></i>
-          <p className="officeName">Showroom</p>
-          <p className="officeTime">Friday 16.12.2022</p>
-          <p className="officeLocation">9:30am to 12pm</p>
+          <p className="officeLocation">Gütersloh</p>
         </div>
       </section>
     </div>
