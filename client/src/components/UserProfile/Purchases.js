@@ -39,7 +39,7 @@ function Purchases({ imageData, userPurchases }) {
                     Course name: {el.purchasedCourse.courseName}
                   </div>
                   <div className="course-dateOfStart">
-                    Course start: {el.purchasedCourse.dateOfStart.slice(0, 10)}
+                    Course start: {el.purchasedCourse.dateOfStart.slice(0,10)}
                   </div>
                   <div className="purchase-course-price">
                     Course price: {el.purchasedCourse.coursePrice}€

@@ -111,7 +111,7 @@ function Header({
           <div className="navy-login user-pro-color">About us</div>
         </NavLink>
       </div>
-      <div id="alarm">Please login first to see your profile options</div>
+     
     </div>
   );
 }
