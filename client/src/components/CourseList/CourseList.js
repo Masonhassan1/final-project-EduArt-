@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./CourseList.css";
 import { GoSearch } from "react-icons/go";
 import axiosConfig from "../../util/axiosConfig";
+import baseURL from "../../util/constants";
 
 export default function CourseList() {
   const [courseArr, setCourseArr] = useState([]);
@@ -164,7 +165,7 @@ export default function CourseList() {
                       <div
                         key={id}
                         style={{
-                          backgroundImage: `url(${course.courseImage})`,
+                          backgroundImage: `url(${baseURL}${course.courseImage})`,
                         }}
                       ></div>
                     );

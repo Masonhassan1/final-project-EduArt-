@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axiosConfig from "../../util/axiosConfig";
 import "./CoursePage.css";
 import { MyContext } from "../../App";
+import baseURL from "../../util/constants";
 
 export const findLDeskIdAndAddCourse = async (courseid) => {
   const userId = localStorage.getItem("userId");
@@ -124,7 +125,7 @@ export default function CoursePage({ isAuth }) {
               <div className="cardPageHeader">
                 <img
                   className="cardPageIcon"
-                  src={courseInfo.courseIcon}
+                  src={`${baseURL}${courseInfo.courseIcon}`}
                   alt={courseInfo.courseName}
                 />
                 <div className="cardPageTextHeader">
@@ -156,7 +157,10 @@ export default function CoursePage({ isAuth }) {
               </div>
             </div>
             <div className="coursePagePicture">
-              <img src={courseInfo.courseImage} alt={courseInfo.courseName} />
+              <img
+                src={`${baseURL}${courseInfo.courseImage}`}
+                alt={courseInfo.courseName}
+              />
             </div>
           </div>
           <div className="coursePageBottomWrapper">
