@@ -1,4 +1,4 @@
-import { useState ,useEffect} from "react";
+import { useState,useEffect } from "react";
 import {NavLink,useNavigate} from "react-router-dom";
 import "./Header.css"
 
@@ -7,15 +7,27 @@ import "./Header.css"
 function Header({isAuth,logout/* ,getUserDetails */}) {
 
   const [showUserPro,setShowUserPro] = useState(false)
-  
   const navigate = useNavigate()
+
+ 
   function shwoUserProHandler (){
+    document.querySelector("#user-profile-list").removeAttribute("class","hide-user-profile-list")
     setShowUserPro(!showUserPro)
   }
-    console.log(showUserPro)
+  function hideUserProHandler (){
+    setShowUserPro(false)
+    document.querySelector("#alarm").setAttribute("class","alarm")
+    setTimeout(() => {
+      document.querySelector("#alarm").removeAttribute("class","alarm")
+      
+    }, 2500);
+   
+  }
+   
+useEffect(()=>{
+  document.querySelector("#user-profile-list").setAttribute("class","hide-user-profile-list")
+},[])
 
-
-  
 
   return (
   <div className='header'>
@@ -24,17 +36,13 @@ function Header({isAuth,logout/* ,getUserDetails */}) {
    
     </div>
     <div className='navy'>
-      <i className="fa-solid fa-user " id="user-profile" onClick={shwoUserProHandler}>
-        <ul className={showUserPro?"user-pro-ul":"hide-userPro-ul "}>
+      <i className="fa-solid fa-user" id="user-profile" onClick={isAuth? shwoUserProHandler:hideUserProHandler}>
+        <ul id="user-profile-list" className={showUserPro?"user-pro-ul":"hide-userPro-ul"} >
           <li>My class</li>
           <li>Learning desk</li>
-          <li>My profile</li>
-         
+          <li onClick={()=>navigate("/userprofile")}>My profile</li> 
         </ul>
-
-      </i>
-      
-      
+      </i> 
       <NavLink className="nav-link" to="/">
 
     <div className="navy-home">Home</div>
@@ -43,16 +51,23 @@ function Header({isAuth,logout/* ,getUserDetails */}) {
 
     <div className="navy-courses">Online courses</div>
       </NavLink>
-      <NavLink className="nav-link" to="login">
+      <NavLink className="nav-link" to={isAuth?"/":"login"}>
 
-    <div className="navy-login" onClick={logout}>{isAuth? "Logoout":"Login"}</div>
+    <div className="navy-login" onClick={logout }>{isAuth? "Logoout":"Login"}</div>
       </NavLink>
+
       <NavLink className="nav-link" to="login">
 
 <div className="navy-login">About us</div>
   </NavLink>
 
     </div>
+     <div id="alarm" >
+        
+     Please login first to see your profile options
+        
+        
+     </div>
   </div>
    
   )

@@ -12,11 +12,10 @@
 .logo {
   margin-left: 8%;
   cursor: pointer;
-
 }
 .logo img {
-  width: 16rem;
-  height: 16rem;
+  width: 12rem;
+  height: 5rem;
 }
 
 .navy {
@@ -61,26 +60,22 @@ i:hover,
   font-family: "Jura", sans-serif;
 }
 .user-pro-ul li {
-
   scale: 0 1;
   animation: show-user-pro 1s;
   -webkit-animation: show-user-pro 1s forwards;
 }
 @keyframes show-user-pro {
   to {
-  
     scale: 1;
   }
 }
-.hide-userPro-ul li{
- 
+.hide-userPro-ul li {
   animation: hide-user-pro 1s forwards;
   -webkit-animation: hide-user-pro 1s forwards;
 }
 
 @keyframes hide-user-pro {
   to {
-  
     scale: 0 1;
   }
 }
@@ -93,5 +88,29 @@ i:hover,
   -moz-transition: 0.5s;
 }
 #user-profile li:hover {
-  color: #44afe4;
+  color: #19668d;
+}
+.hide-user-profile-list {
+  display: none;
+}
+.alarm {
+  position: absolute;
+  width: 25%;
+  height: 12vh;
+  min-height: fit-content;
+  top: 12%;
+  left: 50%;
+  translate: -50%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  font-size: x-large;
+  color: #817f7f;
+  background-color: white;
+  border: 0.2px solid #bfbdbd;
+  box-shadow: 6px 6px 10px #a1a0a0;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
 }

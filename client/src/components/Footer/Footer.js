@@ -18,12 +18,21 @@ function Footer() {
  
   })
   function textHandler(){
-    if(response) setResponse("")
-    setText(messageText.value)
-    messageText.value = ""
-    setTimeout(()=>{
-      setResponse("Thank you, we've got your message and we'll response as soon as possible")
-    },700)
+    if(messageText.value){
+      if(response) setResponse("")
+
+      setText(messageText.value)
+      
+      
+      setTimeout(()=>{
+        
+        setResponse("Thank you, we've got your message and we'll response as soon as possible")
+        
+      },900)
+      messageText.value = ""
+    }else{
+      return
+    }
   }
   console.log(text)
   function showChatHandler (){

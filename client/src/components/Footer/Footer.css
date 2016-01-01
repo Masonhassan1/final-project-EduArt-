@@ -1,10 +1,9 @@
-
-footer{
+footer {
     display: flex;
     justify-content: space-around;
     user-select: none;
 }
-.footer-infos{
+.footer-infos {
     position: relative;
     left: 150px;
     display: flex;
@@ -15,15 +14,14 @@ footer{
     color: #6e6d6d;
 }
 .footer-infos i {
-    color: #38b0b899;
+    color: #3892b899;
 }
-.chat{
- position: relative;
- top: -30px;
- left: -30px;
- 
+.chat {
+    position: relative;
+    top: -30px;
+    left: -30px;
 }
-.show-chat{
+.show-chat {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -32,21 +30,21 @@ footer{
     height: 70px;
     font-size: xx-large;
     color: white;
-    background-color: #38b0b899;
+    background-color: #3894b899;
+    box-shadow: 6px 6px 10px #519ba3;
     cursor: pointer;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-   
 }
 
-.show-chat i{
+.show-chat i {
     color: white;
 }
-.chat-form{
+.chat-form {
     position: absolute;
     top: -190px;
-    left:-246px ;
+    left: -252px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -54,32 +52,40 @@ footer{
     width: 230px;
     height: 200px;
     font-weight: bold;
-    background-color: #eef3f5;
+    background-color: #e9ecee;
     border-radius: 1rem;
     -webkit-border-radius: 1rem;
     -moz-border-radius: 1rem;
-   
+    border: 0.2px solid #bfbdbd;
+    box-shadow: 6px 6px 10px #a1a0a0;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
 }
 .response {
-    color: #a2a6a9;
+    color: rgb(139, 137, 137);
 }
-.text{
-color: #2481af;
+.text {
+    color: #035141;
 }
 .hide-chat-form {
     display: none;
 }
-.chat-form input{
-    width: 85%;
+.chat-form input {
+    width: 82%;
     height: 24px;
-    color: #2481af;
+    color: #035141;
     padding-left: 10px;
     font-size: large;
-    border: none;
     outline: none;
+    border: none;
+    border-radius: 0.3rem;
+    -webkit-border-radius: 0.3rem;
+    -moz-border-radius: 0.3rem;
+    -ms-border-radius: 0.3rem;
+    -o-border-radius: 0.3rem;
 }
-.send-message {
-    color: #2481af;
+.send-message i {
+    color: #414dff;
     cursor: pointer;
 }
-

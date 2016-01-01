@@ -1,0 +1,133 @@
+.user-profile {
+    width: 90%;
+    height: 80vh;
+    margin: auto auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-family: "Jura", sans-serif;
+    background: rgba(250, 214, 185, 0.835);
+    background: linear-gradient(180deg, rgba(254, 254, 254, 1) 10%, rgba(237, 241, 240, 0.835) 30%);
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+.options-list {
+    width: 17%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10%;
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+  
+}
+.options-list > div {
+    width: 100%;
+    display: flex;
+    column-gap: 25px;
+    font-size: x-large;
+    font-weight: 900;
+    cursor: pointer;
+    color: #636363;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+}
+.options-list:hover >div {
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+}
+.options-list > div:hover {
+    filter: blur(0px);
+    scale: 1.2;
+    color: #2d7a82;
+    background-color: #eee;
+    padding: .6rem .8rem;
+    box-shadow: 2px 2px 5px 1px #706f6f;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -webkit-filter: blur(0px);
+}
+
+.personal-data{
+    width: 55%;
+    height: 70%;
+    display: grid;
+    border-radius: 1.6rem;
+    grid-template-columns: repeat(11,calc(100%/11));
+    grid-template-rows: repeat(11,calc(100%/11));
+    background-color: #eee;
+   
+}
+.personal-data >div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+}
+
+#user-bc{
+    grid-column: 1/-1;
+    grid-row: 1/4;
+    background-color: #e0e5e7;
+    border-bottom-left-radius: 0rem;
+    border-bottom-right-radius: 0rem;
+}
+.user-photo{
+    grid-column: 2/4;
+    grid-row: 2/5;
+    background-color: #eaf4fc;
+    font-size: 70px;
+   
+}
+.user-edit-btn{
+    grid-column: 10/11;
+    grid-row: 5/6;
+    background-color: #eaf4fc;
+    font-size: 30px;
+    cursor: pointer;
+  
+}
+.user-name{
+    grid-column: 2/7;
+    grid-row: 6;
+    background-color: #e114c9;
+}
+.user-email{
+    grid-column: 3/6;
+    grid-row: 8/9;
+    background-color: rgb(225, 201, 20);
+}
+.user-email-icon{
+    grid-column: 2/3;
+    grid-row: 8/9;
+    font-size: 30px;
+}
+.user-tel{
+    grid-column: 8/11;
+    grid-row: 8/9;
+    background-color: rgb(20, 201, 225);
+}
+.user-tel-icon{
+    grid-column: 7/8;
+    grid-row: 8/9;
+    font-size: 30px;
+}
+.user-location{
+    grid-column: 3/6;
+    grid-row: 10/11;
+    background-color: rgb(225, 105, 20);
+}
+.user-location-icon{
+    grid-column: 2/3;
+    grid-row: 10/11;
+    font-size: 30px;
+}
