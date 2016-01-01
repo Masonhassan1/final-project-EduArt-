@@ -27,7 +27,8 @@
 .paragraph-two {
     position: absolute;
     font-size: xx-large;
-    color: #808383;
+    color: #acadad;
+    text-shadow: 1px 1px 1px #747676;
     rotate: x 90deg;
     animation: show-paragraph 0.6s 0.3s linear forwards;
     -webkit-animation: show-paragraph 0.6s 0.3s linear forwards;
@@ -57,6 +58,7 @@
     border: none;
     outline: none;
     color: #898d90;
+    text-shadow: 1px 1px .5px #747676;
     font-size: 1.2rem;
     font-weight: bold;
     background-color: #dee2e6;
@@ -69,12 +71,12 @@
     -webkit-animation: show-paragraph 0.6s 0.9s linear forwards;
     -webkit-transition: 1s;
     -moz-transition: 1s;
-    box-shadow:   2px 2px 8px 0px #bbbdbf;
+    box-shadow:   1px 1px 8px 0px #bbbdbf;
    
 }
 .home-btn:hover {
-    box-shadow:-2px -2px 8px 0px #bbbdbf;
-    color: #6c6e6f;
+    box-shadow:-1px -1px 8px 0px #bbbdbf;
+  
 }
 .python,
 .js,
@@ -147,7 +149,7 @@
     width: 430px;
     height: 330px;
     background-color: #fff;
-    box-shadow: 4px 4px 5px gray;
+    box-shadow: 4px 4px 5px 3px #c6c5c5;
     border: 2px solid darkgray;
     border-radius: 1.4rem;
     -webkit-border-radius: 1.4rem;
