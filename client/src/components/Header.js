@@ -9,10 +9,10 @@ import "./Header.css";
 
 const languages = [
   { name: "English", code: LOCALES.ENGLISH },
-  { name: "German", code: LOCALES.GERMAN },
-  { name: "Russian", code: LOCALES.RUSSIAN },
-  { name: "Arabic", code: LOCALES.ARABIC },
-  { name: "Slovak", code: LOCALES.SLOVAK },
+  { name: "Deutsch", code: LOCALES.GERMAN },
+  { name: "Русский", code: LOCALES.RUSSIAN },
+  { name: "عربي", code: LOCALES.ARABIC },
+  { name: "Slovenský", code: LOCALES.SLOVAK },
 ];
 
 function Header({
@@ -84,7 +84,6 @@ function Header({
             value={localStorage.getItem("lang") || LOCALES.ENGLISH}
             onChange={(event) => {
               const value = event.currentTarget.value;
-              console.log("lang value", value);
               setLang(value);
               localStorage.setItem("lang", value);
             }}
@@ -164,13 +163,15 @@ function Header({
           </div>
         </NavLink>
         <NavLink className="nav-link" to={isAuth ? "/" : "login"}>
-          <div className="navy-login user-pro-color" onClick={isAuth && logout}>
-            {isAuth ? (
+          {isAuth ? (
+            <div className="navy-login user-pro-color" onClick={logout}>
               <FormattedMessage id="logout" defaultMessage="Logout" />
-            ) : (
+            </div>
+          ) : (
+            <div className="navy-login user-pro-color">
               <FormattedMessage id="login" defaultMessage="Login" />
-            )}
-          </div>
+            </div>
+          )}
         </NavLink>
 
         <NavLink className="nav-link" to="/about">
