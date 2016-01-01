@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -7,9 +8,6 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import FilledInput from "@mui/material/FilledInput";
-import InputAdornment from "@mui/material/InputAdornment";
-import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
@@ -17,9 +15,12 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import EditIcon from "@mui/icons-material/Edit";
 
 import axiosConfig from "../../../util/axiosConfig";
 import "./AdminPanelModules.css";
+import ExtraMat from "./ExtraMat";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -33,6 +34,13 @@ const MenuProps = {
 };
 
 export default function AdminPanelModules() {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm();
+
   const [modules, setModules] = useState([]);
   const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -40,10 +48,8 @@ export default function AdminPanelModules() {
   const [moduleDuration, setModuleDuration] = useState("");
   const [moduleZoomLink, setModuleZoomLink] = useState("");
   const [moduleTeachers, setModuleTeachers] = useState("");
-  const [moduleTaskName, setModuleTaskName] = useState("");
-  const [moduleTaskLink, setModuleTaskLink] = useState("");
-  const [moduleExtraDesc, setModuleExtraDesc] = useState("");
-  const [moduleExtraLink, setModuleExtraLink] = useState("");
+  const [moduleTasks, setModuleTasks] = useState([]);
+  const [moduleExtraMat, setModuleExtraMat] = useState("");
 
   const [teachersArr, setTeachersArr] = useState([]);
 
@@ -66,25 +72,48 @@ export default function AdminPanelModules() {
     setModuleTeachers(idTeachers);
   };
 
-  // const [newModule, setNewModule] = useState({
-  //   name: "",
-  //   noOfDays: 0,
-  //   type: "online",
-  //   teacher: "635d562f281700f22e761dca",
-  //   zoomLink: "https://us02web.zoom.us/",
-  //   tasks: [
-  //     {
-  //       taskName: "v-if, v-else and v-else-if",
-  //       taskLink: "https://github.com/",
-  //     },
-  //   ],
-  //   extraMaterial: [
-  //     {
-  //       description: "",
-  //       link: "",
-  //     },
-  //   ],
-  // });
+  const addNewTask = handleSubmit((data) => {
+    console.log(data);
+    setModuleTasks([...moduleTasks, { ...data, editMode: false }]);
+    reset();
+  });
+
+  const deleteTask = (id) => {
+    setModuleTasks(moduleTasks.filter((task, index) => index !== id));
+  };
+
+  const changeEditMode = (id) => {
+    setModuleTasks(
+      moduleTasks.map((task, index) => {
+        if (index === id) {
+          task.mode = !task.mode;
+        }
+        return task;
+      })
+    );
+  };
+
+  const changeTaskLink = (newTaskLink, id) => {
+    setModuleTasks(
+      moduleTasks.map((task, index) => {
+        if (index === id) {
+          task.taskLink = newTaskLink;
+        }
+        return task;
+      })
+    );
+  };
+
+  const changeTaskName = (newTaskName, id) => {
+    setModuleTasks(
+      moduleTasks.map((task, index) => {
+        if (index === id) {
+          task.taskName = newTaskName;
+        }
+        return task;
+      })
+    );
+  };
 
   const getModules = async () => {
     try {
@@ -122,20 +151,39 @@ export default function AdminPanelModules() {
     getTeachers();
   }, []);
 
-  const createNewModule = () => {
-    console.log("module name", moduleName);
-    console.log("module duration", moduleDuration);
-    console.log("module zoom link", moduleZoomLink);
-    console.log("module teacher", moduleTeachers);
-    console.log("module task name", moduleTaskName);
-    console.log("module task link", moduleTaskLink);
-    console.log("module extra desc", moduleExtraDesc);
-    console.log("module extra link", moduleExtraLink);
+  const createNewModule = async () => {
+    try {
+      setLoading(true);
+      const jwt = localStorage.getItem("jwt");
+      const response = await axiosConfig.post(
+        `/modules`,
+        {
+          name: moduleName,
+          noOfDays: moduleDuration,
+          type: "online",
+          teacher: moduleTeachers,
+          zoomLink: moduleZoomLink,
+          tasks: moduleTasks,
+          extraMaterial: moduleExtraMat,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+
+      setLoading(false);
+      setHasError(false);
+    } catch (error) {
+      setLoading(false);
+      setHasError(true);
+    }
   };
 
   return (
     <div>
-      <h3>Modules</h3>
+      <h3 className="modulesPageTitle">Modules</h3>
       <div className="adminPanelModulesWrapper">
         <Box className="moduleWrapper newModuleWrapper" sx={{ p: "1rem" }}>
           <div>
@@ -232,23 +280,80 @@ export default function AdminPanelModules() {
               <Typography>Tasks</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Box sx={{ m: "1rem" }}>
-                <TextField
-                  id="standard-basic"
-                  label="Task name"
-                  variant="standard"
-                  sx={{ width: "90%" }}
-                  value={moduleTaskName}
-                  onChange={(event) => setModuleTaskName(event.target.value)}
-                />
-                <TextField
-                  id="standard-basic"
-                  label="Task link"
-                  variant="standard"
-                  sx={{ width: "90%" }}
-                  value={moduleTaskLink}
-                  onChange={(event) => setModuleTaskLink(event.target.value)}
-                />
+              <Box sx={{ m: "1rem", display: "flex", alignItems: "flex-end" }}>
+                <form onSubmit={addNewTask}>
+                  <TextField
+                    id="standard-basic"
+                    label="Task name"
+                    variant="standard"
+                    sx={{ width: "40%" }}
+                    {...register("taskName", {
+                      required: "This field is required.",
+                      minLength: {
+                        value: 5,
+                        message: "This field should be more than 5 symbols",
+                      },
+                    })}
+                    helperText={errors.taskName && errors.taskName.message}
+                    error={errors.taskName ? true : false}
+                  />
+                  <TextField
+                    id="standard-basic"
+                    label="Task link"
+                    variant="standard"
+                    sx={{ width: "40%", ml: "1rem" }}
+                    {...register("taskLink", {
+                      required: "This field is required.",
+                      minLength: {
+                        value: 5,
+                        message: "This field should be more than 5 symbols",
+                      },
+                    })}
+                    helperText={errors.taskLink && errors.taskLink.message}
+                    error={errors.taskLink ? true : false}
+                  />
+                  <Button type="submit" sx={{ ml: "1rem" }} variant="outlined">
+                    Add
+                  </Button>
+                </form>
+              </Box>
+              <Box sx={{ maxWidth: "100%" }}>
+                {moduleTasks.length > 0 &&
+                  moduleTasks.map((task, id) => {
+                    return (
+                      <div key={id}>
+                        <TextField
+                          disabled={!task.mode}
+                          id="standard-basic"
+                          label="Task name"
+                          variant="standard"
+                          sx={{ width: "35%", ml: "1rem" }}
+                          value={task.taskName}
+                          onChange={(event) =>
+                            changeTaskName(event.target.value, id)
+                          }
+                        />
+                        <TextField
+                          disabled={!task.mode}
+                          id="standard-basic"
+                          label="Task link"
+                          variant="standard"
+                          sx={{ width: "35%", ml: "1rem" }}
+                          value={task.taskLink}
+                          onChange={(event) =>
+                            changeTaskLink(event.target.value, id)
+                          }
+                        />
+                        <Button onClick={() => changeEditMode(id)}>
+                          <EditIcon />
+                        </Button>
+
+                        <Button onClick={() => deleteTask(id)}>
+                          <DeleteForeverIcon />
+                        </Button>
+                      </div>
+                    );
+                  })}
               </Box>
             </AccordionDetails>
           </Accordion>
@@ -260,26 +365,10 @@ export default function AdminPanelModules() {
             >
               <Typography>Extra materials</Typography>
             </AccordionSummary>
-            <AccordionDetails>
-              <Box>
-                <TextField
-                  id="standard-basic"
-                  label="Description"
-                  variant="standard"
-                  sx={{ width: "90%" }}
-                  value={moduleExtraDesc}
-                  onChange={(event) => setModuleExtraDesc(event.target.value)}
-                />
-                <TextField
-                  id="standard-basic"
-                  label="Link"
-                  variant="standard"
-                  sx={{ width: "90%" }}
-                  value={moduleExtraLink}
-                  onChange={(event) => setModuleExtraLink(event.target.value)}
-                />
-              </Box>
-            </AccordionDetails>
+            <ExtraMat
+              moduleExtraMat={moduleExtraMat}
+              setModuleExtraMat={setModuleExtraMat}
+            />
           </Accordion>
           <Button
             variant="contained"

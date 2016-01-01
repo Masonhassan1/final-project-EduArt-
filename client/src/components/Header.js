@@ -65,7 +65,12 @@ function Header({ isAuth, logout, userName }) {
             className={showUserPro ? "user-pro-ul" : "hide-userPro-ul"}
           >
             <li className="user-pro-color">My class</li>
-            <li className="user-pro-color">Learning desk</li>
+            <li
+              className="user-pro-color"
+              onClick={() => navigate("/mylearningdesk")}
+            >
+              Learning desk
+            </li>
             <li
               className="user-pro-color"
               onClick={() => navigate("/userprofile")}
