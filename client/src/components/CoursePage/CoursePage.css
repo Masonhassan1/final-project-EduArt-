@@ -1,19 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Jura:wght@600&display=swap");
 
-
-.coursePageWrapper-body{
-  margin-top: -12rem;
-  height: 90.5vh;
-  background: rgba(250, 214, 185, 0.835) ;
-  background: linear-gradient(180deg, rgba(254, 254, 254, 1) 10%, rgba(251, 230, 253, 0.835) 70%);
+.coursePageWrapper-body {
+  padding-bottom: 2rem;
+  background: rgba(250, 214, 185, 0.835);
+  background: linear-gradient(
+    180deg,
+    rgba(254, 254, 254, 1) 10%,
+    rgba(251, 230, 253, 0.835) 70%
+  );
 }
 
-
-
 .coursePageWrapper {
-  margin: 8.5rem auto 1rem;
+  margin: 0 auto;
   width: 1200px;
-  scale: .7;
 }
 
 .coursePageTopWrapper {
