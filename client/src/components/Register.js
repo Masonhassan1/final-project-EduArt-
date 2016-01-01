@@ -39,7 +39,8 @@ function Register() {
   
    
     <div className='register'>
-      <div >
+     
+    <div className="reg-form-container">
 
     <form ref={formEl} className='reg-form' action="">
      <div>Register</div>
@@ -48,14 +49,13 @@ function Register() {
      <input ref={emailEl} type="email"  placeholder='Email'/>
      <input ref={passwordEl} type="password"  placeholder='Password'/>
      <button className='register-btn' onClick={submitHandler}>Register</button>
-     {isLoading?  <div >
-          <Spinner className="spinner" animation="border" variant="info"/>
-        </div>:""}
     </form>
+     
+    </div>
       </div>
 
  
-     </div>
+     
     
    
   )
