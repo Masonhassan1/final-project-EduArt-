@@ -5,6 +5,7 @@ import "./Register.css"
 
 function Register() {
   const navigate = useNavigate()
+  const [showPassword,setShowPassword] = useState(false)
   const [isLoading,setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
@@ -26,7 +27,7 @@ function Register() {
       eMail: emailEl.current.value,
       password: passwordEl.current.value
     }
-  
+    console.log(userData)
     try {
       setIsLoading(true);
       const axiosResp = await axios.post("http://localhost:4000/register", userData);
@@ -36,6 +37,7 @@ function Register() {
       if(axiosResp.data.error) {
        console.log(axiosResp.data.error)
        setIsError(true)
+       setIsLoading(false)
         return;
       }
 
@@ -43,6 +45,7 @@ function Register() {
      
   }catch (error){
     setIsError(true)
+    setIsLoading(false)
   
     return;
   }
@@ -51,7 +54,11 @@ function Register() {
   formEl.current.reset();
   }
 
-  if(isRegistered){setTimeout(()=> navigate("/login"),2500)}
+  if(isRegistered){setTimeout(()=> navigate("/login"),3500)}
+
+  function passwordHandler (){
+    setShowPassword(!showPassword)
+  }
  
   return (
   
@@ -67,7 +74,8 @@ function Register() {
      <input  className='reg-input' ref={lastNameEl} type="text"  placeholder='Last name'/>
      <input  className='reg-input' ref={userNameEl} type="text"  placeholder='User name'/>
      <input  className='reg-input' ref={emailEl} type="email"  placeholder='Email'/>
-     <input  className='reg-input' ref={passwordEl} type="password"  placeholder='Password'/>
+     <input  className='reg-input' ref={passwordEl} type={showPassword? "text":"password"}  placeholder='Password'/>
+     <div className='reg-show-password' onClick={passwordHandler}>{showPassword? <span><i class="fa-solid fa-eye-slash"></i></span>:<span><i class="fa-solid fa-eye"></i></span>}</div>
      <button className='register-btn' onClick={submitHandler}>Register</button>
      {isRegistered? <> <div > Hello <span style={{color:"darkorange",fontStyle:"italic"}}>{user}</span> you were successfully registered</div> <div>Your will be automatically directed to <span style={{color:"darkorange",fontStyle:"italic"}}>login</span> page</div></>:""}
      {isError? <div style={{color:"red"}}>Sorry.. something went wrong. please try again</div>:""}

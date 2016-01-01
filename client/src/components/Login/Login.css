@@ -13,6 +13,7 @@
     color: #f99900 ;
 }
 .log-form {
+    position: relative;
     margin-top: 2.5rem;
     border: 1px solid rgb(203, 202, 202);
     display: flex;
@@ -38,6 +39,7 @@
     height: 2rem;
     border: none;
     outline: none;
+    font-size: x-large;
     color: #2c768f;
     border-radius: .5rem;
     box-shadow: 2px 2px 10px gray;
@@ -63,4 +65,9 @@
     -webkit-border-radius: .5rem;
     -moz-border-radius: .5rem;
   
+}
+.login-show-password {
+    position: absolute;
+    top:313px;
+    left: 485px;
 }
