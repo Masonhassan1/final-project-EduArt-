@@ -74,6 +74,7 @@
     font-style: italic;
 }
 .reg-show-password {
+    cursor: pointer;
     position: absolute;
     top: 424px;
     left: 455px;

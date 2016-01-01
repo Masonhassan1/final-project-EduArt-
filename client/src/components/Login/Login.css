@@ -67,6 +67,7 @@
   
 }
 .login-show-password {
+    cursor: pointer;
     position: absolute;
     top:325px;
     left: 485px;
