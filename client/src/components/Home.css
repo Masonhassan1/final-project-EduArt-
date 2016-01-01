@@ -336,6 +336,9 @@ button:hover{
 .vsc-app-icons i {
     margin-top: 20%;
 }
+.vsc-app-icons i:hover {
+   color:#e5cf77 ;
+}
 .vsc-app-workspace{
     grid-column: 2/3;
     grid-row: 3/7;
