@@ -92,10 +92,10 @@ function UserProfile({userProfileData,isLoading,setError,error}) {
             onClick={userDataUpdateHandler}>Save</button>
 
             {edit? <>
-              <input className='user-gender font user-profile-input' ref={genderEl} type="text"  placeholder={userProfileData.gender}/>
-              <input className="user-birthday font user-profile-input" ref={birthdayEl} type="text" placeholder={userProfileData.dateOfBrith}/>
-              <input className="user-location font user-profile-input" ref={originEl} type="text" placeholder={userProfileData.origin}/>
-              <input className="user-tel font user-profile-input" ref={telEl} type="text" placeholder={userProfileData.telephoneLandLine}/>
+              <input className='user-gender font user-profile-input' ref={genderEl} type="text"  placeholder={userProfileData.gender || "Male / Female"}/>
+              <input className="user-birthday font user-profile-input" ref={birthdayEl} type="text" placeholder={userProfileData.dateOfBirth || "Date of birth"}/>
+              <input className="user-location font user-profile-input" ref={originEl} type="text" placeholder={userProfileData.origin || "Origin"}/>
+              <input className="user-tel font user-profile-input" ref={telEl} type="text" placeholder={userProfileData.telephoneLandLine || "Tel"}/>
             
             </> :<>
            
