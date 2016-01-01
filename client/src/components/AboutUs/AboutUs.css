@@ -1,0 +1,144 @@
+.about-wrapper {
+  background: linear-gradient(180deg, #ffffff 0.44%, #deeff4 100%);
+  min-height: 83vh;
+  box-sizing: border-box;
+  padding-bottom: 1rem;
+}
+
+.about-title {
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 30px;
+  color: #5382a1;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.about-header {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 71px;
+  color: #5382a1;
+  text-align: center;
+}
+
+.team-info-wrapper {
+  margin: 4rem auto 1rem auto;
+  width: 80%;
+  min-width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.team-info-wrapper .map-image {
+  width: 250px;
+  height: 250px;
+  background-position: center;
+  background-size: cover;
+}
+
+.team-info-card:nth-child(1) .map-image {
+  background-image: url("../../Images/cologne.png ");
+}
+
+.team-info-card:nth-child(2) .map-image {
+  background-image: url("../../Images/Weimar.png");
+}
+
+.team-info-card:nth-child(3) .map-image {
+  background-image: url("../../Images/chemnitz.png");
+}
+
+.team-info-card:nth-child(4) .map-image {
+  background-image: url("../../Images/Guetersloh.png");
+}
+
+.team-info-wrapper a {
+  text-decoration: none;
+}
+
+.teammate-name {
+  margin-top: 4rem;
+  margin-bottom: 0;
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 47px;
+  color: #5382a1;
+  text-align: center;
+}
+
+.team-info-card .fa-github {
+  font-size: 2.2rem;
+  margin-top: 0.8rem;
+  text-align: center;
+  display: block;
+  color: black;
+}
+
+.team-info-card .fa-github:visited {
+  color: black;
+}
+
+.linkedin-icon {
+  display: block;
+  width: 100px;
+  height: 25px;
+  margin: 1rem auto;
+}
+
+.offices {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: 6rem auto 1rem auto;
+}
+
+.office {
+  text-align: center;
+  width: 250px;
+}
+
+.office > .fa-location-dot {
+  font-size: 1.5rem;
+  color: #5382a1;
+}
+
+.officeName {
+  margin: 0;
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 30px;
+  color: #5382a1;
+}
+
+.officeTime {
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  margin: 0;
+  color: #5382a1;
+}
+
+.officeLocation {
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: #5382a1;
+  margin: 0;
+}

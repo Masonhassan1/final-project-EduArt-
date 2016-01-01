@@ -9,6 +9,7 @@ import CourseList from "./components/CourseList/CourseList";
 import CoursePage from "./components/CoursePage/CoursePage";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
+import AboutUs from "./components/AboutUs/AboutUs";
 
 export const MyContext = React.createContext(null);
 
@@ -107,6 +108,7 @@ function App() {
           />
 
           <Route path={"/register"} element={<Register />} />
+          <Route path={"/about"} element={<AboutUs />} />
         </Routes>
       </Router>
     </MyContext.Provider>
