@@ -2,7 +2,7 @@
     
     height: 84.5vh;
     overflow: hidden;
-    margin: -4rem auto 0 auto;
+    margin: -2.5rem auto 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -61,8 +61,16 @@ input {
     -moz-border-radius: .5rem;
   
 }
-.spinner{
-    margin-top: 2rem;
-    width: 3rem;
-    height: 3rem;
+.reg-form-opacity{
+    opacity: .3;
+}
+.reg-loading{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    font-size: xx-large;
+    color: #e7a41e;
+    margin-top: 1rem;
+ font-style: italic;
 }

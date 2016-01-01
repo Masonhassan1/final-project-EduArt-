@@ -1,6 +1,5 @@
 import React,{useState,useRef} from 'react'
 import axios from "axios"
-import {Spinner} from "react-bootstrap"
 import "./Register.css"
 
 function Register() {
@@ -47,17 +46,18 @@ function Register() {
      
     <div className="reg-form-container">
 
-    <form ref={formEl} className='reg-form' action="">
+    <form ref={formEl} className={isLoading? "reg-form reg-form-opacity":"reg-form"} action="">
      <div>Register</div>
      <br />
      <input ref={firstNameEl} type="text"  placeholder='First name'/>
      <input ref={lastNameEl} type="text"  placeholder='Last name'/>
      <input ref={userNameEl} type="text"  placeholder='User name'/>
-     <input ref={birthdayEl} type="text" placeholder='Birthday dd.mm.yy'/>
+     <input ref={birthdayEl} type="text" placeholder='Birthday dd.mm.yyyy'/>
      <input ref={emailEl} type="email"  placeholder='Email'/>
      <input ref={passwordEl} type="password"  placeholder='Password'/>
      <button className='register-btn' onClick={submitHandler}>Register</button>
     </form>
+       {isLoading? <div className='reg-loading'>loading...</div>:""}  
      
     </div>
       </div>

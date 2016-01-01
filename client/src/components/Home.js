@@ -1,6 +1,7 @@
 import React from 'react'
 import {useState, useEffect } from 'react'
 import "./Home.css"
+import Footer from './Footer'
 
 function Home() {
  
@@ -17,7 +18,8 @@ function Home() {
   },[time])
  
   return (
-    <main className='home'>
+    <>
+    <main>
         <section className='info'>
            
             <p className='paragraph-one'>Choose an online course that will move you forward ...</p>
@@ -98,6 +100,8 @@ function Home() {
           
         </section>
     </main>
+        <Footer/>
+    </>
   )
 }
 
