@@ -1,17 +1,20 @@
 import React from 'react'
-import { useState,useEffect } from 'react'
+import { useState } from 'react'
 import "./Footer.css"
 
 function Footer() {
 
   const [text,setText]=useState("")
+  const [response,setResponse]=useState("")
   const [chatForm,setChatForm]= useState(false)
   const e = document.querySelector(".message")
  
-
   function textHandler(){
     setText(e.value)
     e.value = ""
+    setTimeout(()=>{
+      setResponse("Thank you, we've got your message and we'll response as soon as possible")
+    },1500)
   }
   console.log(text)
   function showChatHandler (){
@@ -31,11 +34,12 @@ function Footer() {
       <div className="chat">
         <div className="show-chat" onClick={showChatHandler}>{chatForm? <div>x</div>:<div><i className="fa-regular fa-comments"></i></div>}</div>
         <div className={chatForm? "chat-form":"hide-chat-form"}>
-         <div>Send us your questions and we will response as soon as possible</div>
-         <div>{text}</div>
+         <div className='response'>Send us your questions </div>
+         <div className='text'>{text}</div>
+         <div className='response'>{response}</div>
          <div>
          <input className='message' type="text" />
-          <span  onClick={textHandler}> <i className="fa-regular fa-paper-plane"></i></span>
+          <span className='send-message'  onClick={textHandler}> <i className="fa-regular fa-paper-plane"></i></span>
          </div>
         
         </div>

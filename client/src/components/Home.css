@@ -3,7 +3,7 @@
 main{
     height: 68vh;
     display: flex;
-    
+    user-select: none;
     align-items: center;
     font-family: "Jura", sans-serif;
     font-size: xx-large;
