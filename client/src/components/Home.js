@@ -13,6 +13,7 @@ function Home() {
   useEffect(()=>{
     setTime(new Date())
   },[time])
+ 
   return (
     <main className='home'>
         <section className='info'>
@@ -72,7 +73,7 @@ function Home() {
               <div className="vsc-app-code-area"><div><span style={{color:"chocolate"}}>function </span>
               <span style={{color:"deepskyblue"}}>sum </span> <span style={{color:"gold"}}>(<span style={{color:"darkorange"}}>num1<span style={{color:"gold"}}>,</span>num2</span>)</span>
               <span className='bracket-one'></span></div> <div><span style={{color:"dodgerblue"}}>let</span> <span style={{color:"cadetblue"}}>result  </span> <span style={{color:"gold"}}> = </span><span style={{color:"darkorange"}}> num1 <span style={{color:"gold"}}>+</span> num2</span></div> <span style={{color:"hotpink"}}>return </span><span style={{color:"cadetblue"}}>result</span><div className='bracket-two'></div>
-              <div><span style={{color:"gold"}}>console.log(<span style={{color:"deepskyblue"}}>sum<span style={{color:"gold"}}>(</span><span style={{color:"darkorange"}}>56<span style={{color:"gold"}}>,</span>74</span><span style={{color:"gold"}}>)</span></span>);</span></div>
+              <div><span style={{color:"gold"}}><span  style={{color:"deepskyblue"}}>console.</span>log(<span style={{color:"deepskyblue"}}>sum<span style={{color:"gold"}}>(</span><span style={{color:"darkorange"}}>56<span style={{color:"gold"}}>,</span>74</span><span style={{color:"gold"}}>)</span></span>);</span></div>
               <div className="cover-one"></div>
               <div className="cover-two"></div>
               <div className="cover-three"></div>
