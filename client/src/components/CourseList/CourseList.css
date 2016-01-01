@@ -1,0 +1,72 @@
+.search-form {
+  width: 80%;
+  margin: 2rem auto;
+  position: relative;
+}
+
+.search-form > input {
+  width: 100%;
+  height: 2rem;
+  border: 3px solid blueviolet;
+  border-radius: 2rem;
+  color: rgb(19, 179, 149);
+  padding: 7px 7px 7px 3rem;
+  font-size: 1.7rem;
+}
+
+.search-form > input::placeholder {
+  padding-left: 1rem;
+}
+
+.search-form > input:focus-visible {
+  outline: none;
+}
+
+.search-icon {
+  font-size: 1.8rem;
+  color: blueviolet;
+  position: absolute;
+  top: 0.8rem;
+  left: 0.7rem;
+}
+
+.courseListSection {
+  display: grid;
+  width: 60vw;
+  margin: 1rem auto;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.courseCard {
+  width: 300px;
+  padding: 1rem;
+  border-radius: 1rem;
+  justify-self: center;
+  align-self: center;
+  box-shadow: 1rem 1rem 1rem grey, 0.4rem 0.4rem 1rem rgb(151, 147, 147) inset;
+}
+
+.courseCard > img {
+  width: 95%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.courseTextCard {
+  text-align: justify;
+}
+
+.viewCourseBtn {
+  padding: 0.8rem;
+  background-color: rgb(65, 209, 65);
+  color: darkblue;
+  font-size: 1.2rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  outline: none;
+}
