@@ -1,4 +1,6 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
+
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 
@@ -71,7 +73,14 @@ export default function AdminModulesSearch({
         }}
         renderOption={(props, option) => <li {...props}>{option}</li>}
         freeSolo
-        renderInput={(params) => <TextField {...params} label="Modules ..." />}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label={
+              <FormattedMessage id="modules" defaultMessage="Modules ..." />
+            }
+          />
+        )}
       />
     </form>
   );

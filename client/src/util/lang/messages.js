@@ -106,6 +106,27 @@ export const messages = {
     for_successfully_completing: "for successfully completing",
     course: "course", // for successfully completing **** course
     download: "Download",
+    // admin panel page
+    modules: "Modules",
+    courses: "Courses",
+    // admin panel-modules page
+    the_module_was_successfully_created: "The module was successfully created.",
+    the_module_was_successfully_removed: "The module was successfully removed.",
+    the_module_was_successfully_updated: "The module was successfully updated.",
+    admin_mod_name: "Name", // module name
+    admin_mod_duration: "Duration, days",
+    update_module: "Update module",
+    cancel: "Cancel",
+    create_new_module: "Create new module",
+    do_you_really_want_to_delete_the_module:
+      "Do you really want to delete the module?",
+    submit: "Submit",
+    task_name: "Task name",
+    this_field_is_required: "This field is required.",
+    this_field_should_be_more: "This field should be more than 5 symbols.",
+    task_link: "Task link",
+    description: "Description",
+    link: "Link",
   },
   [LOCALES.RUSSIAN]: {
     // header
@@ -211,5 +232,26 @@ export const messages = {
     for_successfully_completing: "за успешное завершение",
     course: "курса", // for successfully completing **** course
     download: "Скачать",
+    // admin panel page
+    modules: "Модули",
+    courses: "Курсы",
+    // admin panel-modules page
+    the_module_was_successfully_created: "Модуль успешно создан.",
+    the_module_was_successfully_removed: "Модуль успешно удален.",
+    the_module_was_successfully_updated: "Модуль успешно обновлен.",
+    admin_mod_name: "Название", // module name
+    admin_mod_duration: "Продолжительность, дни",
+    update_module: "Обновить модуль",
+    cancel: "Отмена",
+    create_new_module: "Создать новый модуль",
+    do_you_really_want_to_delete_the_module:
+      "Вы действительно хотите удалить модуль?",
+    submit: "Подтвердить",
+    task_name: "Название задания",
+    this_field_is_required: "Это поле обязательное.",
+    this_field_should_be_more: "Это поле должно быть больше 5 символов.",
+    task_link: "Ссылка на задание",
+    description: "Описание",
+    link: "Ссылка",
   },
 };
