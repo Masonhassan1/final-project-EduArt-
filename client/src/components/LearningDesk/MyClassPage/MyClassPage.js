@@ -167,7 +167,7 @@ export default function MyClassPage() {
                   >
                     <section
                       /*  className="modulesWrapper" */
-                      style={{ padding: "1rem", alignItems: "flex-start" }}
+                      style={{ padding: "1rem" }}
                     >
                       {myClassmates.map((person, index) => {
                         return (
