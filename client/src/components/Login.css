@@ -6,6 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    font-family: "Jura", sans-serif;
     background: rgba(250, 214, 185, 0.835) ;
     background: linear-gradient(180deg, rgba(254, 254, 254, 1) 10%, rgba(250, 214, 185, 0.835) 70%);
 }

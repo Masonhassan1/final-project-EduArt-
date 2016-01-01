@@ -6,7 +6,7 @@ footer{
 }
 .footer-infos{
     position: relative;
-    left: 100px;
+    left: 180px;
     display: flex;
     justify-content: center;
     align-items: center;
