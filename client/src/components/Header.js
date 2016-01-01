@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Header.css";
 
-function Header({ isAuth, logout, userName, setUserName, isAdmin }) {
+function Header({ isAuth, logout, userName, setUserName ,setHeaderAlarm, isAdmin }) {
   const [showUserPro, setShowUserPro] = useState(false);
   const navigate = useNavigate();
 
@@ -24,9 +24,11 @@ function Header({ isAuth, logout, userName, setUserName, isAdmin }) {
 
   function hideUserProHandler() {
     setShowUserPro(false);
-    document.querySelector("#alarm").setAttribute("class", "alarm");
+    setHeaderAlarm(true)
+   /*  document.querySelector("#alarm").setAttribute("class", "alarm"); */
     setTimeout(() => {
-      document.querySelector("#alarm").removeAttribute("class", "alarm");
+     /*  document.querySelector("#alarm").removeAttribute("class", "alarm"); */
+     setHeaderAlarm(false)
     }, 2500);
   }
 
@@ -102,7 +104,7 @@ function Header({ isAuth, logout, userName, setUserName, isAdmin }) {
           <div className="navy-login user-pro-color">About us</div>
         </NavLink>
       </div>
-      <div id="alarm">Please login first to see your profile options</div>
+     {/*  <div id="alarm">Please login first to see your profile options</div> */}
     </div>
   );
 }

@@ -4,7 +4,7 @@ import "./Home.css"
 import Footer from './Footer/Footer'
 
 
-function Home() {
+function Home({headerAlarm}) {
  const navigate = useNavigate()
  
  
@@ -22,6 +22,7 @@ function Home() {
         <section className='home-img'>
         <div className='home-img-div'><img src={require("../Images/home.JPG")}alt="" /></div>
         </section>
+        <div id="alarm" className={headerAlarm? "alarm":"hide-alarm"}>Please login first to see your profile options</div>
     </main>
         <Footer/>
     </>

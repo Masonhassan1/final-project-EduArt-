@@ -53,6 +53,7 @@ function App() {
   const [userPurchases,setUserPurchases]=useState([])
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [headerAlarm,setHeaderAlarm] = useState(false)
   const [userName, setUserName] = useState("");
   const [gender, setGender] = useState("");
   const [userDateOfBirth, setUserDateOfBirth] = useState("");
@@ -152,10 +153,11 @@ function App() {
             userName={userName}
             setUserName={setUserName}
             isAdmin={isAdmin}
+            setHeaderAlarm={setHeaderAlarm}
           />
 
           <Routes>
-            <Route path={"/"} element={<Home />} />
+            <Route path={"/"} element={<Home  headerAlarm={headerAlarm}/>} />
             <Route
               path={"/login"}
               element={
