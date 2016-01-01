@@ -261,10 +261,10 @@ button:hover{
     position: absolute;
     width: 20px;
     height: 20px;
-    left: 55%;
-    top: 60%;
-    animation: move-pointer 2s 2s forwards;
-    -webkit-animation: move-pointer 2s 2s forwards;
+    left: 58%;
+    top: 66%;
+    animation: move-pointer 2s 3s forwards;
+    -webkit-animation: move-pointer 2s 3s forwards;
 }
 .pointer img {
     width: 100%;
@@ -272,8 +272,8 @@ button:hover{
 }
 @keyframes move-pointer{
     to{
-        top: 28%;
-        left: 9.8%;
+        top: 29%;
+        left: 10%;
     }
 }
 .vsc-app{
@@ -283,8 +283,8 @@ button:hover{
    background-color: #202225;
    font-family: "Cascadia";
    opacity: 0;
-   animation: show 1s 4.5s linear forwards;
-   -webkit-animation: show 1s 4.5s linear forwards;
+   animation: show 1s 6s linear forwards;
+   -webkit-animation: show 1s 6s linear forwards;
 }
 .vsc-app-title{
     grid-column: -1/1;
@@ -353,19 +353,39 @@ button:hover{
 .bracket-one , .bracket-two {
     color: gold;
 }
-.cover-one , .cover-two {
+.cover-one , .cover-two , .cover-three ,.cover-four ,.cover-five , .cover-six {
     position: absolute;
-    width: 47%;
+    width: 48%;
     height: 5%;
     background-color: #202225;
     transform-origin: right center;
    
    
 }
-.cover-one{
+.cover-one {
+    top: 20%;
+    animation: move-cover 3s 7.5s linear forwards;
+    -webkit-animation: move-cover 3s 7.5s linear forwards;
+}
+.cover-two {
+    top: 27%;
+    animation: move-cover 3s 10.5s linear forwards;
+    -webkit-animation: move-cover 3s 10.5s linear forwards;
+}
+.cover-three {
+    top: 34%;
+    animation: move-cover 2s 13.5s linear forwards;
+    -webkit-animation: move-cover 2s 13.5s linear forwards;
+}
+.cover-four {
+    top: 40%;
+    animation: move-cover 1s 14.7s linear forwards;
+    -webkit-animation: move-cover 1s 14.7s linear forwards;
+}
+.cover-five{
     top: 47%;
-    animation: move-cover 4s 6.7s linear forwards;
-    -webkit-animation: move-cover 4s 6.7s linear forwards;
+    animation: move-cover 3s 15.6s linear forwards;
+    -webkit-animation: move-cover 3s 15.6s linear forwards;
 }
 @keyframes move-cover {
     to{
@@ -391,15 +411,15 @@ button:hover{
     color:  #58b0da;
     
 }
-.cover-two{
+.cover-six{
     top: 80%;
-    animation: move-cover 4s 11s linear forwards;
-    -webkit-animation: move-cover 4s 11s linear forwards;
+    animation: move-cover 3.2s 19s linear forwards;
+    -webkit-animation: move-cover 3.2s 19s linear forwards;
 }
 .result {
     opacity: 0;
-    animation: show .1s 13.1s forwards;
-    -webkit-animation: show .1s 13.1s forwards;
+    animation: show .1s 20.9s forwards;
+    -webkit-animation: show .1s 20.9s forwards;
 }
 @keyframes show {
     to{

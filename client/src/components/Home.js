@@ -74,6 +74,10 @@ function Home() {
               <span className='bracket-one'></span></div> <div><span style={{color:"dodgerblue"}}>let</span> <span style={{color:"darkcyan"}}>result  </span> <span style={{color:"gold"}}>= num1 + num2</span></div> <span style={{color:"crimson"}}>return </span><span style={{color:"darkcyan"}}>result</span><div className='bracket-two'></div>
               <div><span style={{color:"gold"}}>console.log(<span style={{color:"deepskyblue"}}>sum<span style={{color:"gold"}}>(</span><span style={{color:"orange"}}>56,74</span><span style={{color:"gold"}}>)</span></span>);</span></div>
               <div className="cover-one"></div>
+              <div className="cover-two"></div>
+              <div className="cover-three"></div>
+              <div className="cover-four"></div>
+              <div className="cover-five"></div>
               </div>
               <div className="vsc-terminal-title"> <div> PROBLEMS DEBUG TERMINAL</div> 
                 </div>
@@ -84,7 +88,7 @@ function Home() {
               <span style={{color:"gray"}}>index.js</span>
               </div>
               <div className='result' style={{color:"gold"}}>130</div>
-              <div className='cover-two'></div>
+              <div className='cover-six'></div>
               </div>
             </div>
        
