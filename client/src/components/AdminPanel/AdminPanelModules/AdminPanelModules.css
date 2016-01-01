@@ -11,3 +11,7 @@
 .modulesPageTitle {
   margin-left: 2.5rem;
 }
+
+.moduleWrapper {
+  position: relative;
+}

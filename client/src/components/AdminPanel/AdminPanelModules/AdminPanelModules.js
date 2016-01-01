@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
 import { Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -17,6 +16,7 @@ import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import EditIcon from "@mui/icons-material/Edit";
 
 import axiosConfig from "../../../util/axiosConfig";
 import "./AdminPanelModules.css";
@@ -40,15 +40,10 @@ const MenuProps = {
 };
 
 export default function AdminPanelModules() {
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-    reset,
-  } = useForm();
-
   const [modules, setModules] = useState([]);
   const [modulesSearchResult, setModulesSearchResult] = useState([]);
+  const [updateModuleMode, setUpdateModuleMode] = useState(false);
+  const [moduleId, setModuleId] = useState("");
   const [modulesName, setModulesName] = useState([]);
   const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -59,11 +54,8 @@ export default function AdminPanelModules() {
   const [moduleTasks, setModuleTasks] = useState([]);
   const [moduleExtraMat, setModuleExtraMat] = useState("");
 
-  const [showMessage, setShowMessage] = useState(false);
-
-  const handleClose = () => {
-    setShowMessage(false);
-  };
+  const [showCreateMessage, setShowCreateMessage] = useState(false);
+  const [showUpdateMessage, setShowUpdateMessage] = useState(false);
 
   const [teachersArr, setTeachersArr] = useState([]);
 
@@ -170,7 +162,7 @@ export default function AdminPanelModules() {
       );
 
       resetCreateModuleForm();
-      setShowMessage(true);
+      setShowCreateMessage(true);
       getModules(`/modules`);
 
       setLoading(false);
@@ -179,6 +171,53 @@ export default function AdminPanelModules() {
       setLoading(false);
       setHasError(true);
     }
+  };
+
+  const updateModuleRequest = async () => {
+    try {
+      setLoading(true);
+      const jwt = localStorage.getItem("jwt");
+      const response = await axiosConfig.patch(
+        `/modules/${moduleId}`,
+        {
+          name: moduleName,
+          noOfDays: moduleDuration,
+          type: "online",
+          teacher: moduleTeachers,
+          zoomLink: moduleZoomLink,
+          tasks: moduleTasks,
+          extraMaterial: moduleExtraMat,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+
+      setShowUpdateMessage(true);
+      resetCreateModuleForm();
+      getModules(`/modules`);
+      setUpdateModuleMode(false);
+
+      setLoading(false);
+      setHasError(false);
+    } catch (error) {
+      setLoading(false);
+      setHasError(true);
+    }
+  };
+
+  const updateModule = (mod) => {
+    console.log("update module", mod);
+    setModuleId(mod.id);
+    setModuleName(mod.name);
+    setModuleDuration(mod.noOfDays);
+    setModuleZoomLink(mod.zoomLink);
+    setModuleTeachers(mod.teacher);
+    setModuleTasks(mod.tasks);
+    setModuleExtraMat(mod.extraMaterial);
+    setUpdateModuleMode(true);
   };
 
   return (
@@ -288,13 +327,23 @@ export default function AdminPanelModules() {
               setModuleExtraMat={setModuleExtraMat}
             />
           </Accordion>
-          <Button
-            variant="contained"
-            onClick={createNewModule}
-            sx={{ display: "block", mx: "auto", my: "1rem" }}
-          >
-            Create new module
-          </Button>
+          {updateModuleMode ? (
+            <Button
+              variant="contained"
+              onClick={updateModuleRequest}
+              sx={{ display: "block", mx: "auto", my: "1rem" }}
+            >
+              Update module
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              onClick={createNewModule}
+              sx={{ display: "block", mx: "auto", my: "1rem" }}
+            >
+              Create new module
+            </Button>
+          )}
         </Box>
         <section className="adminModulesSearchSection">
           <AdminModulesSearch
@@ -306,6 +355,19 @@ export default function AdminPanelModules() {
             {modulesSearchResult.map((mod) => {
               return (
                 <Box className="moduleWrapper" key={mod._id}>
+                  <Button
+                    onClick={() => updateModule(mod)}
+                    sx={{
+                      position: "absolute",
+                      top: "10px",
+                      right: "-4px",
+                      width: "1rem",
+                      height: "1rem",
+                      zIndex: "10",
+                    }}
+                  >
+                    <EditIcon />
+                  </Button>
                   <Accordion>
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
@@ -408,18 +470,33 @@ export default function AdminPanelModules() {
         </section>
       </div>
       <Snackbar
-        open={showMessage}
+        open={showCreateMessage}
         autoHideDuration={5000}
-        onClose={() => setShowMessage(false)}
+        onClose={() => setShowCreateMessage(false)}
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         key={"bottomright"}
       >
         <Alert
-          onClose={handleClose}
+          onClose={() => setShowCreateMessage(false)}
           severity="success"
           sx={{ width: "100%", fontSize: "1rem" }}
         >
           Module has been created successfully.
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={showUpdateMessage}
+        autoHideDuration={5000}
+        onClose={() => setShowUpdateMessage(false)}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        key={"bottomright1"}
+      >
+        <Alert
+          onClose={() => setShowUpdateMessage(false)}
+          severity="success"
+          sx={{ width: "100%", fontSize: "1rem" }}
+        >
+          Module has been updated successfully.
         </Alert>
       </Snackbar>
     </div>
