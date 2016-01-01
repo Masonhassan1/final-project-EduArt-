@@ -1,0 +1,38 @@
+{
+  "name": "eduart abschlussprojekt",
+  "version": "1.0.0",
+  "description": "Online Campus namens EduArt - Aschlussprojekt",
+  "main": "App.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fbw-d05/be-18-mongodb-crud-KazhimRycerz.git"
+  },
+  "keywords": [],
+  "author": "Oxana Danilova, Mercedes Girmanove, Luay Abbas, Joachim Ritter, EduArt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fbw-d05/be-18-mongodb-crud-KazhimRycerz/issues"
+  },
+  "homepage": "https://github.com/fbw-d05/be-18-mongodb-crud-KazhimRycerz#readme",
+  "dependencies": {
+    "@react-pdf/renderer": "^3.0.1",
+    "@typegoose/auto-increment": "^1.8.0",
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-fileupload": "^1.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.6.1",
+    "pdfkit": "^0.13.0",
+    "react": "^16.14.0",
+    "sass": "^1.55.0",
+    "serve-index": "^1.9.1",
+    "uuid": "^9.0.0"
+  }
+}
