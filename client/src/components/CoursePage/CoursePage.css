@@ -92,6 +92,57 @@
   border-radius: 5px;
   object-fit: cover;
   object-position: center;
+  position: relative;
+}
+
+.coursePagePicture > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.buy-btn-wrapper {
+  width: 22rem;
+  height: 4rem;
+  background: rgba(215, 235, 241, 0.69);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: calc(60% - 2rem);
+  left: calc(50% - 11rem);
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.buy-btn-wrapper:hover {
+  background: rgba(59, 146, 172, 0.69);
+}
+.buy-btn-wrapper:hover p {
+  color: #ffffff;
+}
+
+.buy-btn-wrapper > p {
+  margin-left: 1rem;
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 30px;
+  color: #5382a1;
+}
+
+.buy-btn-icon {
+  width: 6rem;
+  height: 4rem;
+  background: rgba(175, 204, 213, 0.75);
+  border-radius: 10px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 
 .coursePageBottomWrapper {
@@ -100,7 +151,7 @@
   grid-template-rows: repeat(2, 1fr);
   justify-content: center;
   align-items: center;
-  gap: 1.7rem;
+  column-gap: 1.5rem;
 }
 
 .courseDetailsItem {

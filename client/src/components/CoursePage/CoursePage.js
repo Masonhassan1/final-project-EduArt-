@@ -10,13 +10,11 @@ export default function CoursePage() {
   const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const bookCourse = ()=> {
+  const bookCourse = () => {
     /// check ob user eingelogged ist
     // true:
-    console.log('book course');
-
-
-  }
+    console.log("book course");
+  };
 
   const getInfo = async (url) => {
     try {
@@ -77,11 +75,26 @@ export default function CoursePage() {
                 {courseInfo.courseDescription}
               </p>
             </div>
-            <img
-              className="coursePagePicture"
-              src={courseInfo.courseImage}
-              alt={courseInfo.courseName}
-            />
+            <div className="coursePagePicture">
+              <img src={courseInfo.courseImage} alt={courseInfo.courseName} />
+              <div className="buy-btn-wrapper" onClick={() => bookCourse()}>
+                <p>Book the course</p>
+                <div className="buy-btn-icon">
+                  <svg
+                    width="35"
+                    height="40"
+                    viewBox="0 0 35 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.5 17.5H5V15H7.5V17.5ZM25 17.5H10V15H25V17.5ZM5 22.5H7.5V25H5V22.5ZM10 22.5H25V25H10V22.5ZM7.5 10H5V7.5H7.5V10ZM25 10H10V7.5H25V10ZM35 32.5V35H30V40H27.5V35H22.5V32.5H27.5V27.5H30V32.5H35ZM2.5 32.5H20V35H0V0H30V25H27.5V2.5H2.5V32.5Z"
+                      fill="#5382A1"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="coursePageBottomWrapper">
             <div className="courseDetailsItem">
@@ -142,7 +155,6 @@ export default function CoursePage() {
               </div>
             </div>
           </div>
-          <button onClick={}>Book the course</button>
         </div>
       )}
     </div>
