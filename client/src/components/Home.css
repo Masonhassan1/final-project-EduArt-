@@ -11,7 +11,7 @@ main{
 .info{
 position: absolute;
 top: 30%;
-left: 10%;
+left: 7%;
 }
 
 .paragraph-one{
@@ -24,7 +24,7 @@ left: 10%;
 .home-img{
     position: absolute;
     top: 25%;
-    left: 67%;
+    left: 65%;
 }
 .home-img-div{
     width: 550px;
@@ -35,6 +35,7 @@ left: 10%;
     height: 100%;
 }
 .info button{
+    margin-top: 30px;
   width: 250px;
   height: 60px;
   font-size: 20px;
@@ -42,6 +43,7 @@ left: 10%;
   border: none;
   color: #0e464a99;
   background-color: #38b0b866;
+  cursor: pointer;
   border-radius: 1rem;
   -webkit-border-radius: 1rem;
   -moz-border-radius: 1rem;

@@ -4,7 +4,20 @@ import "./Footer.css"
 
 function Footer() {
 
+  const [text,setText]=useState("")
   const [chatForm,setChatForm]= useState(false)
+  const e = document.querySelector(".message")
+ 
+
+  function textHandler(){
+    setText(e.value)
+    e.value = ""
+  }
+  console.log(text)
+  function showChatHandler (){
+    setChatForm(!chatForm)
+  }
+  
 
   return (
     <footer>
@@ -16,8 +29,16 @@ function Footer() {
        <div className="certificate"><i className="fa-solid fa-graduation-cap"></i> <span> Completion certificate</span></div>
       </div>
       <div className="chat">
-        <div className="show-chat">{chatForm? <div>x</div>:<div><i class="fa-regular fa-comments"></i></div>}</div>
-        <div className="chat-form"></div>
+        <div className="show-chat" onClick={showChatHandler}>{chatForm? <div>x</div>:<div><i className="fa-regular fa-comments"></i></div>}</div>
+        <div className={chatForm? "chat-form":"hide-chat-form"}>
+         <div>Send us your questions and we will response as soon as possible</div>
+         <div>{text}</div>
+         <div>
+         <input className='message' type="text" />
+          <span  onClick={textHandler}> <i className="fa-regular fa-paper-plane"></i></span>
+         </div>
+        
+        </div>
       </div>
     </footer>
   )

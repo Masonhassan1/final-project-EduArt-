@@ -14,6 +14,7 @@ function Header() {
    
     </div>
     <div className='navy'>
+      <div className="user-profile"><i className="fa-solid fa-user"></i></div>
       <NavLink className="nav-link" to="/">
 
     <div className="navy-home">Home</div>
@@ -26,6 +27,10 @@ function Header() {
 
     <div className="navy-login">Login</div>
       </NavLink>
+      <NavLink className="nav-link" to="login">
+
+<div className="navy-login">About us</div>
+  </NavLink>
 
     </div>
   </div>

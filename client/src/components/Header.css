@@ -21,7 +21,7 @@
 .navy {
  
     display: flex;
-    column-gap: 60%;
+    column-gap: 4rem;
     font-size: 1.4rem;
 }
 .nav-link{
@@ -40,4 +40,8 @@
 }
 .navy div:hover {
     color: #046fa5;
+}
+
+.user-profile{
+    cursor: pointer;
 }

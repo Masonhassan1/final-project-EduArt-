@@ -1,5 +1,11 @@
 
+footer{
+    display: flex;
+    justify-content: space-around;
+}
 .footer-infos{
+    position: relative;
+    left: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,10 +16,14 @@
 .footer-infos i {
     color: #38b0b899;
 }
+.chat{
+ position: relative;
+ top: -30px;
+ left: -30px;
+ 
+}
 .show-chat{
     position: absolute;
-    top: 88%;
-    left: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,5 +39,33 @@
    
 }
 .chat-form{
-
+    position: absolute;
+    top: -190px;
+    left:-246px ;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
+    width: 230px;
+    height: 200px;
+    font-weight: bold;
+    color: #01537199;
+    background-color: rgb(235, 235, 239);
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+   
 }
+.hide-chat-form {
+    display: none;
+}
+.chat-form input{
+    width: 85%;
+    height: 24px;
+    padding-left: 10px;
+    color: #01415899;
+    font-size: large;
+    border: none;
+    outline: none;
+}
+
