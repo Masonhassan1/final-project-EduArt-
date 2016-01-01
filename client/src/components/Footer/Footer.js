@@ -8,6 +8,10 @@ function Footer() {
   const [response,setResponse]=useState("")
   const [chatForm,setChatForm]= useState(false)
   const messageText = document.querySelector(".message")
+
+ useEffect(()=>{
+  document.querySelector(".message").focus()
+ })
  
   useEffect(()=>{
     document.querySelector(".message").focus()
