@@ -11,6 +11,8 @@ main {
     justify-content: center;
     align-items: center;
     user-select: none;
+    background: rgba(250, 214, 185, 0.835) ;
+    background: linear-gradient(180deg, rgba(254, 254, 254, 1) 10%, #f0f2f3 70%);
     font-family: "Jura", sans-serif;
     font-weight: bold;
     --shadow-color: #5d7174; /* 9c9c9c */
@@ -27,7 +29,7 @@ main {
 .paragraph-two {
     position: absolute;
     font-size: xx-large;
-    color: #9c9d9d;
+    color: #8b8d8d;
     text-shadow: .5px .5px 1px #747676;
     rotate: x 90deg;
     animation: show-paragraph 0.6s 0.3s linear forwards;
@@ -387,4 +389,81 @@ main {
     to {
         opacity: 1;
     }
+}
+
+.show-hide-chat{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    width: 70px;
+    height: 70px;
+    top: 88%;
+    left: 92.2%;
+    color: white;
+    background-color: #38a0d5;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.chat {
+    position: relative;
+    width: 330px;
+    height: 270px;
+    top: 22%;
+    left: 49.5%;
+    padding: 1rem;
+    background-color: #f6f7f8;
+    border: 1px solid #c6c5c5;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+  
+}
+
+.chat-frame{
+    overflow-y: scroll;
+}
+.chat-title{
+    margin-bottom: 2rem;
+  padding: .5rem;
+  color: #38a0d5;
+  background-color: #e7e5e5;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+ 
+}
+.chat input{
+    position: absolute;
+    width: 90%;
+    height: 2.5rem;
+    bottom: 0;
+   
+   
+}
+.question-dl-none , .chat-dl-none{
+    display: none;
+}
+.question{
+    display: block;
+    padding: .5rem;
+    color:  #e7e5e5;
+    background-color: #38a0d5;
+    border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+ 
+}
+.send-que-btn{
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    color: #0e4468;
+    bottom: 11.8%;
+    left: 83%;
 }

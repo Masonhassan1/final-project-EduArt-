@@ -53,7 +53,7 @@ function Register() {
   formEl.current.reset();
   }
 
-  if(isRegistered){setTimeout(()=> navigate("/login"),2000)}
+  if(isRegistered){setTimeout(()=> navigate("/login"),2500)}
  
   return (
   
@@ -72,7 +72,7 @@ function Register() {
      <input ref={emailEl} type="email"  placeholder='Email'/>
      <input ref={passwordEl} type="password"  placeholder='Password'/>
      <button className='register-btn' onClick={submitHandler}>Register</button>
-     {isRegistered? <> <div > Hello <span style={{color:"darkorange",fontStyle:"italic"}}>{user}</span> you were successfully registered</div> <div>Your will be directed to <span style={{color:"darkorange",fontStyle:"italic"}}>login</span> page</div></>:""}
+     {isRegistered? <> <div > Hello <span style={{color:"darkorange",fontStyle:"italic"}}>{user}</span> you were successfully registered</div> <div>Your will be automatically directed to <span style={{color:"darkorange",fontStyle:"italic"}}>login</span> page</div></>:""}
      {isError? <div style={{color:"red"}}>Sorry.. something went wrong. please try again</div>:""}
     </form>
        {isLoading? <div className='reg-loading'>loading...</div>:""}  
