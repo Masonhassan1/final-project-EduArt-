@@ -250,9 +250,11 @@
 }
 @keyframes scale {
     from{
-        scale: 1.4;
+      rotate: -15deg;
+        scale: 1.2;
     }
     to{
+      rotate: 15deg;
         scale: 1;
     }
 }
