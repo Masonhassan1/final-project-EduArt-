@@ -3,7 +3,8 @@ import "./Header.css"
 
 
 
-function Header() {
+function Header({isAuth,logout/* ,getUserDetails */}) {
+  console.log(isAuth)
   const navigate = useNavigate()
   
     
@@ -14,7 +15,7 @@ function Header() {
    
     </div>
     <div className='navy'>
-      <div className="user-profile"><i className="fa-solid fa-user"></i></div>
+      <div className="user-profile"/*   */><i className="fa-solid fa-user"></i></div>
       <NavLink className="nav-link" to="/">
 
     <div className="navy-home">Home</div>
@@ -25,7 +26,7 @@ function Header() {
       </NavLink>
       <NavLink className="nav-link" to="login">
 
-    <div className="navy-login">Login</div>
+    <div className="navy-login" onClick={logout}>{isAuth? "Logoout":"Login"}</div>
       </NavLink>
       <NavLink className="nav-link" to="login">
 

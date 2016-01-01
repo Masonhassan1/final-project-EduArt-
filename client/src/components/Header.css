@@ -1,4 +1,5 @@
 .header {
+<<<<<<< HEAD
   height: 15vh;
   overflow: hidden;
   display: flex;
@@ -7,6 +8,16 @@
   font-family: "Jura", sans-serif;
   font-weight: bold;
   user-select: none;
+=======
+    height: 15vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    column-gap: 36%;
+    font-family: "Jura", sans-serif;
+    font-weight: bold;
+    user-select: none;
+>>>>>>> home-page-branch
 }
 .logo {
   margin-left: 8%;

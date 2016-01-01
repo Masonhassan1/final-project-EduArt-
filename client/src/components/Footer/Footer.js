@@ -8,11 +8,18 @@ function Footer() {
   const [response,setResponse]=useState("")
   const [chatForm,setChatForm]= useState(false)
   const messageText = document.querySelector(".message")
+<<<<<<< HEAD
 
  useEffect(()=>{
   document.querySelector(".message").focus()
  })
+=======
+>>>>>>> home-page-branch
  
+  useEffect(()=>{
+    document.querySelector(".message").focus()
+ 
+  })
   function textHandler(){
     if(response) setResponse("")
     setText(messageText.value)
