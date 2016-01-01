@@ -7,7 +7,7 @@ function Register() {
   const navigate = useNavigate()
   const [isLoading,setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false);
-  const [isRegistered, setIsRegistered] = useState(true);
+  const [isRegistered, setIsRegistered] = useState(false);
   const [user,setUser]= useState("")
  
 

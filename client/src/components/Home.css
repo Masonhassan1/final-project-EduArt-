@@ -347,7 +347,7 @@ main {
     -webkit-animation: move-cover 1s 9.8s linear forwards;
 }
 .cover-four {
-    top: 35.4%;
+    top: 35.1%;
     animation: move-cover .3s 10.8s linear forwards;
     -webkit-animation: move-cover .3s 10.8s linear forwards;
 }
