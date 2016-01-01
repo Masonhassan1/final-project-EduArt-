@@ -13,9 +13,9 @@ import Register from "./components/Register/Register";
 function App() {
  
   const [isAuth, setIsAuth] = useState(false);
-  /* const [isLoading, setIsLoading] = useState(false); */
-  /* const [error, setError] = useState(""); */
-  /* const [userDetails, setUserDetails] = useState(null); */
+   const [isLoading, setIsLoading] = useState(false); 
+   const [error, setError] = useState(""); 
+   const [userDetails, setUserDetails] = useState(null); 
 
 
   
@@ -41,9 +41,42 @@ function App() {
   const logout = () => {
     localStorage.clear();
     setIsAuth(false);
-   
+    setUserDetails(null);
   } 
- 
+
+  /* const getUserDetails = async () => {
+
+   
+    const errorMsgEl = <p>Something went wrong</p>;
+    try {
+      setIsLoading(true);
+      const axiosResp = await axios.post("http://localhost:4000/myAccount", {}, {
+        headers: {
+          'authorization': `Bearer ${localStorage.getItem("jwt")}`
+          }
+        });
+
+      setUserDetails(axiosResp.data);
+      console.log("axiosResp.data:::", axiosResp.data);
+      setIsLoading(false);
+
+      if(axiosResp.data.error) {
+        setError( axiosResp.data.error.message );
+        console.error(axiosResp.data.error)
+        return errorMsgEl;
+      }
+      
+      setError(""); 
+    } catch (error) {
+      setIsLoading(false);
+      console.error("Error while sending with axios", error);
+      setError( error.message );
+      return errorMsgEl;
+    }
+
+    return 
+  }  */
+  
    useEffect(() => {
     if( hasClientValidToken() ) {
       setIsAuth(true);
@@ -52,15 +85,16 @@ function App() {
 
   }, [isAuth]); 
 
+  
 
   return (
      <Router>
   
-      <Header isAuth={isAuth} logout={logout}/>
+      <Header isAuth={isAuth} logout={logout} /* getUserDetails={getUserDetails} *//>
 
       <Routes>
       <Route path={"/"} element={<Home/>} />
-      <Route path={"/login"}  element={<Login handelSuccessfullLogin={handelSuccessfullLogin}/>}  />
+      <Route path={"/login"}  element={<Login handelSuccessfullLogin={handelSuccessfullLogin} isAuth={isAuth}/>}  />
 
       <Route path="/courselist" element={<CourseList />}></Route>
           <Route path="/courselist/:courseid" element={<CoursePage isAuth={isAuth}/>} />

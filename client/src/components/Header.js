@@ -3,7 +3,7 @@ import "./Header.css"
 
 
 
-function Header({isAuth,logout}) {
+function Header({isAuth,logout/* ,getUserDetails */}) {
   console.log(isAuth)
   const navigate = useNavigate()
   
@@ -15,7 +15,7 @@ function Header({isAuth,logout}) {
    
     </div>
     <div className='navy'>
-      <div className="user-profile"><i className="fa-solid fa-user"></i></div>
+      <div className="user-profile"/*   */><i className="fa-solid fa-user"></i></div>
       <NavLink className="nav-link" to="/">
 
     <div className="navy-home">Home</div>
