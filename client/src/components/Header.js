@@ -1,6 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
+
+import { MyContext } from "../App";
+import { LOCALES } from "../util/lang/locales";
+
 import "./Header.css";
+
+const languages = [
+  { name: "English", code: LOCALES.ENGLISH },
+  { name: "Russian", code: LOCALES.RUSSIAN },
+];
 
 function Header({
   isAuth,
@@ -10,8 +20,12 @@ function Header({
   setHeaderAlarm,
   isAdmin,
 }) {
+  const contextContent = useContext(MyContext);
+  const { lang, setLang } = contextContent;
   const [showUserPro, setShowUserPro] = useState(false);
   const navigate = useNavigate();
+
+  console.log("LOCALES", LOCALES.ENGLISH);
 
   function shwoUserProHandler() {
     document
@@ -64,6 +78,28 @@ function Header({
         <img className="img front" src={require("../Images/logo.png")} alt="" />
       </div>
       <div className="navy">
+        <div className="change-lang">
+          <select
+            value={localStorage.getItem("lang") || LOCALES.ENGLISH}
+            onChange={(event) => {
+              const value = event.currentTarget.value;
+              setLang(value);
+              localStorage.setItem("lang", value);
+            }}
+          >
+            {languages.map(({ name, code }) =>
+              code === localStorage.getItem("lang") ? (
+                <option key={code} value={code}>
+                  {name}
+                </option>
+              ) : (
+                <option key={code} value={code}>
+                  {name}
+                </option>
+              )
+            )}
+          </select>
+        </div>
         <div className="header-user-name">
           {userName ? `Logged in as ${userName}` : ""}
         </div>
@@ -92,26 +128,40 @@ function Header({
         </i>
         {isAuth && isAdmin && (
           <NavLink className="nav-link" to="/adminpanel">
-            <div className="navy-home user-pro-color">Admin panel</div>
+            <div className="navy-home user-pro-color">
+              <FormattedMessage id="admin_panel" />
+            </div>
           </NavLink>
         )}
         <NavLink className="nav-link" to="/">
-          <div className="navy-home user-pro-color">Home</div>
+          <div className="navy-home user-pro-color">
+            <FormattedMessage id="home" />
+          </div>
         </NavLink>
         <NavLink className="nav-link" to="/courselist">
-          <div className="navy-courses user-pro-color">Online courses</div>
+          <div className="navy-courses user-pro-color">
+            <FormattedMessage id="online_courses" />
+          </div>
         </NavLink>
         <NavLink className="nav-link" to={isAuth ? "/" : "login"}>
           <div className="navy-login user-pro-color" onClick={logout}>
-            {isAuth ? "Logout" : "Login"}
+            {isAuth ? (
+              <FormattedMessage id="logout" />
+            ) : (
+              <FormattedMessage id="login" />
+            )}
           </div>
         </NavLink>
 
         <NavLink className="nav-link" to="/about">
-          <div className="navy-login user-pro-color">About us</div>
+          <div className="navy-login user-pro-color">
+            <FormattedMessage id="about_us" />
+          </div>
         </NavLink>
       </div>
-      <div id="alarm">Please login first to see your profile options</div>
+      <div id="alarm">
+        <FormattedMessage id="please_login_first" />
+      </div>
     </div>
   );
 }

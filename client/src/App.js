@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { isExpired, decodeToken } from "react-jwt";
 import axios from "axios";
+import { IntlProvider } from "react-intl";
+import { LOCALES } from "./util/lang/locales";
 
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -15,9 +17,10 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import AboutUs from "./components/AboutUs/AboutUs";
 import UserProfile from "./components/UserProfile/UserProfile";
-import Certificates from "./components/UserProfile/Certificates"; 
+import Certificates from "./components/UserProfile/Certificates";
 import LearningDesk from "./components/LearningDesk/LearningDesk";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
+import { messages } from "./util/lang/messages";
 
 import Jura from "./Fonts/Jura-Medium.ttf";
 import "./App.css";
@@ -50,13 +53,14 @@ function App() {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [learningDeskId, setLearningDeskId] = useState(null);
   const [userProfileData, setUserProfileData] = useState({});
-  const [userPurchases,setUserPurchases]=useState([])
+  const [userPurchases, setUserPurchases] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [headerAlarm,setHeaderAlarm] = useState(false)
+  const [headerAlarm, setHeaderAlarm] = useState(false);
   const [userName, setUserName] = useState("");
   const [gender, setGender] = useState("");
   const [userDateOfBirth, setUserDateOfBirth] = useState("");
+  const [lang, setLang] = useState(LOCALES.ENGLISH);
 
   const handelSuccessfullLogin = (logData) => {
     const decodedToken = decodeToken(logData.jwt);
@@ -85,6 +89,11 @@ function App() {
   };
 
   useEffect(() => {
+    if (localStorage.getItem("lang")) {
+      setLang(localStorage.getItem("lang"));
+    }
+  }, []);
+  useEffect(() => {
     if (isAuth) {
       async function getUserDetalis() {
         try {
@@ -94,7 +103,7 @@ function App() {
             `http://localhost:4000/user/${localStorage.getItem("userId")}`
           );
           setUserProfileData(userDetails.data);
-          setUserPurchases(userDetails.data.myPurchases)
+          setUserPurchases(userDetails.data.myPurchases);
           console.log("user data", userDetails.data);
           if (userDetails.data && userDetails.data.accessRights.includes(5)) {
             setIsAdmin(true);
@@ -135,76 +144,88 @@ function App() {
   }, [isAuth]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <MyContext.Provider
-        value={{
-          selectedCourse,
-          setSelectedCourse,
-          learningDeskId,
-          setLearningDeskId,
-          userProfileData,
-        }}
-      >
-        <CssBaseline />
-        <Router>
-          <Header
-            isAuth={isAuth}
-            logout={logout}
-            userName={userName}
-            setUserName={setUserName}
-            isAdmin={isAdmin}
-            setHeaderAlarm={setHeaderAlarm}
-          />
-
-          <Routes>
-            <Route path={"/"} element={<Home  headerAlarm={headerAlarm}/>} />
-            <Route
-              path={"/login"}
-              element={
-                <Login
-                  handelSuccessfullLogin={handelSuccessfullLogin}
-                  isAuth={isAuth}
-                  isAdmin={isAdmin}
-                  courseId={selectedCourse}
-                />
-              }
+    <IntlProvider messages={messages[lang]} locale={lang}>
+      <ThemeProvider theme={theme}>
+        <MyContext.Provider
+          value={{
+            selectedCourse,
+            setSelectedCourse,
+            learningDeskId,
+            setLearningDeskId,
+            userProfileData,
+            lang,
+            setLang,
+          }}
+        >
+          <CssBaseline />
+          <Router>
+            <Header
+              isAuth={isAuth}
+              logout={logout}
+              userName={userName}
+              setUserName={setUserName}
+              isAdmin={isAdmin}
+              setHeaderAlarm={setHeaderAlarm}
             />
 
-            <Route path="/courselist" element={<CourseList />}></Route>
-            <Route
-              path="/courselist/:courseid"
-              element={<CoursePage isAuth={isAuth} />}
-            />
-            <Route
-              path="/mylearningdesk"
-              element={<LearningDesk learningDeskId={learningDeskId} />}
-            />
+            <Routes>
+              <Route path={"/"} element={<Home headerAlarm={headerAlarm} />} />
+              <Route
+                path={"/login"}
+                element={
+                  <Login
+                    handelSuccessfullLogin={handelSuccessfullLogin}
+                    isAuth={isAuth}
+                    isAdmin={isAdmin}
+                    courseId={selectedCourse}
+                  />
+                }
+              />
 
-            <Route path={"/about"} element={<AboutUs />} />
-            <Route path={"/adminpanel"} element={<AdminPanel />} />
-            <Route path={"/register"} element={<Register />} />
-            <Route
-              path={"/userprofile"}
-              element={
-                <UserProfile
-                  userProfileData={userProfileData}
-                  isAuth={isAuth}
-                  isLoading={isLoading}
-                  error={error}
-                  setError={setError}
-                  userDateOfBirth={userDateOfBirth}
-                  setUserDateOfBirth={setUserDateOfBirth}
-                  gender={gender}
-                  setGender={setGender}
-                  setUserName={setUserName}
-                />
-              }
-            />
-             <Route path={"/certificates"} element= {<Certificates userProfileData={userProfileData} userPurchases={userPurchases} />}/> 
-          </Routes>
-        </Router>
-      </MyContext.Provider>
-    </ThemeProvider>
+              <Route path="/courselist" element={<CourseList />}></Route>
+              <Route
+                path="/courselist/:courseid"
+                element={<CoursePage isAuth={isAuth} />}
+              />
+              <Route
+                path="/mylearningdesk"
+                element={<LearningDesk learningDeskId={learningDeskId} />}
+              />
+
+              <Route path={"/about"} element={<AboutUs />} />
+              <Route path={"/adminpanel"} element={<AdminPanel />} />
+              <Route path={"/register"} element={<Register />} />
+              <Route
+                path={"/userprofile"}
+                element={
+                  <UserProfile
+                    userProfileData={userProfileData}
+                    isAuth={isAuth}
+                    isLoading={isLoading}
+                    error={error}
+                    setError={setError}
+                    userDateOfBirth={userDateOfBirth}
+                    setUserDateOfBirth={setUserDateOfBirth}
+                    gender={gender}
+                    setGender={setGender}
+                    setUserName={setUserName}
+                  />
+                }
+              />
+              <Route
+                path={"/certificates"}
+                element={
+                  <Certificates
+                    userProfileData={userProfileData}
+                    userPurchases={userPurchases}
+                  />
+                }
+              />
+            </Routes>
+          </Router>
+        </MyContext.Provider>
+      </ThemeProvider>
+    </IntlProvider>
   );
 }
 
