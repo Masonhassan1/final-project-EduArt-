@@ -5,8 +5,8 @@ export const messages = {
     // header
     home: "Home",
     online_courses: "Online courses",
-    logout: "Log out",
-    login: "Log in",
+    logout: "Logout",
+    login: "Login",
     about_us: "About us",
     admin_panel: "Admin panel",
     learning_desk: "Learning desk",
@@ -43,6 +43,15 @@ export const messages = {
     throughout_Germany: "Throughout Germany - courses take place online",
     language: "06 | Language",
     the_course_was_booked: "The course was booked successfully.",
+    // login page
+    login_f: "Login",
+    dont_have_account: "Don´t have an account?",
+    register: "register",
+    or_sign_in_via_email: "or sign in via email",
+    sorry: "Sorry.. something went wrong. please try again",
+    loading: "loading...",
+    email: "Email",
+    password: "Password",
   },
   [LOCALES.RUSSIAN]: {
     // header
@@ -85,5 +94,14 @@ export const messages = {
     throughout_Germany: "По всей Германии - курсы проходят онлайн",
     language: "06 | Язык",
     the_course_was_booked: "Курс был успешно забронирован.",
+    // login page
+    login_f: "Авторизоваться",
+    dont_have_account: "У вас нет аккаунта?",
+    register: "зарегистрироваться",
+    or_sign_in_via_email: "или войдите через электронную почту",
+    sorry: "Извините, что-то пошло не так. пожалуйста, попробуйте снова",
+    loading: "загрузка ...",
+    email: "Эл. адрес",
+    password: "Пароль",
   },
 };
