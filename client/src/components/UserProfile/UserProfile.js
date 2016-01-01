@@ -127,7 +127,7 @@ function UserProfile({userProfileData,isAuth,isLoading,setError,error,userDateOf
             <div className="user-profile-color-icon font"><i className="fa-solid fa-palette" style={{color:"darkorange"}}></i></div>
             <div className="user-profile-color font">User profile color</div>
             <div id="dodgerblue" className='colors dodgerblue'  onClick={proStyleHandler}></div>
-            <div id="lightpink " className='colors lightpink' onClick={proStyleHandler}></div>
+            <div id="lightpink" className='colors lightpink' onClick={proStyleHandler}></div>
             <div id="lightsteelblue" className='colors lightsteelblue' onClick={proStyleHandler}></div>
             <div id="violet" className='colors violet' onClick={proStyleHandler}></div>
             <button className='user-profile-save-btn'style={proStyle}
