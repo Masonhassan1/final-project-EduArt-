@@ -7,7 +7,7 @@ function Register() {
   const navigate = useNavigate()
   const [isLoading,setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false);
-  const [isRegistered, setIsRegistered] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(true);
   const [user,setUser]= useState("")
  
 
@@ -65,12 +65,12 @@ function Register() {
     <form ref={formEl} className={isLoading? "reg-form reg-form-opacity":"reg-form"} action="">
      <div>Register</div>
      <br />
-     <input ref={firstNameEl} type="text"  placeholder='First name'/>
-     <input ref={lastNameEl} type="text"  placeholder='Last name'/>
-     <input ref={userNameEl} type="text"  placeholder='User name'/>
-     <input ref={birthdayEl} type="text" placeholder='Birthday dd.mm.yyyy'/>
-     <input ref={emailEl} type="email"  placeholder='Email'/>
-     <input ref={passwordEl} type="password"  placeholder='Password'/>
+     <input className='reg-input' ref={firstNameEl} type="text"  placeholder='First name'/>
+     <input  className='reg-input' ref={lastNameEl} type="text"  placeholder='Last name'/>
+     <input  className='reg-input' ref={userNameEl} type="text"  placeholder='User name'/>
+     <input  className='reg-input' ref={birthdayEl} type="text" placeholder='Birthday dd.mm.yyyy'/>
+     <input  className='reg-input' ref={emailEl} type="email"  placeholder='Email'/>
+     <input  className='reg-input' ref={passwordEl} type="password"  placeholder='Password'/>
      <button className='register-btn' onClick={submitHandler}>Register</button>
      {isRegistered? <> <div > Hello <span style={{color:"darkorange",fontStyle:"italic"}}>{user}</span> you were successfully registered</div> <div>Your will be automatically directed to <span style={{color:"darkorange",fontStyle:"italic"}}>login</span> page</div></>:""}
      {isError? <div style={{color:"red"}}>Sorry.. something went wrong. please try again</div>:""}

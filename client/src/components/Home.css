@@ -6,7 +6,7 @@
 main {
     width: 100%;
     margin: -6rem auto;
-    height: 88vh;
+    height: 87.5vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -332,27 +332,27 @@ main {
     transform-origin: right center;
 }
 .cover-one {
-    top: 20.7%;
+    top: 20%;
     animation: move-cover 2s 5.8s linear forwards;
     -webkit-animation: move-cover 2s 5.8s linear forwards;
 }
 .cover-two {
-    top: 27%;
+    top: 25%;
     animation: move-cover 2s 7.8s linear forwards;
     -webkit-animation: move-cover 2s 7.8s linear forwards;
 }
 .cover-three {
-    top: 34%;
+    top: 30.5%;
     animation: move-cover 1s 9.8s linear forwards;
     -webkit-animation: move-cover 1s 9.8s linear forwards;
 }
 .cover-four {
-    top: 40%;
+    top: 35.4%;
     animation: move-cover .3s 10.8s linear forwards;
     -webkit-animation: move-cover .3s 10.8s linear forwards;
 }
 .cover-five {
-    top: 47%;
+    top: 40%;
     animation: move-cover 1s 11.1s linear forwards;
     -webkit-animation: move-cover 1s 11.1s linear forwards;
 }
@@ -379,7 +379,7 @@ main {
     color: #58b0da;
 }
 .cover-six {
-    top: 80%;
+    top: 78.2%;
     animation: move-cover 1.2s 12.1s linear forwards;
     -webkit-animation: move-cover 1.2s 12.1s linear forwards;
 }

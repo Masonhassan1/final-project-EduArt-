@@ -27,6 +27,8 @@ export default function CoursePage() {
     getInfo("http://localhost:4000/courses");
   }, []);
   return (
+    <div className="coursePageWrapper-body">
+
     <div className="coursePageWrapper">
       <div className="coursePageTopWrapper">
         <div className="coursePageCard">
@@ -35,7 +37,7 @@ export default function CoursePage() {
               className="cardPageIcon"
               src={courseInfo.courseIcon}
               alt={courseInfo.courseName}
-            />
+              />
             <div className="cardPageTextHeader">
               <h3 className="coursePageNameCard">{courseInfo.courseName}</h3>
               <h5 className="coursePageDurationCard">{`${courseInfo.courseType} | ${courseInfo.courseDuration} months`}</h5>
@@ -107,5 +109,6 @@ export default function CoursePage() {
         </div>
       </div>
     </div>
+          </div>
   );
 }

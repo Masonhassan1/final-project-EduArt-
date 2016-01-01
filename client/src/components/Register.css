@@ -30,9 +30,11 @@
    
 }
 
-input {
+.reg-input {
+    width: 20rem;
+    height: 2rem;
    padding-left: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     border: none;
     outline: none;
     color: #2c768f;
@@ -49,6 +51,7 @@ input {
     color: #bcc0c0;
 }
 .register-btn {
+    margin-bottom: 1rem;
     width: 12rem;
     border: none;
     padding: .6rem;
@@ -70,7 +73,7 @@ input {
     left: 50%;
     translate: -50% -50%;
     font-size: xx-large;
-    color: #e7a41e;
-    margin-top: 1rem;
+    color: #351ee7;
+  
  font-style: italic;
 }
