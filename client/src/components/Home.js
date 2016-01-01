@@ -77,7 +77,7 @@ function Home() {
               <div className="vsc-terminal">Desktop/index.js/  
               <div className='node'>
 
-              <span style={{color:"gold"}}> node </span>
+              <span style={{color:"gold"}}> nodemon </span>
               <span style={{color:"gray"}}>index.js</span>
               </div>
               <div className='result' style={{color:"gold"}}>130</div>
