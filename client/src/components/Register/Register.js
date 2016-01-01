@@ -55,7 +55,7 @@ function Register() {
   }catch (error){
     setIsError(true)
     setRegLoading(false)
-    console.log(isError)
+    console.log(error)
     return;
   }
   

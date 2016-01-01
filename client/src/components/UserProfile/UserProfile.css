@@ -189,14 +189,14 @@
     grid-column: 10/11;
     grid-row: 14/15;
     background-color: violet;
+  
 }
 
  .colors{
     transition: .5s;
     -webkit-transition: .5s;
     -moz-transition: .5s;
-    -ms-transition: .5s;
-    -o-transition: .5s;
+   
 }
 .colors:hover{
     scale:1.4

@@ -26,7 +26,6 @@ function Header({isAuth,logout}) {
    
 const userProfileColor = localStorage.getItem("color") 
 useEffect(()=>{
-  document.querySelector("#user-profile").style.color= userProfileColor
   const navEl =  document.querySelectorAll(".user-pro-color")
   navEl.forEach(el=> {
   
@@ -43,7 +42,7 @@ useEffect(()=>{
    
     </div>
     <div className='navy' >
-      <i className="fa-solid fa-user " id="user-profile" onClick={isAuth? shwoUserProHandler:hideUserProHandler}>
+      <i className="fa-solid fa-user user-pro-color" id="user-profile" onClick={isAuth? shwoUserProHandler:hideUserProHandler}>
         <ul id="user-profile-list" className={showUserPro?"user-pro-ul":"hide-userPro-ul"}>
           
           <li className="user-pro-color">My class</li>
