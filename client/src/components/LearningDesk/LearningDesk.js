@@ -12,6 +12,7 @@ import PeopleIcon from "@mui/icons-material/People";
 import LearningDeskPage from "./LearningDeskPage/LearningDeskPage";
 
 import "./LearningDesk.css";
+import MyClassPage from "./MyClassPage/MyClassPage";
 
 export default function LearningDesk() {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -64,7 +65,7 @@ export default function LearningDesk() {
       </aside>
       <section>
         {selectedIndex === 0 && <LearningDeskPage />}
-        {selectedIndex === 1 && <p>my class</p>}
+        {selectedIndex === 1 && <MyClassPage />}
       </section>
     </section>
   );
