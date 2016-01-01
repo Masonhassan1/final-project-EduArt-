@@ -11,6 +11,8 @@ function Register() {
   const [isError, setIsError] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [user,setUser]= useState("")
+  
+  const regInputs = document.querySelectorAll(".reg-input")
  
   useEffect(()=>{
     
@@ -22,6 +24,8 @@ function Register() {
   const userNameEl = useRef(null); 
   const emailEl = useRef(null); 
   const passwordEl = useRef(null); 
+
+  
   async function submitHandler(e){
     setIsError(false)
     e.preventDefault();
@@ -51,7 +55,7 @@ function Register() {
   }catch (error){
     setIsError(true)
     setRegLoading(false)
-  
+    console.log(error)
     return;
   }
   
@@ -76,16 +80,16 @@ function Register() {
     <form ref={formEl} className={regLoading? "reg-form reg-form-opacity":"reg-form"} action="">
      <div>Register</div>
      <br />
-     <input className='reg-input f-name-input' ref={firstNameEl} type="text"  placeholder='First name'/>
-     <input  className='reg-input' ref={lastNameEl} type="text"  placeholder='Last name'/>
-     <input  className='reg-input' ref={userNameEl} type="text"  placeholder='User name'/>
-     <input  className='reg-input' ref={emailEl} type="email"  placeholder='Email'/>
+     <input className='reg-input f-name-input' ref={firstNameEl} type="text"  placeholder='First name' required/>
+     <input  className='reg-input' ref={lastNameEl} type="text"  placeholder='Last name' required/>
+     <input  className='reg-input' ref={userNameEl} type="text"  placeholder='User name' required/>
+     <input  className='reg-input' ref={emailEl} type="email"  placeholder='Email' required/>
      <div className="reg-password-div">
 
-     <input  className='reg-input' ref={passwordEl} type={showPassword? "text":"password"}  placeholder='Password'/>
+     <input  className='reg-input' ref={passwordEl} type={showPassword? "text":"password"}  placeholder='Password' required/>
      <div className='reg-show-password' onClick={passwordHandler}>{showPassword? <span><i className="fa-solid fa-eye-slash"></i></span>:<span><i className="fa-solid fa-eye"></i></span>}</div>
      </div>
-     <button className='register-btn' onClick={submitHandler}>Register</button>
+     <button id='register-btn' onClick={regInputs.length? submitHandler:null}>Register</button>
      {isRegistered? <> <div > Hello <span style={{color:"darkorange",fontStyle:"italic"}}>{user}</span> you were successfully registered</div> <div>Your will be automatically directed to <span style={{color:"darkorange",fontStyle:"italic"}}>login</span> page</div></>:""}
      {isError? <div style={{color:"red"}}>Sorry.. something went wrong. please try again</div>:""}
     </form>

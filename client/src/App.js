@@ -1,4 +1,5 @@
 import React from "react";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { isExpired, decodeToken } from "react-jwt";
@@ -10,15 +11,21 @@ import CoursePage from "./components/CoursePage/CoursePage";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import AboutUs from "./components/AboutUs/AboutUs";
+import UserProfile from "./components/UserProfile/UserProfile";
+import axios from "axios";
+
 
 export const MyContext = React.createContext(null);
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
-  /* const [isLoading, setIsLoading] = useState(false); 
-   const [error, setError] = useState(""); 
-   const [userDetails, setUserDetails] = useState(null);  */
+  const [userProfileData,setUserProfileData] = useState({})
+  const [isLoading, setIsLoading] = useState(false); 
+  const [error, setError] = useState(false); 
+  const [gender,setGender]= useState("")
+  const [userDateOfBirth,setUserDateOfBirth] = useState("")
+     
 
   const handelSuccessfullLogin = (logData) => {
     const decodedToken = decodeToken(logData.jwt);
@@ -28,7 +35,7 @@ function App() {
     localStorage.setItem("userId", decodedToken.userId);
   };
 
-  const hasClientValidToken = () => {
+  const  hasClientValidToken  =  ( )  =>  {
     const jwt = localStorage.getItem("jwt");
     const isJwtExpired = isExpired(jwt);
 
@@ -37,42 +44,37 @@ function App() {
 
   const logout = () => {
     localStorage.clear();
-    setIsAuth(false);
-    /*  setUserDetails(null); */
+    setIsAuth ( false ) ;
+   
+    
   };
 
-  /* const getUserDetails = async () => {
+ 
 
-   
-    const errorMsgEl = <p>Something went wrong</p>;
-    try {
-      setIsLoading(true);
-      const axiosResp = await axios.post("http://localhost:4000/myAccount", {}, {
-        headers: {
-          'authorization': `Bearer ${localStorage.getItem("jwt")}`
-          }
-        });
-
-      setUserDetails(axiosResp.data);
-      console.log("axiosResp.data:::", axiosResp.data);
-      setIsLoading(false);
-
-      if(axiosResp.data.error) {
-        setError( axiosResp.data.error.message );
-        console.error(axiosResp.data.error)
-        return errorMsgEl;
-      }
-      
-      setError(""); 
-    } catch (error) {
-      setIsLoading(false);
-      console.error("Error while sending with axios", error);
-      setError( error.message );
-      return errorMsgEl;
+    async function getUserDetalis(){
+            try{
+                setError(false)
+                setIsLoading(true)
+              const userDetails = await axios.get(`http://localhost:4000/user/${localStorage.getItem("userId")}`)
+              setUserProfileData(userDetails.data)
+              setIsLoading(false)
+                localStorage.setItem("color",userDetails.data.profileColour)
+                setUserDateOfBirth((userDetails.data.dateOfBirth).slice(0,10))
+                setGender(userDetails.data.gender)
+            }catch (error) {
+              setIsLoading(false); 
+              setError( true);
+              return 
+            }
     }
+  useEffect(()=>{
+    if(isAuth){
+      getUserDetalis()
+    }
+  },[isAuth])
 
-    return 
-  }  */
+  console.log(userProfileData)
+  
 
   useEffect(() => {
     if (hasClientValidToken()) {
@@ -85,7 +87,8 @@ function App() {
       <Router>
         <Header
           isAuth={isAuth}
-          logout={logout} /* getUserDetails={getUserDetails} */
+          logout={logout} 
+   
         />
 
         <Routes>
@@ -107,8 +110,13 @@ function App() {
             element={<CoursePage isAuth={isAuth} />}
           />
 
-          <Route path={"/register"} element={<Register />} />
+
+          
           <Route path={"/about"} element={<AboutUs />} />
+
+         <Route path={"/register"} element={<Register />} />
+          <Route path={"/userprofile"} element={<UserProfile userProfileData={userProfileData} isAuth={isAuth} isLoading={isLoading} error={error} setError={setError} userDateOfBirth={userDateOfBirth} gender={gender}/>} />
+
         </Routes>
       </Router>
     </MyContext.Provider>

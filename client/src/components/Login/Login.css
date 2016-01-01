@@ -55,7 +55,7 @@
   font-size: large;
   color: #d2d6d6;
 }
-.login-btn {
+#login-btn {
   cursor: pointer;
   width: 12rem;
   border: none;
@@ -77,8 +77,11 @@
   position: absolute;
   top:8px;
   left: 302px;
+ 
 }
-
+.login-show-password i {
+  color: #2c768f;
+}
 .login-loading {
   position: absolute;
   top: 50%;

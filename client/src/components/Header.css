@@ -12,25 +12,24 @@
 .logo {
   margin-left: 8%;
   cursor: pointer;
- 
 }
 .logo img {
-  width: 16rem;
-  height: 16rem;
+  width: 12rem;
+  height: 5rem;
 }
 
 .navy {
-
   display: flex;
   column-gap: 4rem;
   font-size: 1.4rem;
 }
-.nav-link{
+.nav-link {
   text-decoration: none;
   min-width: fit-content;
 }
 
-.navy div {
+.navy div,
+i {
   position: relative;
   color: #8b8b8b;
   transition: 0.6s;
@@ -39,10 +38,79 @@
   -ms-transition: 0.6s;
   -o-transition: 0.6s;
 }
-.navy div:hover {
+.navy div:hover,
+i:hover,
+.show-ul li:hover {
   color: #046fa5;
 }
 
-.user-profile{
+#user-profile {
   cursor: pointer;
+}
+
+#user-profile .user-pro-ul,
+.hide-userPro-ul {
+  position: absolute;
+  list-style: none;
+  display: flex;
+  column-gap: 30px;
+  top: 23px;
+  left: -210px;
+  font-size: 20px;
+  font-family: "Jura", sans-serif;
+}
+.user-pro-ul li {
+  scale: 0 1;
+  animation: show-user-pro 1s;
+  -webkit-animation: show-user-pro 1s forwards;
+}
+@keyframes show-user-pro {
+  to {
+    scale: 1;
+  }
+}
+.hide-userPro-ul li {
+  animation: hide-user-pro 1s forwards;
+  -webkit-animation: hide-user-pro 1s forwards;
+}
+
+@keyframes hide-user-pro {
+  to {
+    scale: 0 1;
+  }
+}
+
+#user-profile li {
+  min-width: fit-content;
+  color: #8b8b8b;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+}
+#user-profile li:hover {
+  color: dodgerblue;
+}
+.hide-user-profile-list {
+  display: none;
+}
+.alarm {
+  position: absolute;
+  width: 25%;
+  height: 12vh;
+  min-height: fit-content;
+  top: 12%;
+  left: 50%;
+  translate: -50%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  font-size: x-large;
+  color: #817f7f;
+  background-color: white;
+  border: 0.2px solid #bfbdbd;
+  box-shadow: 6px 6px 10px #a1a0a0;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
 }

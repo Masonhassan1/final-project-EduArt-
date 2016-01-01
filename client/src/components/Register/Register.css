@@ -47,7 +47,7 @@
     font-size: large;
     color: #bcc0c0;
 }
-.register-btn {
+#register-btn {
     cursor: pointer;
     margin-bottom: 1rem;
     width: 12rem;
@@ -81,4 +81,8 @@
     position: absolute;
     top: 8px;
     left: 300px;
+}
+.reg-show-password i {
+
+    color: #2c768f;
 }

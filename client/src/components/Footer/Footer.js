@@ -18,12 +18,21 @@ function Footer() {
  
   })
   function textHandler(){
-    if(response) setResponse("")
-    setText(messageText.value)
-    messageText.value = ""
-    setTimeout(()=>{
-      setResponse("Thank you, we've got your message and we'll response as soon as possible")
-    },700)
+    if(messageText.value){
+      if(response) setResponse("")
+
+      setText(messageText.value)
+      
+      
+      setTimeout(()=>{
+        
+        setResponse("Thank you, we've got your message and we'll response as soon as possible")
+        
+      },900)
+      messageText.value = ""
+    }else{
+      return
+    }
   }
   console.log(text)
   function showChatHandler (){
@@ -46,7 +55,7 @@ function Footer() {
          <div className='response'>Send us your questions </div>
          <div className='text'>{text}</div>
          <div className='response'>{response}</div>
-         <div>
+         <div className='message-div'>
          <input className='message' type="text" />
           <span className='send-message'  onClick={textHandler}> <i className="fa-regular fa-paper-plane"></i></span>
          </div>
