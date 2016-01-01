@@ -263,12 +263,13 @@ button:hover{
     height: 20px;
     left: 58%;
     top: 66%;
-    animation: move-pointer 2s 3s forwards;
-    -webkit-animation: move-pointer 2s 3s forwards;
+    animation: move-pointer 2s 4s forwards;
+    -webkit-animation: move-pointer 2s 4s forwards;
 }
 .pointer img {
     width: 100%;
     height: 100%;
+ color: cadetblue;
 }
 @keyframes move-pointer{
     to{

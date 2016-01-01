@@ -70,9 +70,9 @@ function Home() {
               index.js</div>
                   </div>
               <div className="vsc-app-code-area"><div><span style={{color:"chocolate"}}>function </span>
-              <span style={{color:"deepskyblue"}}>sum </span> <span style={{color:"gold"}}>(<span style={{color:"orange"}}>num1,num2</span>)</span>
-              <span className='bracket-one'></span></div> <div><span style={{color:"dodgerblue"}}>let</span> <span style={{color:"darkcyan"}}>result  </span> <span style={{color:"gold"}}>= num1 + num2</span></div> <span style={{color:"crimson"}}>return </span><span style={{color:"darkcyan"}}>result</span><div className='bracket-two'></div>
-              <div><span style={{color:"gold"}}>console.log(<span style={{color:"deepskyblue"}}>sum<span style={{color:"gold"}}>(</span><span style={{color:"orange"}}>56,74</span><span style={{color:"gold"}}>)</span></span>);</span></div>
+              <span style={{color:"deepskyblue"}}>sum </span> <span style={{color:"gold"}}>(<span style={{color:"darkorange"}}>num1,num2</span>)</span>
+              <span className='bracket-one'></span></div> <div><span style={{color:"dodgerblue"}}>let</span> <span style={{color:"cadetblue"}}>result  </span> <span style={{color:"gold"}}> = </span><span style={{color:"darkorange"}}> num1 + num2</span></div> <span style={{color:"hotpink"}}>return </span><span style={{color:"cadetblue"}}>result</span><div className='bracket-two'></div>
+              <div><span style={{color:"gold"}}>console.log(<span style={{color:"deepskyblue"}}>sum<span style={{color:"gold"}}>(</span><span style={{color:"darkorange"}}>56,74</span><span style={{color:"gold"}}>)</span></span>);</span></div>
               <div className="cover-one"></div>
               <div className="cover-two"></div>
               <div className="cover-three"></div>
