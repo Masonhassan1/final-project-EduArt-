@@ -8,23 +8,28 @@
   font-weight: bold;
   user-select: none;
 }
+
 .logo {
   margin-left: 8%;
   cursor: pointer;
+ 
 }
 .logo img {
   width: 16rem;
   height: 16rem;
 }
+
 .navy {
+
   display: flex;
   column-gap: 4rem;
   font-size: 1.4rem;
 }
-.nav-link {
+.nav-link{
   text-decoration: none;
   min-width: fit-content;
 }
+
 .navy div {
   position: relative;
   color: #8b8b8b;
@@ -37,6 +42,7 @@
 .navy div:hover {
   color: #046fa5;
 }
-.user-profile {
+
+.user-profile{
   cursor: pointer;
 }

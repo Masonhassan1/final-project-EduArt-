@@ -13,6 +13,10 @@ function Footer() {
   document.querySelector(".message").focus()
  })
  
+  useEffect(()=>{
+    document.querySelector(".message").focus()
+ 
+  })
   function textHandler(){
     if(response) setResponse("")
     setText(messageText.value)
