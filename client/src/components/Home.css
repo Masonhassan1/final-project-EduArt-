@@ -13,77 +13,47 @@
     user-select: none;
     font-family: "Jura", sans-serif;
     font-weight: bold;
+    --shadow-color: #5d7174; /* 9c9c9c */
 }
 .info {
     position: relative;
     width: 100%;
     height: 100%;
 }
-.blue,
-.yellow,
-.red,
-.green {
-    position: absolute;
-    width: 14vw;
-    height: 16vw;
-}
-.blue {
-    top: 20%;
-    left: 40%;
-    background-color: rgba(36, 120, 246, 0.3);
-    border-radius: 43% 35% 68% 10% / 44% 26% 60% 10%;
-    -webkit-border-radius: 43% 35% 68% 10% / 44% 26% 60% 10%;
-    -moz-border-radius: 43% 35% 68% 10% / 44% 26% 60% 10%;
-}
-.yellow {
-    top: 40%;
-    left: 18%;
-    background-color: rgba(250, 242, 19, 0.43);
-    border-radius: 54% 46% 70% 30% / 53% 63% 37% 47%;
-    -webkit-border-radius: 54% 46% 70% 30% / 53% 63% 37% 47%;
-    -moz-border-radius: 54% 46% 70% 30% / 53% 63% 37% 47%;
-}
-.red {
-    top: 30%;
-    left: 60%;
-    background-color: rgba(250, 19, 19, 0.5);
-    border-radius: 24% 40% 64% 34% / 22% 18% 43% 56%;
-    -webkit-border-radius: 24% 40% 64% 34% / 22% 18% 43% 56%;
-    -moz-border-radius: 24% 40% 64% 34% / 22% 18% 43% 56%;
-}
-.green {
-    top: 55%;
-    left: 40%;
-    background-color: rgba(119, 250, 19, 0.4);
-    border-radius: 54% 46% 70% 30% / 53% 6% 94% 47%;
-    -webkit-border-radius: 54% 46% 70% 30% / 53% 6% 94% 47%;
-    -moz-border-radius: 54% 46% 70% 30% / 53% 6% 94% 47%;
-}
-.paragraph-one , .paragraph-two {
+
+
+
+.paragraph-one,
+.paragraph-two {
     position: absolute;
     font-size: xx-large;
-     color: #383838; 
+    color: #808383;
     rotate: x 90deg;
     animation: show-paragraph 0.6s 0.3s linear forwards;
     -webkit-animation: show-paragraph 0.6s 0.3s linear forwards;
 }
 
-.paragraph-one{
+.paragraph-one {
     top: 20%;
     left: 25%;
 }
-.paragraph-two{
+.paragraph-two {
     top: 40%;
     left: 25%;
     font-size: x-large;
 }
 
+@keyframes show-paragraph {
+    to {
+        rotate: x 0deg;
+    }
+}
 .home-btn {
     width: 12rem;
     height: 3rem;
     position: absolute;
-    right: 4%;
-    bottom: 27%;
+    right: 8%;
+    bottom: 30%;
     border: none;
     outline: none;
     color: white;
@@ -104,11 +74,6 @@
 .home-btn:hover {
     box-shadow: inset 0px 0px 25px 5px rgb(106, 28, 250);
 }
-@keyframes show-paragraph {
-    to {
-        rotate: x 0deg;
-    }
-}
 .python,
 .js,
 .html,
@@ -117,7 +82,6 @@
 .nodejs {
     position: absolute;
 }
-
 
 .python {
     width: 70px;
@@ -173,17 +137,7 @@
     width: 100%;
     height: 100%;
 }
-.gray {
-    position: absolute;
-    width: 18vw;
-    height: 16vw;
-    top: 40%;
-    left: 40%;
-    background-color: #eee;
-    border-radius: 43% 35% 68% 10% / 44% 26% 60% 10%;
-    -webkit-border-radius: 43% 35% 68% 10% / 44% 26% 60% 10%;
-    -moz-border-radius: 43% 35% 68% 10% / 44% 26% 60% 10%;
-}
+
 .tab {
     position: relative;
     top: 27%;
@@ -214,7 +168,6 @@
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: center;
-   
 }
 .vsc,
 .chrome,
@@ -256,13 +209,12 @@
     height: 20px;
     left: 58%;
     top: 66%;
-    animation: move-pointer 2s 2.8s forwards , tip 1s 4.8s;
-    -webkit-animation: move-pointer 2s 2.8s forwards , tip 1s 4.8s;
+    animation: move-pointer 2s 2.8s forwards, tip 1s 4.8s;
+    -webkit-animation: move-pointer 2s 2.8s forwards, tip 1s 4.8s;
 }
 .pointer img {
-   width: 100%;
-   height: 100%;
-  
+    width: 100%;
+    height: 100%;
 }
 @keyframes move-pointer {
     to {
@@ -271,7 +223,7 @@
     }
 }
 @keyframes tip {
-    to{
+    to {
         rotate: x -35deg;
     }
 }
@@ -307,8 +259,7 @@
 .vsc-toolbar span:hover {
     color: #e5cf77;
 }
-.vsc-toolbar span
- {
+.vsc-toolbar span {
     transition: 0.5s;
     -webkit-transition: 0.5s;
     -moz-transition: 0.5s;

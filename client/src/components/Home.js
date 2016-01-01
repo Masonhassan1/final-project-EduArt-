@@ -3,12 +3,13 @@ import {useState, useEffect } from 'react'
 import "./Home.css"
 
 function Home() {
-  
+ 
   const [time , setTime]=useState(new Date())
   useEffect(()=>{
     document.querySelector(".bracket-one").textContent="{";
     document.querySelector(".bracket-two").textContent="};";
     document.querySelector(".index-html").textContent="<>";
+   
 
   },[])
   useEffect(()=>{
@@ -18,13 +19,10 @@ function Home() {
   return (
     <main className='home'>
         <section className='info'>
-            <div className="blue"></div>
-            <div className="yellow"></div>
-            <div className="red"></div>
-            <div className="green"></div>
+           
             <p className='paragraph-one'>Choose an online course that will move you forward ...</p>
-         {/*    <p className='paragraph-two'> We are a leader in the field of online education and we are trusted by more than 70,000 users from companies, schools and state institutions.</p> */}
-            <button className='home-btn'>view online courses</button>
+             <p className='paragraph-two'> We are a leader in the field of online education and we are trusted by more than 70,000 users from companies, schools and state institutions.</p> 
+             <button className='home-btn'>view online courses</button>
            
         </section>
         <section className='frame'>
@@ -55,11 +53,11 @@ function Home() {
                 <span>File</span> <span>Edit </span><span>Terminal </span><span>Help</span></div>
                 </div> 
               <div className="vsc-app-icons">
-                <i class="fa-regular fa-file"></i>
-                <i class="fa-solid fa-magnifying-glass"></i>
-              <i class="fa-solid fa-code-branch"></i>
-              <i class="fa-solid fa-play"></i>
-              <i class="fa-solid fa-bolt"></i>
+                <i className="fa-regular fa-file"></i>
+                <i className="fa-solid fa-magnifying-glass"></i>
+              <i className="fa-solid fa-code-branch"></i>
+              <i className="fa-solid fa-play"></i>
+              <i className="fa-solid fa-bolt"></i>
               </div>
               <div className="vsc-app-workspace">
                 <div>
