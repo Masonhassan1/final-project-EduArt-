@@ -11,7 +11,7 @@ function UserProfile({userProfileData,isAuth,isLoading,setError,error,userDateOf
 
   function editHandler (){
     document.querySelector(".user-edit-btn").removeAttribute("id","edit-btn-id")
-    setEdit(!edit && isAuth)
+    setEdit(!edit)
   }
   useEffect(()=>{
     document.querySelector(".user-gender").focus()
@@ -38,7 +38,11 @@ function UserProfile({userProfileData,isAuth,isLoading,setError,error,userDateOf
       document.querySelector(".user-edit-btn").setAttribute("id","edit-btn-id")
      } 
     }
-
+    function noticeHandler (){
+      if(!edit){
+        document.querySelector(".user-edit-btn").setAttribute("id","edit-btn-id")
+      }
+    }
   const proStyle = {color:proColor }
   const proBStyle = {backgroundColor:proColor }
   const genderEl = useRef(null)
@@ -138,10 +142,10 @@ function UserProfile({userProfileData,isAuth,isLoading,setError,error,userDateOf
               
             </> :<>
            
-            <div className="user-gender font">{userProfileData.gender || <p className='not-entered'>not entered</p>}</div>
-            <div className="user-birthday font">{userDateOfBirth || <p className='not-entered'>not entered</p>}</div>
-            <div className="user-location font">{userProfileData.origin  || <p className='not-entered'>not entered</p>} </div>
-            <div className="user-tel font">{userProfileData.telephoneLandLine || <p className='not-entered'>not entered</p>}</div> </>}
+            <div className="user-gender font" onClick={noticeHandler}>{userProfileData.gender || <p className='not-entered'>not entered</p>}</div>
+            <div className="user-birthday font" onClick={noticeHandler}>{userDateOfBirth || <p className='not-entered'>not entered</p>}</div>
+            <div className="user-location font" onClick={noticeHandler}>{userProfileData.origin  || <p className='not-entered'>not entered</p>} </div>
+            <div className="user-tel font" onClick={noticeHandler}>{userProfileData.telephoneLandLine || <p className='not-entered'>not entered</p>}</div> </>}
           
         </section>
         {isLoading || profileLoading ? <div className='profile-loading'>loading...</div>:""}
