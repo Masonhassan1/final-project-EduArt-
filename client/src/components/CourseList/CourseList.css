@@ -230,20 +230,21 @@ button:focus {
   outline: none;
 }
 
-.container .controls button {
+.container .controls-panel > .up-button,
+.container .controls-panel > .down-button {
   position: absolute;
   left: 35%;
   top: 60%;
   z-index: 100;
 }
 
-.container .controls .down-button {
+.container .controls-panel .down-button {
   transform: translateX(-100%);
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
 
-.container .controls .up-button {
+.container .controls-panel .up-button {
   transform: translateY(-100%);
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
