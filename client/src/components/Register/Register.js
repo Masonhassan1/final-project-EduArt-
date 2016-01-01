@@ -1,4 +1,4 @@
-import React,{useState,useRef} from 'react'
+import React,{useEffect,useState,useRef} from 'react'
 import {useNavigate} from "react-router-dom";
 import axios from "axios"
 import "./Register.css"
@@ -11,7 +11,9 @@ function Register() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [user,setUser]= useState("")
  
-
+  useEffect(()=>{
+    document.querySelector(".f-name-input").focus()
+  })
   const formEl = useRef(null);
   const firstNameEl = useRef(null); 
   const lastNameEl = useRef(null); 
@@ -70,7 +72,7 @@ function Register() {
     <form ref={formEl} className={isLoading? "reg-form reg-form-opacity":"reg-form"} action="">
      <div>Register</div>
      <br />
-     <input className='reg-input' ref={firstNameEl} type="text"  placeholder='First name'/>
+     <input className='reg-input f-name-input' ref={firstNameEl} type="text"  placeholder='First name'/>
      <input  className='reg-input' ref={lastNameEl} type="text"  placeholder='Last name'/>
      <input  className='reg-input' ref={userNameEl} type="text"  placeholder='User name'/>
      <input  className='reg-input' ref={emailEl} type="email"  placeholder='Email'/>
