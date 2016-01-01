@@ -16,6 +16,8 @@ import InputLabel from "@mui/material/InputLabel";
 import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
 import axiosConfig from "../../../util/axiosConfig";
 import baseURL from "../../../util/constants";
@@ -32,6 +34,10 @@ const MenuProps = {
     },
   },
 };
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export default function AdminPanelCourses() {
   const [courses, setCourses] = useState([]);
@@ -56,6 +62,8 @@ export default function AdminPanelCourses() {
   const [loading, setLoading] = useState(false);
   const [updateCourseMode, setUpdateCourseMode] = useState(false);
   const [selectedModules, setSelectedModules] = React.useState([]);
+  const [showMessage, setShowMessage] = useState(false);
+  const [messageText, setMessageText] = useState("");
 
   const handleChange = (event) => {
     const {
@@ -75,15 +83,16 @@ export default function AdminPanelCourses() {
   };
 
   const resetCreateCourseForm = () => {
-    courseName("");
-    courseStartDate("");
-    courseType("");
-    courseDescription("");
-    courseLanguage("");
-    coursePrice(0);
-    courseIcon("");
-    courseImage("");
-    courseModules([]);
+    setCourseName("");
+    setCourseStartDate("");
+    setCourseType("");
+    setCourseDescription("");
+    setCourseLanguage("");
+    setCoursePrice(0);
+    setCourseIcon("");
+    setCourseImage("");
+    setCourseModules([]);
+    setSelectedModules([]);
   };
 
   const getCourses = async (url) => {
@@ -132,17 +141,22 @@ export default function AdminPanelCourses() {
       const response = await axiosConfig.post(
         `/courses`,
         {
-          courseName: "Vue",
-          courseDuration: 6,
-          dateOfStart: "2023-02-15T23:00:00.000Z",
-          courseId: "vue-2023-02-15",
-          courseImage: "",
-          courseDescription:
-            "Learn how to make front-end web apps with ease using Vue.js, an increasingly popular JavaScript front-end framework.",
+          courseName: courseName,
+          courseDuration: 0,
+          dateOfStart: courseStartDate,
+          courseInShort: courseName
+            .substring(0, 10)
+            .split(" ")
+            .join("")
+            .concat("-", courseStartDate),
+          courseImage: courseImage,
+          courseDescription: courseDescription,
           courseActive: true,
-          courseIcon:
-            "https://d1xc22d3ql1plk.cloudfront.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWsxWmprNU9UZGlOUzFqTlRnMkxUUmpOekF0WWpkaU1DMDNPVGs0TkdSa1ptTmlOak1HT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--802a913a6db7a537fbb5dd0ab345926d82d64401/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWFCcEFhQT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--7aa2ace00d93a3512e7b1dca2282f0ca0cc74353/VueJS-a-SPA.png",
-          courseType: "fulltime",
+          courseIcon: courseIcon,
+          courseType: courseType,
+          coursePrice: coursePrice,
+          language: courseLanguage,
+          modulesIncluded: courseModules,
         },
         {
           headers: {
@@ -150,11 +164,10 @@ export default function AdminPanelCourses() {
           },
         }
       );
-
       resetCreateCourseForm();
-      // setShowMessage(true);
-      // setMessageText("The module was successfully created.");
-      // getModules(`/modules`);
+      setShowMessage(true);
+      setMessageText("The course was successfully created.");
+      getCourses(`/courses`);
 
       setLoading(false);
       setHasError(false);
@@ -339,84 +352,7 @@ export default function AdminPanelCourses() {
                 </FormControl>
               </div>
             </Box>
-
-            {/* <Box sx={{ m: "1rem" }}>
-              <TextField
-                id="standard-basic"
-                label="Zoom link"
-                variant="standard"
-                sx={{ width: "95%" }}
-                // value={moduleZoomLink}
-                // onChange={(event) => setModuleZoomLink(event.target.value)}
-              />
-            </Box> */}
           </div>
-
-          {/* <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography>Teachers</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Box sx={{ m: "1rem" }}>
-            <div>
-              <FormControl sx={{ m: 1, width: 300 }}>
-                <InputLabel id="demo-multiple-checkbox-label">
-                  Teachers
-                </InputLabel>
-                <Select
-                  labelId="demo-multiple-checkbox-label"
-                  id="demo-multiple-checkbox"
-                  multiple
-                  value={personName}
-                  onChange={handleChange}
-                  input={<OutlinedInput label="Teachers" />}
-                  renderValue={(selected) => selected.join(", ")}
-                  MenuProps={MenuProps}
-                >
-                  {teachersArr.map((teacher) => (
-                    <MenuItem
-                      key={teacher._id}
-                      value={`${teacher.firstName} ${teacher.lastName}`}
-                    >
-                      <Checkbox
-                        checked={
-                          personName.indexOf(
-                            `${teacher.firstName} ${teacher.lastName}`
-                          ) > -1
-                        }
-                      />
-                      <ListItemText
-                        primary={`${teacher.firstName} ${teacher.lastName}`}
-                      />
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </div>
-          </Box>
-        </AccordionDetails>
-      </Accordion> */}
-          {/* <ModulesTasks
-        moduleTasks={moduleTasks}
-        setModuleTasks={setModuleTasks}
-      />
-      <Accordion> */}
-          {/* <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
-          <Typography>Extra materials</Typography>
-        </AccordionSummary> */}
-          {/* <ExtraMat
-          moduleExtraMat={moduleExtraMat}
-          setModuleExtraMat={setModuleExtraMat}
-        /> 
-      </Accordion>*/}
           {updateCourseMode ? (
             <div style={{ display: "flex", justifyContent: "space-around" }}>
               <Button
@@ -536,7 +472,7 @@ export default function AdminPanelCourses() {
                         {course.modulesIncluded
                           .map((mod) => mod.noOfDays)
                           .reduce((acc, cur) => acc + cur, 0)}
-                        {" lectures"}
+                        {" days"}
                       </p>
                     </div>
                     <div
@@ -592,21 +528,21 @@ export default function AdminPanelCourses() {
           </div>
         </section>
       </div>
-      {/* <Snackbar
-    open={showMessage}
-    autoHideDuration={5000}
-    onClose={() => setShowMessage(false)}
-    anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-    key={"bottomright"}
-  >
-    <Alert
-      onClose={() => setShowMessage(false)}
-      severity="success"
-      sx={{ width: "100%", fontSize: "1rem" }}
-    >
-      {messageText}
-    </Alert>
-  </Snackbar> */}
+      <Snackbar
+        open={showMessage}
+        autoHideDuration={5000}
+        onClose={() => setShowMessage(false)}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        key={"bottomright"}
+      >
+        <Alert
+          onClose={() => setShowMessage(false)}
+          severity="success"
+          sx={{ width: "100%", fontSize: "1rem" }}
+        >
+          {messageText}
+        </Alert>
+      </Snackbar>
       {/* <Dialog open={showDeleteModal} onClose={() => setShowDeleteModal(false)}>
     <DialogTitle sx={{ color: "red" }}>
       Do you really want to delete the module?
