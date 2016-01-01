@@ -9,7 +9,10 @@ import "./Header.css";
 
 const languages = [
   { name: "English", code: LOCALES.ENGLISH },
+  { name: "German", code: LOCALES.GERMAN },
   { name: "Russian", code: LOCALES.RUSSIAN },
+  { name: "Arabic", code: LOCALES.ARABIC },
+  { name: "Slovak", code: LOCALES.SLOVAK },
 ];
 
 function Header({
@@ -24,8 +27,6 @@ function Header({
   const { lang, setLang } = contextContent;
   const [showUserPro, setShowUserPro] = useState(false);
   const navigate = useNavigate();
-
-  console.log("LOCALES", LOCALES.ENGLISH);
 
   function shwoUserProHandler() {
     document
@@ -83,20 +84,23 @@ function Header({
             value={localStorage.getItem("lang") || LOCALES.ENGLISH}
             onChange={(event) => {
               const value = event.currentTarget.value;
+              console.log("lang value", value);
               setLang(value);
               localStorage.setItem("lang", value);
             }}
           >
-            {languages.map(({ name, code }) =>
-              code === localStorage.getItem("lang") ? (
-                <option key={code} value={code}>
-                  {name}
-                </option>
-              ) : (
-                <option key={code} value={code}>
+            {languages.map(
+              ({ name, code }) => (
+                //code === localStorage.getItem("lang") ? (
+                <option key={`${code}${name}`} value={code}>
                   {name}
                 </option>
               )
+              /* ) : (
+                <option key={code} value={code}>
+                  {name}
+                </option>
+              ) */
             )}
           </select>
         </div>
@@ -160,7 +164,7 @@ function Header({
           </div>
         </NavLink>
         <NavLink className="nav-link" to={isAuth ? "/" : "login"}>
-          <div className="navy-login user-pro-color" onClick={logout}>
+          <div className="navy-login user-pro-color" onClick={isAuth && logout}>
             {isAuth ? (
               <FormattedMessage id="logout" defaultMessage="Logout" />
             ) : (

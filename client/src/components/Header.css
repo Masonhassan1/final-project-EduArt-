@@ -119,7 +119,9 @@ i:hover,
   white-space: normal;
 }
 .change-lang select {
-  border: 2px solid #046fa5;
+  /*  border: 2px solid #046fa5; */
+  border: none;
+  outline: none;
   background: transparent;
   font-family: "Jura", sans-serif;
   color: #046fa5;
@@ -132,7 +134,7 @@ i:hover,
   cursor: pointer;
 }
 .change-lang select :hover {
-  border: 2px solid darkblue;
+  /*  border: 2px solid darkblue; */
   background-color: rgba(365, 365, 365, 0.5);
   cursor: pointer;
   color: darkblue;
