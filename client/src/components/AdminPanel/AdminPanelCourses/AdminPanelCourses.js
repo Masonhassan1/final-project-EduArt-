@@ -4,6 +4,10 @@ import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import TranslateIcon from "@mui/icons-material/Translate";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
+import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
+import EuroIcon from "@mui/icons-material/Euro";
 
 import axiosConfig from "../../../util/axiosConfig";
 import baseURL from "../../../util/constants";
@@ -20,7 +24,7 @@ export default function AdminPanelCourses() {
     try {
       setLoading(true);
       const apiData = await axiosConfig.get(url);
-      console.log(apiData.data);
+      console.log("courses", apiData.data);
       setCourses([...apiData.data]);
       //   setModulesName(apiData.data.map((mod) => mod.name));
       //   setModulesSearchResult([...apiData.data]);
@@ -181,10 +185,10 @@ export default function AdminPanelCourses() {
             {courses.map((course) => {
               return (
                 <Box
-                  className="moduleWrapper"
+                  className="moduleWrapper adminCardWrapper"
                   key={course._id}
                   sx={{
-                    backgroundImage: `linear-gradient(to bottom, rgb(0 0 0 / 52%), rgb(0 25 116 / 76%)),url(${baseURL}/${course.courseImage})`,
+                    backgroundImage: `linear-gradient(to bottom, rgb(0 0 0 / 81%), rgb(0 25 116 / 76%)),url(${baseURL}/${course.courseImage})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }}
@@ -193,7 +197,7 @@ export default function AdminPanelCourses() {
                     // onClick={() => updateModule(mod)}
                     sx={{
                       position: "absolute",
-                      top: "10px",
+                      top: "14px",
                       right: "25px",
                       width: "1rem",
                       height: "1rem",
@@ -209,7 +213,7 @@ export default function AdminPanelCourses() {
                     // }}
                     sx={{
                       position: "absolute",
-                      top: "10px",
+                      top: "14px",
                       right: "-4px",
                       width: "1rem",
                       height: "1rem",
@@ -220,17 +224,99 @@ export default function AdminPanelCourses() {
                   </Button>
                   <div className="cardHeader">
                     <img
-                      style={{ width: "3rem", height: "3rem" }}
+                      className="cardCoursePicture"
                       src={`${baseURL}/${course.courseIcon}`}
                       alt={course.courseName}
                     />
-                    <p style={{ color: "white" }}>Name: {course.courseName}</p>
-                    <p>Type: {course.courseType}</p>
+                    <div>
+                      <p className="cardCourseName" style={{ color: "white" }}>
+                        {course.courseName}
+                      </p>
+                      <p className="cardCourseType" style={{ color: "white" }}>
+                        {course.courseType}
+                      </p>
+                    </div>
                   </div>
-                  <p>Description: {course.courseDescription}</p>
-                  <p>Start date: {course.dateOfStart}</p>
-                  <p>Language: {course.language}</p>
-                  <p>Price: {course.coursePrice} Euro</p>
+                  <p style={{ color: "white", textAlign: "justify" }}>
+                    {course.courseDescription}
+                  </p>
+                  <div className="cardCourseDetails">
+                    <div
+                      style={{
+                        display: "flex",
+                        height: "2.5rem",
+                        color: "white",
+                        alignItems: "center",
+                      }}
+                    >
+                      <RocketLaunchIcon />
+                      <p style={{ color: "white", marginLeft: "1rem" }}>
+                        {course.dateOfStart.substring(0, 10)}
+                      </p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        height: "2.5rem",
+                        color: "white",
+                        alignItems: "center",
+                      }}
+                    >
+                      <AccessAlarmIcon />
+                      <p style={{ color: "white", marginLeft: "1rem" }}>
+                        {course.modulesIncluded
+                          .map((mod) => mod.noOfDays)
+                          .reduce((acc, cur) => acc + cur, 0)}
+                        {" lectures"}
+                      </p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        height: "2.5rem",
+                        color: "white",
+                        alignItems: "center",
+                      }}
+                    >
+                      <TranslateIcon />
+                      <p style={{ color: "white", marginLeft: "1rem" }}>
+                        {course.language}
+                      </p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        height: "2.5rem",
+                        color: "white",
+                        alignItems: "center",
+                      }}
+                    >
+                      <EuroIcon />
+                      <p style={{ color: "white", marginLeft: "1rem" }}>
+                        {course.coursePrice}
+                      </p>
+                    </div>
+                  </div>
+                  <p
+                    style={{
+                      color: "white",
+                      width: "max-content",
+                      fontWeight: 900,
+                      fontSize: "1.2rem",
+                      borderBottom: "1px solid white",
+                    }}
+                  >
+                    Modules:
+                  </p>
+                  <div className="adminCardModulesSection">
+                    {course.modulesIncluded.map((mod, id) => {
+                      return (
+                        <p key={id} style={{ color: "white" }}>
+                          {mod.name}
+                        </p>
+                      );
+                    })}
+                  </div>
                 </Box>
               );
             })}

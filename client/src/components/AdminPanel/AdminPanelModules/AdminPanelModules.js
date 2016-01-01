@@ -24,10 +24,11 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 
 import axiosConfig from "../../../util/axiosConfig";
-import "./AdminPanelModules.css";
 import ExtraMat from "./ExtraMaterials/ExtraMat";
 import AdminModulesSearch from "./AdminModulesSearch/AdminModulesSearch";
 import ModulesTasks from "./ModulesTasks/ModulesTasks";
+
+import "./AdminPanelModules.css";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
