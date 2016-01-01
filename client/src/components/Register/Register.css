@@ -1,8 +1,6 @@
 .register {
-    
+    margin-top: 4rem;
     height: 82vh;
-    overflow: hidden;
-    margin: -2.5rem auto 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

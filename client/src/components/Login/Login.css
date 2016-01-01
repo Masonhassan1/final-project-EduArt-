@@ -1,8 +1,6 @@
 .login {
-    
-    height: 84.5vh;
-    overflow: hidden;
-    margin: -4rem auto 0 auto;
+    margin-top: 4rem;
+    height: 78vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;

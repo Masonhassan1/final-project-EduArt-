@@ -15,7 +15,6 @@ function Register() {
   const firstNameEl = useRef(null); 
   const lastNameEl = useRef(null); 
   const userNameEl = useRef(null); 
-  const birthdayEl = useRef(null)
   const emailEl = useRef(null); 
   const passwordEl = useRef(null); 
   async function submitHandler(e){
@@ -24,14 +23,13 @@ function Register() {
       firstName: firstNameEl.current.value,
       lastName:lastNameEl.current.value,
       userName: userNameEl.current.value,
-      dateOfBirth:birthdayEl.current.value,
       eMail: emailEl.current.value,
       password: passwordEl.current.value
     }
   
     try {
       setIsLoading(true);
-      const axiosResp = await axios.post("http://localhost:4000/user", userData);
+      const axiosResp = await axios.post("http://localhost:4000/register", userData);
       setIsLoading(false);
      
       
@@ -68,7 +66,6 @@ function Register() {
      <input className='reg-input' ref={firstNameEl} type="text"  placeholder='First name'/>
      <input  className='reg-input' ref={lastNameEl} type="text"  placeholder='Last name'/>
      <input  className='reg-input' ref={userNameEl} type="text"  placeholder='User name'/>
-     <input  className='reg-input' ref={birthdayEl} type="text" placeholder='Birthday dd.mm.yyyy'/>
      <input  className='reg-input' ref={emailEl} type="email"  placeholder='Email'/>
      <input  className='reg-input' ref={passwordEl} type="password"  placeholder='Password'/>
      <button className='register-btn' onClick={submitHandler}>Register</button>
