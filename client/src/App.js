@@ -17,7 +17,7 @@ function App() {
    const [error, setError] = useState(""); 
    const [userDetails, setUserDetails] = useState(null); 
 
-
+ 
   
 
   const handelSuccessfullLogin = (logData)=> {
@@ -90,8 +90,8 @@ function App() {
   return (
      <Router>
   
-      <Header isAuth={isAuth} logout={logout} /* getUserDetails={getUserDetails} *//>
 
+      <Header isAuth={isAuth} logout={logout} /* getUserDetails={getUserDetails} *//>
       <Routes>
       <Route path={"/"} element={<Home/>} />
       <Route path={"/login"}  element={<Login handelSuccessfullLogin={handelSuccessfullLogin} isAuth={isAuth}/>}  />

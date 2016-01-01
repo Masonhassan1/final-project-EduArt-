@@ -6,7 +6,7 @@ footer{
 }
 .footer-infos{
     position: relative;
-    left: 180px;
+    left: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,6 +38,10 @@ footer{
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
    
+}
+
+.show-chat i{
+    color: white;
 }
 .chat-form{
     position: absolute;

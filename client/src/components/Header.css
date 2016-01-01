@@ -1,48 +1,96 @@
 .header {
-    height: 15vh;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    column-gap: 36%;
-    font-family: "Jura", sans-serif;
-    font-weight: bold;
-    user-select: none;
+  height: 15vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  column-gap: 36%;
+  font-family: "Jura", sans-serif;
+  font-weight: bold;
+  user-select: none;
 }
 
 .logo {
-    margin-left: 8%;
-    cursor: pointer;
-   
+  margin-left: 8%;
+  cursor: pointer;
 }
 .logo img {
-    width: 16rem;
-    height: 16rem;
+  width: 16rem;
+  height: 16rem;
 }
 
 .navy {
+  display: flex;
+  column-gap: 4rem;
+  font-size: 1.4rem;
+}
+.nav-link {
+  text-decoration: none;
+  min-width: fit-content;
+}
+
+.navy div,
+i {
+  position: relative;
+  color: #8b8b8b;
+  transition: 0.6s;
+  -webkit-transition: 0.6s;
+  -moz-transition: 0.6s;
+  -ms-transition: 0.6s;
+  -o-transition: 0.6s;
+}
+.navy div:hover,
+i:hover,
+.show-ul li:hover {
+  color: #046fa5;
+}
+
+#user-profile {
+  cursor: pointer;
+}
+
+#user-profile .user-pro-ul,
+.hide-userPro-ul {
+  position: absolute;
+  list-style: none;
+  display: flex;
+  column-gap: 30px;
+  top: 23px;
+  left: -210px;
+  font-size: 20px;
+  font-family: "Jura", sans-serif;
+}
+.user-pro-ul li {
+
+  scale: 0 1;
+  animation: show-user-pro 1s;
+  -webkit-animation: show-user-pro 1s forwards;
+}
+@keyframes show-user-pro {
+  to {
+  
+    scale: 1;
+  }
+}
+.hide-userPro-ul li{
  
-    display: flex;
-    column-gap: 4rem;
-    font-size: 1.4rem;
-}
-.nav-link{
-    text-decoration: none;
-    min-width: fit-content;
+  animation: hide-user-pro 1s forwards;
+  -webkit-animation: hide-user-pro 1s forwards;
 }
 
-.navy div {
-    position: relative;
-    color: #8b8b8b;
-    transition: 0.6s;
-    -webkit-transition: 0.6s;
-    -moz-transition: 0.6s;
-    -ms-transition: 0.6s;
-    -o-transition: 0.6s;
-}
-.navy div:hover {
-    color: #046fa5;
+@keyframes hide-user-pro {
+  to {
+  
+    scale: 0 1;
+  }
 }
 
-.user-profile{
-    cursor: pointer;
+#user-profile li {
+  min-width: fit-content;
+  color: #8b8b8b;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+}
+#user-profile li:hover {
+  color: #44afe4;
 }
