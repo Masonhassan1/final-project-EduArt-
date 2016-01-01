@@ -1,7 +1,7 @@
 @font-face {
     font-family: "Cascadia";
     src: url("../vsc-font/otf/static/CascadiaCode-Bold.otf");
-  }
+}
 
 .home {
     width: 98%;
@@ -34,8 +34,6 @@
     border-radius: 43% 35% 68% 10% / 44% 26% 60% 10%;
     -webkit-border-radius: 43% 35% 68% 10% / 44% 26% 60% 10%;
     -moz-border-radius: 43% 35% 68% 10% / 44% 26% 60% 10%;
-    -ms-border-radius: 43% 35% 68% 10% / 44% 26% 60% 10%;
-    -o-border-radius: 43% 35% 68% 10% / 44% 26% 60% 10%;
 }
 .yellow {
     top: 40%;
@@ -44,9 +42,6 @@
     border-radius: 54% 46% 70% 30% / 53% 63% 37% 47%;
     -webkit-border-radius: 54% 46% 70% 30% / 53% 63% 37% 47%;
     -moz-border-radius: 54% 46% 70% 30% / 53% 63% 37% 47%;
-    -ms-border-radius: 54% 46% 70% 30% / 53% 63% 37% 47%;
-    -o-border-radius: 54% 46% 70% 30% / 53% 63% 37% 47%;
-   
 }
 .red {
     top: 30%;
@@ -55,8 +50,6 @@
     border-radius: 24% 40% 64% 34% / 22% 18% 43% 56%;
     -webkit-border-radius: 24% 40% 64% 34% / 22% 18% 43% 56%;
     -moz-border-radius: 24% 40% 64% 34% / 22% 18% 43% 56%;
-    -ms-border-radius: 24% 40% 64% 34% / 22% 18% 43% 56%;
-    -o-border-radius: 24% 40% 64% 34% / 22% 18% 43% 56%;
 }
 .green {
     top: 55%;
@@ -65,8 +58,6 @@
     border-radius: 54% 46% 70% 30% / 53% 6% 94% 47%;
     -webkit-border-radius: 54% 46% 70% 30% / 53% 6% 94% 47%;
     -moz-border-radius: 54% 46% 70% 30% / 53% 6% 94% 47%;
-    -ms-border-radius: 54% 46% 70% 30% / 53% 6% 94% 47%;
-    -o-border-radius: 54% 46% 70% 30% / 53% 6% 94% 47%;
 }
 p {
     position: absolute;
@@ -90,27 +81,22 @@ button {
     color: white;
     font-weight: bold;
     background-color: rgba(101, 25, 241, 0.8);
-    transition: .5s;
+    transition: 0.5s;
     border-radius: 1.2rem;
     -webkit-border-radius: 1.2rem;
     -moz-border-radius: 1.2rem;
-    -ms-border-radius: 1.2rem;
-    -o-border-radius: 1.2rem;
     rotate: x 90deg;
     animation: show-paragraph 0.6s 0.9s linear forwards;
     -webkit-animation: show-paragraph 0.6s 0.9s linear forwards;
-    -webkit-transition: .5s;
-    -moz-transition: .5s;
-    -ms-transition: .5s;
-    -o-transition: .5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
 }
-button:hover{
+button:hover {
     box-shadow: inset 0px 0px 15px 10px rgb(100, 19, 249);
-    
 }
 @keyframes show-paragraph {
     to {
-       rotate: x 0deg;
+        rotate: x 0deg;
     }
 }
 .python,
@@ -170,8 +156,6 @@ button:hover{
     border-radius: 0.7rem;
     -webkit-border-radius: 0.7rem;
     -moz-border-radius: 0.7rem;
-    -ms-border-radius: 0.7rem;
-    -o-border-radius: 0.7rem;
 }
 .frame {
     position: relative;
@@ -188,8 +172,6 @@ button:hover{
     border-radius: 43% 35% 68% 10% / 44% 26% 60% 10%;
     -webkit-border-radius: 43% 35% 68% 10% / 44% 26% 60% 10%;
     -moz-border-radius: 43% 35% 68% 10% / 44% 26% 60% 10%;
-    -ms-border-radius: 43% 35% 68% 10% / 44% 26% 60% 10%;
-    -o-border-radius: 43% 35% 68% 10% / 44% 26% 60% 10%;
 }
 .tab {
     position: relative;
@@ -203,18 +185,17 @@ button:hover{
     border-radius: 1.4rem;
     -webkit-border-radius: 1.4rem;
     -moz-border-radius: 1.4rem;
-    -ms-border-radius: 1.4rem;
-    -o-border-radius: 1.4rem;
 }
 .display-frame,
-.display ,.vsc-app {
+.display,
+.vsc-app {
     position: absolute;
     top: 50%;
     left: 50%;
     width: 400px;
     height: 300px;
     border: 1px solid darkgray;
-  translate: -50% -50%;
+    translate: -50% -50%;
 }
 .display {
     background-image: url("../Images/desktop.jpg");
@@ -239,11 +220,11 @@ button:hover{
     top: 65%;
 }
 .clock {
-   position: absolute;
-   top: 7%;
-   left: 45%;
-   color: white;
-  scale: 1.5 1;
+    position: absolute;
+    top: 7%;
+    left: 45%;
+    color: white;
+    scale: 1.5 1;
 }
 
 .vsc img,
@@ -254,8 +235,6 @@ button:hover{
     border-radius: 0.3rem;
     -webkit-border-radius: 0.3rem;
     -moz-border-radius: 0.3rem;
-    -ms-border-radius: 0.3rem;
-    -o-border-radius: 0.3rem;
 }
 .pointer {
     position: absolute;
@@ -269,25 +248,25 @@ button:hover{
 .pointer img {
     width: 100%;
     height: 100%;
- color: cadetblue;
+    color: cadetblue;
 }
-@keyframes move-pointer{
-    to{
+@keyframes move-pointer {
+    to {
         top: 29%;
         left: 10%;
     }
 }
-.vsc-app{
-   display: grid;
-   grid-template-columns:7% 21%  1fr;
-   grid-template-rows: 8% 7% 1fr 5% 25%;
-   background-color: #202225;
-   font-family: "Cascadia";
-   opacity: 0;
-   animation: show 1s 6s linear forwards;
-   -webkit-animation: show 1s 6s linear forwards;
+.vsc-app {
+    display: grid;
+    grid-template-columns: 7% 21% 1fr;
+    grid-template-rows: 8% 7% 1fr 5% 25%;
+    background-color: #202225;
+    font-family: "Cascadia";
+    opacity: 0;
+    animation: show 1s 6s linear forwards;
+    -webkit-animation: show 1s 6s linear forwards;
 }
-.vsc-app-title{
+.vsc-app-title {
     grid-column: -1/1;
     grid-row: 1;
     font-size: small;
@@ -296,18 +275,27 @@ button:hover{
     color: #989175;
     border-bottom: 1px solid #989175;
 }
-.vsc-toolbar{
+.vsc-toolbar {
     grid-column: -1/1;
     grid-row: 2;
     font-size: x-small;
     color: #989175;
     border-bottom: 1px solid #989175;
-
 }
 .vsc-toolbar div {
     margin-left: 2%;
 }
-.vsc-app-icons{
+.vsc-toolbar span:hover {
+    color: #e5cf77;
+}
+.vsc-toolbar span,
+.vsc-app-icons {
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+}
+
+.vsc-app-icons {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -319,49 +307,47 @@ button:hover{
     border-right: 1px solid #989175;
 }
 .vsc-app-icons i {
-    transition: .5s;
+    transition: 0.5s;
     margin-top: 20%;
     cursor: pointer;
-    -webkit-transition: .5s;
-    -moz-transition: .5s;
-    -ms-transition: .5s;
-    -o-transition: .5s;
 }
 .vsc-app-icons i:hover {
-   color:#e5cf77 ;
+    color: #e5cf77;
 }
-.vsc-app-workspace{
+.vsc-app-workspace {
     grid-column: 2/3;
     grid-row: 3/7;
     font-size: x-small;
     text-align: center;
-    color:#aaa8a8 ;
+    color: #aaa8a8;
     border-right: 1px solid #989175;
-
 }
 .vsc-app-workspace div {
     margin-top: 10%;
 }
-.vsc-app-code-area{
+.vsc-app-code-area {
     margin: 5% 0 0 6%;
     width: 68%;
     word-break: break-all;
-    grid-column:3 ;
-    grid-row:3/4 ;
+    grid-column: 3;
+    grid-row: 3/4;
     font-size: small;
-  
 }
-.bracket-one , .bracket-two {
+.bracket-one,
+.bracket-two {
     color: gold;
 }
-.cover-one , .cover-two , .cover-three ,.cover-four ,.cover-five , .cover-six {
+.cover-one,
+.cover-two,
+.cover-three,
+.cover-four,
+.cover-five,
+.cover-six {
     position: absolute;
     width: 48%;
     height: 5%;
     background-color: #202225;
     transform-origin: right center;
-   
-   
 }
 .cover-one {
     top: 20.7%;
@@ -383,58 +369,45 @@ button:hover{
     animation: move-cover 1s 14.7s linear forwards;
     -webkit-animation: move-cover 1s 14.7s linear forwards;
 }
-.cover-five{
+.cover-five {
     top: 47%;
     animation: move-cover 3s 15.6s linear forwards;
     -webkit-animation: move-cover 3s 15.6s linear forwards;
 }
 @keyframes move-cover {
-    to{
-       scale: 0 1;
+    to {
+        scale: 0 1;
+    }
 }
-}
-.vsc-terminal-title{
-    
+.vsc-terminal-title {
     grid-column: 3;
     grid-row: 4/5;
     font-size: x-small;
-    color:  #989175;
+    color: #989175;
     border-top: 1px solid #989175;
 }
-.vsc-terminal-title div{
+.vsc-terminal-title div {
     margin-left: 2%;
 }
-.vsc-terminal{
+.vsc-terminal {
     margin-left: 4%;
     grid-column: 3;
     grid-row: 5/7;
-    font-size:x-small;
-    color:  #58b0da;
-    
+    font-size: x-small;
+    color: #58b0da;
 }
-.cover-six{
+.cover-six {
     top: 80%;
     animation: move-cover 3.2s 19s linear forwards;
     -webkit-animation: move-cover 3.2s 19s linear forwards;
 }
 .result {
     opacity: 0;
-    animation: show .1s 20.9s forwards;
-    -webkit-animation: show .1s 20.9s forwards;
+    animation: show 0.1s 20.9s forwards;
+    -webkit-animation: show 0.1s 20.9s forwards;
 }
 @keyframes show {
-    to{
+    to {
         opacity: 1;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
