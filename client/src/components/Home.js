@@ -17,7 +17,7 @@ function Home() {
     setInterval(()=>{
       setTime(new Date().toLocaleTimeString('de-DE'))
     },1000)
-    document.querySelector(".chat-input").focus();
+   
   },[time]) 
  
   
