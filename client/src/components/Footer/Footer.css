@@ -71,8 +71,12 @@ footer {
 .hide-chat-form {
     display: none;
 }
+.message-div{
+    display: flex;
+    justify-content: space-between;
+}
 .chat-form input {
-    width: 82%;
+    width: 84%;
     height: 24px;
     color: #035141;
     padding-left: 10px;
@@ -82,8 +86,7 @@ footer {
     border-radius: 0.3rem;
     -webkit-border-radius: 0.3rem;
     -moz-border-radius: 0.3rem;
-    -ms-border-radius: 0.3rem;
-    -o-border-radius: 0.3rem;
+   
 }
 .send-message i {
     color: #035141;

@@ -55,7 +55,7 @@ function Footer() {
          <div className='response'>Send us your questions </div>
          <div className='text'>{text}</div>
          <div className='response'>{response}</div>
-         <div>
+         <div className='message-div'>
          <input className='message' type="text" />
           <span className='send-message'  onClick={textHandler}> <i className="fa-regular fa-paper-plane"></i></span>
          </div>
