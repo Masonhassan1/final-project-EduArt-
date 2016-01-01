@@ -224,4 +224,6 @@
 }
 ::placeholder{
     color: #636363;
+    font-size: 23px;
+    padding-left: 10px;
 }

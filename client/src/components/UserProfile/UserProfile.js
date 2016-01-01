@@ -8,29 +8,32 @@ function UserProfile({userProfileData,isLoading,setError,error}) {
   const [profileLoading,setProfileLoading] = useState(false)
   const [isError,setIsError]=useState(false)
 
+  const navigate = useNavigate()
+  const genderEl = useRef(null)
+  const birthdayEl = useRef(null)
+  const originEl = useRef(null)
+  const telEl = useRef(null)
+
   useEffect(()=>{
     document.querySelector(".user-gender").focus()
   })
   function editHandler (){
     setEdit(!edit)
   }
-  const genderEl = useRef(null)
-  const birthdayEl = useRef(null)
-  const originEl = useRef(null)
-  const telEl = useRef(null)
-  
+ 
+    
+
+
   async function userDataUpdateHandler (e){
     if(edit){
-
-    
     e.preventDefault()
     setError(false)
     setIsError(false)
 
     const updatedUserData ={
-      /* gender: genderEl.current.value,
+      gender: genderEl.current.value,
       dateOfBirth:birthdayEl.current.value,
-      origin:originEl.current.value, */
+      origin:originEl.current.value, 
       telephoneLandLine:telEl.current.value
 
     }
@@ -99,9 +102,9 @@ function UserProfile({userProfileData,isLoading,setError,error}) {
             
             </> :<>
            
-            <div className="user-gender font">{userProfileData.dateOfBirth || <p className='not-entered'>not entered</p>}</div>
+            <div className="user-gender font">{userProfileData.gender || <p className='not-entered'>not entered</p>}</div>
             <div className="user-birthday font">{userProfileData.dateOfBirth || <p className='not-entered'>not entered</p>}</div>
-            <div className="user-location font">{userProfileData.countryCode  || <p className='not-entered'>not entered</p>} </div>
+            <div className="user-location font">{userProfileData.origin  || <p className='not-entered'>not entered</p>} </div>
             <div className="user-tel font">{userProfileData.telephoneLandLine || <p className='not-entered'>not entered</p>}</div> </>}
           
         </section>

@@ -45,6 +45,7 @@ function App() {
   const logout = () => {
     localStorage.clear();
     setIsAuth ( false ) ;
+    
   };
 
  
@@ -106,7 +107,7 @@ function App() {
           />
 
          <Route path={"/register"} element={<Register />} />
-          <Route path={"/userprofile"} element={<UserProfile userProfileData={userProfileData} isLoading={isLoading} error={error} setError={setError}/>} />
+          <Route path={"/userprofile"} element={<UserProfile userProfileData={userProfileData} isLoading={isLoading} error={error} setError={setError}  />} />
         </Routes>
       </Router>
     </MyContext.Provider>
