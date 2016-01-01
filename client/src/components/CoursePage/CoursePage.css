@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Jura:wght@600&display=swap");
 
-body {
+.coursePageWrapper {
   /* background: rgba(250, 214, 185, 0.835);
   background: linear-gradient(
     180deg,

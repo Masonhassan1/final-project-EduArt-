@@ -14,17 +14,17 @@ export default function CourseList() {
   };
 
   useEffect(() => {
-    getAllCourses("http://localhost:3000/courses");
+    getAllCourses("http://localhost:4000/courses");
   }, []);
 
   const submitForm = (e) => {
     e.preventDefault();
     getAllCourses(
-      `http://localhost:3000/courses?name=${searchInputRef.current.value}`
+      `http://localhost:4000/courses?name=${searchInputRef.current.value}`
     );
   };
   return (
-    <div>
+    <div className="course-list-page">
       <p className="courseListTitle">
         Choose an online course and transform your career
       </p>

@@ -24,7 +24,7 @@ export default function CoursePage() {
   };
 
   useEffect(() => {
-    getInfo("http://localhost:3000/courses");
+    getInfo("http://localhost:4000/courses");
   }, []);
   return (
     <div className="coursePageWrapper">
