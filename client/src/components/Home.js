@@ -74,7 +74,7 @@ function Home() {
               </div>
               <div className="vsc-terminal-title"> <div> PROBLEMS DEBUG TERMINAL</div> 
                 </div>
-              <div className="vsc-terminal">Desktop/index.js/  
+              <div className="vsc-terminal">Desktop/new-folder/  
               <div className='node'>
 
               <span style={{color:"gold"}}> nodemon </span>
