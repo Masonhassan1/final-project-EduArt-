@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Header.css";
 
-function Header({ isAuth, logout, userName }) {
+function Header({ isAuth, logout, userName, isAdmin }) {
   const [showUserPro, setShowUserPro] = useState(false);
   const navigate = useNavigate();
 
@@ -64,19 +64,30 @@ function Header({ isAuth, logout, userName }) {
             id="user-profile-list"
             className={showUserPro ? "user-pro-ul" : "hide-userPro-ul"}
           >
-            <li className="user-pro-color">My class</li>
-            <li
-              className="user-pro-color"
-              onClick={() => navigate("/mylearningdesk")}
-            >
-              Learning desk
-            </li>
-            <li
-              className="user-pro-color"
-              onClick={() => navigate("/userprofile")}
-            >
-              My profile
-            </li>
+            {isAdmin && (
+              <li
+                className="user-pro-color"
+                onClick={() => navigate("/adminpanel")}
+              >
+                Admin panel
+              </li>
+            )}
+            {!isAdmin && (
+              <li
+                className="user-pro-color"
+                onClick={() => navigate("/mylearningdesk")}
+              >
+                Learning desk
+              </li>
+            )}
+            {!isAdmin && (
+              <li
+                className="user-pro-color"
+                onClick={() => navigate("/userprofile")}
+              >
+                My profile
+              </li>
+            )}
           </ul>
         </i>
         <NavLink className="nav-link" to="/">
@@ -93,9 +104,6 @@ function Header({ isAuth, logout, userName }) {
 
         <NavLink className="nav-link" to="/about">
           <div className="navy-login user-pro-color">About us</div>
-        </NavLink>
-        <NavLink className="nav-link" to="/adminpanel">
-          <div className="navy-login user-pro-color">Admin panel</div>
         </NavLink>
       </div>
       <div id="alarm">Please login first to see your profile options</div>

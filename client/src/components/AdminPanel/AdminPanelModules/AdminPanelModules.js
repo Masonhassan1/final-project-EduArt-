@@ -21,6 +21,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import axiosConfig from "../../../util/axiosConfig";
 import "./AdminPanelModules.css";
 import ExtraMat from "./ExtraMat";
+import AdminModulesSearch from "./AdminModulesSearch";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -42,6 +43,8 @@ export default function AdminPanelModules() {
   } = useForm();
 
   const [modules, setModules] = useState([]);
+  const [modulesSearchResult, setModulesSearchResult] = useState([]);
+  const [modulesName, setModulesName] = useState([]);
   const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [moduleName, setModuleName] = useState("");
@@ -73,7 +76,6 @@ export default function AdminPanelModules() {
   };
 
   const addNewTask = handleSubmit((data) => {
-    console.log(data);
     setModuleTasks([...moduleTasks, { ...data, editMode: false }]);
     reset();
   });
@@ -115,11 +117,27 @@ export default function AdminPanelModules() {
     );
   };
 
-  const getModules = async () => {
+  const getModulesSearchResult = async (url) => {
     try {
       setLoading(true);
-      const apiData = await axiosConfig.get(`/modules`);
-      setModules(apiData.data);
+      const apiData = await axiosConfig.get(url);
+      console.log("new search results", apiData);
+      setModulesSearchResult([...apiData.data]);
+      setLoading(false);
+      setHasError(false);
+    } catch (error) {
+      setLoading(false);
+      setHasError(true);
+    }
+  };
+
+  const getModules = async (url) => {
+    try {
+      setLoading(true);
+      const apiData = await axiosConfig.get(url);
+      setModules([...apiData.data]);
+      setModulesName(apiData.data.map((mod) => mod.name));
+      setModulesSearchResult([...apiData.data]);
 
       setLoading(false);
       setHasError(false);
@@ -147,7 +165,7 @@ export default function AdminPanelModules() {
   };
 
   useEffect(() => {
-    getModules();
+    getModules(`/modules`);
     getTeachers();
   }, []);
 
@@ -378,105 +396,116 @@ export default function AdminPanelModules() {
             Create new module
           </Button>
         </Box>
-        <div className="modulesWrapper">
-          {modules.map((mod) => {
-            return (
-              <Box className="moduleWrapper" key={mod._id}>
-                <Accordion>
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <div>
-                      {" "}
-                      <p>Name: {mod.name}</p>
-                      <p>Duration: {mod.noOfDays} days</p>
-                      <p>
-                        <a href={mod.zoomLink} target="_blank" rel="noreferrer">
-                          Zoom Link
-                        </a>
-                      </p>
-                    </div>
-                  </AccordionSummary>
+        <section className="adminModulesSearchSection">
+          <AdminModulesSearch
+            modulesName={modulesName}
+            getModulesSearchResult={getModulesSearchResult}
+          />
 
-                  <AccordionDetails>
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                      >
-                        <Typography>Teachers</Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Box>
-                          {mod.teacher.map((person, id) => (
-                            <p
-                              key={id}
-                            >{`${person.firstName} ${person.lastName}`}</p>
-                          ))}
-                        </Box>
-                      </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel2a-content"
-                        id="panel2a-header"
-                      >
-                        <Typography>Tasks</Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Box>
-                          {mod.tasks.map((task, id) => {
-                            return (
-                              <p key={id}>
-                                <a
-                                  href={task.taskLink}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                >
-                                  {task.taskName}
-                                </a>
-                              </p>
-                            );
-                          })}
-                        </Box>
-                      </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel3a-content"
-                        id="panel3a-header"
-                      >
-                        <Typography>Extra materials</Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Box>
-                          {mod.extraMaterial.map((topic, id) => {
-                            return (
-                              <p key={id}>
-                                <a
-                                  href={topic.link}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                >
-                                  {topic.description}
-                                </a>
-                              </p>
-                            );
-                          })}
-                        </Box>
-                      </AccordionDetails>
-                    </Accordion>
-                  </AccordionDetails>
-                </Accordion>
-              </Box>
-            );
-          })}
-        </div>
+          <div className="modulesWrapper">
+            {modulesSearchResult.map((mod) => {
+              return (
+                <Box className="moduleWrapper" key={mod._id}>
+                  <Accordion>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <div>
+                        {" "}
+                        <p>Name: {mod.name}</p>
+                        <p>Duration: {mod.noOfDays} days</p>
+                        <p>
+                          <a
+                            href={mod.zoomLink}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            Zoom Link
+                          </a>
+                        </p>
+                      </div>
+                    </AccordionSummary>
+
+                    <AccordionDetails>
+                      <Accordion>
+                        <AccordionSummary
+                          expandIcon={<ExpandMoreIcon />}
+                          aria-controls="panel1a-content"
+                          id="panel1a-header"
+                        >
+                          <Typography>Teachers</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                          <Box>
+                            {mod.teacher.map((person, id) => (
+                              <p
+                                key={id}
+                              >{`${person.firstName} ${person.lastName}`}</p>
+                            ))}
+                          </Box>
+                        </AccordionDetails>
+                      </Accordion>
+                      <Accordion>
+                        <AccordionSummary
+                          expandIcon={<ExpandMoreIcon />}
+                          aria-controls="panel2a-content"
+                          id="panel2a-header"
+                        >
+                          <Typography>Tasks</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                          <Box>
+                            {mod.tasks.map((task, id) => {
+                              return (
+                                <p key={id}>
+                                  <a
+                                    href={task.taskLink}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                  >
+                                    {task.taskName}
+                                  </a>
+                                </p>
+                              );
+                            })}
+                          </Box>
+                        </AccordionDetails>
+                      </Accordion>
+                      <Accordion>
+                        <AccordionSummary
+                          expandIcon={<ExpandMoreIcon />}
+                          aria-controls="panel3a-content"
+                          id="panel3a-header"
+                        >
+                          <Typography>Extra materials</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                          <Box>
+                            {mod.extraMaterial.map((topic, id) => {
+                              return (
+                                <p key={id}>
+                                  <a
+                                    href={topic.link}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                  >
+                                    {topic.description}
+                                  </a>
+                                </p>
+                              );
+                            })}
+                          </Box>
+                        </AccordionDetails>
+                      </Accordion>
+                    </AccordionDetails>
+                  </Accordion>
+                </Box>
+              );
+            })}
+          </div>
+        </section>
       </div>
     </div>
   );

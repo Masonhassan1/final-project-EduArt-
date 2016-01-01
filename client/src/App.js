@@ -15,11 +15,10 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import AboutUs from "./components/AboutUs/AboutUs";
 import UserProfile from "./components/UserProfile/UserProfile";
-
 import LearningDesk from "./components/LearningDesk/LearningDesk";
+import AdminPanel from "./components/AdminPanel/AdminPanel";
 
 import "./App.css";
-import AdminPanel from "./components/AdminPanel/AdminPanel";
 
 const theme = createTheme({
   typography: {
@@ -45,6 +44,7 @@ export const MyContext = React.createContext(null);
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [learningDeskId, setLearningDeskId] = useState(null);
   const [userProfileData, setUserProfileData] = useState({});
@@ -88,6 +88,10 @@ function App() {
             `http://localhost:4000/user/${localStorage.getItem("userId")}`
           );
           setUserProfileData(userDetails.data);
+          console.log("user data", userDetails.data);
+          if (userDetails.data && userDetails.data.accessRights.includes(1)) {
+            setIsAdmin(true);
+          }
           setLearningDeskId(userDetails.data.myLearningDesk._id);
           setIsLoading(false);
           localStorage.setItem("color", userDetails.data.profileColour);
@@ -136,7 +140,12 @@ function App() {
       >
         <CssBaseline />
         <Router>
-          <Header isAuth={isAuth} logout={logout} userName={userName} />
+          <Header
+            isAuth={isAuth}
+            logout={logout}
+            userName={userName}
+            isAdmin={isAdmin}
+          />
 
           <Routes>
             <Route path={"/"} element={<Home />} />
@@ -146,6 +155,7 @@ function App() {
                 <Login
                   handelSuccessfullLogin={handelSuccessfullLogin}
                   isAuth={isAuth}
+                  isAdmin={isAdmin}
                   courseId={selectedCourse}
                 />
               }
