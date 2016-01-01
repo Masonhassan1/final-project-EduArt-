@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Jura:wght@600&display=swap");
 
 .course-list-page {
-    margin: -10rem 0 0 0;
-    height:83vh;
+   
+    height:100%;
+    padding: 2rem;
     background: rgba(250, 214, 185, 0.835) ;
     background: linear-gradient(180deg, rgba(254, 254, 254, 1) 10%, rgba(210, 185, 250, 0.835) 70%);
 }

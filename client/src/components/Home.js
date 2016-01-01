@@ -20,7 +20,7 @@ function Home() {
            
         </section>
         <section className='home-img'>
-        <div className='home-img-div'><img src={require("../Images/home.png")}alt="" /></div>
+        <div className='home-img-div'><img src={require("../Images/home.JPG")}alt="" /></div>
         </section>
     </main>
         <Footer/>
