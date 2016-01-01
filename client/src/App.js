@@ -49,6 +49,7 @@ function App() {
   const [userProfileData, setUserProfileData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [userName,setUserName]= useState("")
   const [gender, setGender] = useState("");
   const [userDateOfBirth, setUserDateOfBirth] = useState("");
 
@@ -76,27 +77,40 @@ function App() {
     setIsAuth(false);
   };
 
-  async function getUserDetalis() {
-    try {
-      setError(false);
-      setIsLoading(true);
-      const userDetails = await axios.get(
-        `http://localhost:4000/user/${localStorage.getItem("userId")}`
-      );
-      setUserProfileData(userDetails.data);
-      setLearningDeskId(userDetails.data.myLearningDesk._id);
-      setIsLoading(false);
-      localStorage.setItem("color", userDetails.data.profileColour);
-      setUserDateOfBirth(userDetails.data.dateOfBirth.slice(0, 10));
-      setGender(userDetails.data.gender);
-    } catch (error) {
-      setIsLoading(false);
-      setError(true);
-      return;
-    }
-  }
+
   useEffect(() => {
     if (isAuth) {
+      async function getUserDetalis() {
+        try {
+          setError(false);
+          setIsLoading(true);
+          const userDetails = await axios.get(
+            `http://localhost:4000/user/${localStorage.getItem("userId")}`
+          );
+          setUserProfileData(userDetails.data);
+          setLearningDeskId(userDetails.data.myLearningDesk._id);
+          setIsLoading(false);
+          localStorage.setItem("color", userDetails.data.profileColour);
+          localStorage.setItem("imgId",userDetails.data.userImage || "") 
+          if(userDetails.data.userName){
+            setUserName(userDetails.data.userName)
+          }
+          if(userDetails.data.dateOfBirth){
+            setUserDateOfBirth((userDetails.data.dateOfBirth).slice(0,10))
+            } else{
+              return
+          }
+          if(userDetails.data.gender){
+            setGender(userDetails.data.gender)                
+            } else{
+              return
+            }
+        } catch (error) {
+          setIsLoading(false);
+          setError(true);
+          return;
+        }
+      }
       getUserDetalis();
     }
   }, [isAuth]);
@@ -122,7 +136,7 @@ function App() {
       >
         <CssBaseline />
         <Router>
-          <Header isAuth={isAuth} logout={logout} />
+          <Header isAuth={isAuth} logout={logout} userName={userName}/>
 
           <Routes>
             <Route path={"/"} element={<Home />} />
