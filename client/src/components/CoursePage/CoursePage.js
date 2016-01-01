@@ -1,5 +1,7 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 export default function CoursePage() {
-  return <div>CoursePage</div>;
+  const { coursename } = useParams();
+  return <div>{coursename}</div>;
 }

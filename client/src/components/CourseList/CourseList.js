@@ -1,11 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./CourseList.css";
 import { GoSearch } from "react-icons/go";
 
 const courseArr = [
   {
     name: "Web Development",
+    linkname: "webdevelopment",
     duration: "12 months",
     start: "01.02.2023",
     id: 1,
@@ -14,6 +15,7 @@ const courseArr = [
   },
   {
     name: "Web Design",
+    linkname: "webdesign",
     duration: "6 months",
     start: "05.03.2023",
     id: 2,
@@ -22,6 +24,7 @@ const courseArr = [
   },
   {
     name: "Web Development",
+    linkname: "webdevelopment",
     duration: "12 months",
     start: "08.04.2023",
     id: 3,
@@ -30,6 +33,7 @@ const courseArr = [
   },
   {
     name: "Web Design",
+    linkname: "webdesign",
     duration: "6 months",
     start: "11.05.2023",
     id: 4,
@@ -39,7 +43,7 @@ const courseArr = [
 ];
 
 export default function CourseList() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const submitForm = (e) => {
     e.preventDefault();
     console.log(e.target.value);
@@ -59,12 +63,19 @@ export default function CourseList() {
               <h5 className="courseDurationCard">{course.duration}</h5>
               <h5 className="courseStartCard">Start: {course.start}</h5>
               <p className="courseTextCard">{course.text}</p>
-              <button
+              <Link
+                to={`/courselist/${course.linkname}`}
                 className="viewCourseBtn"
+              >
+                View course
+              </Link>
+
+              {/*    <button
+                
                 onClick={() => navigate(":webdevelopment")}
               >
                 View course
-              </button>
+              </button> */}
             </div>
           );
         })}

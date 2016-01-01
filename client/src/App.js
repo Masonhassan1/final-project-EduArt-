@@ -1,4 +1,4 @@
-/* import "./App.css"; */
+import "./App.css";
 //import "bootstrap/dist/css/bootstrap.min.css";
 import CourseList from "./components/CourseList/CourseList";
 import { Button } from "react-bootstrap";
@@ -23,9 +23,8 @@ function App() {
         </nav>
 
         <Routes>
-          <Route path="/courselist" element={<CourseList />}>
-            <Route path=":coursename" element={<CoursePage />} />
-          </Route>
+          <Route path="/courselist" element={<CourseList />}></Route>
+          <Route path="/courselist/:coursename" element={<CoursePage />} />
         </Routes>
       </div>
     </Router>
