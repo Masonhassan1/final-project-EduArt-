@@ -1,27 +1,16 @@
-import React,{useState,useEffect} from 'react'
 import {Image} from "cloudinary-react"
 import baseURL from "../../util/constants";
 import "./UserProfile.css";
 
 
-function Purchase({userProfileData,imageData}) {
-
-  
-    const [userPurchase,setUserPurchase]=useState([])
-   
+function Purchases({imageData,userPurchases}) {
     const userProfileColor = localStorage.getItem("color");
-   
-      useEffect(()=>{
-
-        setUserPurchase(userProfileData.myPurchases)  
-      },[userProfileData])
-     
     
- 
-
+   
+  
+     
   return (
- 
- 
+
       <section className="personal-data">
       <div id="user-bc" style={{backgroundColor:userProfileColor}}></div>
       <div className="user-photo">{localStorage.getItem("imgId") ?
@@ -35,12 +24,14 @@ function Purchase({userProfileData,imageData}) {
         </div>
           <div className="purchases-container">
             <div className="purchase-container">
-               {userPurchase.length !== 0? userPurchase.map((el)=>{
+               {userPurchases.length !== 0? userPurchases.map((el)=>{
               return(
                 <div className='my-purchase' key={el._id} style={{backgroundColor:userProfileColor}}>
-                  <div className='purchase-invoiceNumber'>invoiceNumber :{(el.invoiceNumber)}</div>
-                  <div className='purchase-course-name'>Course name : {el.purchasedCourse.courseName}</div>
-                  <div className="purchase-course-active">{el.purchasedCourse.courseActive?"Course active : yes":"Course active : no"}</div>
+                  <div className='purchase-invoiceNumber'>invoiceNumber: {(el.invoiceNumber)}</div>
+                  <div className='purchase-course-name'>Course name: {el.purchasedCourse.courseName}</div>
+                  <div className='course-dateOfStart'>Course start: {(el.purchasedCourse.dateOfStart).slice(0,10)}</div>
+                  <div className="purchase-course-price">Course price: {el.purchasedCourse.coursePrice}€</div>
+                  <a href={`http://localhost:4000/invoices/${el.invoiceNumber}.pdf`} className='pdf-symbol' ><i className="fa-solid fa-file-pdf"></i></a>
                   <div className='purchase-course-img'>{ <img src={`${baseURL}${el.purchasedCourse.courseImage}`} alt="" /> }</div>
                 </div>
               )
@@ -51,4 +42,4 @@ function Purchase({userProfileData,imageData}) {
   )
 }
 
-export default Purchase
+export default Purchases

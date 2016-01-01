@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import {Image} from "cloudinary-react"
 import axios from "axios";
-import Purchase from "./Purchase";
+import Purchases from "./Purchases";
 import "./UserProfile.css";
+
 
 function UserProfile({
   userProfileData,
@@ -13,8 +15,9 @@ function UserProfile({
   setUserDateOfBirth,
   setUserName,
   gender,
+  setGender
 }) {
-  
+  const [userPurchases,setUserPurchases]=useState([])
   const [myProfile,setMyProfile]=useState(true)
   const [purchase,setPurchase]=useState(false)
   const [edit, setEdit] = useState(false);
@@ -22,23 +25,34 @@ function UserProfile({
   const [newUpdatedData,setNewUpdatedData] = useState({})
   const [isError, setIsError] = useState(false);
   const [proColor, setProColor] = useState("");
-  /* const [userImg,setUserImg] = useState("") */
   const [image,setImage]=useState(null)
   const [imageData,setImageData]=useState("")
   const [showPassword, setShowPassword] = useState(false);
   const [shakeBtn,setShakeBtn] = useState(false)
- 
+  const navigate = useNavigate()
+
+
+  useEffect(()=>{
+
+    setUserPurchases(userProfileData.myPurchases)  
+  },[userProfileData])
+
+
 // Profile section functions
 
   function myProfileHandler (){
     setMyProfile(true)
     setPurchase(false)
+    
+    
   }
   
 function purchaseHandler(){
   setMyProfile(false)
   setPurchase(true)
+  
 }
+
 
 //Image functions 
 
@@ -209,6 +223,9 @@ function setImageHandler(e){
         if(newUserData.data.userName){
           setUserName(newUserData.data.userName)
         }
+        if(newUserData.data.gender){
+          setGender(newUserData.data.gender)
+        }
         setProfileLoading(false);
           setEdit(false)
       } catch (error) {
@@ -219,8 +236,8 @@ function setImageHandler(e){
     }
   }
 console.log("newUpdatedData",newUpdatedData)
-  
-
+  console.log(error)
+console.log("gender",gender)
   return (
     <div
       className={
@@ -237,9 +254,9 @@ console.log("newUpdatedData",newUpdatedData)
             className="fa-solid fa-bag-shopping"
             style={{ color: "coral" }}
           ></i>
-          <div>Purchase</div>
+          <div>Purchases</div>
         </div>
-        <div className="user-certificate user-pro-color">
+        <div className="user-certificate user-pro-color" onClick={()=>navigate("/certificates")} >
           <i
             className="fa-solid fa-graduation-cap"
             style={{ color: "black" }}
@@ -270,11 +287,11 @@ console.log("newUpdatedData",newUpdatedData)
         </div>
       
         <div className="user-gender-icon font">
-          {gender === "male" ? (
+          {gender === "male" ? 
             <i className="fa-solid fa-mars gender-icon" style={proStyle}></i>
-            ) : (
+             : 
               <i className="fa-solid fa-venus gender-icon" style={proStyle}></i>
-              )}
+              }
         </div>
         <div className="user-birthday-icon font">
           <i
@@ -404,12 +421,13 @@ console.log("newUpdatedData",newUpdatedData)
         )}
       </section>:""}
 
-      {purchase? <Purchase userProfileData={userProfileData} imageData={imageData}/>:""}
+      {purchase? <Purchases  imageData={imageData} userPurchases={userPurchases}/>:""}
       {isLoading || profileLoading ? (
         <div className="profile-loading">loading...</div>
       ) : (
         ""
       )}
+   
       {error || isError ? (
         <div className="profile-error">
           Sorry.. something went wrong,please try again

@@ -15,6 +15,7 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import AboutUs from "./components/AboutUs/AboutUs";
 import UserProfile from "./components/UserProfile/UserProfile";
+import Certificates from "./components/UserProfile/Certificates"; 
 import LearningDesk from "./components/LearningDesk/LearningDesk";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
 
@@ -49,6 +50,7 @@ function App() {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [learningDeskId, setLearningDeskId] = useState(null);
   const [userProfileData, setUserProfileData] = useState({});
+  const [userPurchases,setUserPurchases]=useState([])
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [userName, setUserName] = useState("");
@@ -91,6 +93,7 @@ function App() {
             `http://localhost:4000/user/${localStorage.getItem("userId")}`
           );
           setUserProfileData(userDetails.data);
+          setUserPurchases(userDetails.data.myPurchases)
           console.log("user data", userDetails.data);
           if (userDetails.data && userDetails.data.accessRights.includes(5)) {
             setIsAdmin(true);
@@ -190,10 +193,12 @@ function App() {
                   userDateOfBirth={userDateOfBirth}
                   setUserDateOfBirth={setUserDateOfBirth}
                   gender={gender}
+                  setGender={setGender}
                   setUserName={setUserName}
                 />
               }
             />
+             <Route path={"/certificates"} element= {<Certificates userProfileData={userProfileData} userPurchases={userPurchases} />}/> 
           </Routes>
         </Router>
       </MyContext.Provider>

@@ -3,7 +3,7 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  column-gap: 28%;
+  column-gap: 15%;
   font-family: "Jura", sans-serif;
   font-weight: bold;
   user-select: none;
@@ -114,15 +114,15 @@ i:hover,
   -webkit-border-radius: 1rem;
   -moz-border-radius: 1rem;
 }
-
-.header-user-name {
-  width: 250px;
-  white-space: nowrap;
-  overflow: hidden;
+.header-user-name{
+  width: 450px;
+white-space: nowrap;
+ overflow: hidden;
   text-overflow: ellipsis;
 }
-.header-user-name:hover {
+.header-user-name:hover{
   overflow: visible;
   word-break: break-word;
   white-space: normal;
+  
 }
