@@ -331,10 +331,15 @@ button:hover{
     color: #989175;
     border-right: 1px solid #989175;
     transform-origin: right,center;
-    
+ 
 }
 .vsc-app-icons i {
+    transition: .5s;
     margin-top: 20%;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    -ms-transition: .5s;
+    -o-transition: .5s;
 }
 .vsc-app-icons i:hover {
    color:#e5cf77 ;
