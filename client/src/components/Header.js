@@ -73,7 +73,7 @@ function Header({
   }, []);
 
   return (
-    <div className="header" style={{ gap: `${isAdmin ? "11%" : "15%"}` }}>
+    <div className="header" /* style={{ gap: `${isAdmin ? "11%" : "15%"}` }} */>
       <div className="logo" onClick={() => navigate("/")}>
         <img className="img front" src={require("../Images/logo.png")} alt="" />
       </div>
@@ -101,7 +101,13 @@ function Header({
           </select>
         </div>
         <div className="header-user-name">
-          {userName ? `Logged in as ${userName}` : ""}
+          {userName ? (
+            <p>
+              Logged in as <span>{userName}</span>
+            </p>
+          ) : (
+            ""
+          )}
         </div>
         <i
           className="fa-solid fa-user user-pro-color"
@@ -159,9 +165,9 @@ function Header({
           </div>
         </NavLink>
       </div>
-      <div id="alarm">
+      {/*  <div id="alarm">
         <FormattedMessage id="please_login_first" />
-      </div>
+      </div> */}
     </div>
   );
 }
