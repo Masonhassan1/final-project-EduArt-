@@ -63,7 +63,7 @@ function Login({ handelSuccessfullLogin, isAuth }) {
     if (passwordEl.current.value) setShowPassword(!showPassword);
   }
   if (isAuth) {
-    setTimeout(() => navigate("/"), 700);
+    setTimeout(() => navigate("/mylearningdesk"), 700);
   }
 
   return (

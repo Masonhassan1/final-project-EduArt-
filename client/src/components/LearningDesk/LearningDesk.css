@@ -96,6 +96,10 @@
   color: #5382a1;
 }
 
+.moduleWrapper p > a {
+  color: #38b0b8;
+}
+
 .noBookedCourses {
   margin: 2rem;
   text-align: center;
