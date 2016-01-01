@@ -33,12 +33,12 @@ export default function CoursePage() {
           <div className="cardPageHeader">
             <img
               className="cardPageIcon"
-              src={courseInfo.courseImage}
+              src={courseInfo.courseIcon}
               alt={courseInfo.courseName}
             />
             <div className="cardPageTextHeader">
               <h3 className="coursePageNameCard">{courseInfo.courseName}</h3>
-              <h5 className="coursePageDurationCard">{`full time | ${courseInfo.courseDuration} months`}</h5>
+              <h5 className="coursePageDurationCard">{`${courseInfo.courseType} | ${courseInfo.courseDuration} months`}</h5>
             </div>
           </div>
           <p className="coursePageTextCard">{courseInfo.courseDescription}</p>

@@ -44,7 +44,7 @@ export default function CourseList() {
               <div className="cardHeader">
                 <img
                   className="cardIcon"
-                  src={course.courseImage}
+                  src={course.courseIcon}
                   alt={course.courseName}
                 />
                 <div className="cardTextHeader">
