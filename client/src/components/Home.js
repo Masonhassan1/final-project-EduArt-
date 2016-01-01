@@ -1,15 +1,12 @@
 import React from 'react'
-import {useState, useEffect ,useRef} from 'react'
+import {useState, useEffect } from 'react'
 import "./Home.css"
 import Footer from './Footer'
 
 function Home() {
  
   const [time , setTime]=useState("")
-  const [showChat,setShowChat] = useState(false)
-  const [isSended,setIsSended]=useState(false)
-  const [question,setQuestion]=useState("")
-  const chatFormEl = useRef(null);
+ 
   useEffect(()=>{
     document.querySelector(".bracket-one").textContent="{";
     document.querySelector(".bracket-two").textContent="};";
@@ -20,20 +17,9 @@ function Home() {
     setInterval(()=>{
       setTime(new Date().toLocaleTimeString('de-DE'))
     },1000)
-    document.querySelector(".chat-input").focus();
-  },[time,showChat]) 
- 
-  function chatHandler (){
-    setShowChat(!showChat)
   
-  }
- function questionHandler(e){
-  setQuestion(e.target.value)
- }
- function sendHandler (){
-   setIsSended(true)
-   chatFormEl.current.reset()
- }
+  },[time]) 
+ 
   
   return (
     <>
@@ -115,23 +101,7 @@ function Home() {
        
           </div>
         
-          <div className={showChat? "chat":"chat-dl-none"}>
-            <div className='chat-frame'>
-              <div className='chat-title'>Send us your questions and you will response as soon as possible.</div>
-              <div className={isSended? "question":"question-dl-none"}> {question}</div>
-            </div>
-            <form ref={chatFormEl} action="">
-            <input className='chat-input' type="text" placeholder='write your message'  onChange={questionHandler} />
-            </form>
-            <button className='send-que-btn' onClick={sendHandler} ><i class="fa-solid fa-paper-plane"></i></button>
-          </div>
-
-
-          <div className='show-hide-chat' onClick={chatHandler}>
-            {showChat?<div>x</div>:
-            <div><i class="fa-regular fa-comments"></i></div>}
-
-          </div>
+       
         </section>
     </main>
         <Footer/>
