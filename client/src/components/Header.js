@@ -124,6 +124,12 @@ function Header({
             >
               My profile
             </li>
+            <li
+              className="user-pro-color"
+              onClick={() => navigate("/random")}
+            >
+              Random
+            </li>
           </ul>
         </i>
         {isAuth && isAdmin && (

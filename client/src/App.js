@@ -18,6 +18,7 @@ import Register from "./components/Register/Register";
 import AboutUs from "./components/AboutUs/AboutUs";
 import UserProfile from "./components/UserProfile/UserProfile";
 import Certificates from "./components/UserProfile/Certificates";
+import ShareSite from "./components/ShareSite/ShareSite"
 import LearningDesk from "./components/LearningDesk/LearningDesk";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
 import { messages } from "./util/lang/messages";
@@ -221,6 +222,7 @@ function App() {
                   />
                 }
               />
+                <Route path={"/random"} element= {<ShareSite userProfileData={userProfileData}/>}/> 
             </Routes>
           </Router>
         </MyContext.Provider>

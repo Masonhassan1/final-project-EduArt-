@@ -9,7 +9,7 @@ function Home({ headerAlarm }) {
 
   return (
     <>
-      <main>
+      <main className="home-main">
         <section className="info">
           <p className="paragraph-one">
             Choose an online course that will move you forward{" "}

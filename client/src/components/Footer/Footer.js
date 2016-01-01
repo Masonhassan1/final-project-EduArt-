@@ -41,7 +41,7 @@ function Footer() {
   
 
   return (
-    <footer>
+    <footer className='footer-footer'>
       <div className="footer-infos">
 
        <div className="star"><i className="fa-solid fa-star"></i> <span> 4.8 rating</span></div>
