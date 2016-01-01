@@ -60,7 +60,7 @@ i:hover,
   list-style: none;
   display: flex;
   column-gap: 30px;
-  top: 23px;
+  top: 33px;
   left: -210px;
   font-size: 20px;
   font-family: "Jura", sans-serif;
@@ -121,14 +121,15 @@ i:hover,
 .change-lang select {
   border: 2px solid #046fa5;
   background: transparent;
-  font-family: "Roboto", sans-serif;
+  font-family: "Jura", sans-serif;
   color: #046fa5;
   font-size: 1em;
   border-radius: 5px;
   opacity: 0.5;
   transition: 0.3s;
-  height: 55px;
+  height: 50px;
   padding: 0 2rem;
+  cursor: pointer;
 }
 .change-lang select :hover {
   border: 2px solid darkblue;
@@ -138,4 +139,5 @@ i:hover,
   opacity: 0.8;
   transition: 0.3s;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  outline: none;
 }

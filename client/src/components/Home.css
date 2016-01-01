@@ -1,12 +1,10 @@
-
-
-main{
-    height: 75vh;
-    display: flex;
-    user-select: none;
-    align-items: center;
-    font-family: "Jura", sans-serif;
-    font-size: xx-large;
+main {
+  height: 75vh;
+  display: flex;
+  user-select: none;
+  align-items: center;
+  font-family: "Jura", sans-serif;
+  font-size: xx-large;
 }
 .info {
   position: absolute;
@@ -52,7 +50,7 @@ main{
   height: 12vh;
   min-height: fit-content;
   top: 12%;
-  left: 50%;
+  left: 62%;
   translate: -50%;
   display: flex;
   justify-content: center;
@@ -66,7 +64,8 @@ main{
   border-radius: 1rem;
   -webkit-border-radius: 1rem;
   -moz-border-radius: 1rem;
+  padding: 1rem;
 }
-.hide-alarm{
+.hide-alarm {
   display: none;
 }
