@@ -195,42 +195,36 @@
   grid-row: 12/13;
   font-size: 30px;
 }
-.password-container{
+.password-container {
   position: relative;
   grid-column: 10/15;
   grid-row: 12/13;
   background-color: var(--b-c);
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .user-password-input {
-  width: 90%;
+  width: 100%;
   height: 100%;
   position: absolute;
   background-color: var(--b-c);
 }
-.user-profile-show-password{
+.user-profile-show-password {
   position: absolute;
   top: 22%;
   left: 87%;
   font-size: 20px;
- 
 }
-.user-profile-show-password span i{
+.user-profile-show-password span i {
   color: #2d7a82;
 }
-.user-password{
-  position: relative;
+.user-password {
   grid-column: 10/15;
   grid-row: 12/13;
+  font-size: 25px;  
   background-color: var(--b-c);
 }
-
-.user-password p {
-  position: absolute;
-  top: -170%;
-  font-size: 50px;
-}
-
 
 .cherry {
   cursor: pointer;
@@ -313,13 +307,13 @@
   animation: scale 0.7s 6 alternate linear;
   -webkit-animation: scale 0.7s 6 alternate linear;
 }
-#shake-btn {
-  animation: shake-btn 1.8s 4 alternate;
-  -webkit-animation: shake-btn 1.8s 4 alternate;
+#shake-save-btn {
+  animation: shake-btn 1.8s 6 alternate;
+  -webkit-animation: shake-btn 1.8s 6 alternate;
 }
 @keyframes shake-btn {
   to {
-    rotate: x 360deg;
+   rotate:x 360deg;
   }
 }
 @keyframes scale {

@@ -11,8 +11,8 @@ function Register() {
   const [isError, setIsError] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [user,setUser]= useState("")
-  
-  const regInputs = document.querySelectorAll(".reg-input")
+  /* 
+  const regInputs = document.querySelectorAll(".reg-input") */
  
   useEffect(()=>{
     
@@ -64,7 +64,7 @@ function Register() {
   formEl.current.reset();
   }
 
-  if(isRegistered){setTimeout(()=> navigate("/login"),5500)}
+  if(isRegistered){setTimeout(()=> navigate("/login"),3500)}
 
   function passwordHandler (){
      if(passwordEl.current.value) setShowPassword(!showPassword)
@@ -89,7 +89,7 @@ function Register() {
      <input  className='reg-input' ref={passwordEl} type={showPassword? "text":"password"}  placeholder='Password' required/>
      <div className='reg-show-password' onClick={passwordHandler}>{showPassword? <span><i className="fa-solid fa-eye-slash"></i></span>:<span><i className="fa-solid fa-eye"></i></span>}</div>
      </div>
-     <button id='register-btn' onClick={regInputs.length? submitHandler:null}>Register</button>
+     <button id='register-btn' onClick={ submitHandler}>Register</button>
      {isRegistered? <> <div > Hello <span style={{color:"darkorange",fontStyle:"italic"}}>{user}</span> you were successfully registered</div> <div>Your will be automatically directed to <span style={{color:"darkorange",fontStyle:"italic"}}>login</span> page</div></>:""}
      {isError? <div style={{color:"red"}}>Sorry.. something went wrong. please try again</div>:""}
     </form>
