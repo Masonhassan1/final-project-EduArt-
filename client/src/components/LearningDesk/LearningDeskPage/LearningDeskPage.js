@@ -361,7 +361,12 @@ export default function LearningDeskPage() {
                           needleColor="red"
                           startColor="#9399ff"
                           endColor="#00bbf0"
-                          segments={course.courseId.modulesIncluded.length}
+                          // segments={course.courseId.modulesIncluded.length}
+                          currentValueText={`${currentLernDay} day${
+                            currentLernDay > 1 ? "s" : ""
+                          } of ${course.courseId.modulesIncluded
+                            .map((val) => val.noOfDays)
+                            .reduce((acc, cur) => acc + cur, 0)}`}
                           customSegmentStops={course.courseId.modulesIncluded
                             .map((mod, id) => {
                               const newArr =
