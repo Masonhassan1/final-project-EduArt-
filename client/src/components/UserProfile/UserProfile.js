@@ -2,7 +2,7 @@ import React,{useState,useEffect,useRef} from 'react'
 import axios from "axios";
 import "./UserProfile.css"
 
-function UserProfile({userProfileData,isLoading,setError,error,userDateOfBirht}) {
+function UserProfile({userProfileData,isLoading,setError,error,userDateOfBirth}) {
   const [edit,setEdit]=useState(false)
   const [profileLoading,setProfileLoading] = useState(false)
   const [isError,setIsError]=useState(false)
@@ -119,7 +119,7 @@ function UserProfile({userProfileData,isLoading,setError,error,userDateOfBirht})
 
             {edit? <>
               <input className='user-gender font user-profile-input' ref={genderEl} type="text"  placeholder={userProfileData.gender || "Male / Female"}/>
-              <input className="user-birthday font user-profile-input" ref={dateOfBirthEl} type="text" placeholder={userProfileData.dateOfBirth || "yyyy-mm-dd"}/>
+              <input className="user-birthday font user-profile-input" ref={dateOfBirthEl} type="text" placeholder={userDateOfBirth || "yyyy-mm-dd"}/>
               <input className="user-location font user-profile-input" ref={originEl} type="text" placeholder={userProfileData.origin || "Origin"}/>
               <input className="user-tel font user-profile-input" ref={telEl} type="text" placeholder={userProfileData.telephoneLandLine || "Tel"}/>
   
@@ -127,7 +127,7 @@ function UserProfile({userProfileData,isLoading,setError,error,userDateOfBirht})
             </> :<>
            
             <div className="user-gender font">{userProfileData.gender || <p className='not-entered'>not entered</p>}</div>
-            <div className="user-birthday font">{userDateOfBirht || <p className='not-entered'>not entered</p>}</div>
+            <div className="user-birthday font">{userDateOfBirth || <p className='not-entered'>not entered</p>}</div>
             <div className="user-location font">{userProfileData.origin  || <p className='not-entered'>not entered</p>} </div>
             <div className="user-tel font">{userProfileData.telephoneLandLine || <p className='not-entered'>not entered</p>}</div> </>}
           
