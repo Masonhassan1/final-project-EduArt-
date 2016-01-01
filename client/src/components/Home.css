@@ -3,14 +3,16 @@
     src: url("../vsc-font/otf/static/CascadiaCode-Bold.otf");
 }
 
-.home {
-    width: 98%;
+main {
+    width: 100%;
     margin: -6rem auto;
-    height: 87vh;
+    height: 88vh;
     display: flex;
     justify-content: center;
     align-items: center;
     user-select: none;
+    background: rgba(250, 214, 185, 0.835) ;
+    background: linear-gradient(180deg, rgba(254, 254, 254, 1) 10%, #efefef 70%);
     font-family: "Jura", sans-serif;
     font-weight: bold;
     --shadow-color: #5d7174; /* 9c9c9c */
@@ -27,8 +29,8 @@
 .paragraph-two {
     position: absolute;
     font-size: xx-large;
-    color: #acadad;
-    text-shadow: 1px 1px 1px #747676;
+    color: #8b8d8d;
+    text-shadow: .5px .5px 1px #919393;
     rotate: x 90deg;
     animation: show-paragraph 0.6s 0.3s linear forwards;
     -webkit-animation: show-paragraph 0.6s 0.3s linear forwards;
@@ -41,7 +43,7 @@
 .paragraph-two {
     top: 40%;
     left: 25%;
-    color: #8f9090;
+    color: #7f8181;
     font-size: x-large;
     text-shadow: none;
 }
@@ -53,31 +55,33 @@
 }
 .home-btn {
     width: 14rem;
-    height: 3rem;
+    height: 2.5rem;
     position: absolute;
-    right: 8%;
+    right: 4%;
     bottom: 30%;
     border: none;
     outline: none;
-    color: #898d90;
+    color: white;
     font-size: 1.2rem;
     font-weight: bold;
-    background-color: #dee2e6;
-    transition: 1s;
+    background-color: #aab3b8;
+    transition: .3s;
     border-radius: 1.2rem;
     -webkit-border-radius: 1.2rem;
     -moz-border-radius: 1.2rem;
     rotate: x 90deg;
     animation: show-paragraph 0.6s 0.9s linear forwards;
     -webkit-animation: show-paragraph 0.6s 0.9s linear forwards;
-    -webkit-transition: 1s;
-    -moz-transition: 1s;
-    box-shadow:   1px 1px 8px 0px #bbbdbf;
-   
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    box-shadow: 4px 5px 12px #3e3d3d;
+    text-shadow: 4px 5px 12px #3e3d3d;
+    -ms-transition: .3s;
+    -o-transition: .3s;
 }
 .home-btn:hover {
-    box-shadow:-1px -1px 8px 0px #bbbdbf;
-    color:#737577 ;
+    box-shadow: -2px -3px 8px #3e3d3d;
+   
   
 }
 .python,
@@ -87,6 +91,7 @@
 .react,
 .nodejs {
     position: absolute;
+    
 }
 
 .python {
@@ -170,7 +175,7 @@
 }
 .display {
     background-image: url("../Images/logo.png");
-    background-color: #f1f3f4;
+    background-color: #f4f6f7;
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: center;
@@ -215,8 +220,8 @@
     height: 20px;
     left: 58%;
     top: 66%;
-    animation: move-pointer 2s 2.8s forwards, tip 1s 4.8s;
-    -webkit-animation: move-pointer 2s 2.8s forwards, tip 1s 4.8s;
+    animation: move-pointer 1.8s 2.2s forwards, tip 1s 4.8s;
+    -webkit-animation: move-pointer 1.8s 2.2s forwards, tip 1s 4.8s;
 }
 .pointer img {
     width: 100%;
@@ -240,8 +245,8 @@
     background-color: #202225;
     font-family: "Cascadia";
     opacity: 0;
-    animation: show 1s 7s linear forwards;
-    -webkit-animation: show 1s 7s linear forwards;
+    animation: show 1s 4.5s linear forwards;
+    -webkit-animation: show 1s 4.5s linear forwards;
 }
 .vsc-app-title {
     grid-column: -1/1;
@@ -328,28 +333,28 @@
 }
 .cover-one {
     top: 20.7%;
-    animation: move-cover 3s 8.5s linear forwards;
-    -webkit-animation: move-cover 3s 8.5s linear forwards;
+    animation: move-cover 2s 5.8s linear forwards;
+    -webkit-animation: move-cover 2s 5.8s linear forwards;
 }
 .cover-two {
     top: 27%;
-    animation: move-cover 3s 11.5s linear forwards;
-    -webkit-animation: move-cover 3s 11.5s linear forwards;
+    animation: move-cover 2s 7.8s linear forwards;
+    -webkit-animation: move-cover 2s 7.8s linear forwards;
 }
 .cover-three {
     top: 34%;
-    animation: move-cover 2s 14.5s linear forwards;
-    -webkit-animation: move-cover 2s 14.5s linear forwards;
+    animation: move-cover 1s 9.8s linear forwards;
+    -webkit-animation: move-cover 1s 9.8s linear forwards;
 }
 .cover-four {
     top: 40%;
-    animation: move-cover 1s 15.7s linear forwards;
-    -webkit-animation: move-cover 1s 15.7s linear forwards;
+    animation: move-cover .3s 10.8s linear forwards;
+    -webkit-animation: move-cover .3s 10.8s linear forwards;
 }
 .cover-five {
     top: 47%;
-    animation: move-cover 3s 16.6s linear forwards;
-    -webkit-animation: move-cover 3s 16.6s linear forwards;
+    animation: move-cover 1s 11.1s linear forwards;
+    -webkit-animation: move-cover 1s 11.1s linear forwards;
 }
 @keyframes move-cover {
     to {
@@ -375,16 +380,95 @@
 }
 .cover-six {
     top: 80%;
-    animation: move-cover 3.2s 20s linear forwards;
-    -webkit-animation: move-cover 3.2s 20s linear forwards;
+    animation: move-cover 1.2s 12.1s linear forwards;
+    -webkit-animation: move-cover 1.2s 12.1s linear forwards;
 }
 .result {
     opacity: 0;
-    animation: show 0.1s 21.9s forwards;
-    -webkit-animation: show 0.1s 21.9s forwards;
+    animation: show 0.1s 13.3s forwards;
+    -webkit-animation: show 0.1s 13.3s forwards;
 }
 @keyframes show {
     to {
         opacity: 1;
     }
+}
+
+.show-hide-chat{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    width: 70px;
+    height: 70px;
+    top: 85%;
+    left: 78.2%;
+    color: white;
+    background-color: #6a96af;
+    box-shadow: 4px 5px 12px #3e3d3d;
+    cursor: pointer;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+   
+}.show-hide-chat i{
+    text-shadow: 3px 4px 12px #3e3d3d;
+}
+.chat {
+    position: relative;
+    width: 330px;
+    height: 270px;
+    top: 20%;
+    left: 43.5%;
+    padding: 1rem;
+    background-color: #f6f7f8;
+    border: 1px solid #c6c5c5;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+  
+}
+
+.chat-frame{
+    overflow-y: scroll;
+}
+.chat-title{
+    margin-bottom: 2rem;
+  padding: .5rem;
+  color: #4a6f81;
+  background-color: #e7e5e5;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+ 
+}
+.chat input{
+    position: absolute;
+    width: 90%;
+    height: 2.5rem;
+    bottom: 0;
+   
+   
+}
+.question-dl-none , .chat-dl-none{
+    display: none;
+}
+.question{
+    display: block;
+    padding: .5rem;
+    color:  #e7e5e5;
+    background-color: #528198;
+    border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+ 
+}
+.send-que-btn{
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    color: #0e4468;
+    bottom: 11.8%;
+    left: 83%;
 }

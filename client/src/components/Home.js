@@ -1,23 +1,43 @@
 import React from 'react'
-import {useState, useEffect } from 'react'
+import {useState, useEffect ,useRef} from 'react'
 import "./Home.css"
+import Footer from './Footer'
 
 function Home() {
  
-  const [time , setTime]=useState(new Date())
+  const [time , setTime]=useState("")
+  const [showChat,setShowChat] = useState(false)
+  const [isSended,setIsSended]=useState(false)
+  const [question,setQuestion]=useState("")
+  const chatFormEl = useRef(null);
   useEffect(()=>{
     document.querySelector(".bracket-one").textContent="{";
     document.querySelector(".bracket-two").textContent="};";
     document.querySelector(".index-html").textContent="<>";
-   
-
+  
   },[])
-  useEffect(()=>{
-    setTime(new Date())
-  },[time])
+   useEffect(()=>{
+    setInterval(()=>{
+      setTime(new Date().toLocaleTimeString('de-DE'))
+    },1000)
+    document.querySelector(".chat-input").focus();
+  },[time,showChat]) 
  
+  function chatHandler (){
+    setShowChat(!showChat)
+  
+  }
+ function questionHandler(e){
+  setQuestion(e.target.value)
+ }
+ function sendHandler (){
+   setIsSended(true)
+   chatFormEl.current.reset()
+ }
+  
   return (
-    <main className='home'>
+    <>
+    <main>
         <section className='info'>
            
             <p className='paragraph-one'>Choose an online course that will move you forward ...</p>
@@ -39,7 +59,7 @@ function Home() {
             <div className="nodejs"><img src={require("../Images/nodejs.png") } alt="" />
             </div>
             <div className="display"></div>
-            <div className="clock">{time.getHours()}:{time.getMinutes()}:{time.getSeconds()}</div>
+            <div className="clock">{time}</div>
             <div className="firefox"><img src={require("../Images/firefox.webp")} alt="" />
             </div>
             <div className="vsc"><img src={require("../Images/vsc.png")} alt="" /></div>
@@ -95,9 +115,27 @@ function Home() {
        
           </div>
         
-          
+          <div className={showChat? "chat":"chat-dl-none"}>
+            <div className='chat-frame'>
+              <div className='chat-title'>Send us your questions and you will response as soon as possible.</div>
+              <div className={isSended? "question":"question-dl-none"}> {question}</div>
+            </div>
+            <form ref={chatFormEl} action="">
+            <input className='chat-input' type="text" placeholder='write your message'  onChange={questionHandler} />
+            </form>
+            <button className='send-que-btn' onClick={sendHandler} ><i class="fa-solid fa-paper-plane"></i></button>
+          </div>
+
+
+          <div className='show-hide-chat' onClick={chatHandler}>
+            {showChat?<div>x</div>:
+            <div><i class="fa-regular fa-comments"></i></div>}
+
+          </div>
         </section>
     </main>
+        <Footer/>
+    </>
   )
 }
 

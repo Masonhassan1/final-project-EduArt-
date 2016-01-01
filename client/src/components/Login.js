@@ -1,14 +1,16 @@
-import React from 'react'
+import React,{useRef} from 'react'
 import {Link} from "react-router-dom";
 import "./Login.css"
 
 function Login() {
+
+
   return (
     <div className='login'>
 
-   <form action="">
+   <form className='log-form' action="">
     <div>Login</div>
-    <p>Don´t have an account? <Link className='link'>register</Link> </p>
+    <p>Don´t have an account? <Link className='link' to= "/register">register</Link> </p>
     <p>or sign in via email</p>
     
     <input type="text" required placeholder='User name'/>

@@ -1,28 +1,25 @@
-.login {
+.register {
     
-    height: 84.5vh;
+    height: 82vh;
     overflow: hidden;
-    margin: -4rem auto 0 auto;
+    margin: -2.5rem auto 0 auto;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     background: rgba(250, 214, 185, 0.835) ;
-    background: linear-gradient(180deg, rgba(254, 254, 254, 1) 10%, rgba(250, 214, 185, 0.835) 70%);
+    background: linear-gradient(180deg, rgba(254, 254, 254, 1) 10%, rgba(185, 227, 250, 0.835) 70%);
 }
-.link {
-    text-decoration: none;
-    color: #f99900 ;
-}
-.log-form {
-    margin-top: 2.5rem;
+
+.reg-form {
+    margin-top: 1rem;
     border: 1px solid rgb(203, 202, 202);
     display: flex;
     flex-direction: column;
-    row-gap: 1rem;
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    caret-color:#f49739 ;
+    caret-color:#39ccf4 ;
     padding: 4rem 10rem;
     background-color:#fff;
     color: #2c768f;
@@ -49,18 +46,31 @@ input {
 
 ::placeholder{
     font-size: large;
-    color: #d2d6d6;
+    color: #bcc0c0;
 }
-.login-btn {
+.register-btn {
     width: 12rem;
     border: none;
     padding: .6rem;
     font-size: large;
     font-weight: bold;
-    color: #f49739;
-    background-color: #faeace;
+    color: #39aff4;
+    background-color: #cee9fa;
     border-radius: .5rem;
     -webkit-border-radius: .5rem;
     -moz-border-radius: .5rem;
   
+}
+.reg-form-opacity{
+    opacity: .3;
+}
+.reg-loading{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    font-size: xx-large;
+    color: #e7a41e;
+    margin-top: 1rem;
+ font-style: italic;
 }
