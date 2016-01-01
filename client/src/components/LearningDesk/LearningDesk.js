@@ -36,7 +36,7 @@ export default function LearningDesk() {
               <ListItemIcon>
                 <StarIcon />
               </ListItemIcon>
-              <ListItemText primary="Learningdesk" />
+              <ListItemText primary="Learning desk" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -47,40 +47,7 @@ export default function LearningDesk() {
               <ListItemIcon>
                 <PeopleIcon />
               </ListItemIcon>
-              <ListItemText primary="Participants" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton
-              selected={selectedIndex === 2}
-              onClick={(event) => handleListItemClick(event, 2)}
-            >
-              <ListItemIcon>
-                <MailOutlineIcon />
-              </ListItemIcon>
-              <ListItemText primary="Messages" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton
-              selected={selectedIndex === 3}
-              onClick={(event) => handleListItemClick(event, 3)}
-            >
-              <ListItemIcon>
-                <EventNoteIcon />
-              </ListItemIcon>
-              <ListItemText primary="Timetable" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton
-              selected={selectedIndex === 4}
-              onClick={(event) => handleListItemClick(event, 4)}
-            >
-              <ListItemIcon>
-                <TaskIcon />
-              </ListItemIcon>
-              <ListItemText primary="Homework" />
+              <ListItemText primary="My class" />
             </ListItemButton>
           </ListItem>
         </List>
@@ -88,9 +55,6 @@ export default function LearningDesk() {
       <section>
         {selectedIndex === 0 && <LearningDeskPage />}
         {selectedIndex === 1 && <p>my class</p>}
-        {selectedIndex === 2 && <p>messages</p>}
-        {selectedIndex === 3 && <p>timetable</p>}
-        {selectedIndex === 4 && <p>homework</p>}
       </section>
     </section>
   );
