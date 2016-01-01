@@ -15,15 +15,17 @@ import CoursePage from "./components/CoursePage/CoursePage";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import UserProfile from "./components/UserProfile/UserProfile";
+import axios from "axios";
 
 export const MyContext = React.createContext(null);
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
-  /* const [isLoading, setIsLoading] = useState(false); 
-   const [error, setError] = useState(""); 
-   const [userDetails, setUserDetails] = useState(null);  */
+  const [userProfileData,setUserProfileData] = useState({})
+  const [isLoading, setIsLoading] = useState(false); 
+  const [error, setError] = useState(false); 
+     
 
   const handelSuccessfullLogin = (logData) => {
     const decodedToken = decodeToken(logData.jwt);
@@ -43,38 +45,31 @@ function App() {
   const logout = () => {
     localStorage.clear();
     setIsAuth ( false ) ;
-    
-    /*  setUserDetails(null); */
   };
 
-  /* const getUserDetails = async () => {
-   
-    const errorMsgEl = <p>Something went wrong</p>;
-    try {
-      setIsLoading(true);
-      const axiosResp = await axios.post("http://localhost:4000/myAccount", {}, {
-        headers: {
-          'authorization': `Bearer ${localStorage.getItem("jwt")}`
-          }
-        });
-      setUserDetails(axiosResp.data);
-      console.log("axiosResp.data:::", axiosResp.data);
-      setIsLoading(false);
-      if(axiosResp.data.error) {
-        setError( axiosResp.data.error.message );
-        console.error(axiosResp.data.error)
-        return errorMsgEl;
-      }
-      
-      setError(""); 
-    } catch (error) {
-      setIsLoading(false);
-      console.error("Error while sending with axios", error);
-      setError( error.message );
-      return errorMsgEl;
+ 
+
+    async function getUserDetalis(){
+            try{
+                setError(false)
+                setIsLoading(true)
+              const userDetails = await axios.get(`http://localhost:4000/user/${localStorage.getItem("userId")}`)
+              setUserProfileData(userDetails.data)
+              setIsLoading(false)
+            }catch (error) {
+              setIsLoading(false); 
+              setError( true);
+              return 
+            }
     }
-    return 
-  }  */
+  useEffect(()=>{
+    if(isAuth){
+      getUserDetalis()
+    }
+  },[isAuth])
+
+  console.log(userProfileData)
+  
 
   useEffect(() => {
     if (hasClientValidToken()) {
@@ -87,7 +82,8 @@ function App() {
       <Router>
         <Header
           isAuth={isAuth}
-          logout={logout} /* getUserDetails={getUserDetails} */
+          logout={logout} 
+   
         />
 
         <Routes>
@@ -110,7 +106,7 @@ function App() {
           />
 
          <Route path={"/register"} element={<Register />} />
-          <Route path={"/userprofile"} element={<UserProfile />} />
+          <Route path={"/userprofile"} element={<UserProfile userProfileData={userProfileData} isLoading={isLoading} error={error} setError={setError}/>} />
         </Routes>
       </Router>
     </MyContext.Provider>

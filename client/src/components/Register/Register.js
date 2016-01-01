@@ -24,6 +24,8 @@ function Register() {
   const userNameEl = useRef(null); 
   const emailEl = useRef(null); 
   const passwordEl = useRef(null); 
+
+  
   async function submitHandler(e){
     setIsError(false)
     e.preventDefault();
@@ -53,7 +55,7 @@ function Register() {
   }catch (error){
     setIsError(true)
     setRegLoading(false)
-  
+    console.log(isError)
     return;
   }
   
