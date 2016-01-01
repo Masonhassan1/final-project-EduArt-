@@ -7,6 +7,7 @@ function Register() {
   const [isLoading,setIsLoading] = useState(false)
 
   const formEl = useRef(null);
+  const birthdayEl = useRef(null)
   const nameEl = useRef(null); 
   const emailEl = useRef(null); 
   const passwordEl = useRef(null); 
@@ -14,12 +15,13 @@ function Register() {
   
     const userData ={
       name: nameEl.current.value,
+      birthday:birthdayEl.current.value,
       email: emailEl.current.value,
       password: passwordEl.current.value
     }
     try {
       setIsLoading(true);
-      const axiosResp = await axios.post("http://localhost:3000/", userData);
+      const axiosResp = await axios.post("http://localhost:3000/user", userData);
       setIsLoading(false);
       if(axiosResp.data.error) {
        console.log(axiosResp.data.error)
@@ -37,10 +39,12 @@ function Register() {
   
    
     <div className='register'>
-      
+      <div >
+
     <form ref={formEl} className='reg-form' action="">
      <div>Register</div>
      <input ref={nameEl} type="text"  placeholder='User name'/>
+     <input ref={birthdayEl} type="text" placeholder='Birthday'/>
      <input ref={emailEl} type="email"  placeholder='Email'/>
      <input ref={passwordEl} type="password"  placeholder='Password'/>
      <button className='register-btn' onClick={submitHandler}>Register</button>
@@ -48,6 +52,7 @@ function Register() {
           <Spinner className="spinner" animation="border" variant="info"/>
         </div>:""}
     </form>
+      </div>
 
  
      </div>
