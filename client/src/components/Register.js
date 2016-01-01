@@ -15,8 +15,8 @@ function Register() {
   
     const userData ={
       name: nameEl.current.value,
-      birthday:birthdayEl.current.value,
-      email: emailEl.current.value,
+      dateOfBirth:birthdayEl.current.value,
+      eMail: emailEl.current.value,
       password: passwordEl.current.value
     }
     try {
