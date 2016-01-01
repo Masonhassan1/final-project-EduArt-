@@ -32,19 +32,6 @@ const MenuProps = {
   },
 };
 
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
-
 export default function AdminPanelModules() {
   const [modules, setModules] = useState([]);
   const [hasError, setHasError] = useState(false);
@@ -52,7 +39,7 @@ export default function AdminPanelModules() {
   const [moduleName, setModuleName] = useState("");
   const [moduleDuration, setModuleDuration] = useState("");
   const [moduleZoomLink, setModuleZoomLink] = useState("");
-  const [moduleTeacher, setModuleTeacher] = useState("");
+  const [moduleTeachers, setModuleTeachers] = useState("");
   const [moduleTaskName, setModuleTaskName] = useState("");
   const [moduleTaskLink, setModuleTaskLink] = useState("");
   const [moduleExtraDesc, setModuleExtraDesc] = useState("");
@@ -70,7 +57,15 @@ export default function AdminPanelModules() {
       // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
     );
+    const idTeachers = value.map((item) => {
+      const temp = teachersArr.find(
+        (teacher) => `${teacher.firstName} ${teacher.lastName}` === item
+      );
+      return temp._id;
+    });
+    setModuleTeachers(idTeachers);
   };
+
   // const [newModule, setNewModule] = useState({
   //   name: "",
   //   noOfDays: 0,
@@ -95,7 +90,6 @@ export default function AdminPanelModules() {
     try {
       setLoading(true);
       const apiData = await axiosConfig.get(`/modules`);
-      console.log("modules", apiData.data);
       setModules(apiData.data);
 
       setLoading(false);
@@ -109,15 +103,11 @@ export default function AdminPanelModules() {
     try {
       setLoading(true);
       const apiData = await axiosConfig.get(`/user`);
-      console.log("userList", apiData.data);
       if (apiData.data) {
         setTeachersArr(
           apiData.data.filter((teacher) => teacher.accessRights.includes(3))
         );
       }
-
-      console.log("teachers ARR", teachersArr);
-      // setModules(apiData.data);
 
       setLoading(false);
       setHasError(false);
@@ -136,7 +126,7 @@ export default function AdminPanelModules() {
     console.log("module name", moduleName);
     console.log("module duration", moduleDuration);
     console.log("module zoom link", moduleZoomLink);
-    console.log("module teacher", moduleTeacher);
+    console.log("module teacher", moduleTeachers);
     console.log("module task name", moduleTaskName);
     console.log("module task link", moduleTaskLink);
     console.log("module extra desc", moduleExtraDesc);
@@ -148,12 +138,6 @@ export default function AdminPanelModules() {
       <h3>Modules</h3>
       <div className="adminPanelModulesWrapper">
         <Box className="moduleWrapper newModuleWrapper" sx={{ p: "1rem" }}>
-          {/* <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            > */}
           <div>
             <Box sx={{ m: "1rem" }}>
               <TextField
@@ -190,9 +174,7 @@ export default function AdminPanelModules() {
               />
             </Box>
           </div>
-          {/* </AccordionSummary> */}
 
-          {/* <AccordionDetails> */}
           <Accordion>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -203,14 +185,6 @@ export default function AdminPanelModules() {
             </AccordionSummary>
             <AccordionDetails>
               <Box sx={{ m: "1rem" }}>
-                {/* <TextField
-                  id="standard-basic"
-                  label="Teacher"
-                  variant="standard"
-                  sx={{ width: "90%" }}
-                  value={moduleTeacher}
-                  onChange={(event) => setModuleTeacher(event.target.value)}
-                /> */}
                 <div>
                   <FormControl sx={{ m: 1, width: 300 }}>
                     <InputLabel id="demo-multiple-checkbox-label">
@@ -307,8 +281,6 @@ export default function AdminPanelModules() {
               </Box>
             </AccordionDetails>
           </Accordion>
-          {/* </AccordionDetails> */}
-          {/* </Accordion> */}
           <Button
             variant="contained"
             onClick={createNewModule}
