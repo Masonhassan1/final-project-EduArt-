@@ -1,67 +1,66 @@
 .header {
-    margin-top: -3rem;
-    display: flex;
-    align-items: center;
-    column-gap: 36%;
-    font-family: "Jura", sans-serif;
-    font-weight: bold;
-    user-select: none;
+  margin-top: -3rem;
+  /* height: 15vh; */
+  display: flex;
+  align-items: center;
+  column-gap: 36%;
+  font-family: "Jura", sans-serif;
+  font-weight: bold;
+  user-select: none;
 }
 
 .logo {
-    margin-left: 8%;
-    cursor: pointer;
-   
+  margin-left: 8%;
+  cursor: pointer;
 }
 .logo img {
-    width: 16rem;
-    height: 16rem;
+  width: 16rem;
+  height: 16rem;
 }
 
 .navy {
- 
-    display: flex;
-    column-gap: 60%;
-    font-size: 1.4rem;
+  display: flex;
+  column-gap: 60%;
+  font-size: 1.4rem;
 }
-.nav-link{
-    text-decoration: none;
-    min-width: fit-content;
+.nav-link {
+  text-decoration: none;
+  min-width: fit-content;
 }
-.active{
-    color: red;
+.active {
+  color: red;
 }
 .navy div {
-    position: relative;
-    color: #8b8b8b;
-    transition: 0.6s;
-    -webkit-transition: 0.6s;
-    -moz-transition: 0.6s;
-    -ms-transition: 0.6s;
-    -o-transition: 0.6s;
+  position: relative;
+  color: #8b8b8b;
+  transition: 0.6s;
+  -webkit-transition: 0.6s;
+  -moz-transition: 0.6s;
+  -ms-transition: 0.6s;
+  -o-transition: 0.6s;
 }
 .navy div:hover {
-    color: #046fa5;
+  color: #046fa5;
 }
 .navy div::before {
-    content: "";
-    position: absolute;
-    left: -1.4rem;
-    top: 0.8rem;
-    width: 1.3rem;
-    height: 1rem;
-    border-radius: 8% 10% 86% 7% / 10% 10% 83% 12%;
-    -webkit-border-radius: 8% 10% 86% 7% / 10% 10% 83% 12%;
-    -moz-border-radius: 8% 10% 86% 7% / 10% 10% 83% 12%;
-    -ms-border-radius: 8% 10% 86% 7% / 10% 10% 83% 12%;
-    -o-border-radius: 8% 10% 86% 7% / 10% 10% 83% 12%;
+  content: "";
+  position: absolute;
+  left: -1.4rem;
+  top: 0.8rem;
+  width: 1.3rem;
+  height: 1rem;
+  border-radius: 8% 10% 86% 7% / 10% 10% 83% 12%;
+  -webkit-border-radius: 8% 10% 86% 7% / 10% 10% 83% 12%;
+  -moz-border-radius: 8% 10% 86% 7% / 10% 10% 83% 12%;
+  -ms-border-radius: 8% 10% 86% 7% / 10% 10% 83% 12%;
+  -o-border-radius: 8% 10% 86% 7% / 10% 10% 83% 12%;
 }
 .navy-home::before {
-    background-color: #ffc400;
+  background-color: #ffc400;
 }
 .navy-courses::before {
-    background-color: #6e4cf7;
+  background-color: #6e4cf7;
 }
 .navy-login::before {
-    background-color: #fc8822;
+  background-color: #fc8822;
 }
