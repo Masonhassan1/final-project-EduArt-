@@ -20,6 +20,7 @@ footer div {
     color: #ffffff;
     font-size: x-large;
     background-color: #aab3b8;
+    box-shadow: 4px 5px 12px #3e3d3d;
     cursor: pointer;
     border-radius: 30% 70% 70% 30% / 39% 29% 71% 61% ;
     -webkit-border-radius:30% 70% 70% 30% / 39% 29% 71% 61% ;
@@ -29,7 +30,9 @@ footer div {
     -moz-transition: .5s;
     
 }
-
+footer div i {
+    text-shadow: 3px 4px 12px #3e3d3d;
+}
 footer:hover div {
     scale: .8;
     filter: blur(5px);

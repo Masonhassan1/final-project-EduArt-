@@ -403,6 +403,7 @@ main {
     left: 92.2%;
     color: white;
     background-color: #38a0d5;
+    box-shadow: 4px 5px 12px #2982ae;
     cursor: pointer;
     border-radius: 50%;
     -webkit-border-radius: 50%;
