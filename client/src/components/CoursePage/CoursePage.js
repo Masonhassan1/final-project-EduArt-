@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
+
 import axiosConfig from "../../util/axiosConfig";
-import "./CoursePage.css";
 import { MyContext } from "../../App";
 import baseURL from "../../util/constants";
 import { decodeToken } from "react-jwt";
 
+import "./CoursePage.css";
+
 export const addCourseOnDashborad = async (courseId) => {
-  console.log(courseId);
   try {
     const jwt = localStorage.getItem("jwt");
     const decodedToken = decodeToken(jwt);
@@ -126,7 +128,9 @@ export default function CoursePage({ isAuth }) {
               </p>
 
               <div className="buy-btn-wrapper" onClick={() => bookCourse()}>
-                <p>book now</p>
+                <p>
+                  <FormattedMessage id="book_now" defaultMessage="book now" />
+                </p>
                 <div className="buy-btn-icon">
                   <svg
                     width="35"
@@ -143,7 +147,14 @@ export default function CoursePage({ isAuth }) {
                 </div>
               </div>
               <p className="courseMes">
-                {courseMes ? "The course was booked successfully." : ""}
+                {courseMes ? (
+                  <FormattedMessage
+                    id="the_course_was_booked"
+                    defaultMessage="The course was booked successfully."
+                  />
+                ) : (
+                  ""
+                )}
               </p>
             </div>
             <div className="coursePagePicture">
@@ -157,7 +168,12 @@ export default function CoursePage({ isAuth }) {
             <div className="courseDetailsItem">
               <div className="courseDetailsIcon"></div>
               <div className="courseDetailsDescr">
-                <p className="courseDetailsTitle">01 | Start date</p>
+                <p className="courseDetailsTitle">
+                  <FormattedMessage
+                    id="start_date"
+                    defaultMessage="01 | Start date"
+                  />
+                </p>
                 <p className="courseDetailsText">{courseStart}</p>
               </div>
             </div>
@@ -165,9 +181,14 @@ export default function CoursePage({ isAuth }) {
             <div className="courseDetailsItem">
               <div className="courseDetailsIcon"></div>
               <div className="courseDetailsDescr">
-                <p className="courseDetailsTitle">02 | Costs</p>
+                <p className="courseDetailsTitle">
+                  <FormattedMessage id="costs" defaultMessage="02 | Costs" />
+                </p>
                 <p className="courseDetailsText">
-                  An education voucher can be used for this course.
+                  <FormattedMessage
+                    id="an_education_voucher"
+                    defaultMessage="An education voucher can be used for this course."
+                  />
                 </p>
               </div>
             </div>
@@ -175,9 +196,17 @@ export default function CoursePage({ isAuth }) {
             <div className="courseDetailsItem">
               <div className="courseDetailsIcon"></div>
               <div className="courseDetailsDescr">
-                <p className="courseDetailsTitle">03 | Requirements</p>
+                <p className="courseDetailsTitle">
+                  <FormattedMessage
+                    id="requirements"
+                    defaultMessage="03 | Requirements"
+                  />
+                </p>
                 <p className="courseDetailsText">
-                  No coding experience required.
+                  <FormattedMessage
+                    id="no_coding_experience"
+                    defaultMessage="No coding experience required."
+                  />
                 </p>
               </div>
             </div>
@@ -185,7 +214,12 @@ export default function CoursePage({ isAuth }) {
             <div className="courseDetailsItem">
               <div className="courseDetailsIcon"></div>
               <div className="courseDetailsDescr">
-                <p className="courseDetailsTitle">04 | Duration</p>
+                <p className="courseDetailsTitle">
+                  <FormattedMessage
+                    id="duration"
+                    defaultMessage="04 | Duration"
+                  />
+                </p>
                 <p className="courseDetailsText">
                   {`${
                     courseInfo && courseInfo.modulesIncluded
@@ -193,7 +227,8 @@ export default function CoursePage({ isAuth }) {
                           .map((mod) => mod.noOfDays)
                           .reduce((acc, cur) => acc + cur, 0)
                       : 0
-                  } days`}
+                  } `}
+                  <FormattedMessage id="days" defaultMessage="days" />
                 </p>
               </div>
             </div>
@@ -201,9 +236,14 @@ export default function CoursePage({ isAuth }) {
             <div className="courseDetailsItem">
               <div className="courseDetailsIcon"></div>
               <div className="courseDetailsDescr">
-                <p className="courseDetailsTitle">05 | Place</p>
+                <p className="courseDetailsTitle">
+                  <FormattedMessage id="place" defaultMessage="05 | Place" />
+                </p>
                 <p className="courseDetailsText">
-                  Throughout Germany - courses take place online
+                  <FormattedMessage
+                    id="throughout_Germany"
+                    defaultMessage="Throughout Germany - courses take place online"
+                  />
                 </p>
               </div>
             </div>
@@ -211,7 +251,12 @@ export default function CoursePage({ isAuth }) {
             <div className="courseDetailsItem">
               <div className="courseDetailsIcon"></div>
               <div className="courseDetailsDescr">
-                <p className="courseDetailsTitle">06 | Language</p>
+                <p className="courseDetailsTitle">
+                  <FormattedMessage
+                    id="language"
+                    defaultMessage="06 | Language"
+                  />
+                </p>
                 <p className="courseDetailsText">{courseInfo.language}</p>
               </div>
             </div>
