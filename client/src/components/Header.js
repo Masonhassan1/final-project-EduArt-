@@ -28,24 +28,25 @@ useEffect(()=>{
   document.querySelector("#user-profile-list").setAttribute("class","hide-user-profile-list")
 },[])
 
-
+const color = localStorage.getItem("color")
   return (
-  <div className='header'>
+  <div className='header' >
    
     <div className="logo" onClick={()=>navigate("/")}><img className='img front' src={require ("../Images/logo.png")} alt=""/>
    
     </div>
-    <div className='navy'>
+    <div className='navy' >
       <i className="fa-solid fa-user" id="user-profile" onClick={isAuth? shwoUserProHandler:hideUserProHandler}>
-        <ul id="user-profile-list" className={showUserPro?"user-pro-ul":"hide-userPro-ul"} >
-          <li>My class</li>
+        <ul id="user-profile-list" className={showUserPro?"user-pro-ul":"hide-userPro-ul"}>
+          
+          <li >My class</li>
           <li>Learning desk</li>
           <li onClick={()=>navigate("/userprofile")}>My profile</li> 
         </ul>
       </i> 
       <NavLink className="nav-link" to="/">
 
-    <div className="navy-home">Home</div>
+    <div className="navy-home" >Home</div>
       </NavLink>
       <NavLink className="nav-link" to="/courselist">
 

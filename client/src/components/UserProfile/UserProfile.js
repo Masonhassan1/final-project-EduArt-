@@ -1,19 +1,20 @@
 import React,{useState,useEffect,useRef} from 'react'
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import "./UserProfile.css"
 
-function UserProfile({userProfileData,isLoading,setError,error,userDateOfBirth}) {
+function UserProfile({userProfileData,isAuth,isLoading,setError,error,userDateOfBirth}) {
   const [edit,setEdit]=useState(false)
   const [profileLoading,setProfileLoading] = useState(false)
   const [isError,setIsError]=useState(false)
   const [proColor,setProColor]= useState("")
-  
+  const navigate = useNavigate()
   
   
 
   function editHandler (){
     document.querySelector(".user-edit-btn").removeAttribute("id","edit-btn-id")
-    setEdit(!edit)
+    setEdit(!edit && isAuth)
   }
   useEffect(()=>{
     document.querySelector(".user-gender").focus()
@@ -65,15 +66,16 @@ function UserProfile({userProfileData,isLoading,setError,error,userDateOfBirth})
       await axios.patch(`http://localhost:4000/user/${localStorage.getItem("userId")}`,updatedUserData)
       
       setProfileLoading(false)
-      window.location.reload()
-      
+       window.location.reload()  
+       
+   
     } catch (error) {
       setProfileLoading(false)
       setIsError(true)
     } 
   }
   }
-        
+     
 
   return (
 

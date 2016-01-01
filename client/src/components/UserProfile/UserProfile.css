@@ -66,8 +66,13 @@
     grid-template-columns: repeat(15,calc(100%/15));
     grid-template-rows: repeat(15,calc(100%/15));
     background-color: rgb(234, 236, 237);
-    caret-color: rgb(0, 0, 255);
+    caret-color: #0000ff;
+    color: #023c3d;
    
+}
+
+.personal-data > input {
+    color: #023c3d;
 }
 .personal-data >div , button , input{
     display: flex;
@@ -235,7 +240,7 @@
 }
 
 ::placeholder{
-    color: #87bede;
+    color: #69a3c5;
     font-size: 20px;
     padding-left: 10px;
 }
