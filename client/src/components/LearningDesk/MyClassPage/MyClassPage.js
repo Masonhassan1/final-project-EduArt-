@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import { FormattedMessage, useIntl } from "react-intl";
+import { Image } from "cloudinary-react";
 
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 import { MyContext } from "../../../App";
@@ -46,9 +46,7 @@ export default function MyClassPage() {
 
   const [courseArrInfo, setCourseArrInfo] = useState([]);
   const [currentCourse, setCurrentCourse] = useState(null);
-  // const [currentModulesDate, setCurrentModulesDate] = useState([]);
-  // const [currentModuleName, setCurrentModuleName] = useState(null);
-  // const [currentLernDay, setCurrentLernDay] = useState(0);
+  const [myClassmates, setMyClassmates] = useState([]);
 
   const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -59,6 +57,31 @@ export default function MyClassPage() {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const getMyClass = async (currentCourse) => {
+    try {
+      setLoading(true);
+      const apiData = await axiosConfig.get(`/user`);
+      const users = apiData.data;
+      console.log("users", users);
+      console.log("currentCourse", currentCourse.courseId._id);
+      if (users.length > 0) {
+        const myClassmates = users.filter((user) =>
+          user.myLearningDesk.coursesBooked
+            .map((course) => course.courseId)
+            .includes(currentCourse.courseId._id)
+        );
+        console.log("myClassmates", myClassmates);
+        setMyClassmates(myClassmates);
+      }
+
+      setLoading(false);
+      setHasError(false);
+    } catch (error) {
+      setLoading(false);
+      setHasError(true);
+    }
   };
 
   const getBookedCourses = async () => {
@@ -72,6 +95,7 @@ export default function MyClassPage() {
       setCourseArrInfo(courseArr);
       if (courseArr.length > 0) {
         setCurrentCourse(courseArr[0]);
+        await getMyClass(courseArr[0]);
       }
 
       setLoading(false);
@@ -81,83 +105,6 @@ export default function MyClassPage() {
       setHasError(true);
     }
   };
-
-  // useEffect(() => {
-  //   if (currentCourse && currentCourse.courseId.modulesIncluded.length > 0) {
-  //     let startDate;
-  //     let modEndDate;
-  //     startDate = moment(currentCourse.courseId.dateOfStart);
-  //     currentCourse.courseId.modulesIncluded.map((mod) => {
-  //       startDate = modEndDate ? moment(modEndDate) : startDate;
-  //       const endDate = business.addWeekDays(startDate, mod.noOfDays - 1);
-  //       const modStartDate = modEndDate
-  //         ? business.addWeekDays(moment(modEndDate), 1)._d
-  //         : startDate._i;
-  //       modEndDate = endDate._d;
-  //       currentModulesDate.push({
-  //         name: mod.name,
-  //         start: modStartDate,
-  //         end: modEndDate,
-  //         duration: mod.noOfDays,
-  //       });
-  //       setCurrentModulesDate(currentModulesDate);
-
-  //       startDate = business.addWeekDays(endDate, 1);
-  //     });
-  //   }
-  // }, [currentCourse]);
-
-  // const defineCurrentLernDay = () => {
-  //   if (currentCourse) {
-  //     const startDate = moment(currentCourse.courseId.dateOfStart);
-
-  //     const courseDuration = currentCourse.courseId.modulesIncluded
-  //       .map((val) => val.noOfDays)
-  //       .reduce((acc, cur) => acc + cur, 0);
-
-  //     for (let i = 0; i < courseDuration; i++) {
-  //       const temp = business.addWeekDays(moment(startDate), i)._d;
-  //       if (new Date().toDateString() === new Date(temp).toDateString()) {
-  //         setCurrentLernDay(i);
-  //         break;
-  //       }
-  //     }
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   setCurrentModuleName(null);
-  //   setCurrentLernDay(0);
-  //   if (currentCourse) {
-  //     const today = new Date();
-  //     if (today < new Date(currentModulesDate[0].start)) {
-  //       setCurrentModuleName(
-  //         <FormattedMessage
-  //           id="your_course_hasnt_started"
-  //           defaultMessage="your course hasn't started yet"
-  //         />
-  //       );
-  //     } else if (
-  //       today > new Date(currentModulesDate[currentModulesDate.length - 1].end)
-  //     ) {
-  //       setCurrentModuleName(
-  //         <FormattedMessage
-  //           id="your_course_has_already_finished"
-  //           defaultMessage="your course has already finished"
-  //         />
-  //       );
-  //     } else {
-  //       const modName = currentModulesDate.find(
-  //         (mod) => today >= new Date(mod.start) && today <= new Date(mod.end)
-  //       );
-
-  //       if (modName) {
-  //         setCurrentModuleName(modName.name);
-  //       }
-  //     }
-  //     defineCurrentLernDay();
-  //   }
-  // }, [currentCourse]);
 
   useEffect(() => {
     if (userProfileData.myLearningDesk) {
@@ -200,7 +147,7 @@ export default function MyClassPage() {
                       <Tab
                         onClick={() => {
                           setCurrentCourse(course);
-                          /*  setCurrentModulesDate([]); */
+                          getMyClass(course);
                         }}
                         label={course.courseId.courseName}
                         {...a11yProps(id)}
@@ -218,267 +165,49 @@ export default function MyClassPage() {
                     index={id}
                     key={id}
                   >
-                    {/*  <section className="modulesWrapper">
-                      <div className="modulesHeader">
-                        <p className="modulesHeaderTitle">
-                          <FormattedMessage
-                            id="course_modules"
-                            defaultMessage="Course modules"
-                          />
-                        </p>
-                        <p className="modulesChapters">
-                          {course.courseId.modulesIncluded.length}
-                          {` `}
-                          {course.courseId.modulesIncluded.length > 1 ? (
-                            <FormattedMessage
-                              id="chapters"
-                              defaultMessage="Chapters"
-                            />
-                          ) : (
-                            <FormattedMessage
-                              id="chapter"
-                              defaultMessage="Chapter"
-                            />
-                          )}
-                        </p>
-                      </div>
-                      {course.courseId.modulesIncluded.length > 0
-                        ? course.courseId.modulesIncluded.map((mod, index) => {
-                            return (
-                              <Box key={index} className="moduleWrapper">
-                                <Accordion>
-                                  <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header"
-                                  >
-                                    <div>
-                                      {" "}
-                                      <p>
-                                        {" "}
-                                        <FormattedMessage
-                                          id="m_name"
-                                          defaultMessage="Name: "
-                                        />{" "}
-                                        {mod.name}
-                                      </p>
-                                      <p>
-                                        <FormattedMessage
-                                          id="m_duration"
-                                          defaultMessage="Duration: "
-                                        />{" "}
-                                        {mod.noOfDays}{" "}
-                                        <FormattedMessage
-                                          id="days"
-                                          defaultMessage="days"
-                                        />
-                                      </p>
-                                      <p>
-                                        <a
-                                          href={mod.zoomLink}
-                                          target="_blank"
-                                          rel="noreferrer"
-                                        >
-                                          <FormattedMessage
-                                            id="zoom_link"
-                                            defaultMessage="Zoom Link"
-                                          />
-                                        </a>
-                                      </p>
-                                    </div>
-                                  </AccordionSummary>
-
-                                  <AccordionDetails>
-                                    <Accordion>
-                                      <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel1a-content"
-                                        id="panel1a-header"
-                                      >
-                                        <Typography>
-                                          <FormattedMessage
-                                            id="teachers"
-                                            defaultMessage="Teachers"
-                                          />
-                                        </Typography>
-                                      </AccordionSummary>
-                                      <AccordionDetails>
-                                        <Box>
-                                          {mod.teacher.map((person, id) => (
-                                            <p key={id}>
-                                              {`${person.firstName} ${person.lastName}`}
-                                            </p>
-                                          ))}
-                                        </Box>
-                                      </AccordionDetails>
-                                    </Accordion>
-                                    <Accordion>
-                                      <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel2a-content"
-                                        id="panel2a-header"
-                                      >
-                                        <Typography>
-                                          <FormattedMessage
-                                            id="tasks"
-                                            defaultMessage="Tasks"
-                                          />
-                                        </Typography>
-                                      </AccordionSummary>
-                                      <AccordionDetails>
-                                        <Box>
-                                          {mod.tasks.map((task, id) => {
-                                            return (
-                                              <p key={id}>
-                                                <a
-                                                  href={task.taskLink}
-                                                  target="_blank"
-                                                  rel="noreferrer"
-                                                >
-                                                  {task.taskName}
-                                                </a>
-                                              </p>
-                                            );
-                                          })}
-                                        </Box>
-                                      </AccordionDetails>
-                                    </Accordion>
-                                    <Accordion>
-                                      <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel3a-content"
-                                        id="panel3a-header"
-                                      >
-                                        <Typography>
-                                          <FormattedMessage
-                                            id="extra_materials"
-                                            defaultMessage="Extra materials"
-                                          />
-                                        </Typography>
-                                      </AccordionSummary>
-                                      <AccordionDetails>
-                                        <Box>
-                                          {mod.extraMaterial.map(
-                                            (topic, id) => {
-                                              return (
-                                                <p key={id}>
-                                                  <a
-                                                    href={topic.link}
-                                                    target="_blank"
-                                                    rel="noreferrer"
-                                                  >
-                                                    {topic.description}
-                                                  </a>
-                                                </p>
-                                              );
-                                            }
-                                          )}
-                                        </Box>
-                                      </AccordionDetails>
-                                    </Accordion>
-                                  </AccordionDetails>
-                                </Accordion>
-                              </Box>
-                            );
-                          })
-                        : ""}
+                    <section
+                      /*  className="modulesWrapper" */
+                      style={{ padding: "1rem", alignItems: "flex-start" }}
+                    >
+                      {myClassmates.map((person, index) => {
+                        return (
+                          <div
+                            key={index}
+                            style={{
+                              display: "flex",
+                              width: "300px",
+                              border: "1px solid #DEEFF4",
+                              justifyContent: "space-around",
+                              padding: "1rem",
+                              borderRadius: "10px",
+                              marginBottom: "1rem",
+                              backgroundColor: "#ffffff",
+                              color: "#3e80c1",
+                            }}
+                          >
+                            {" "}
+                            {person.userImage ? (
+                              <Image
+                                className="classmate-avatar"
+                                cloudName="dqukw0qgs"
+                                publicId={person.userImage}
+                              />
+                            ) : (
+                              <i
+                                className="fa-solid fa-user classmate-avatar"
+                                style={{
+                                  fontSize: "46px",
+                                  textAlign: "center",
+                                  color: "#3e9db9",
+                                }}
+                              ></i>
+                            )}
+                            <p>{person.firstName}</p>
+                            <p>{person.lastName}</p>
+                          </div>
+                        );
+                      })}
                     </section>
-                    <section className="courseDetails">
-                      <div>
-                        <p>
-                          <FormattedMessage
-                            id="course_start_date"
-                            defaultMessage="Course Start Date: "
-                          />
-                          {course.courseId.dateOfStart
-                            .substring(0, 10)
-                            .split("-")
-                            .reverse()
-                            .join(".")}
-                        </p>
-                        <p>
-                          <FormattedMessage
-                            id="today_is"
-                            defaultMessage="Today is: "
-                          />
-                          {new Date()
-                            .toJSON()
-                            .substring(0, 10)
-                            .split("-")
-                            .reverse()
-                            .join(".")}
-                        </p>
-                        <p>
-                          <FormattedMessage
-                            id="current_module"
-                            defaultMessage="Current module: "
-                          />
-                          {currentModuleName}
-                        </p>
-                      </div>
-                      {course.courseId.modulesIncluded.length > 0 ? (
-                        <ReactSpeedometer
-                          width={400}
-                          ringWith={40}
-                          paddingHorizontal={17}
-                          paddingVertical={17}
-                          needleTransitionDuration={3333}
-                          needleTransition="easeElastic"
-                          maxValue={course.courseId.modulesIncluded
-                            .map((val) => val.noOfDays)
-                            .reduce((acc, cur) => acc + cur, 0)}
-                          value={currentLernDay}
-                          needleColor="red"
-                          startColor="#9399ff"
-                          endColor="#00bbf0"
-                          // segments={course.courseId.modulesIncluded.length}
-                          currentValueText={`${currentLernDay} ${
-                            currentLernDay > 1
-                              ? intl.formatMessage({
-                                  defaultMessage: "days",
-                                  id: "days",
-                                })
-                              : intl.formatMessage({
-                                  defaultMessage: "day",
-                                  id: "day",
-                                })
-                          } 
-                            ${intl.formatMessage({
-                              defaultMessage: "of",
-                              id: "of",
-                            })}
-                           ${course.courseId.modulesIncluded
-                             .map((val) => val.noOfDays)
-                             .reduce((acc, cur) => acc + cur, 0)}`}
-                          customSegmentStops={course.courseId.modulesIncluded
-                            .map((mod, id) => {
-                              const newArr =
-                                course.courseId.modulesIncluded.slice(
-                                  0,
-                                  id + 1
-                                );
-                              const newVal = newArr
-                                .map((val) => val.noOfDays)
-                                .reduce((acc, cur) => acc + cur, 0);
-
-                              return id === 0 ? [0, newVal] : newVal;
-                            })
-                            .flat(1)}
-                          customSegmentLabels={course.courseId.modulesIncluded.map(
-                            (mod) => {
-                              return {
-                                text: `${mod.name}`,
-                                position: "OUTSIDE",
-                                // color: "#5382a1",
-                                fontSize: "14px",
-                              };
-                            }
-                          )}
-                        />
-                      ) : (
-                        ""
-                      )}
-                    </section> */}
                   </TabPanel>
                 );
               })}
