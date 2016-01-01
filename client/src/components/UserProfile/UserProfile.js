@@ -54,6 +54,7 @@ function UserProfile({
   }
   const proStyle = { color: proColor };
   const proBStyle = { backgroundColor: proColor };
+  const userNameEl= useRef(null)
   const genderEl = useRef(null);
   const dateOfBirthEl = useRef(null);
   const originEl = useRef(null);
@@ -66,6 +67,7 @@ function UserProfile({
       setIsError(false);
 
       const updatedUserData = {
+        userName:userNameEl.current.value || userProfileData.userName,
         gender: genderEl.current.value || userProfileData.gender,
         dateOfBirth: dateOfBirthEl.current.value || userProfileData.dateOfBirth,
         origin: originEl.current.value || userProfileData.origin,
@@ -116,10 +118,10 @@ function UserProfile({
           ></i>
           <div>Certificate</div>
         </div>
-        <div className="user-setting">
+       {/*  <div className="user-setting">
           <i className="fa-solid fa-gear"></i>
           <div>setting</div>
-        </div>
+        </div> */}
       </section>
       <section className="personal-data">
         <div id="user-bc" style={proBStyle}></div>
@@ -195,6 +197,7 @@ function UserProfile({
 
         {edit ? (
           <>
+           <input className="user-name font user-profile-input" ref={userNameEl} type="text" placeholder={userProfileData.userName || "User name"}/>
             <input
               className="user-gender font user-profile-input"
               ref={genderEl}
@@ -222,6 +225,7 @@ function UserProfile({
           </>
         ) : (
           <>
+          <div className="user-name font">{userProfileData.userName}</div>
             <div className="user-gender font" onClick={noticeHandler}>
               {userProfileData.gender || (
                 <p className="not-entered">not entered</p>
