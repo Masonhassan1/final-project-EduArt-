@@ -12,16 +12,13 @@ function Home({ headerAlarm }) {
       <main>
         <section className="info">
           <p className="paragraph-one">
-            Choose an online course that will move you forward{" "}
+            <FormattedMessage id="home_title" />
           </p>
           <p className="paragraph-two">
-            {" "}
-            We are a leader in the field of online education and we are trusted
-            by more than 70,000 users from companies, schools and state
-            institutions.
+            <FormattedMessage id="home_text" />
           </p>
           <button className="home-btn" onClick={() => navigate("/courselist")}>
-            view online courses
+            <FormattedMessage id="home_button" />
           </button>
         </section>
         <section className="home-img">

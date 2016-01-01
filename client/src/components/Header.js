@@ -116,13 +116,13 @@ function Header({
               className="user-pro-color"
               onClick={() => navigate("/mylearningdesk")}
             >
-              Learning desk
+              <FormattedMessage id="learning_desk" />
             </li>
             <li
               className="user-pro-color"
               onClick={() => navigate("/userprofile")}
             >
-              My profile
+              <FormattedMessage id="my_profile" />
             </li>
           </ul>
         </i>
