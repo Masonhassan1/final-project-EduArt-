@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./CourseList.css";
 import { GoSearch } from "react-icons/go";
-import axios from "axios";
+import axiosConfig from "../../util/axiosConfig";
 
 export default function CourseList() {
   const [courseArr, setCourseArr] = useState([]);
@@ -17,7 +17,7 @@ export default function CourseList() {
   const getAllCourses = async (url) => {
     try {
       setLoading(true);
-      const apiData = await axios.get(url);
+      const apiData = await axiosConfig.get(url);
       console.log(apiData.data);
       setCourseArr(apiData.data);
       setSlidesCount(apiData.data.length);
@@ -30,14 +30,12 @@ export default function CourseList() {
   };
 
   useEffect(() => {
-    getAllCourses("http://localhost:4000/courses");
+    getAllCourses("/courses");
   }, []);
 
   const submitForm = (e) => {
     e.preventDefault();
-    getAllCourses(
-      `http://localhost:4000/courses?name=${searchInputRef.current.value}`
-    );
+    getAllCourses(`/courses?name=${searchInputRef.current.value}`);
   };
   function changeSlide(direction) {
     console.log(direction);

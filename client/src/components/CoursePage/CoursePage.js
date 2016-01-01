@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import axiosConfig from "../../util/axiosConfig";
 import "./CoursePage.css";
 
-export default function CoursePage(/* { isAuth } */) {
+export default function CoursePage({ isAuth }) {
   const { courseid } = useParams();
   const [courseInfo, setCourseInfo] = useState([]);
   const [courseStart, setCourseStart] = useState("");
   const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const isAuth = false;
+
   const navigate = useNavigate();
 
   const bookCourse = async () => {
@@ -17,35 +17,38 @@ export default function CoursePage(/* { isAuth } */) {
     // true:
     if (isAuth) {
       // id params -(learningDeskId)
-      // course_id
+      // body course_id
       try {
         setLoading(true);
-        const userId = "636cc3252ba45215569241e4";
-        const url = "http://localhost:4000/user";
-        const jwt =
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlTWFpbCI6Im94YW5hQGRhbmlsb3ZhLmNvbSIsInVzZXJJZCI6IjYzNmNjMzI1MmJhNDUyMTU1NjkyNDFlNCIsImlhdCI6MTY2ODA3MjU0NCwiZXhwIjoxNjY4MTU4OTQ0fQ.6RTE5nMlD7NzqT1_YKKE334qISY2f6NFCyEMT5rUFM0"; /*localStorage.getItem("jwt")*/
-        const userData = await axios.get(`${url}/${userId}`, {
-          headers: {
-            authorization: `Bearer ${jwt}`,
-          },
-        });
-        const learningDeskId = userData.data.myLearningDesk._id;
-        console.log("learningDeskId", learningDeskId);
-        if (learningDeskId) {
-          const lDeskData = await axios.patch(
-            `http://localhost:4000/mylearningdesk/${learningDeskId}`,
-            { courseId: courseid },
-            {
-              headers: {
-                authorization: `Bearer ${jwt}`,
-              },
-            }
-          );
-          console.log("lDeskData", lDeskData);
+        const userId = localStorage.getItem("userId");
+        const url = "/user";
+        const jwt = localStorage.getItem("jwt");
+        if (userId && jwt) {
+          const userData = await axiosConfig.get(`${url}/${userId}`, {
+            headers: {
+              authorization: `Bearer ${jwt}`,
+            },
+          });
+          const learningDeskId = userData.data.myLearningDesk._id;
+          console.log("learningDeskId", learningDeskId);
+          if (learningDeskId) {
+            const lDeskData = await axiosConfig.patch(
+              `/mylearningdesk/${learningDeskId}`,
+              { courseId: courseid },
+              {
+                headers: {
+                  authorization: `Bearer ${jwt}`,
+                },
+              }
+            );
+            console.log("lDeskData", lDeskData);
+            //navigate('/dashboard');
+            navigate("/"); // TODO dashboard
+          }
+          setLoading(false);
+          setHasError(false);
+          console.log("book new course");
         }
-        setLoading(false);
-        setHasError(false);
-        console.log("book new course");
       } catch (error) {
         setLoading(false);
         setHasError(true);
@@ -59,7 +62,7 @@ export default function CoursePage(/* { isAuth } */) {
   const getInfo = async (url) => {
     try {
       setLoading(true);
-      const apiData = await axios.get(`${url}/${courseid}`);
+      const apiData = await axiosConfig.get(`${url}/${courseid}`);
       setCourseInfo(apiData.data);
       const calcDate = new Date(apiData.data.dateOfStart);
       const day = calcDate.getUTCDate();
@@ -78,7 +81,7 @@ export default function CoursePage(/* { isAuth } */) {
   };
 
   useEffect(() => {
-    getInfo("http://localhost:4000/courses");
+    getInfo("/courses");
   }, []);
   return (
     <div className="coursePageWrapper-body">
