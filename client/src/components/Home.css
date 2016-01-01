@@ -320,6 +320,7 @@ button:hover{
 .vsc-app-icons i {
     transition: .5s;
     margin-top: 20%;
+    cursor: pointer;
     -webkit-transition: .5s;
     -moz-transition: .5s;
     -ms-transition: .5s;
