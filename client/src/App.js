@@ -1,11 +1,25 @@
-import './App.css';
+import {
+  BrowserRouter as Router,
+  NavLink,
+  Routes,
+  Route,
+} from "react-router-dom";
+import "./App.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button} from "react-bootstrap"
+import Header from './components/Header';
+
+
+
 function App() {
   return (
     <div className="App">
-      <h1>React App Template</h1>
-      <Button variant="success">Success</Button>
+     
+      <Header/>
+     <Router>
+      <Routes>
+
+      </Routes>
+     </Router>
     </div>
   );
 }
