@@ -1,19 +1,59 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./CoursePage.css";
 
-export default function CoursePage() {
+export default function CoursePage(/* { isAuth } */) {
   const { courseid } = useParams();
   const [courseInfo, setCourseInfo] = useState([]);
   const [courseStart, setCourseStart] = useState("");
   const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const isAuth = false;
+  const navigate = useNavigate();
 
-  const bookCourse = () => {
+  const bookCourse = async () => {
     /// check ob user eingelogged ist
     // true:
-    console.log("book course");
+    if (isAuth) {
+      // id params -(learningDeskId)
+      // course_id
+      try {
+        setLoading(true);
+        const userId = "636cc3252ba45215569241e4";
+        const url = "http://localhost:4000/user";
+        const jwt =
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlTWFpbCI6Im94YW5hQGRhbmlsb3ZhLmNvbSIsInVzZXJJZCI6IjYzNmNjMzI1MmJhNDUyMTU1NjkyNDFlNCIsImlhdCI6MTY2ODA3MjU0NCwiZXhwIjoxNjY4MTU4OTQ0fQ.6RTE5nMlD7NzqT1_YKKE334qISY2f6NFCyEMT5rUFM0"; /*localStorage.getItem("jwt")*/
+        const userData = await axios.get(`${url}/${userId}`, {
+          headers: {
+            authorization: `Bearer ${jwt}`,
+          },
+        });
+        const learningDeskId = userData.data.myLearningDesk._id;
+        console.log("learningDeskId", learningDeskId);
+        if (learningDeskId) {
+          const lDeskData = await axios.patch(
+            `http://localhost:4000/mylearningdesk/${learningDeskId}`,
+            { courseId: courseid },
+            {
+              headers: {
+                authorization: `Bearer ${jwt}`,
+              },
+            }
+          );
+          console.log("lDeskData", lDeskData);
+        }
+        setLoading(false);
+        setHasError(false);
+        console.log("book new course");
+      } catch (error) {
+        setLoading(false);
+        setHasError(true);
+      }
+    } else {
+      // to do save courseId????
+      navigate("/login");
+    }
   };
 
   const getInfo = async (url) => {
@@ -74,11 +114,8 @@ export default function CoursePage() {
               <p className="coursePageTextCard">
                 {courseInfo.courseDescription}
               </p>
-            </div>
-            <div className="coursePagePicture">
-              <img src={courseInfo.courseImage} alt={courseInfo.courseName} />
               <div className="buy-btn-wrapper" onClick={() => bookCourse()}>
-                <p>Book the course</p>
+                <p>book now</p>
                 <div className="buy-btn-icon">
                   <svg
                     width="35"
@@ -94,6 +131,9 @@ export default function CoursePage() {
                   </svg>
                 </div>
               </div>
+            </div>
+            <div className="coursePagePicture">
+              <img src={courseInfo.courseImage} alt={courseInfo.courseName} />
             </div>
           </div>
           <div className="coursePageBottomWrapper">

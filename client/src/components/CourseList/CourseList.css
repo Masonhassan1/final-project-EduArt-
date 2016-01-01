@@ -1,13 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Jura:wght@600&display=swap");
 
 .course-list-page {
-  background: rgba(250, 214, 185, 0.835);
+  /* background: rgba(250, 214, 185, 0.835); */
   background: linear-gradient(
     180deg,
     rgba(254, 254, 254, 1) 10%,
-    rgba(210, 185, 250, 0.835) 70%
+    /* rgba(210, 185, 250, 0.835) 70% */ #d7ebf1 100%
   );
   min-height: 85vh;
+  background: linear-gradient(180deg, #ffffff 0%, #d7ebf1 100%);
 }
 .courseListTitle {
   width: 700px;

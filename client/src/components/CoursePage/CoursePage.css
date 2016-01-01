@@ -3,12 +3,13 @@
 .coursePageWrapper-body {
   padding-top: 2rem;
   min-height: 85vh;
-  background: rgba(250, 214, 185, 0.835);
+  /*   background: rgba(250, 214, 185, 0.835);
   background: linear-gradient(
     180deg,
     rgba(254, 254, 254, 1) 10%,
     rgba(251, 230, 253, 0.835) 70%
-  );
+  ); */
+  background: linear-gradient(180deg, #ffffff 0%, #d7ebf1 100%);
   box-sizing: border-box;
 }
 
@@ -24,7 +25,7 @@
 
 .coursePageCard {
   width: 680px;
-  height: 400px;
+  height: 420px;
 
   /*   border-radius: 1rem;
     justify-self: center;
@@ -35,11 +36,12 @@
 
 .coursePageCard > .cardPageHeader {
   display: flex;
+  height: 9rem;
 }
 
 .coursePageCard .cardPageIcon {
-  width: 150px;
-  height: 150px;
+  width: 9rem;
+  height: 9rem;
   object-fit: cover;
   object-position: center;
   background: #ffffff;
@@ -53,11 +55,11 @@
 
 .coursePageNameCard {
   margin-top: 0;
+  margin-bottom: 1rem;
   font-family: "Jura";
   font-style: normal;
   font-weight: 700;
-  font-size: 48px;
-  line-height: 57px;
+  font-size: 44px;
   color: #000000;
 }
 
@@ -65,29 +67,29 @@
   font-family: "Jura";
   font-style: normal;
   font-weight: 500;
-  font-size: 36px;
-  line-height: 43px;
+  font-size: 32px;
   color: #000000;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .coursePageTextCard {
   text-align: justify;
-  margin: 3rem auto 2rem auto;
+  margin: 2rem auto 2rem auto;
   width: 660px;
-  height: 170px;
+  height: 150px;
   font-family: "Jura";
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
   line-height: 28px;
   color: rgba(0, 0, 0, 0.57);
+  overflow-y: auto;
 }
 
 .coursePagePicture {
   margin-left: 1.5rem;
-  width: 436px;
-  height: 389px;
+  width: 430px;
+  height: 380px;
   border: 20px solid #afccd5;
   border-radius: 5px;
   object-fit: cover;
@@ -106,16 +108,15 @@
 .buy-btn-wrapper {
   width: 22rem;
   height: 4rem;
-  background: rgba(215, 235, 241, 0.69);
+  /* background: #5382a1; */
+  background: #bfe0eb;
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
-  top: calc(60% - 2rem);
-  left: calc(50% - 11rem);
   box-sizing: border-box;
   cursor: pointer;
+  margin: 1rem auto;
 }
 
 .buy-btn-wrapper:hover {
@@ -126,13 +127,15 @@
 }
 
 .buy-btn-wrapper > p {
-  margin-left: 1rem;
   font-family: "Jura";
   font-style: normal;
   font-weight: 700;
   font-size: 25px;
   line-height: 30px;
+  /*  color: #ffffff; */
   color: #5382a1;
+  width: 75%;
+  text-align: center;
 }
 
 .buy-btn-icon {
@@ -152,62 +155,67 @@
   justify-content: center;
   align-items: center;
   column-gap: 1.5rem;
+  margin-top: 1rem;
 }
 
 .courseDetailsItem {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 69px 1fr;
+  column-gap: 1.1rem;
 }
 
 .courseDetailsIcon {
   background-position: center;
   background-size: cover;
+  width: 69px;
+  height: 60px;
+  align-self: center;
 }
 
 .courseDetailsItem:nth-child(1) > .courseDetailsIcon {
   background-image: url("../../Images/Startup.png");
-  width: 93px;
-  height: 62px;
 }
 
 .courseDetailsItem:nth-child(2) > .courseDetailsIcon {
   background-image: url("../../Images/Wallet.png");
-  width: 70px;
-  height: 60px;
+  /*   width: 70px;
+  height: 60px; */
 }
 
 .courseDetailsItem:nth-child(3) > .courseDetailsIcon {
   background-image: url("../../Images/Book.png");
-  width: 66px;
-  height: 58px;
+  /*  width: 66px;
+  height: 58px; */
 }
 
 .courseDetailsItem:nth-child(4) > .courseDetailsIcon {
   background-image: url("../../Images/Time.png");
-  width: 76px;
-  height: 62px;
+  /*   width: 76px;
+  height: 62px; */
 }
 
 .courseDetailsItem:nth-child(5) > .courseDetailsIcon {
   background-image: url("../../Images/Location.png");
-  width: 71px;
-  height: 82px;
+  /*   width: 71px;
+  height: 82px; */
 }
 
 .courseDetailsItem:nth-child(6) > .courseDetailsIcon {
   background-image: url("../../Images/language.png");
-  width: 61px;
-  height: 52px;
+  /*   width: 61px;
+  height: 52px; */
 }
 
 .courseDetailsDescr {
-  margin-left: 1.1rem;
   font-family: "Jura";
   font-style: normal;
   font-weight: 700;
   font-size: 23px;
   line-height: 27px;
   color: #000000;
+  display: flex;
+  flex-direction: column;
+  height: 146px;
 }
 
 .courseDetailsText {
@@ -217,4 +225,14 @@
   font-size: 23px;
   line-height: 27px;
   color: #000000;
+}
+
+.courseDetailsTitle {
+  margin-bottom: 0;
+}
+
+.signin-mes {
+  text-align: center;
+  color: rgb(234, 46, 46);
+  font-size: 2rem;
 }
