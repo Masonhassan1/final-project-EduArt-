@@ -11,8 +11,6 @@ const languages = [
   { name: "English", code: LOCALES.ENGLISH },
   { name: "Deutsch", code: LOCALES.GERMAN },
   { name: "Русский", code: LOCALES.RUSSIAN },
-  { name: "عربي", code: LOCALES.ARABIC },
-  { name: "Slovenský", code: LOCALES.SLOVAK },
 ];
 
 function Header({
