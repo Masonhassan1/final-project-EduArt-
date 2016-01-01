@@ -57,7 +57,7 @@ function Register() {
   if(isRegistered){setTimeout(()=> navigate("/login"),3500)}
 
   function passwordHandler (){
-    setShowPassword(!showPassword)
+     if(passwordEl.current.value) setShowPassword(!showPassword)
   }
  
   return (

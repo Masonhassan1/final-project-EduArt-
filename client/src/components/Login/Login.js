@@ -46,7 +46,7 @@ function Login({handleSuccessfullLogin}) {
   }
 
   function passwordHandler (){
-    setShowPassword(!showPassword)
+    if(passwordEl.current.value)setShowPassword(!showPassword)
   }
   return (
     <div className='login'>
