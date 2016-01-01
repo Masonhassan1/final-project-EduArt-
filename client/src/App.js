@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { isExpired, decodeToken } from "react-jwt";
 import axios from "axios";
-import Jura from "./Fonts/Jura-Medium.ttf";
+
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -15,9 +15,10 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import AboutUs from "./components/AboutUs/AboutUs";
 import UserProfile from "./components/UserProfile/UserProfile";
-
 import LearningDesk from "./components/LearningDesk/LearningDesk";
+import AdminPanel from "./components/AdminPanel/AdminPanel";
 
+import Jura from "./Fonts/Jura-Medium.ttf";
 import "./App.css";
 
 const theme = createTheme({
@@ -44,12 +45,13 @@ export const MyContext = React.createContext(null);
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [learningDeskId, setLearningDeskId] = useState(null);
   const [userProfileData, setUserProfileData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [userName,setUserName]= useState("")
+  const [userName, setUserName] = useState("");
   const [gender, setGender] = useState("");
   const [userDateOfBirth, setUserDateOfBirth] = useState("");
 
@@ -75,8 +77,9 @@ function App() {
   const logout = () => {
     localStorage.clear();
     setIsAuth(false);
+    setIsAdmin(false);
+    setUserName("");
   };
-
 
   useEffect(() => {
     if (isAuth) {
@@ -88,23 +91,27 @@ function App() {
             `http://localhost:4000/user/${localStorage.getItem("userId")}`
           );
           setUserProfileData(userDetails.data);
+          console.log("user data", userDetails.data);
+          if (userDetails.data && userDetails.data.accessRights.includes(5)) {
+            setIsAdmin(true);
+          }
           setLearningDeskId(userDetails.data.myLearningDesk._id);
           setIsLoading(false);
           localStorage.setItem("color", userDetails.data.profileColour);
-          localStorage.setItem("imgId",userDetails.data.userImage || "") 
-          if(userDetails.data.userName){
-            setUserName(userDetails.data.userName)
+          localStorage.setItem("imgId", userDetails.data.userImage || "");
+          if (userDetails.data.userName) {
+            setUserName(userDetails.data.userName);
           }
-          if(userDetails.data.dateOfBirth){
-            setUserDateOfBirth((userDetails.data.dateOfBirth).slice(0,10))
-            } else{
-              return
+          if (userDetails.data.dateOfBirth) {
+            setUserDateOfBirth(userDetails.data.dateOfBirth.slice(0, 10));
+          } else {
+            return;
           }
-          if(userDetails.data.gender){
-            setGender(userDetails.data.gender)                
-            } else{
-              return
-            }
+          if (userDetails.data.gender) {
+            setGender(userDetails.data.gender);
+          } else {
+            return;
+          }
         } catch (error) {
           setIsLoading(false);
           setError(true);
@@ -136,7 +143,13 @@ function App() {
       >
         <CssBaseline />
         <Router>
-          <Header isAuth={isAuth} logout={logout} userName={userName} setUserName={setUserName}/>
+          <Header
+            isAuth={isAuth}
+            logout={logout}
+            userName={userName}
+            setUserName={setUserName}
+            isAdmin={isAdmin}
+          />
 
           <Routes>
             <Route path={"/"} element={<Home />} />
@@ -146,6 +159,7 @@ function App() {
                 <Login
                   handelSuccessfullLogin={handelSuccessfullLogin}
                   isAuth={isAuth}
+                  isAdmin={isAdmin}
                   courseId={selectedCourse}
                 />
               }
@@ -162,7 +176,7 @@ function App() {
             />
 
             <Route path={"/about"} element={<AboutUs />} />
-
+            <Route path={"/adminpanel"} element={<AdminPanel />} />
             <Route path={"/register"} element={<Register />} />
             <Route
               path={"/userprofile"}

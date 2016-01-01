@@ -68,7 +68,6 @@ export default function LearningDeskPage() {
       const apiData = await axiosConfig.get(
         `/mylearningdesk/${userProfileData.myLearningDesk._id}`
       );
-      console.log("apiData.data.coursesBooked", apiData.data.coursesBooked);
       const courseArr = apiData.data.coursesBooked;
 
       setCourseArrInfo(courseArr);
@@ -153,7 +152,6 @@ export default function LearningDeskPage() {
 
   useEffect(() => {
     if (userProfileData.myLearningDesk) {
-      console.log("userProfile", userProfileData.myLearningDesk);
       getBookedCourses();
     }
   }, [userProfileData.myLearningDesk]);

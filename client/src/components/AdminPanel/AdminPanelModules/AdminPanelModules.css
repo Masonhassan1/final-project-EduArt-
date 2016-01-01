@@ -1,0 +1,17 @@
+.adminPanelModulesWrapper {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  align-items: flex-start;
+}
+
+.newModuleWrapper {
+  margin-top: 0;
+}
+
+.modulesPageTitle {
+  margin-left: 2.5rem;
+}
+
+.moduleWrapper {
+  position: relative;
+}

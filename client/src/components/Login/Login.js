@@ -5,7 +5,7 @@ import { MyContext } from "../../App";
 import axios from "axios";
 import "./Login.css";
 
-function Login({ handelSuccessfullLogin, isAuth }) {
+function Login({ handelSuccessfullLogin, isAuth, isAdmin }) {
   const contextContent = useContext(MyContext);
   const { selectedCourse, setSelectedCourse } = contextContent;
 
@@ -63,7 +63,11 @@ function Login({ handelSuccessfullLogin, isAuth }) {
     if (passwordEl.current.value) setShowPassword(!showPassword);
   }
   if (isAuth) {
-    setTimeout(() => navigate("/mylearningdesk"), 700);
+    if (isAdmin) {
+      setTimeout(() => navigate("/adminpanel"), 700);
+    } else {
+      setTimeout(() => navigate("/mylearningdesk"), 700);
+    }
   }
 
   return (
