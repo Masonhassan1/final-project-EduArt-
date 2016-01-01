@@ -29,6 +29,13 @@ function UserProfile({
   const userProfileColor = localStorage.getItem("color");
   useEffect(() => {
     document.querySelector(".gender-icon ").style.color = userProfileColor;
+    const navEl =  document.querySelectorAll(".user-pro-color")
+    navEl.forEach(el=> {
+    
+    el.addEventListener("mouseenter",()=>{el.style.color=userProfileColor})
+    el.addEventListener("mouseleave",()=>{el.style.color="#8b8b8b"})
+  
+  })
   }, [userProfileColor]);
 
   useEffect(() => {
@@ -100,18 +107,18 @@ function UserProfile({
       }
     >
       <section className="options-list">
-        <div className="user-my-profile">
+        <div className="user-my-profile user-pro-color">
           <i className="fa-solid fa-user" style={proStyle}></i>
           <div>My profile</div>
         </div>
-        <div className="user-purchase">
+        <div className="user-purchase user-pro-color">
           <i
             className="fa-solid fa-bag-shopping"
             style={{ color: "coral" }}
           ></i>
           <div>Purchase</div>
         </div>
-        <div className="user-certificate">
+        <div className="user-certificate user-pro-color">
           <i
             className="fa-solid fa-graduation-cap"
             style={{ color: "black" }}
