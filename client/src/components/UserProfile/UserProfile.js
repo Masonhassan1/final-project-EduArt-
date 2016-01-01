@@ -11,6 +11,7 @@ function UserProfile({userProfileData,isLoading,setError,error}) {
   
 
   function editHandler (){
+    document.querySelector(".user-edit-btn").removeAttribute("id","edit-btn-id")
     setEdit(!edit)
   }
   useEffect(()=>{
@@ -26,14 +27,16 @@ function UserProfile({userProfileData,isLoading,setError,error}) {
       if(edit && localStorage.getItem("color")){
        localStorage.setItem("color", e.target.id)
         setProColor(localStorage.getItem("color"))
-    
-     }  
+       
+     } else{
+      document.querySelector(".user-edit-btn").setAttribute("id","edit-btn-id")
+     } 
     }
 
   const proStyle = {color:proColor }
   const proBStyle = {backgroundColor:proColor }
   const genderEl = useRef(null)
-  const birthdayEl = useRef(null)
+  const dateOfBirthEl = useRef(null)
   const originEl = useRef(null)
   const telEl = useRef(null)
   
@@ -47,11 +50,11 @@ function UserProfile({userProfileData,isLoading,setError,error}) {
     setIsError(false)
 
     const updatedUserData ={
-      gender: genderEl.current.value,
-      dateOfBirth:birthdayEl.current.value,
-      origin:originEl.current.value, 
-      telephoneLandLine:telEl.current.value,
-      profileColour:localStorage.getItem("color")
+      gender: genderEl.current.value || userProfileData.gender,
+      dateOfBirth:dateOfBirthEl.current.value || userProfileData.dateOfBirth,
+      origin:originEl.current.value || userProfileData.origin, 
+      telephoneLandLine:telEl.current.value || userProfileData.telephoneLandLine,
+      profileColour:localStorage.getItem("color") || userProfileData.profileColour
      
 
     }
@@ -116,7 +119,7 @@ function UserProfile({userProfileData,isLoading,setError,error}) {
 
             {edit? <>
               <input className='user-gender font user-profile-input' ref={genderEl} type="text"  placeholder={userProfileData.gender || "Male / Female"}/>
-              <input className="user-birthday font user-profile-input" ref={birthdayEl} type="text" placeholder={userProfileData.dateOfBirth || "Date of birth"}/>
+              <input className="user-birthday font user-profile-input" ref={dateOfBirthEl} type="text" placeholder={userProfileData.dateOfBirth || "Date of birth"}/>
               <input className="user-location font user-profile-input" ref={originEl} type="text" placeholder={userProfileData.origin || "Origin"}/>
               <input className="user-tel font user-profile-input" ref={telEl} type="text" placeholder={userProfileData.telephoneLandLine || "Tel"}/>
   
@@ -131,6 +134,7 @@ function UserProfile({userProfileData,isLoading,setError,error}) {
         </section>
         {isLoading || profileLoading ? <div className='profile-loading'>loading...</div>:""}
         {error || isError? <div className='profile-error'>Sorry.. something went wrong,please try again</div>:""}
+        
     </div>
   )
 }

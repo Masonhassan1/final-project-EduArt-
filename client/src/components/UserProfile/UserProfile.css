@@ -233,8 +233,21 @@
     color: red;
     font-size: 25px;
 }
+
 ::placeholder{
     color: #87bede;
     font-size: 20px;
     padding-left: 10px;
+}
+#edit-btn-id{
+    animation: scale  1s alternate linear infinite;
+    -webkit-animation: scale  1s alternate linear infinite;
+}
+@keyframes scale {
+    from{
+        scale: 1.4;
+    }
+    to{
+        scale: 1;
+    }
 }
