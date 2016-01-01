@@ -25,6 +25,7 @@ function App() {
   const [userProfileData,setUserProfileData] = useState({})
   const [isLoading, setIsLoading] = useState(false); 
   const [error, setError] = useState(false); 
+  const [userDateOfBirht,setUserDateOfBirht] = useState("")
      
 
   const handelSuccessfullLogin = (logData) => {
@@ -58,6 +59,7 @@ function App() {
               setUserProfileData(userDetails.data)
               setIsLoading(false)
                 localStorage.setItem("color",userDetails.data.profileColour)
+                setUserDateOfBirht((userDetails.data.dateOfBirth).slice(0,10))
             }catch (error) {
               setIsLoading(false); 
               setError( true);
@@ -108,7 +110,7 @@ function App() {
           />
 
          <Route path={"/register"} element={<Register />} />
-          <Route path={"/userprofile"} element={<UserProfile userProfileData={userProfileData} isLoading={isLoading} error={error} setError={setError}  />} />
+          <Route path={"/userprofile"} element={<UserProfile userProfileData={userProfileData} isLoading={isLoading} error={error} setError={setError} userDateOfBirht={userDateOfBirht} />} />
         </Routes>
       </Router>
     </MyContext.Provider>
