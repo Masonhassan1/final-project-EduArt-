@@ -65,18 +65,19 @@ main {
     font-size: 1.2rem;
     font-weight: bold;
     background-color: #aab3b8;
-    transition: 1s;
+    transition: .3s;
     border-radius: 1.2rem;
     -webkit-border-radius: 1.2rem;
     -moz-border-radius: 1.2rem;
     rotate: x 90deg;
     animation: show-paragraph 0.6s 0.9s linear forwards;
     -webkit-animation: show-paragraph 0.6s 0.9s linear forwards;
-    -webkit-transition: 1s;
-    -moz-transition: 1s;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
     box-shadow: 4px 5px 12px #3e3d3d;
     text-shadow: 4px 5px 12px #3e3d3d;
-   
+    -ms-transition: .3s;
+    -o-transition: .3s;
 }
 .home-btn:hover {
     box-shadow: -2px -3px 8px #3e3d3d;
@@ -219,8 +220,8 @@ main {
     height: 20px;
     left: 58%;
     top: 66%;
-    animation: move-pointer 2s 2.8s forwards, tip 1s 4.8s;
-    -webkit-animation: move-pointer 2s 2.8s forwards, tip 1s 4.8s;
+    animation: move-pointer 1.8s 2.2s forwards, tip 1s 4.8s;
+    -webkit-animation: move-pointer 1.8s 2.2s forwards, tip 1s 4.8s;
 }
 .pointer img {
     width: 100%;
@@ -244,8 +245,8 @@ main {
     background-color: #202225;
     font-family: "Cascadia";
     opacity: 0;
-    animation: show 1s 7s linear forwards;
-    -webkit-animation: show 1s 7s linear forwards;
+    animation: show 1s 4.5s linear forwards;
+    -webkit-animation: show 1s 4.5s linear forwards;
 }
 .vsc-app-title {
     grid-column: -1/1;
@@ -332,28 +333,28 @@ main {
 }
 .cover-one {
     top: 20.7%;
-    animation: move-cover 3s 8.5s linear forwards;
-    -webkit-animation: move-cover 3s 8.5s linear forwards;
+    animation: move-cover 2s 5.8s linear forwards;
+    -webkit-animation: move-cover 2s 5.8s linear forwards;
 }
 .cover-two {
     top: 27%;
-    animation: move-cover 3s 11.5s linear forwards;
-    -webkit-animation: move-cover 3s 11.5s linear forwards;
+    animation: move-cover 2s 7.8s linear forwards;
+    -webkit-animation: move-cover 2s 7.8s linear forwards;
 }
 .cover-three {
     top: 34%;
-    animation: move-cover 2s 14.5s linear forwards;
-    -webkit-animation: move-cover 2s 14.5s linear forwards;
+    animation: move-cover 1s 9.8s linear forwards;
+    -webkit-animation: move-cover 1s 9.8s linear forwards;
 }
 .cover-four {
     top: 40%;
-    animation: move-cover 1s 15.7s linear forwards;
-    -webkit-animation: move-cover 1s 15.7s linear forwards;
+    animation: move-cover .3s 10.8s linear forwards;
+    -webkit-animation: move-cover .3s 10.8s linear forwards;
 }
 .cover-five {
     top: 47%;
-    animation: move-cover 3s 16.6s linear forwards;
-    -webkit-animation: move-cover 3s 16.6s linear forwards;
+    animation: move-cover 1s 11.1s linear forwards;
+    -webkit-animation: move-cover 1s 11.1s linear forwards;
 }
 @keyframes move-cover {
     to {
@@ -379,13 +380,13 @@ main {
 }
 .cover-six {
     top: 80%;
-    animation: move-cover 3.2s 20s linear forwards;
-    -webkit-animation: move-cover 3.2s 20s linear forwards;
+    animation: move-cover 1.2s 12.1s linear forwards;
+    -webkit-animation: move-cover 1.2s 12.1s linear forwards;
 }
 .result {
     opacity: 0;
-    animation: show 0.1s 21.9s forwards;
-    -webkit-animation: show 0.1s 21.9s forwards;
+    animation: show 0.1s 13.3s forwards;
+    -webkit-animation: show 0.1s 13.3s forwards;
 }
 @keyframes show {
     to {
