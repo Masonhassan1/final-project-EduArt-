@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import Box from "@mui/material/Box";
-import { Button } from "@mui/material";
+import { Button, Input } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import TranslateIcon from "@mui/icons-material/Translate";
@@ -65,6 +65,11 @@ export default function AdminPanelCourses() {
   const [showMessage, setShowMessage] = useState(false);
   const [messageText, setMessageText] = useState("");
 
+  const handleCourseImage = (img) => {
+    // const newImage = URL.createObjectURL(img);
+    console.log("image", img);
+  };
+
   const handleChange = (event) => {
     const {
       target: { value },
@@ -125,7 +130,29 @@ export default function AdminPanelCourses() {
     }
   };
 
-  const createCourse = async () => {
+  async function uploadImage(image) {
+    const jwt = localStorage.getItem("jwt");
+    const formData = new FormData();
+    formData.append("image", image);
+    // formData.append("title", "photo title");
+
+    await axiosConfig.post("/images", formData, {
+      headers: {
+        authorization: `Bearer ${jwt}`,
+      },
+    });
+  }
+
+  const createCourse = async (event) => {
+    event.preventDefault();
+    const jwt = localStorage.getItem("jwt");
+    const newCourseImage = event.target.elements.courseImage.files[0];
+    await uploadImage(newCourseImage);
+    const newCourseIcon = event.target.elements.courseIcon.files[0];
+    await uploadImage(newCourseIcon);
+
+    setCourseImage(`/images/${newCourseImage.name}`);
+    setCourseIcon(`/images/${newCourseIcon.name}`);
     console.log("name", courseName);
     console.log("start date", courseStartDate);
     console.log("type", courseType);
@@ -135,9 +162,10 @@ export default function AdminPanelCourses() {
     console.log("course icon", courseIcon);
     console.log("course image", courseImage);
     console.log("courseModules", courseModules);
+
     try {
       setLoading(true);
-      const jwt = localStorage.getItem("jwt");
+
       const response = await axiosConfig.post(
         `/courses`,
         {
@@ -149,10 +177,10 @@ export default function AdminPanelCourses() {
             .split(" ")
             .join("")
             .concat("-", courseStartDate),
-          courseImage: courseImage,
+          courseImage: `/images/${newCourseImage.name}`,
           courseDescription: courseDescription,
           courseActive: true,
-          courseIcon: courseIcon,
+          courseIcon: `/images/${newCourseIcon.name}`,
           courseType: courseType,
           coursePrice: coursePrice,
           language: courseLanguage,
@@ -164,6 +192,7 @@ export default function AdminPanelCourses() {
           },
         }
       );
+
       resetCreateCourseForm();
       setShowMessage(true);
       setMessageText("The course was successfully created.");
@@ -187,198 +216,203 @@ export default function AdminPanelCourses() {
       <h3 className="modulesPageTitle">Courses</h3>
       <div className="adminPanelModulesWrapper">
         <Box className="moduleWrapper newModuleWrapper" sx={{ p: "1rem" }}>
-          <div>
-            <Box sx={{ m: "1rem" }}>
-              <TextField
-                id="standard-basic"
-                label="Course name"
-                fullWidth
-                required
-                variant="standard"
-                value={courseName}
-                onChange={(event) => setCourseName(event.target.value)}
-                sx={{ /* width: "95%", */ mx: "auto" }}
-              />
-            </Box>
-            <Box sx={{ m: "1rem" }}>
-              <TextField
-                id="standard-select-currency"
-                select
-                label="Type"
-                sx={{ width: "45%" }}
-                value={courseType}
-                onChange={(event) => setCourseType(event.target.value)}
-                helperText="Please select the course type"
-                variant="standard"
+          <form onSubmit={createCourse}>
+            <div>
+              <Box sx={{ m: "1rem" }}>
+                <TextField
+                  id="standard-basic"
+                  label="Course name"
+                  fullWidth
+                  required
+                  variant="standard"
+                  value={courseName}
+                  onChange={(event) => setCourseName(event.target.value)}
+                  sx={{ /* width: "95%", */ mx: "auto" }}
+                />
+              </Box>
+              <Box sx={{ m: "1rem" }}>
+                <TextField
+                  id="standard-select-currency"
+                  select
+                  label="Type"
+                  sx={{ width: "45%" }}
+                  value={courseType}
+                  onChange={(event) => setCourseType(event.target.value)}
+                  helperText="Please select the course type"
+                  variant="standard"
+                >
+                  {types.map((option) => (
+                    <MenuItem key={option} value={option}>
+                      {option}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </Box>
+              <Box sx={{ m: "1rem" }}>
+                <TextField
+                  id="outlined-multiline-static"
+                  label="Description"
+                  fullWidth
+                  multiline
+                  rows={4}
+                  value={courseDescription}
+                  onChange={(event) => setCourseDescription(event.target.value)}
+                />
+              </Box>
+              <Box
+                sx={{
+                  m: "1rem",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
               >
-                {types.map((option) => (
-                  <MenuItem key={option} value={option}>
-                    {option}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Box>
-            <Box sx={{ m: "1rem" }}>
-              <TextField
-                id="outlined-multiline-static"
-                label="Description"
-                fullWidth
-                multiline
-                rows={4}
-                value={courseDescription}
-                onChange={(event) => setCourseDescription(event.target.value)}
-              />
-            </Box>
-            <Box
-              sx={{
-                m: "1rem",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <TextField
-                required
-                id="standard-basic"
-                type="date"
-                // label="Start date"
-                variant="standard"
-                sx={{ width: "45%" }}
-                helperText="Please select the start date of the course"
-                value={courseStartDate}
-                onChange={(event) => setCourseStartDate(event.target.value)}
-              />
-              <TextField
-                id="standard-basic"
-                label="Duration"
-                type="number"
-                variant="standard"
-                value={0}
-                disabled
-                // onChange={(event) => setCourseName(event.target.value)}
-                helperText="This value is calculated based on the modules data"
-                sx={{ width: "45%" }}
-              />
-            </Box>
+                <TextField
+                  required
+                  id="standard-basic"
+                  type="date"
+                  // label="Start date"
+                  variant="standard"
+                  sx={{ width: "45%" }}
+                  helperText="Please select the start date of the course"
+                  value={courseStartDate}
+                  onChange={(event) => setCourseStartDate(event.target.value)}
+                />
+                <TextField
+                  id="standard-basic"
+                  label="Duration"
+                  type="number"
+                  variant="standard"
+                  value={0}
+                  disabled
+                  // onChange={(event) => setCourseName(event.target.value)}
+                  helperText="This value is calculated based on the modules data"
+                  sx={{ width: "45%" }}
+                />
+              </Box>
 
-            <Box
-              sx={{
-                m: "1rem",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <TextField
-                id="standard-select-currency"
-                select
-                label="Language"
-                sx={{ width: "45%" }}
-                value={courseLanguage}
-                onChange={(event) => setCourseLanguage(event.target.value)}
-                helperText="Please select the course language"
-                variant="standard"
+              <Box
+                sx={{
+                  m: "1rem",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
               >
-                {languages.map((option) => (
-                  <MenuItem key={option} value={option}>
-                    {option}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <TextField
-                id="standard-basic"
-                label="Price, EUR"
-                type="number"
-                variant="standard"
-                value={coursePrice}
-                onChange={(event) => setCoursePrice(event.target.value)}
-                helperText="Please type the price for the course"
-                sx={{ width: "45%" }}
-              />
-            </Box>
-            <Box
-              sx={{
-                m: "1rem",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <TextField
-                id="standard-basic"
-                type="file"
-                label="Course icon"
-                sx={{ width: "45%" }}
-                value={courseIcon}
-                onChange={(event) => setCourseIcon(event.target.value)}
-                helperText="Please select the course icon"
-                variant="standard"
-              ></TextField>
-              <TextField
-                id="standard-basic"
-                type="file"
-                variant="standard"
-                value={courseImage}
-                onChange={(event) => setCourseImage(event.target.value)}
-                helperText="Please select the course image"
-                sx={{ width: "45%" }}
-              />
-            </Box>
-            <Box sx={{ m: "1rem" }}>
-              <div>
-                <FormControl sx={{ m: 1, width: 300 }}>
-                  <InputLabel id="demo-multiple-checkbox-label">
-                    Modules
-                  </InputLabel>
-                  <Select
-                    labelId="demo-multiple-checkbox-label"
-                    id="demo-multiple-checkbox"
-                    multiple
-                    value={selectedModules}
-                    onChange={handleChange}
-                    input={<OutlinedInput label="Modules" />}
-                    renderValue={(selected) => selected.join(", ")}
-                    MenuProps={MenuProps}
-                  >
-                    {modules.map((mod) => (
-                      <MenuItem key={mod._id} value={mod.name}>
-                        <Checkbox
-                          checked={selectedModules.indexOf(mod.name) > -1}
-                        />
-                        <ListItemText primary={mod.name} />
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
+                <TextField
+                  id="standard-select-currency"
+                  select
+                  label="Language"
+                  sx={{ width: "45%" }}
+                  value={courseLanguage}
+                  onChange={(event) => setCourseLanguage(event.target.value)}
+                  helperText="Please select the course language"
+                  variant="standard"
+                >
+                  {languages.map((option) => (
+                    <MenuItem key={option} value={option}>
+                      {option}
+                    </MenuItem>
+                  ))}
+                </TextField>
+                <TextField
+                  id="standard-basic"
+                  label="Price, EUR"
+                  type="number"
+                  variant="standard"
+                  value={coursePrice}
+                  onChange={(event) => setCoursePrice(event.target.value)}
+                  helperText="Please type the price for the course"
+                  sx={{ width: "45%" }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  m: "1rem",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <TextField
+                  id="standard-basic"
+                  type="file"
+                  label="Course icon"
+                  sx={{ width: "45%" }}
+                  name="courseIcon"
+                  //value={courseIcon}
+                  //onChange={(event) => setCourseIcon(event.target.value)}
+                  helperText="Please select the course icon"
+                  variant="standard"
+                ></TextField>
+                <TextField
+                  id="standard-basic"
+                  type="file"
+                  variant="standard"
+                  name="courseImage"
+                  //value={courseImage}
+                  //onChange={(event) => handleCourseImage(event.target.value)}
+                  helperText="Please select the course image"
+                  sx={{ width: "45%" }}
+                />
+              </Box>
+              <Box sx={{ m: "1rem" }}>
+                <div>
+                  <FormControl sx={{ m: 1, width: 300 }}>
+                    <InputLabel id="demo-multiple-checkbox-label">
+                      Modules
+                    </InputLabel>
+                    <Select
+                      labelId="demo-multiple-checkbox-label"
+                      id="demo-multiple-checkbox"
+                      multiple
+                      value={selectedModules}
+                      onChange={handleChange}
+                      input={<OutlinedInput label="Modules" />}
+                      renderValue={(selected) => selected.join(", ")}
+                      MenuProps={MenuProps}
+                    >
+                      {modules.map((mod) => (
+                        <MenuItem key={mod._id} value={mod.name}>
+                          <Checkbox
+                            checked={selectedModules.indexOf(mod.name) > -1}
+                          />
+                          <ListItemText primary={mod.name} />
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </div>
+              </Box>
+            </div>
+            {updateCourseMode ? (
+              <div style={{ display: "flex", justifyContent: "space-around" }}>
+                <Button
+                  variant="contained"
+                  // onClick={updateModuleRequest}
+                  sx={{ display: "block", my: "1rem" }}
+                >
+                  Update course
+                </Button>
+                <Button
+                  variant="outlined"
+                  // onClick={cancelUpdateModuleRequest}
+                  sx={{ display: "block", my: "1rem" }}
+                >
+                  Cancel
+                </Button>
               </div>
-            </Box>
-          </div>
-          {updateCourseMode ? (
-            <div style={{ display: "flex", justifyContent: "space-around" }}>
+            ) : (
               <Button
                 variant="contained"
-                // onClick={updateModuleRequest}
-                sx={{ display: "block", my: "1rem" }}
+                type="submit"
+                // onClick={createCourse}
+                sx={{ display: "block", mx: "auto", my: "1rem" }}
               >
-                Update course
+                Create new course
               </Button>
-              <Button
-                variant="outlined"
-                // onClick={cancelUpdateModuleRequest}
-                sx={{ display: "block", my: "1rem" }}
-              >
-                Cancel
-              </Button>
-            </div>
-          ) : (
-            <Button
-              variant="contained"
-              onClick={createCourse}
-              sx={{ display: "block", mx: "auto", my: "1rem" }}
-            >
-              Create new course
-            </Button>
-          )}
+            )}
+          </form>
         </Box>
         <section className="adminModulesSearchSection">
           {/* <AdminModulesSearch
