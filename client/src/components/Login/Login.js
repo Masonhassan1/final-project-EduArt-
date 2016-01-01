@@ -63,7 +63,7 @@ function Login({ handelSuccessfullLogin, isAuth }) {
     if (passwordEl.current.value) setShowPassword(!showPassword);
   }
   if (isAuth) {
-    setTimeout(() => navigate("/"), 700);
+    setTimeout(() => navigate("/mylearningdesk"), 700);
   }
 
   return (
@@ -114,7 +114,13 @@ function Login({ handelSuccessfullLogin, isAuth }) {
         <button id="login-btn" type="submit">
           Login
         </button>
-        {error? <div style={{color:"red"}}>Sorry.. something went wrong. please try again</div>:""}
+        {error ? (
+          <div style={{ color: "red" }}>
+            Sorry.. something went wrong. please try again
+          </div>
+        ) : (
+          ""
+        )}
       </form>
       {loginLoading ? <div className="login-loading">loading...</div> : ""}
     </div>

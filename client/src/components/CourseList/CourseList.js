@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./CourseList.css";
 import { GoSearch } from "react-icons/go";
+
 import axiosConfig from "../../util/axiosConfig";
 import baseURL from "../../util/constants";
+
+import "./CourseList.css";
 
 export default function CourseList() {
   const [courseArr, setCourseArr] = useState([]);
@@ -19,7 +21,6 @@ export default function CourseList() {
     try {
       setLoading(true);
       const apiData = await axiosConfig.get(url);
-      console.log(apiData.data);
       setCourseArr(apiData.data);
       setSlidesCount(apiData.data.length);
       setLoading(false);
@@ -40,7 +41,6 @@ export default function CourseList() {
     getAllCourses(`/courses?name=${searchInputRef.current.value}`);
   };
   function changeSlide(direction) {
-    console.log(direction);
     if (direction === "up") {
       if (activeSlideIndex === slidesCount - 1) {
         setActiveSlideIndex(0);

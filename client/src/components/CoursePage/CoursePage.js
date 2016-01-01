@@ -12,11 +12,11 @@ export const addCourseOnDashborad = async (courseId) => {
     const jwt = localStorage.getItem("jwt");
     const decodedToken = decodeToken(jwt);
     const learningDeskId = decodedToken.learningDesk;
-    console.log("learning desk id", learningDeskId);
+    const userId = decodedToken.userId;
     if (learningDeskId && jwt) {
-      const lDeskData = await axiosConfig.patch(
-        `/mylearningdesk/${learningDeskId}`,
-        { courseId: courseId },
+      const lDeskData = await axiosConfig.post(
+        `/mypurchases`,
+        { courseId: courseId, userID: userId, deskId: learningDeskId },
         {
           headers: {
             authorization: `Bearer ${jwt}`,
@@ -53,7 +53,7 @@ export default function CoursePage({ isAuth }) {
         setCourseMes(true);
         setTimeout(() => {
           setCourseMes(false);
-          navigate("/"); /// TODO navigate to Dashboard
+          navigate("/mylearningdesk"); /// TODO navigate to Dashboard
         }, 2000);
       } catch (error) {
         setLoading(false);

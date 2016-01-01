@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Jura:wght@600&display=swap");
 
+.container > *,
+.container > *::before,
+.container > *::after {
+  box-sizing: unset;
+}
+
 .course-list-page {
   /* background: rgba(250, 214, 185, 0.835); */
   background: linear-gradient(
@@ -167,6 +173,7 @@
   margin: 1rem auto;
   border: 1px solid #aaa;
   border-radius: 10px;
+  box-sizing: unset;
 }
 
 .sidebar {
