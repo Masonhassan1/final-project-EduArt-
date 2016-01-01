@@ -30,7 +30,7 @@ main {
     position: absolute;
     font-size: xx-large;
     color: #8b8d8d;
-    text-shadow: .5px .5px 1px #747676;
+    text-shadow: .5px .5px 1px #919393;
     rotate: x 90deg;
     animation: show-paragraph 0.6s 0.3s linear forwards;
     -webkit-animation: show-paragraph 0.6s 0.3s linear forwards;
@@ -395,7 +395,7 @@ main {
 }
 
 .show-hide-chat{
-    position: fixed;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -403,7 +403,7 @@ main {
     width: 70px;
     height: 70px;
     top: 85%;
-    left: 92.2%;
+    left: 78.2%;
     color: white;
     background-color: #6a96af;
     box-shadow: 4px 5px 12px #3e3d3d;
@@ -411,8 +411,7 @@ main {
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
+   
 }.show-hide-chat i{
     text-shadow: 3px 4px 12px #3e3d3d;
 }
@@ -421,7 +420,7 @@ main {
     width: 330px;
     height: 270px;
     top: 20%;
-    left: 48.5%;
+    left: 43.5%;
     padding: 1rem;
     background-color: #f6f7f8;
     border: 1px solid #c6c5c5;
