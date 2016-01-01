@@ -143,7 +143,7 @@ function Header({ isAuth, logout, userName, setUserName, isAdmin }) {
   }, []);
 
   return (
-    <div className="header" style={{ gap: `${isAdmin ? "20%" : "28%"}` }}>
+    <div className="header" style={{ gap: `${isAdmin ? "13%" : "20%"}` }}>
       <div className="logo" onClick={() => navigate("/")}>
         <img className="img front" src={require("../Images/logo.png")} alt="" />
       </div>
