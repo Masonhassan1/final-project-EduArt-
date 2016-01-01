@@ -132,6 +132,7 @@ export default function AdminPanelModules() {
     setModuleTeachers("");
     setModuleTasks([]);
     setModuleExtraMat("");
+    setPersonName([]);
   };
 
   useEffect(() => {
@@ -171,6 +172,11 @@ export default function AdminPanelModules() {
       setLoading(false);
       setHasError(true);
     }
+  };
+
+  const cancelUpdateModuleRequest = () => {
+    resetCreateModuleForm();
+    setUpdateModuleMode(false);
   };
 
   const updateModuleRequest = async () => {
@@ -215,6 +221,12 @@ export default function AdminPanelModules() {
     setModuleDuration(mod.noOfDays);
     setModuleZoomLink(mod.zoomLink);
     setModuleTeachers(mod.teacher);
+
+    const newTeachers = mod.teacher.map(
+      (teacher) => `${teacher.firstName} ${teacher.lastName}`
+    );
+
+    setPersonName(newTeachers);
     setModuleTasks(mod.tasks);
     setModuleExtraMat(mod.extraMaterial);
     setUpdateModuleMode(true);
@@ -328,13 +340,22 @@ export default function AdminPanelModules() {
             />
           </Accordion>
           {updateModuleMode ? (
-            <Button
-              variant="contained"
-              onClick={updateModuleRequest}
-              sx={{ display: "block", mx: "auto", my: "1rem" }}
-            >
-              Update module
-            </Button>
+            <div style={{ display: "flex", justifyContent: "space-around" }}>
+              <Button
+                variant="contained"
+                onClick={updateModuleRequest}
+                sx={{ display: "block", my: "1rem" }}
+              >
+                Update module
+              </Button>
+              <Button
+                variant="outlined"
+                onClick={cancelUpdateModuleRequest}
+                sx={{ display: "block", my: "1rem" }}
+              >
+                Cancel
+              </Button>
+            </div>
           ) : (
             <Button
               variant="contained"
