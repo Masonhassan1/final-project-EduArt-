@@ -36,6 +36,7 @@ export default function CourseList() {
 
   const submitForm = (e) => {
     e.preventDefault();
+    setActiveSlideIndex(0);
     getAllCourses(`/courses?name=${searchInputRef.current.value}`);
   };
   function changeSlide(direction) {
@@ -68,45 +69,6 @@ export default function CourseList() {
           ref={searchInputRef}
         />
       </form>
-      {/* <section className="courseListSection">
-        {courseArr.map((course, id) => {
-          return (
-            <div key={id} className="courseCard">
-              <div className="cardHeader">
-                <img
-                  className="cardIcon"
-                  src={course.courseIcon}
-                  alt={course.courseName}
-                />
-                <div className="cardTextHeader">
-                  <h3 className="courseNameCard">{course.courseName}</h3>
-                  <h5 className="courseDurationCard">{`full time | ${course.courseDuration} months`}</h5>
-                </div>
-              </div>
-              <p className="courseTextCard">{course.courseDescription}</p>
-              <Link to={`/courselist/${course._id}`} className="viewCourseBtn">
-                view course
-                <svg
-                  width="47"
-                  height="28"
-                  viewBox="0 0 47 28"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M32.6875 1.5L44.9375 14L32.6875 26.5M44.9375 14H2.0625"
-                    stroke="white"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </Link>
-
-               </div>
-          );
-        })}
-      </section> */}
 
       <section className="course-slider">
         {loading ? (
@@ -145,7 +107,6 @@ export default function CourseList() {
                         }}
                       >
                         <h1>{course.courseName}</h1>
-                        {/* <p>{course.courseDescription}</p> */}
                       </div>
                     );
                   })}
@@ -173,7 +134,7 @@ export default function CourseList() {
                 </div>
               </Link>
             )}
-            <div className="controls">
+            <div className="controls-panel">
               <button
                 className="down-button"
                 onClick={() => changeSlide("down")}
