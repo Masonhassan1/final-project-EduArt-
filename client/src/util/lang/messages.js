@@ -17,6 +17,19 @@ export const messages = {
     home_text:
       "We are a leader in the field of online education and we are trusted by more than 70,000 users from companies, schools and state institutions.",
     home_button: "view online courses",
+    //footer
+    thankyou:
+      "Thank you, we've got your message and we'll response as soon as possible",
+    rating: "4.8 rating",
+    f_online_courses: "+200 online courses",
+    money_back: "Money back guarantee",
+    f_certificate: "Completion certificate",
+    send_question: "Send us your questions",
+    //courses list page
+    choose_an_online_course:
+      "Choose an online course and transform your career",
+    no_results_found: "No results found",
+    search: "Search",
   },
   [LOCALES.RUSSIAN]: {
     // header
@@ -35,5 +48,16 @@ export const messages = {
     home_text:
       "Мы являемся лидером в сфере онлайн-образования и нам доверяют более 70 000 пользователей из компаний, школ и государственных учреждений.",
     home_button: "просмотреть онлайн-курсы",
+    //footer
+    thankyou: "Спасибо, мы получили ваше сообщение и ответим как можно скорее",
+    rating: "4.8 рейтинг",
+    f_online_courses: "+200 онлайн-курсов",
+    money_back: "Гарантия возврата денег",
+    f_certificate: "Сертификат завершения",
+    send_question: "Присылайте нам свои вопросы",
+    //courses list page
+    choose_an_online_course: "Выберите онлайн-курс и измените свою карьеру",
+    no_results_found: "Результатов не найдено",
+    search: "Поиск",
   },
 };
