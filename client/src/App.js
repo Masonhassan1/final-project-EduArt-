@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { isExpired, decodeToken } from "react-jwt";
 import axios from "axios";
-import Jura from "./Fonts/Jura-Medium.ttf";
+
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -18,6 +18,7 @@ import UserProfile from "./components/UserProfile/UserProfile";
 import LearningDesk from "./components/LearningDesk/LearningDesk";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
 
+import Jura from "./Fonts/Jura-Medium.ttf";
 import "./App.css";
 
 const theme = createTheme({
@@ -91,7 +92,7 @@ function App() {
           );
           setUserProfileData(userDetails.data);
           console.log("user data", userDetails.data);
-          if (userDetails.data && userDetails.data.accessRights.includes(1)) {
+          if (userDetails.data && userDetails.data.accessRights.includes(5)) {
             setIsAdmin(true);
           }
           setLearningDeskId(userDetails.data.myLearningDesk._id);

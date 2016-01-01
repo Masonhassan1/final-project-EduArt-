@@ -49,16 +49,11 @@ function Header({ isAuth, logout, userName, isAdmin }) {
   }, []);
 
   return (
-    <div className="header" style={{ gap: `${isAdmin ? "10%" : "28%"}` }}>
+    <div className="header" style={{ gap: `${isAdmin ? "20%" : "28%"}` }}>
       <div className="logo" onClick={() => navigate("/")}>
         <img className="img front" src={require("../Images/logo.png")} alt="" />
       </div>
       <div className="navy">
-        {isAdmin && (
-          <NavLink className="nav-link" to="/adminpanel">
-            <div className="navy-login user-pro-color">Admin panel</div>
-          </NavLink>
-        )}
         <div className="header-user-name">{userName ? userName : ""}</div>
         <i
           className="fa-solid fa-user user-pro-color"

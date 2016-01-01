@@ -121,7 +121,7 @@ export default function AdminPanelModules() {
       const apiData = await axiosConfig.get(`/user`);
       if (apiData.data) {
         setTeachersArr(
-          apiData.data.filter((teacher) => teacher.accessRights.includes(3))
+          apiData.data.filter((teacher) => teacher.accessRights.includes(2))
         );
       }
 
