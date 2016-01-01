@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import "./Footer.css"
 
 function Footer() {
@@ -8,13 +8,18 @@ function Footer() {
   const [response,setResponse]=useState("")
   const [chatForm,setChatForm]= useState(false)
   const e = document.querySelector(".message")
+
+ useEffect(()=>{
+  document.querySelector(".message").focus()
+ })
  
   function textHandler(){
+    if(response) setResponse("")
     setText(e.value)
     e.value = ""
     setTimeout(()=>{
       setResponse("Thank you, we've got your message and we'll response as soon as possible")
-    },1500)
+    },700)
   }
   console.log(text)
   function showChatHandler (){
