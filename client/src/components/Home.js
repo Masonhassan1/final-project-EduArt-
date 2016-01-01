@@ -3,7 +3,7 @@ import {useState, useEffect } from 'react'
 import "./Home.css"
 
 function Home() {
-  const [newDate , setNewDate]=useState(new Date())
+  const [time , setTime]=useState(new Date())
   useEffect(()=>{
     document.querySelector(".bracket-one").textContent="{";
     document.querySelector(".bracket-two").textContent="};";
@@ -11,8 +11,8 @@ function Home() {
 
   },[])
   useEffect(()=>{
-    setNewDate(new Date())
-  },[newDate])
+    setTime(new Date())
+  },[time])
   return (
     <main className='home'>
         <section className='info'>
@@ -38,7 +38,7 @@ function Home() {
             <div className="nodejs"><img src={require("../Images/nodejs.png") } alt="" />
             </div>
             <div className="display"></div>
-            <div className="clock">{newDate.getHours()}:{newDate.getMinutes()}:{newDate.getSeconds()}</div>
+            <div className="clock">{time.getHours()}:{time.getMinutes()}:{time.getSeconds()}</div>
             <div className="firefox"><img src={require("../Images/firefox.webp")} alt="" />
             </div>
             <div className="vsc"><img src={require("../Images/vsc.png")} alt="" /></div>
