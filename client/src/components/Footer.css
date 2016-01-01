@@ -1,8 +1,33 @@
+
 .footer-infos{
     display: flex;
     justify-content: center;
     align-items: center;
     column-gap: 2.5rem;
-    font-size: x-large;
+    font-size: 28px;
     color: #6e6d6d;
+}
+.footer-infos i {
+    color: #38b0b899;
+}
+.show-chat{
+    position: absolute;
+    top: 88%;
+    left: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    font-size: xx-large;
+    color: white;
+    background-color: #38b0b899;
+    cursor: pointer;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+   
+}
+.chat-form{
+
 }
