@@ -86,6 +86,15 @@ export const messages = {
     you_dont_have_any_courses_yet: "You don't have any courses yet",
     day: "day",
     of: "of",
+    // user profile page
+    purchases: "Purchases",
+    certificate: "Certificate",
+    user_profile_color: "User profile color",
+    save: "Save",
+    not_entered: "not entered",
+    male_female: "Male / Female",
+    origin: "Origin",
+    tel: "Tel",
   },
   [LOCALES.RUSSIAN]: {
     // header
@@ -171,5 +180,14 @@ export const messages = {
     you_dont_have_any_courses_yet: "У вас еще нет курсов",
     day: "день",
     of: "из",
+    // user profile page
+    purchases: "Покупки",
+    certificate: "Сертификат",
+    user_profile_color: "Цвет профиля",
+    save: "Сохранить",
+    not_entered: "не введено",
+    male_female: "Мужской / Женский",
+    origin: "Происхождение",
+    tel: "Тел.",
   },
 };

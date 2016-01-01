@@ -7,7 +7,11 @@
   justify-content: space-around;
   font-family: "Jura", sans-serif;
   background: rgba(250, 214, 185, 0.835);
-  background: linear-gradient(180deg, rgba(254, 254, 254, 1) 10%, rgba(237, 241, 240, 0.835) 30%);
+  background: linear-gradient(
+    180deg,
+    rgba(254, 254, 254, 1) 10%,
+    rgba(237, 241, 240, 0.835) 30%
+  );
   border-bottom-left-radius: 2rem;
   border-bottom-right-radius: 2rem;
   --b-c: #dee1e3;
@@ -25,9 +29,10 @@
   -moz-border-radius: 2rem;
 }
 .options-list > div {
-  width: 80%;
+  /* width: 80%; */
   display: flex;
   justify-content: center;
+  align-items: center;
   column-gap: 25px;
   font-size: x-large;
   font-weight: 900;
@@ -195,12 +200,11 @@
   grid-row: 12/13;
   font-size: 30px;
 }
-.password-container{
+.password-container {
   position: relative;
   grid-column: 10/15;
   grid-row: 12/13;
   background-color: var(--b-c);
-  
 }
 .user-password-input {
   width: 90%;
@@ -208,17 +212,16 @@
   position: absolute;
   background-color: var(--b-c);
 }
-.user-profile-show-password{
+.user-profile-show-password {
   position: absolute;
   top: 22%;
   left: 87%;
   font-size: 20px;
- 
 }
-.user-profile-show-password span i{
+.user-profile-show-password span i {
   color: #2d7a82;
 }
-.user-password{
+.user-password {
   position: relative;
   grid-column: 10/15;
   grid-row: 12/13;
@@ -260,7 +263,7 @@
   scale: 1.4;
 }
 .user-profile-save-btn {
-  grid-column: 13/15;
+  grid-column: 12/15;
   grid-row: 15/16;
   background-color: #f2f7f8;
   border: 2px solid;
@@ -343,7 +346,6 @@
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
- 
 }
 .my-purchase {
   width: 95%;
@@ -357,7 +359,7 @@
   -webkit-border-radius: 1rem;
   -moz-border-radius: 1rem;
 }
-.course-dateOfStart{
+.course-dateOfStart {
   grid-column: 1/3;
   grid-row: 3;
 }
@@ -372,14 +374,14 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.pdf-symbol{
+.pdf-symbol {
   width: 100%;
   text-align: center;
   grid-column: 1;
   grid-row: 5;
   cursor: pointer;
 }
-.pdf-symbol > i{
+.pdf-symbol > i {
   color: white;
 }
 .purchase-course-img {
@@ -396,18 +398,18 @@
 }
 
 /* Certificate CSS */
-.pdf-certificate-logo{
+.pdf-certificate-logo {
   position: absolute;
   width: 90px;
   height: 40px;
   top: 595px;
   left: 15px;
 }
-.pdf-certificate-logo >img{
+.pdf-certificate-logo > img {
   width: 100%;
   height: 100%;
 }
-.pdf-certificates-container{
+.pdf-certificates-container {
   position: relative;
   width: 400px;
   height: 600px;
@@ -415,16 +417,15 @@
   padding: 2rem;
   font-family: "Jura", sans-serif;
   user-select: none;
-  
 }
-.pdf-certificate-form{
+.pdf-certificate-form {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
-.this-certificate{
+.this-certificate {
   position: absolute;
   top: 202px;
   left: 50%;
@@ -433,7 +434,7 @@
   line-height: 2rem;
   width: 180px;
 }
-.certificate-for{
+.certificate-for {
   position: absolute;
   top: 290px;
   left: 50%;
@@ -442,9 +443,8 @@
   transform: translate(5%) scaleX(1.4);
   -webkit-transform: translate(5%) scaleX(1.4);
   -moz-transform: translate(5%) scaleX(1.4);
-  
 }
-.certificate-course-name{
+.certificate-course-name {
   position: absolute;
   top: 350px;
   left: 50%;
@@ -452,13 +452,13 @@
   width: 300px;
   text-align: center;
 }
-.course-date{
+.course-date {
   position: absolute;
-  top:480px;
+  top: 480px;
   left: 200px;
   font-size: small;
 }
-.signature{
+.signature {
   position: absolute;
   top: 465px;
   left: 290px;
@@ -470,18 +470,17 @@
   height: 100%;
   background-color: transparent;
 }
-.pdf-purchase-btn{
+.pdf-purchase-btn {
   display: flex;
   justify-content: center;
 }
-.pdf-purchase-btn > button{
+.pdf-purchase-btn > button {
   margin-top: 30px;
   width: 100px;
   font-family: "Jura", sans-serif;
   border-radius: 1rem;
-  background-color:#eee;
+  background-color: #eee;
   color: black;
   -webkit-border-radius: 1rem;
   -moz-border-radius: 1rem;
- 
 }
