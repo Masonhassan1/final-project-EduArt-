@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {Image} from "cloudinary-react"
 import axios from "axios";
-/* import Purchase from "./Purchase"; */
+import Purchase from "./Purchase";
 import "./UserProfile.css";
 
 function UserProfile({
@@ -10,6 +10,8 @@ function UserProfile({
   setError,
   error,
   userDateOfBirth,
+  setUserDateOfBirth,
+  setUserName,
   gender,
 }) {
   
@@ -20,11 +22,12 @@ function UserProfile({
   const [newUpdatedData,setNewUpdatedData] = useState({})
   const [isError, setIsError] = useState(false);
   const [proColor, setProColor] = useState("");
-  const [userImg,setUserImg] = useState("")
+  /* const [userImg,setUserImg] = useState("") */
   const [image,setImage]=useState(null)
-  const [imageData,setImageData]=useState({})
+  const [imageData,setImageData]=useState("")
   const [showPassword, setShowPassword] = useState(false);
  
+// Profile section functions
 
   function myProfileHandler (){
     setMyProfile(true)
@@ -36,14 +39,17 @@ function purchaseHandler(){
   setPurchase(true)
 }
 
+//Image functions 
+
 function setImageHandler(e){
   e.preventDefault()
   setImage(e.target.files[0] || null)
   document.querySelector(".user-profile-save-btn").setAttribute("id","shake-btn")
   
 }
+
  async function uploadImage (){
-  setImage(null)
+ 
   document.querySelector(".user-profile-save-btn").removeAttribute("id","shake-btn")
     const formData = new FormData()
     formData.append("file",image)
@@ -52,40 +58,51 @@ function setImageHandler(e){
     try{
 
    const res = await axios.post("https://api.cloudinary.com/v1_1/dqukw0qgs/upload",formData)
-   const data = await res.data
-       setImageData(data)
+   const data = await res.data.public_id 
+       setImageData(data )
      
     }catch(error){
       console.log("error",error)
     }
   }
+  console.log("imageData",imageData)
+  
+  useEffect(()=>{
+    if(image !== null){
+      uploadImage()
+    }
+  },[image])
 
-  async function uploadUserImage (){
-    
-
+     async function uploadUserImage (){
+           
+       localStorage.setItem("imgId",imageData)
+         
+          
       const userUploadImage = {
-        userImage:imageData.public_id 
+        userImage:imageData
       }
      
       try{
        const sendNewImage =   await axios.patch(
-          `http://localhost:4000/user/${localStorage.getItem("userId")}`,
+          `http://localhost:4000/user/updateimage/${localStorage.getItem("userId")}`,
           userUploadImage
         );
+        console.log("sendNewImage",sendNewImage)
         localStorage.setItem("imgId",sendNewImage.data.userImg)
+        setImageData("")
         
       }catch(error){
-        console.log(error)
+        console.log("error",error)
       }
     
+  
   }
+  console.log("isError",isError)
   
+ 
+    
+    //Edit function
 
-  useEffect(()=>{
-    uploadUserImage()
-   setUserImg(imageData.public_id || localStorage.getItem("imgId")) 
-  },[imageData])
-  
   function editHandler() {
     document
       .querySelector(".user-edit-btn")
@@ -98,6 +115,8 @@ function setImageHandler(e){
     if(edit) document.querySelector("#user").focus();
    
   });
+
+  // set user color functions
 
   const userProfileColor = localStorage.getItem("color");
   useEffect(() => {
@@ -125,9 +144,13 @@ function setImageHandler(e){
         .setAttribute("id", "edit-btn-id");
     }
   }
+
+  // show password function
   function passwordHandler() {
     if (passwordEl.current.value) setShowPassword(!showPassword);
   }
+
+  // button notice  function 
   function noticeHandler() {
     if (!edit) {
       document
@@ -135,6 +158,9 @@ function setImageHandler(e){
         .setAttribute("id", "edit-btn-id");
     }
   }
+
+  // color user inputs variables
+
   const proStyle = { color: proColor };
   const proBStyle = { backgroundColor: proColor };
   const userNameEl= useRef(null)
@@ -143,6 +169,9 @@ function setImageHandler(e){
   const originEl = useRef(null);
   const telEl = useRef(null);
   const passwordEl = useRef(null)
+
+  
+  // user data update function
 
   async function userDataUpdateHandler(e) {
     if (edit) {
@@ -159,7 +188,8 @@ function setImageHandler(e){
           telEl.current.value || userProfileData.telephoneLandLine,
         profileColour:
           localStorage.getItem("color") || userProfileData.profileColour,
-          password:passwordEl.current.value  ||  userProfileData.password
+              password:passwordEl.current.value  || userProfileData.password
+                
       };
 
       try {
@@ -169,6 +199,12 @@ function setImageHandler(e){
           updatedUserData
         );
         setNewUpdatedData(newUserData.data)
+        if(newUserData.data.dateOfBirth){
+          setUserDateOfBirth((newUserData.data.dateOfBirth).slice(0,10))
+        }
+        if(newUserData.data.userName){
+          setUserName(newUserData.data.userName)
+        }
         setProfileLoading(false);
           setEdit(false)
       } catch (error) {
@@ -215,7 +251,7 @@ console.log("newUpdatedData",newUpdatedData)
         <div className="user-photo">{image !== null?  <img className="user-upload-image" src={URL.createObjectURL(image)} alt="" /> : localStorage.getItem("imgId") ?
         <Image className="user-upload-image"
         cloudName= "dqukw0qgs"
-        publicId = { userImg || localStorage.getItem("imgId") 
+        publicId = { imageData || localStorage.getItem("imgId") 
       }
       />
         :<i className="fa-solid fa-user" style={proStyle}></i>
@@ -289,7 +325,7 @@ console.log("newUpdatedData",newUpdatedData)
         <button
           className="user-profile-save-btn"
           style={proStyle}
-          onClick={edit?userDataUpdateHandler:uploadImage}
+          onClick={edit?userDataUpdateHandler : uploadUserImage}
           >
           Save
         </button>
@@ -364,7 +400,7 @@ console.log("newUpdatedData",newUpdatedData)
         )}
       </section>:""}
 
-      {/* {purchase? <Purchase userProfileData={userProfileData} userImg={userImg}/>:""} */}
+      {purchase? <Purchase userProfileData={userProfileData} imageData={imageData}/>:""}
       {isLoading || profileLoading ? (
         <div className="profile-loading">loading...</div>
       ) : (

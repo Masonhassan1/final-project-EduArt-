@@ -136,7 +136,7 @@ function App() {
       >
         <CssBaseline />
         <Router>
-          <Header isAuth={isAuth} logout={logout} userName={userName}/>
+          <Header isAuth={isAuth} logout={logout} userName={userName} setUserName={setUserName}/>
 
           <Routes>
             <Route path={"/"} element={<Home />} />
