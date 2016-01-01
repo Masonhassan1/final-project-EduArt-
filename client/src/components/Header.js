@@ -4,7 +4,7 @@ import "./Header.css"
 
 
 
-function Header({isAuth,logout/* ,getUserDetails */}) {
+function Header({isAuth,logout}) {
 
   const [showUserPro,setShowUserPro] = useState(false)
   const navigate = useNavigate()
@@ -24,11 +24,18 @@ function Header({isAuth,logout/* ,getUserDetails */}) {
    
   }
    
+const userProfileColor = localStorage.getItem("color") 
 useEffect(()=>{
-  document.querySelector("#user-profile-list").setAttribute("class","hide-user-profile-list")
-},[])
+  document.querySelector("#user-profile").style.color= userProfileColor
+  const navEl =  document.querySelectorAll(".user-pro-color")
+  navEl.forEach(el=> {
+  
+  el.addEventListener("mouseenter",()=>{el.style.color=userProfileColor})
+  el.addEventListener("mouseleave",()=>{el.style.color="#8b8b8b"})
 
-const color = localStorage.getItem("color")
+})
+},[userProfileColor])
+
   return (
   <div className='header' >
    
@@ -36,30 +43,30 @@ const color = localStorage.getItem("color")
    
     </div>
     <div className='navy' >
-      <i className="fa-solid fa-user" id="user-profile" onClick={isAuth? shwoUserProHandler:hideUserProHandler}>
+      <i className="fa-solid fa-user " id="user-profile" onClick={isAuth? shwoUserProHandler:hideUserProHandler}>
         <ul id="user-profile-list" className={showUserPro?"user-pro-ul":"hide-userPro-ul"}>
           
-          <li >My class</li>
-          <li>Learning desk</li>
-          <li onClick={()=>navigate("/userprofile")}>My profile</li> 
+          <li className="user-pro-color">My class</li>
+          <li className="user-pro-color">Learning desk</li>
+          <li className="user-pro-color" onClick={()=>navigate("/userprofile")}>My profile</li> 
         </ul>
       </i> 
       <NavLink className="nav-link" to="/">
 
-    <div className="navy-home" >Home</div>
+    <div className="navy-home user-pro-color" >Home</div>
       </NavLink>
       <NavLink className="nav-link" to="/courselist">
 
-    <div className="navy-courses">Online courses</div>
+    <div className="navy-courses user-pro-color">Online courses</div>
       </NavLink>
       <NavLink className="nav-link" to={isAuth?"/":"login"}>
 
-    <div className="navy-login" onClick={logout }>{isAuth? "Logoout":"Login"}</div>
+    <div className="navy-login user-pro-color" onClick={logout }>{isAuth? "Logoout":"Login"}</div>
       </NavLink>
 
       <NavLink className="nav-link" to="login">
 
-<div className="navy-login">About us</div>
+<div className="navy-login user-pro-color">About us</div>
   </NavLink>
 
     </div>

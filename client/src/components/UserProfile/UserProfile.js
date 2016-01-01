@@ -2,13 +2,11 @@ import React,{useState,useEffect,useRef} from 'react'
 import axios from "axios";
 import "./UserProfile.css"
 
-function UserProfile({userProfileData,isAuth,isLoading,setError,error,userDateOfBirth}) {
+function UserProfile({userProfileData,isAuth,isLoading,setError,error,userDateOfBirth,gender}) {
   const [edit,setEdit]=useState(false)
   const [profileLoading,setProfileLoading] = useState(false)
   const [isError,setIsError]=useState(false)
   const [proColor,setProColor]= useState("")
-  
-  
   
 
   function editHandler (){
@@ -19,8 +17,15 @@ function UserProfile({userProfileData,isAuth,isLoading,setError,error,userDateOf
     document.querySelector(".user-gender").focus()
    
   })
- useEffect(()=>{
  
+
+  const userProfileColor = localStorage.getItem("color") 
+  useEffect(()=>{
+    document.querySelector(".gender-icon ").style.color=userProfileColor
+  },[userProfileColor])
+
+ useEffect(()=>{
+  
   setProColor(localStorage.getItem("color"))
  },[])
 
@@ -104,8 +109,13 @@ function UserProfile({userProfileData,isAuth,isLoading,setError,error,userDateOf
             <div className="user-photo"><i className="fa-solid fa-user" style={proStyle}></i></div>
             <div className="user-edit-btn" onClick={editHandler}><i className="fa-solid fa-pen-to-square"  style={proStyle}></i></div>
             <div className="user-name font">{userProfileData.firstName} {userProfileData.lastName}</div>
-            <div className="user-gender-icon font"><i className="fa-solid fa-venus-mars"
-            style={{color:"royalblue"}}></i></div>
+            <div className="user-gender-icon font">
+              {gender==="male"?
+              
+              <i className="fa-solid fa-mars gender-icon" ></i>:<i className="fa-solid fa-venus gender-icon" ></i>
+            }
+              
+              </div>
             <div className="user-birthday-icon font"><i className="fa-solid fa-calendar-days"
             style={{color:"darkblue"}}></i></div>
             <div className="user-location-icon"> <i className="fa-solid fa-globe" style={{color:"lightseagreen"}}></i></div>

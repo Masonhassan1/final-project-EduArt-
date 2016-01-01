@@ -25,6 +25,7 @@ function App() {
   const [userProfileData,setUserProfileData] = useState({})
   const [isLoading, setIsLoading] = useState(false); 
   const [error, setError] = useState(false); 
+  const [gender,setGender]= useState("")
   const [userDateOfBirth,setUserDateOfBirth] = useState("")
      
 
@@ -61,6 +62,7 @@ function App() {
               setIsLoading(false)
                 localStorage.setItem("color",userDetails.data.profileColour)
                 setUserDateOfBirth((userDetails.data.dateOfBirth).slice(0,10))
+                setGender(userDetails.data.gender)
             }catch (error) {
               setIsLoading(false); 
               setError( true);
@@ -111,7 +113,7 @@ function App() {
           />
 
          <Route path={"/register"} element={<Register />} />
-          <Route path={"/userprofile"} element={<UserProfile userProfileData={userProfileData} isAuth={isAuth} isLoading={isLoading} error={error} setError={setError} userDateOfBirth={userDateOfBirth} />} />
+          <Route path={"/userprofile"} element={<UserProfile userProfileData={userProfileData} isAuth={isAuth} isLoading={isLoading} error={error} setError={setError} userDateOfBirth={userDateOfBirth} gender={gender}/>} />
         </Routes>
       </Router>
     </MyContext.Provider>
