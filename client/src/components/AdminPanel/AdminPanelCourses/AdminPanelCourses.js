@@ -431,144 +431,168 @@ export default function AdminPanelCourses() {
           />
 
           <div className="modulesWrapper">
-            {coursesSearchResult.map((course) => {
-              return (
-                <Box
-                  className="moduleWrapper adminCardWrapper"
-                  key={course._id}
-                  sx={{
-                    backgroundImage: `linear-gradient(to bottom, rgb(0 0 0 / 81%), rgb(0 25 116 / 76%)),url(${baseURL}/${course.courseImage})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                >
-                  <Button
-                    // onClick={() => updateModule(mod)}
+            {loading ? (
+              <div id="load" data-testid="loading">
+                <div>G</div>
+                <div>N</div>
+                <div>I</div>
+                <div>D</div>
+                <div>A</div>
+                <div>O</div>
+                <div>L</div>
+              </div>
+            ) : hasError ? (
+              <div className="error-message"></div>
+            ) : !coursesSearchResult.length ? (
+              <div className="no-results">
+                <p>No results found</p>
+              </div>
+            ) : (
+              coursesSearchResult.map((course) => {
+                return (
+                  <Box
+                    className="moduleWrapper adminCardWrapper"
+                    key={course._id}
                     sx={{
-                      position: "absolute",
-                      top: "14px",
-                      right: "25px",
-                      width: "1rem",
-                      height: "1rem",
-                      zIndex: "10",
+                      backgroundImage: `linear-gradient(to bottom, rgb(0 0 0 / 81%), rgb(0 25 116 / 76%)),url(${baseURL}/${course.courseImage})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
                     }}
                   >
-                    <EditIcon />
-                  </Button>
-                  <Button
-                    // onClick={() => {
-                    //   setShowDeleteModal(true);
-                    //   setCurrentDelModule(mod);
-                    // }}
-                    sx={{
-                      position: "absolute",
-                      top: "14px",
-                      right: "-4px",
-                      width: "1rem",
-                      height: "1rem",
-                      zIndex: "10",
-                    }}
-                  >
-                    <DeleteForeverIcon />
-                  </Button>
-                  <div className="cardHeader">
-                    <img
-                      className="cardCoursePicture"
-                      src={`${baseURL}/${course.courseIcon}`}
-                      alt={course.courseName}
-                    />
-                    <div>
-                      <p className="cardCourseName" style={{ color: "white" }}>
-                        {course.courseName}
-                      </p>
-                      <p className="cardCourseType" style={{ color: "white" }}>
-                        {course.courseType}
-                      </p>
-                    </div>
-                  </div>
-                  <p style={{ color: "white", textAlign: "justify" }}>
-                    {course.courseDescription}
-                  </p>
-                  <div className="cardCourseDetails">
-                    <div
-                      style={{
-                        display: "flex",
-                        height: "2.5rem",
-                        color: "white",
-                        alignItems: "center",
+                    <Button
+                      // onClick={() => updateModule(mod)}
+                      sx={{
+                        position: "absolute",
+                        top: "14px",
+                        right: "25px",
+                        width: "1rem",
+                        height: "1rem",
+                        zIndex: "10",
                       }}
                     >
-                      <RocketLaunchIcon />
-                      <p style={{ color: "white", marginLeft: "1rem" }}>
-                        {course.dateOfStart.substring(0, 10)}
-                      </p>
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        height: "2.5rem",
-                        color: "white",
-                        alignItems: "center",
+                      <EditIcon />
+                    </Button>
+                    <Button
+                      // onClick={() => {
+                      //   setShowDeleteModal(true);
+                      //   setCurrentDelModule(mod);
+                      // }}
+                      sx={{
+                        position: "absolute",
+                        top: "14px",
+                        right: "-4px",
+                        width: "1rem",
+                        height: "1rem",
+                        zIndex: "10",
                       }}
                     >
-                      <AccessAlarmIcon />
-                      <p style={{ color: "white", marginLeft: "1rem" }}>
-                        {course.modulesIncluded
-                          .map((mod) => mod.noOfDays)
-                          .reduce((acc, cur) => acc + cur, 0)}
-                        {" days"}
-                      </p>
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        height: "2.5rem",
-                        color: "white",
-                        alignItems: "center",
-                      }}
-                    >
-                      <TranslateIcon />
-                      <p style={{ color: "white", marginLeft: "1rem" }}>
-                        {course.language}
-                      </p>
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        height: "2.5rem",
-                        color: "white",
-                        alignItems: "center",
-                      }}
-                    >
-                      <EuroIcon />
-                      <p style={{ color: "white", marginLeft: "1rem" }}>
-                        {course.coursePrice}
-                      </p>
-                    </div>
-                  </div>
-                  <p
-                    style={{
-                      color: "white",
-                      width: "max-content",
-                      fontWeight: 900,
-                      fontSize: "1.2rem",
-                      borderBottom: "1px solid white",
-                    }}
-                  >
-                    Modules:
-                  </p>
-                  <div className="adminCardModulesSection">
-                    {course.modulesIncluded.map((mod, id) => {
-                      return (
-                        <p key={id} style={{ color: "white" }}>
-                          {mod.name}
+                      <DeleteForeverIcon />
+                    </Button>
+                    <div className="cardHeader">
+                      <img
+                        className="cardCoursePicture"
+                        src={`${baseURL}/${course.courseIcon}`}
+                        alt={course.courseName}
+                      />
+                      <div>
+                        <p
+                          className="cardCourseName"
+                          style={{ color: "white" }}
+                        >
+                          {course.courseName}
                         </p>
-                      );
-                    })}
-                  </div>
-                </Box>
-              );
-            })}
+                        <p
+                          className="cardCourseType"
+                          style={{ color: "white" }}
+                        >
+                          {course.courseType}
+                        </p>
+                      </div>
+                    </div>
+                    <p style={{ color: "white", textAlign: "justify" }}>
+                      {course.courseDescription}
+                    </p>
+                    <div className="cardCourseDetails">
+                      <div
+                        style={{
+                          display: "flex",
+                          height: "2.5rem",
+                          color: "white",
+                          alignItems: "center",
+                        }}
+                      >
+                        <RocketLaunchIcon />
+                        <p style={{ color: "white", marginLeft: "1rem" }}>
+                          {course.dateOfStart.substring(0, 10)}
+                        </p>
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          height: "2.5rem",
+                          color: "white",
+                          alignItems: "center",
+                        }}
+                      >
+                        <AccessAlarmIcon />
+                        <p style={{ color: "white", marginLeft: "1rem" }}>
+                          {course.modulesIncluded
+                            .map((mod) => mod.noOfDays)
+                            .reduce((acc, cur) => acc + cur, 0)}
+                          {" days"}
+                        </p>
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          height: "2.5rem",
+                          color: "white",
+                          alignItems: "center",
+                        }}
+                      >
+                        <TranslateIcon />
+                        <p style={{ color: "white", marginLeft: "1rem" }}>
+                          {course.language}
+                        </p>
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          height: "2.5rem",
+                          color: "white",
+                          alignItems: "center",
+                        }}
+                      >
+                        <EuroIcon />
+                        <p style={{ color: "white", marginLeft: "1rem" }}>
+                          {course.coursePrice}
+                        </p>
+                      </div>
+                    </div>
+                    <p
+                      style={{
+                        color: "white",
+                        width: "max-content",
+                        fontWeight: 900,
+                        fontSize: "1.2rem",
+                        borderBottom: "1px solid white",
+                      }}
+                    >
+                      Modules:
+                    </p>
+                    <div className="adminCardModulesSection">
+                      {course.modulesIncluded.map((mod, id) => {
+                        return (
+                          <p key={id} style={{ color: "white" }}>
+                            {mod.name}
+                          </p>
+                        );
+                      })}
+                    </div>
+                  </Box>
+                );
+              })
+            )}
           </div>
         </section>
       </div>
