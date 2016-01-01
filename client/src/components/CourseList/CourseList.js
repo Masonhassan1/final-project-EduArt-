@@ -36,6 +36,7 @@ export default function CourseList() {
 
   const submitForm = (e) => {
     e.preventDefault();
+    setActiveSlideIndex(0);
     getAllCourses(`/courses?name=${searchInputRef.current.value}`);
   };
   function changeSlide(direction) {
