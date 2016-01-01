@@ -114,7 +114,13 @@ function Login({ handelSuccessfullLogin, isAuth }) {
         <button id="login-btn" type="submit">
           Login
         </button>
-        {error? <div style={{color:"red"}}>Sorry.. something went wrong. please try again</div>:""}
+        {error ? (
+          <div style={{ color: "red" }}>
+            Sorry.. something went wrong. please try again
+          </div>
+        ) : (
+          ""
+        )}
       </form>
       {loginLoading ? <div className="login-loading">loading...</div> : ""}
     </div>

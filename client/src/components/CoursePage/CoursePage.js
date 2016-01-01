@@ -12,7 +12,6 @@ export const addCourseOnDashborad = async (courseId) => {
     const jwt = localStorage.getItem("jwt");
     const decodedToken = decodeToken(jwt);
     const learningDeskId = decodedToken.learningDesk;
-    console.log("learning desk id", learningDeskId);
     if (learningDeskId && jwt) {
       const lDeskData = await axiosConfig.patch(
         `/mylearningdesk/${learningDeskId}`,

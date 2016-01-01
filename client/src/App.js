@@ -13,29 +13,33 @@ import Register from "./components/Register/Register";
 import AboutUs from "./components/AboutUs/AboutUs";
 import UserProfile from "./components/UserProfile/UserProfile";
 import axios from "axios";
-
+import LearningDesk from "./components/LearningDesk/LearningDesk";
 
 export const MyContext = React.createContext(null);
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
-  const [userProfileData,setUserProfileData] = useState({})
-  const [isLoading, setIsLoading] = useState(false); 
-  const [error, setError] = useState(false); 
-  const [gender,setGender]= useState("")
-  const [userDateOfBirth,setUserDateOfBirth] = useState("")
-     
+  const [learningDeskId, setLearningDeskId] = useState(null);
+  const [userProfileData, setUserProfileData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [gender, setGender] = useState("");
+  const [userDateOfBirth, setUserDateOfBirth] = useState("");
 
   const handelSuccessfullLogin = (logData) => {
     const decodedToken = decodeToken(logData.jwt);
+    const myLearningDeskId = decodedToken.learningDesk;
+    if (myLearningDeskId) {
+      setLearningDeskId(myLearningDeskId);
+    }
 
     setIsAuth(true);
     localStorage.setItem("jwt", logData.jwt);
     localStorage.setItem("userId", decodedToken.userId);
   };
 
-  const  hasClientValidToken  =  ( )  =>  {
+  const hasClientValidToken = () => {
     const jwt = localStorage.getItem("jwt");
     const isJwtExpired = isExpired(jwt);
 
@@ -44,37 +48,35 @@ function App() {
 
   const logout = () => {
     localStorage.clear();
-    setIsAuth ( false ) ;
-   
-    
+    setIsAuth(false);
   };
 
- 
-
-    async function getUserDetalis(){
-            try{
-                setError(false)
-                setIsLoading(true)
-              const userDetails = await axios.get(`http://localhost:4000/user/${localStorage.getItem("userId")}`)
-              setUserProfileData(userDetails.data)
-              setIsLoading(false)
-                localStorage.setItem("color",userDetails.data.profileColour)
-                setUserDateOfBirth((userDetails.data.dateOfBirth).slice(0,10))
-                setGender(userDetails.data.gender)
-            }catch (error) {
-              setIsLoading(false); 
-              setError( true);
-              return 
-            }
+  async function getUserDetalis() {
+    try {
+      setError(false);
+      setIsLoading(true);
+      const userDetails = await axios.get(
+        `http://localhost:4000/user/${localStorage.getItem("userId")}`
+      );
+      setUserProfileData(userDetails.data);
+      setLearningDeskId(userDetails.data.myLearningDesk._id);
+      setIsLoading(false);
+      localStorage.setItem("color", userDetails.data.profileColour);
+      setUserDateOfBirth(userDetails.data.dateOfBirth.slice(0, 10));
+      setGender(userDetails.data.gender);
+    } catch (error) {
+      setIsLoading(false);
+      setError(true);
+      return;
     }
-  useEffect(()=>{
-    if(isAuth){
-      getUserDetalis()
+  }
+  useEffect(() => {
+    if (isAuth) {
+      getUserDetalis();
     }
-  },[isAuth])
+  }, [isAuth]);
 
-  console.log(userProfileData)
-  
+  console.log(userProfileData);
 
   useEffect(() => {
     if (hasClientValidToken()) {
@@ -83,13 +85,17 @@ function App() {
   }, [isAuth]);
 
   return (
-    <MyContext.Provider value={{ selectedCourse, setSelectedCourse }}>
+    <MyContext.Provider
+      value={{
+        selectedCourse,
+        setSelectedCourse,
+        learningDeskId,
+        setLearningDeskId,
+        userProfileData,
+      }}
+    >
       <Router>
-        <Header
-          isAuth={isAuth}
-          logout={logout} 
-   
-        />
+        <Header isAuth={isAuth} logout={logout} />
 
         <Routes>
           <Route path={"/"} element={<Home />} />
@@ -109,14 +115,28 @@ function App() {
             path="/courselist/:courseid"
             element={<CoursePage isAuth={isAuth} />}
           />
+          <Route
+            path="/mylearningdesk"
+            element={<LearningDesk learningDeskId={learningDeskId} />}
+          />
 
-
-          
           <Route path={"/about"} element={<AboutUs />} />
 
-         <Route path={"/register"} element={<Register />} />
-          <Route path={"/userprofile"} element={<UserProfile userProfileData={userProfileData} isAuth={isAuth} isLoading={isLoading} error={error} setError={setError} userDateOfBirth={userDateOfBirth} gender={gender}/>} />
-
+          <Route path={"/register"} element={<Register />} />
+          <Route
+            path={"/userprofile"}
+            element={
+              <UserProfile
+                userProfileData={userProfileData}
+                isAuth={isAuth}
+                isLoading={isLoading}
+                error={error}
+                setError={setError}
+                userDateOfBirth={userDateOfBirth}
+                gender={gender}
+              />
+            }
+          />
         </Routes>
       </Router>
     </MyContext.Provider>
