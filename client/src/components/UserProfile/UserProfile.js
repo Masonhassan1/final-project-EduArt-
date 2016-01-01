@@ -208,7 +208,7 @@ function setImageHandler(e){
         setProfileLoading(false);
           setEdit(false)
       } catch (error) {
-        console.log(error)
+        console.log("Error",error)
         setProfileLoading(false);
         setIsError(true);
       }

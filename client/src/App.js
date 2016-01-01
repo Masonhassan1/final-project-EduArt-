@@ -174,7 +174,9 @@ function App() {
                   error={error}
                   setError={setError}
                   userDateOfBirth={userDateOfBirth}
+                  setUserDateOfBirth={setUserDateOfBirth}
                   gender={gender}
+                  setUserName={setUserName}
                 />
               }
             />
