@@ -38,7 +38,7 @@ function Login({handelSuccessfullLogin}) {
       }
       
       setError("");
-      handelSuccessfullLogin(axiosResp.data);
+     handelSuccessfullLogin(axiosResp.data);
     } catch (error) {
       console.error("Error while sending with axios", error);
       setError(error);

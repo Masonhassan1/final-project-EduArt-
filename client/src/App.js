@@ -12,34 +12,37 @@ import Register from "./components/Register/Register";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [userDetails, setUserDetails] = useState(null);
+  /* const [isLoading, setIsLoading] = useState(false); */
+  /* const [error, setError] = useState(""); */
+  /* const [userDetails, setUserDetails] = useState(null); */
+
 
   
 
-  const handelSuccessfullLogin = (respData) => {
+  const handelSuccessfullLogin = (logData)=> {
 
-    const decodedToken = decodeToken(respData.jwt);
+    const decodedToken = decodeToken(logData.jwt);
+   
     setIsAuth(true);
-    localStorage.setItem("jwt", respData.jwt);
-    localStorage.setItem("name", decodedToken.userName);
+    localStorage.setItem("jwt", logData.jwt);
+    localStorage.setItem("userId", decodedToken.userId);
     
     
   }
 
-  const hasClientValidToken = () => {
+   const hasClientValidToken = () => {
     const jwt = localStorage.getItem("jwt");
     const isJwtExpired = isExpired(jwt);
 
     return jwt && !isJwtExpired ? true : false; 
-  }
+  } 
+  
   const logout = () => {
     localStorage.clear();
     setIsAuth(false);
-    setUserDetails(null);
-  }
-  const loadAndFetchUserDetails = async () => {
+    /* setUserDetails(null); */
+  } 
+ /*  const loadAndFetchUserDetails = async () => {
 
    
     const errorMsgEl = <p>Something went wrong</p>;
@@ -52,7 +55,7 @@ function App() {
         });
 
       setUserDetails(axiosResp.data);
-      console.debug("axiosResp.data:", axiosResp.data);
+      console.log("axiosResp.data:", axiosResp.data);
       setIsLoading(false);
 
       if(axiosResp.data.error) {
@@ -69,15 +72,16 @@ function App() {
       return errorMsgEl;
     }
 
-    return {/* <p>Hier jetzt ezugs</p> */}
-  }
-
-  useEffect(() => {
+    return 
+  } 
+ */
+   useEffect(() => {
     if( hasClientValidToken() ) {
       setIsAuth(true);
+     
     }
 
-  }, [isAuth]);
+  }, [isAuth]); 
 
 
   return (
@@ -87,10 +91,10 @@ function App() {
 
       <Routes>
       <Route path={"/"} element={<Home/>} />
-      <Route path={"/login"}  element={<Login/>} handelSuccessfullLogin={handelSuccessfullLogin}/>
+      <Route path={"/login"}  element={<Login handelSuccessfullLogin={handelSuccessfullLogin}/>}  />
 
       <Route path="/courselist" element={<CourseList />}></Route>
-          <Route path="/courselist/:courseid" element={<CoursePage />} />
+          <Route path="/courselist/:courseid" element={<CoursePage isAuth={isAuth}/>} />
 
       <Route path={"/register"} element={<Register/>} />
 
