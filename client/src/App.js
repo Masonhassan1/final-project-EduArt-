@@ -1,14 +1,34 @@
-import "./App.css";
+/* import "./App.css"; */
 //import "bootstrap/dist/css/bootstrap.min.css";
 import CourseList from "./components/CourseList/CourseList";
 import { Button } from "react-bootstrap";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import CoursePage from "./components/CoursePage/CoursePage";
 function App() {
   return (
-    <div className="App">
-      {/*      <h1>React App Template</h1>
-      <Button variant="success">Success</Button> */}
-      <CourseList />
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/courselist">Course List</Link>
+            </li>
+            <li>
+              <Link to="/users">Users</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route path="/courselist" element={<CourseList />}>
+            <Route path=":coursename" element={<CoursePage />} />
+          </Route>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

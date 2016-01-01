@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./CourseList.css";
 import { GoSearch } from "react-icons/go";
 
@@ -38,6 +39,7 @@ const courseArr = [
 ];
 
 export default function CourseList() {
+  const navigate = useNavigate();
   const submitForm = (e) => {
     e.preventDefault();
     console.log(e.target.value);
@@ -57,7 +59,12 @@ export default function CourseList() {
               <h5 className="courseDurationCard">{course.duration}</h5>
               <h5 className="courseStartCard">Start: {course.start}</h5>
               <p className="courseTextCard">{course.text}</p>
-              <button className="viewCourseBtn">View course</button>
+              <button
+                className="viewCourseBtn"
+                onClick={() => navigate(":webdevelopment")}
+              >
+                View course
+              </button>
             </div>
           );
         })}
