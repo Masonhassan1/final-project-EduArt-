@@ -19,6 +19,7 @@ import UserProfile from "./components/UserProfile/UserProfile";
 import LearningDesk from "./components/LearningDesk/LearningDesk";
 
 import "./App.css";
+import AdminPanel from "./components/AdminPanel/AdminPanel";
 
 const theme = createTheme({
   typography: {
@@ -49,7 +50,7 @@ function App() {
   const [userProfileData, setUserProfileData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [userName,setUserName]= useState("")
+  const [userName, setUserName] = useState("");
   const [gender, setGender] = useState("");
   const [userDateOfBirth, setUserDateOfBirth] = useState("");
 
@@ -77,7 +78,6 @@ function App() {
     setIsAuth(false);
   };
 
-
   useEffect(() => {
     if (isAuth) {
       async function getUserDetalis() {
@@ -91,20 +91,20 @@ function App() {
           setLearningDeskId(userDetails.data.myLearningDesk._id);
           setIsLoading(false);
           localStorage.setItem("color", userDetails.data.profileColour);
-          localStorage.setItem("imgId",userDetails.data.userImage || "") 
-          if(userDetails.data.userName){
-            setUserName(userDetails.data.userName)
+          localStorage.setItem("imgId", userDetails.data.userImage || "");
+          if (userDetails.data.userName) {
+            setUserName(userDetails.data.userName);
           }
-          if(userDetails.data.dateOfBirth){
-            setUserDateOfBirth((userDetails.data.dateOfBirth).slice(0,10))
-            } else{
-              return
+          if (userDetails.data.dateOfBirth) {
+            setUserDateOfBirth(userDetails.data.dateOfBirth.slice(0, 10));
+          } else {
+            return;
           }
-          if(userDetails.data.gender){
-            setGender(userDetails.data.gender)                
-            } else{
-              return
-            }
+          if (userDetails.data.gender) {
+            setGender(userDetails.data.gender);
+          } else {
+            return;
+          }
         } catch (error) {
           setIsLoading(false);
           setError(true);
@@ -136,7 +136,7 @@ function App() {
       >
         <CssBaseline />
         <Router>
-          <Header isAuth={isAuth} logout={logout} userName={userName}/>
+          <Header isAuth={isAuth} logout={logout} userName={userName} />
 
           <Routes>
             <Route path={"/"} element={<Home />} />
@@ -162,7 +162,7 @@ function App() {
             />
 
             <Route path={"/about"} element={<AboutUs />} />
-
+            <Route path={"/adminpanel"} element={<AdminPanel />} />
             <Route path={"/register"} element={<Register />} />
             <Route
               path={"/userprofile"}
