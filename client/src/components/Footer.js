@@ -6,10 +6,10 @@ function Footer() {
     <footer>
       <div className="footer-infos">
 
-       <div className="star"><i className="fa-solid fa-star"></i><span>4.8 rating</span></div>
-       <div className="laptop"><i className="fa-solid fa-laptop-code"></i><span>+200 online courses</span></div>
-       <div className="guarantee"><i className="fa-solid fa-money-check-dollar"></i><span>Money back guarantee</span></div>
-       <div className="certificate"><i className="fa-solid fa-graduation-cap"></i><span>Completion certificate</span></div>
+       <div className="star"><i className="fa-solid fa-star"></i> <span> 4.8 rating</span></div>
+       <div className="laptop"><i className="fa-solid fa-laptop-code"></i> <span> +200 online courses</span></div>
+       <div className="guarantee"><i className="fa-solid fa-money-check-dollar"></i> <span> Money back guarantee</span></div>
+       <div className="certificate"><i className="fa-solid fa-graduation-cap"></i> <span> Completion certificate</span></div>
       </div>
     </footer>
   )
