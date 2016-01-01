@@ -12,7 +12,7 @@ export const messages = {
     learning_desk: "Learning desk",
     my_profile: "My profile",
     please_login_first: "Please login first to see your profile options",
-    logged_in_as: "Logged in as",
+    logged_in_as: "Logged in as ",
 
     ///home page
     home_title: "Choose an online course that will move you forward",
@@ -139,6 +139,16 @@ export const messages = {
       "This value is calculated based on the modules data",
     course_language: "Language",
     please_select_the_course_language: "Please select the course language",
+    price: "Price, EUR",
+    please_type_the_price_for_the_course:
+      "Please type the price for the course",
+    course_icon: "Course icon",
+    please_select_the_course_icon: "Please select the course icon",
+    please_select_the_course_image: "Please select the course image",
+    update_course: "Update course",
+    create_new_course: "Create new course",
+    mod_on_card: "Modules:",
+    please_select_the_start_date: "Please select the start date of the course",
   },
   [LOCALES.RUSSIAN]: {
     // header
@@ -152,7 +162,7 @@ export const messages = {
     my_profile: "Мой профиль",
     please_login_first:
       "Пожалуйста зарегистрируйтесь, чтоб увидеть свой профиль",
-    logged_in_as: "Вы вошли как",
+    logged_in_as: "Вы вошли как ",
     ///home page
     home_title: "Выберите онлайн-курс, который продвинет вас вперед",
     home_text:
@@ -266,5 +276,24 @@ export const messages = {
     task_link: "Ссылка на задание",
     description: "Описание",
     link: "Ссылка",
+    // admin panel - courses page
+    the_course_was_successfully_created: "Курс успешно создан.",
+    admin_course_name: "Название курса",
+    type: "Тип",
+    please_select_the_course_type: "Пожалуйста, выберите тип курса",
+    course_duration: "Длительность",
+    this_value_is_calculated: "Значение рассчитывается на основе модулей",
+    course_language: "Язык",
+    please_select_the_course_language: "Пожалуйста, выберите язык курса",
+    price: "Стоимость, EUR",
+    please_type_the_price_for_the_course:
+      "Пожалуйста, напишите стоимость курса",
+    course_icon: "Значок курса",
+    please_select_the_course_icon: "Пожалуйста, выберите значок курса",
+    please_select_the_course_image: "Пожалуйста, выберите изображение курса",
+    update_course: "Обновить курс",
+    create_new_course: "Создать новый курс",
+    mod_on_card: "Модули:",
+    please_select_the_start_date: "Выберите дату начала курса",
   },
 };
