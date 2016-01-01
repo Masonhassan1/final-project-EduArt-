@@ -24,10 +24,11 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 
 import axiosConfig from "../../../util/axiosConfig";
-import "./AdminPanelModules.css";
 import ExtraMat from "./ExtraMaterials/ExtraMat";
 import AdminModulesSearch from "./AdminModulesSearch/AdminModulesSearch";
 import ModulesTasks from "./ModulesTasks/ModulesTasks";
+
+import "./AdminPanelModules.css";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -407,136 +408,154 @@ export default function AdminPanelModules() {
           />
 
           <div className="modulesWrapper">
-            {modulesSearchResult.map((mod) => {
-              return (
-                <Box className="moduleWrapper" key={mod._id}>
-                  <Button
-                    onClick={() => updateModule(mod)}
-                    sx={{
-                      position: "absolute",
-                      top: "10px",
-                      right: "25px",
-                      width: "1rem",
-                      height: "1rem",
-                      zIndex: "10",
-                    }}
-                  >
-                    <EditIcon />
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      setShowDeleteModal(true);
-                      setCurrentDelModule(mod);
-                    }}
-                    sx={{
-                      position: "absolute",
-                      top: "10px",
-                      right: "-4px",
-                      width: "1rem",
-                      height: "1rem",
-                      zIndex: "10",
-                    }}
-                  >
-                    <DeleteForeverIcon />
-                  </Button>
-                  <Accordion>
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
+            {loading ? (
+              <div id="load" data-testid="loading">
+                <div>G</div>
+                <div>N</div>
+                <div>I</div>
+                <div>D</div>
+                <div>A</div>
+                <div>O</div>
+                <div>L</div>
+              </div>
+            ) : hasError ? (
+              <div className="error-message"></div>
+            ) : !modulesSearchResult.length ? (
+              <div className="no-results">
+                <p>No results found</p>
+              </div>
+            ) : (
+              modulesSearchResult.map((mod) => {
+                return (
+                  <Box className="moduleWrapper" key={mod._id}>
+                    <Button
+                      onClick={() => updateModule(mod)}
+                      sx={{
+                        position: "absolute",
+                        top: "10px",
+                        right: "25px",
+                        width: "1rem",
+                        height: "1rem",
+                        zIndex: "10",
+                      }}
                     >
-                      <div>
-                        {" "}
-                        <p>Name: {mod.name}</p>
-                        <p>Duration: {mod.noOfDays} days</p>
-                        <p>
-                          <a
-                            href={mod.zoomLink}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            Zoom Link
-                          </a>
-                        </p>
-                      </div>
-                    </AccordionSummary>
+                      <EditIcon />
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        setShowDeleteModal(true);
+                        setCurrentDelModule(mod);
+                      }}
+                      sx={{
+                        position: "absolute",
+                        top: "10px",
+                        right: "-4px",
+                        width: "1rem",
+                        height: "1rem",
+                        zIndex: "10",
+                      }}
+                    >
+                      <DeleteForeverIcon />
+                    </Button>
+                    <Accordion>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                      >
+                        <div>
+                          {" "}
+                          <p>Name: {mod.name}</p>
+                          <p>Duration: {mod.noOfDays} days</p>
+                          <p>
+                            <a
+                              href={mod.zoomLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              Zoom Link
+                            </a>
+                          </p>
+                        </div>
+                      </AccordionSummary>
 
-                    <AccordionDetails>
-                      <Accordion>
-                        <AccordionSummary
-                          expandIcon={<ExpandMoreIcon />}
-                          aria-controls="panel1a-content"
-                          id="panel1a-header"
-                        >
-                          <Typography>Teachers</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                          <Box>
-                            {mod.teacher.map((person, id) => (
-                              <p
-                                key={id}
-                              >{`${person.firstName} ${person.lastName}`}</p>
-                            ))}
-                          </Box>
-                        </AccordionDetails>
-                      </Accordion>
-                      <Accordion>
-                        <AccordionSummary
-                          expandIcon={<ExpandMoreIcon />}
-                          aria-controls="panel2a-content"
-                          id="panel2a-header"
-                        >
-                          <Typography>Tasks</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                          <Box>
-                            {mod.tasks.map((task, id) => {
-                              return (
-                                <p key={id}>
-                                  <a
-                                    href={task.taskLink}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                  >
-                                    {task.taskName}
-                                  </a>
-                                </p>
-                              );
-                            })}
-                          </Box>
-                        </AccordionDetails>
-                      </Accordion>
-                      <Accordion>
-                        <AccordionSummary
-                          expandIcon={<ExpandMoreIcon />}
-                          aria-controls="panel3a-content"
-                          id="panel3a-header"
-                        >
-                          <Typography>Extra materials</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                          <Box>
-                            {mod.extraMaterial.map((topic, id) => {
-                              return (
-                                <p key={id}>
-                                  <a
-                                    href={topic.link}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                  >
-                                    {topic.description}
-                                  </a>
-                                </p>
-                              );
-                            })}
-                          </Box>
-                        </AccordionDetails>
-                      </Accordion>
-                    </AccordionDetails>
-                  </Accordion>
-                </Box>
-              );
-            })}
+                      <AccordionDetails>
+                        <Accordion>
+                          <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                          >
+                            <Typography>Teachers</Typography>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            <Box>
+                              {mod.teacher.map((person, id) => (
+                                <p
+                                  key={id}
+                                >{`${person.firstName} ${person.lastName}`}</p>
+                              ))}
+                            </Box>
+                          </AccordionDetails>
+                        </Accordion>
+                        <Accordion>
+                          <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel2a-content"
+                            id="panel2a-header"
+                          >
+                            <Typography>Tasks</Typography>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            <Box>
+                              {mod.tasks.map((task, id) => {
+                                return (
+                                  <p key={id}>
+                                    <a
+                                      href={task.taskLink}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                    >
+                                      {task.taskName}
+                                    </a>
+                                  </p>
+                                );
+                              })}
+                            </Box>
+                          </AccordionDetails>
+                        </Accordion>
+                        <Accordion>
+                          <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel3a-content"
+                            id="panel3a-header"
+                          >
+                            <Typography>Extra materials</Typography>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            <Box>
+                              {mod.extraMaterial.map((topic, id) => {
+                                return (
+                                  <p key={id}>
+                                    <a
+                                      href={topic.link}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                    >
+                                      {topic.description}
+                                    </a>
+                                  </p>
+                                );
+                              })}
+                            </Box>
+                          </AccordionDetails>
+                        </Accordion>
+                      </AccordionDetails>
+                    </Accordion>
+                  </Box>
+                );
+              })
+            )}
           </div>
         </section>
       </div>

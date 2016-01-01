@@ -7,11 +7,14 @@ import ListItemText from "@mui/material/ListItemText";
 import StarIcon from "@mui/icons-material/Star";
 import PeopleIcon from "@mui/icons-material/People";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 // import EventNoteIcon from "@mui/icons-material/EventNote";
 // import TaskIcon from "@mui/icons-material/Task";
 
 import "./AdminPanel.css";
 import AdminPanelModules from "./AdminPanelModules/AdminPanelModules";
+import AdminPanelCourses from "./AdminPanelCourses/AdminPanelCourses";
 
 export default function AdminPanel() {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -32,7 +35,7 @@ export default function AdminPanel() {
               onClick={(event) => handleListItemClick(event, 0)}
             >
               <ListItemIcon>
-                <StarIcon />
+                <LibraryBooksIcon />
               </ListItemIcon>
               <ListItemText primary="Modules" />
             </ListItemButton>
@@ -43,12 +46,12 @@ export default function AdminPanel() {
               onClick={(event) => handleListItemClick(event, 1)}
             >
               <ListItemIcon>
-                <PeopleIcon />
+                <LocalLibraryIcon />
               </ListItemIcon>
               <ListItemText primary="Courses" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+          {/* <ListItem disablePadding>
             <ListItemButton
               selected={selectedIndex === 2}
               onClick={(event) => handleListItemClick(event, 2)}
@@ -58,13 +61,12 @@ export default function AdminPanel() {
               </ListItemIcon>
               <ListItemText primary="Messages" />
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
         </List>
       </aside>
       <section>
         {selectedIndex === 0 && <AdminPanelModules />}
-        {selectedIndex === 1 && <p>Courses</p>}
-        {selectedIndex === 2 && <p>messages</p>}
+        {selectedIndex === 1 && <AdminPanelCourses />}
       </section>
     </section>
   );

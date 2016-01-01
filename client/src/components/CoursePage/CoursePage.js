@@ -53,14 +53,13 @@ export default function CoursePage({ isAuth }) {
         setCourseMes(true);
         setTimeout(() => {
           setCourseMes(false);
-          navigate("/mylearningdesk"); /// TODO navigate to Dashboard
+          navigate("/mylearningdesk");
         }, 2000);
       } catch (error) {
         setLoading(false);
         setHasError(true);
       }
     } else {
-      // save courseId????
       setSelectedCourse(courseid);
       navigate("/login");
     }
@@ -71,6 +70,7 @@ export default function CoursePage({ isAuth }) {
       setLoading(true);
       const apiData = await axiosConfig.get(`${url}/${courseid}`);
       setCourseInfo(apiData.data);
+      console.log("course info", apiData.data);
       const calcDate = new Date(apiData.data.dateOfStart);
       const day = calcDate.getUTCDate();
       const months = calcDate.getUTCMonth() + 1;
@@ -187,7 +187,13 @@ export default function CoursePage({ isAuth }) {
               <div className="courseDetailsDescr">
                 <p className="courseDetailsTitle">04 | Duration</p>
                 <p className="courseDetailsText">
-                  {`${courseInfo.courseDuration} months`}
+                  {`${
+                    courseInfo && courseInfo.modulesIncluded
+                      ? courseInfo.modulesIncluded
+                          .map((mod) => mod.noOfDays)
+                          .reduce((acc, cur) => acc + cur, 0)
+                      : 0
+                  } days`}
                 </p>
               </div>
             </div>
@@ -206,9 +212,7 @@ export default function CoursePage({ isAuth }) {
               <div className="courseDetailsIcon"></div>
               <div className="courseDetailsDescr">
                 <p className="courseDetailsTitle">06 | Language</p>
-                <p className="courseDetailsText">
-                  English or German - minimum level B1
-                </p>
+                <p className="courseDetailsText">{courseInfo.language}</p>
               </div>
             </div>
           </div>

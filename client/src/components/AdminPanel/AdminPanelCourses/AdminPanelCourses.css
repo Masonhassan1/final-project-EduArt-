@@ -1,0 +1,57 @@
+.adminCardWrapper {
+  padding: 1.8rem;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  height: 5rem;
+  box-sizing: border-box;
+}
+
+.cardHeader > .cardCoursePicture {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.cardCourseName {
+  font-size: 1.7rem;
+  color: white;
+  font-weight: 600;
+  padding: 0;
+  margin: 0 0 0 1rem;
+}
+
+.cardCourseType {
+  margin: 0 0 0 1rem;
+  color: white;
+  font-weight: 400;
+}
+
+.cardCourseDetails {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 5rem;
+}
+
+.cardCourseDetails > p {
+  margin: 0;
+  padding: 0;
+}
+
+.adminCardModulesSection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.adminCardModulesSection > p {
+  border: 1px solid white;
+  padding: 0.7rem;
+  border-radius: 10px;
+  margin: 0;
+}
