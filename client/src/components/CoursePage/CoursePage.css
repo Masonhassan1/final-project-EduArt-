@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@600&display=swap");
+
+body {
+  /* background: rgba(250, 214, 185, 0.835);
+  background: linear-gradient(
+    180deg,
+    rgba(254, 254, 254, 1) 10%,
+    rgba(250, 214, 185, 0.835) 70% 
+    );*/
+  background: linear-gradient(116.82deg, #ffffff 0%, #deeff4 100%);
+}
+
+.coursePageWrapper {
+  margin: 8.5rem auto 1rem;
+  width: 1200px;
+}
+
+.coursePageTopWrapper {
+  width: 100%;
+  display: flex;
+}
+
+.coursePageCard {
+  width: 680px;
+  height: 500px;
+
+  /*   border-radius: 1rem;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    box-shadow: 1rem 1rem 1rem grey, 0.4rem 0.4rem 1rem rgb(151, 147, 147) inset; */
+}
+
+.coursePageCard > .cardPageHeader {
+  display: flex;
+}
+
+.coursePageCard .cardPageIcon {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  object-position: center;
+  background: #ffffff;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.coursePageCard .cardPageTextHeader {
+  margin-left: 3.5rem;
+}
+
+.coursePageNameCard {
+  margin-top: 0;
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 57px;
+  color: #000000;
+}
+
+.coursePageDurationCard {
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 43px;
+  color: #000000;
+  margin-top: 1rem;
+}
+
+.coursePageTextCard {
+  text-align: justify;
+  margin: 3rem auto 2rem auto;
+  width: 660px;
+  height: 170px;
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  color: rgba(0, 0, 0, 0.57);
+}
+
+.coursePagePicture {
+  margin-left: 1.5rem;
+  width: 436px;
+  height: 389px;
+  border: 20px solid #afccd5;
+  border-radius: 5px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.coursePageBottomWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  justify-content: center;
+  align-items: center;
+  gap: 1.7rem;
+}
+
+.courseDetailsItem {
+  display: flex;
+  align-items: center;
+}
+
+.courseDetailsIcon {
+  background-position: center;
+  background-size: cover;
+}
+
+.courseDetailsItem:nth-child(1) > .courseDetailsIcon {
+  background-image: url("../../Images/Startup.png");
+  width: 93px;
+  height: 62px;
+}
+
+.courseDetailsItem:nth-child(2) > .courseDetailsIcon {
+  background-image: url("../../Images/Wallet.png");
+  width: 70px;
+  height: 60px;
+}
+
+.courseDetailsItem:nth-child(3) > .courseDetailsIcon {
+  background-image: url("../../Images/Book.png");
+  width: 66px;
+  height: 58px;
+}
+
+.courseDetailsItem:nth-child(4) > .courseDetailsIcon {
+  background-image: url("../../Images/Time.png");
+  width: 76px;
+  height: 62px;
+}
+
+.courseDetailsItem:nth-child(5) > .courseDetailsIcon {
+  background-image: url("../../Images/Location.png");
+  width: 71px;
+  height: 82px;
+}
+
+.courseDetailsItem:nth-child(6) > .courseDetailsIcon {
+  background-image: url("../../Images/language.png");
+  width: 61px;
+  height: 52px;
+}
+
+.courseDetailsDescr {
+  margin-left: 1.1rem;
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 23px;
+  line-height: 27px;
+  color: #000000;
+}
+
+.courseDetailsText {
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 23px;
+  line-height: 27px;
+  color: #000000;
+}

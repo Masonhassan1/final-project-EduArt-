@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@600&display=swap");
+
+body {
+  /* background: rgba(250, 214, 185, 0.835);
+  background: linear-gradient(
+    180deg,
+    rgba(254, 254, 254, 1) 10%,
+    rgba(250, 214, 185, 0.835) 70% 
+    );*/
+  background: linear-gradient(116.82deg, #ffffff 0%, #deeff4 100%);
+}
+.courseListTitle {
+  width: 700px;
+  height: 125px;
+  font-family: "Jura", sans-serif;
+  font-size: 52px;
+  margin: 110px auto 0 auto;
+  color: #000000;
+  font-style: normal;
+  font-weight: 600;
+  text-align: left;
+
+  line-height: 62px;
+}
+
+.search-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  position: relative;
+}
+
+.search-form > input {
+  width: 100%;
+  color: #000000;
+  padding: 7px 7px 7px 3rem;
+  font-size: 1.7rem;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #d7ebf1;
+  border-radius: 10px;
+}
+
+.search-form > input::placeholder {
+  padding-left: 1rem;
+  font-family: "Jura", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 26px;
+  color: #969696;
+}
+
+.search-form > input:focus-visible {
+  outline: none;
+}
+
+.search-icon {
+  font-size: 1.8rem;
+  color: #969696;
+  position: absolute;
+  top: 0.8rem;
+  left: 0.7rem;
+}
+
+.courseListSection {
+  display: flex;
+  width: 80vw;
+  flex-wrap: wrap;
+  margin: 100px auto;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.courseCard {
+  width: 480px;
+  height: 380px;
+  background: #ffffff;
+  border: 1px solid #d7ebf1;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  padding: 2.5rem;
+
+  /*   border-radius: 1rem;
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+  box-shadow: 1rem 1rem 1rem grey, 0.4rem 0.4rem 1rem rgb(151, 147, 147) inset; */
+}
+
+.courseCard > .cardHeader {
+  display: flex;
+  align-items: center;
+}
+
+.courseCard .cardIcon {
+  width: 95px;
+  height: 83px;
+  object-fit: cover;
+  object-position: center;
+  background: #ffffff;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.courseCard .cardTextHeader {
+  margin-left: 1.5rem;
+}
+
+.courseNameCard {
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 30px;
+  color: #000000;
+}
+
+.courseDurationCard {
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+  margin-top: 0.8rem;
+}
+
+.courseTextCard {
+  text-align: justify;
+  width: 420px;
+  height: 80px;
+  margin: 3rem auto 2rem auto;
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 26px;
+  color: #969696;
+}
+
+.viewCourseBtn {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-decoration: none;
+  width: 384px;
+  height: 60px;
+  background: #afccd5;
+  border-radius: 10px;
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 33px;
+  color: #ffffff;
+}
