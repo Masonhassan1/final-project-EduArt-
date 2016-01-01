@@ -2,10 +2,10 @@
 
 
 .coursePageWrapper-body{
-  margin-top: -16rem;
+  margin-top: -12rem;
   height: 90.5vh;
   background: rgba(250, 214, 185, 0.835) ;
-  background: linear-gradient(180deg, rgba(254, 254, 254, 1) 10%, rgba(250, 221, 241, 0.835) 70%);
+  background: linear-gradient(180deg, rgba(254, 254, 254, 1) 10%, rgba(251, 230, 253, 0.835) 70%);
 }
 
 
