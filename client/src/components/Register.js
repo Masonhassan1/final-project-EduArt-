@@ -1,5 +1,6 @@
 import React,{useState,useRef} from 'react'
 import axios from "axios"
+import {Spinner} from "react-bootstrap"
 import "./Register.css"
 
 function Register() {
@@ -20,6 +21,12 @@ function Register() {
       setIsLoading(true);
       const axiosResp = await axios.post("http://localhost:3000/", userData);
       setIsLoading(false);
+      if(axiosResp.data.error) {
+       console.log(axiosResp.data.error)
+        return;
+      }
+
+      console.log("axiosResp.data", axiosResp.data)
      
   }catch (error){
     console.log("error")
@@ -27,16 +34,25 @@ function Register() {
 
   }
   return (
+  
+   
     <div className='register'>
-
+      
     <form ref={formEl} className='reg-form' action="">
      <div>Register</div>
-     <input ref={nameEl} type="text" required placeholder='User name'/>
-     <input ref={emailEl} type="email" required placeholder='Email'/>
-     <input ref={passwordEl} type="password" required placeholder='Password'/>
+     <input ref={nameEl} type="text"  placeholder='User name'/>
+     <input ref={emailEl} type="email"  placeholder='Email'/>
+     <input ref={passwordEl} type="password"  placeholder='Password'/>
      <button className='register-btn' onClick={submitHandler}>Register</button>
+     {isLoading?  <div >
+          <Spinner className="spinner" animation="border" variant="info"/>
+        </div>:""}
     </form>
+
+ 
      </div>
+    
+   
   )
 }
 
