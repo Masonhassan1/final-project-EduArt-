@@ -1,5 +1,4 @@
 import React from "react";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { isExpired, decodeToken } from "react-jwt";
@@ -15,6 +14,28 @@ import UserProfile from "./components/UserProfile/UserProfile";
 import axios from "axios";
 import LearningDesk from "./components/LearningDesk/LearningDesk";
 import CssBaseline from "@mui/material/CssBaseline";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Jura from "./Fonts/Jura-Medium.ttf";
+
+const theme = createTheme({
+  typography: {
+    fontFamily: "Jura",
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: `
+        @font-face {
+          font-family: 'Jura';
+          font-style: normal;
+          font-display: swap;
+          font-weight: 700;
+          src: local('Jura'), local('Jura-Medium'), url(${Jura}) format('woff2');
+          unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
+        }
+      `,
+    },
+  },
+});
 
 export const MyContext = React.createContext(null);
 
@@ -86,62 +107,64 @@ function App() {
   }, [isAuth]);
 
   return (
-    <MyContext.Provider
-      value={{
-        selectedCourse,
-        setSelectedCourse,
-        learningDeskId,
-        setLearningDeskId,
-        userProfileData,
-      }}
-    >
-      <CssBaseline />
-      <Router>
-        <Header isAuth={isAuth} logout={logout} />
+    <ThemeProvider theme={theme}>
+      <MyContext.Provider
+        value={{
+          selectedCourse,
+          setSelectedCourse,
+          learningDeskId,
+          setLearningDeskId,
+          userProfileData,
+        }}
+      >
+        <CssBaseline />
+        <Router>
+          <Header isAuth={isAuth} logout={logout} />
 
-        <Routes>
-          <Route path={"/"} element={<Home />} />
-          <Route
-            path={"/login"}
-            element={
-              <Login
-                handelSuccessfullLogin={handelSuccessfullLogin}
-                isAuth={isAuth}
-                courseId={selectedCourse}
-              />
-            }
-          />
+          <Routes>
+            <Route path={"/"} element={<Home />} />
+            <Route
+              path={"/login"}
+              element={
+                <Login
+                  handelSuccessfullLogin={handelSuccessfullLogin}
+                  isAuth={isAuth}
+                  courseId={selectedCourse}
+                />
+              }
+            />
 
-          <Route path="/courselist" element={<CourseList />}></Route>
-          <Route
-            path="/courselist/:courseid"
-            element={<CoursePage isAuth={isAuth} />}
-          />
-          <Route
-            path="/mylearningdesk"
-            element={<LearningDesk learningDeskId={learningDeskId} />}
-          />
+            <Route path="/courselist" element={<CourseList />}></Route>
+            <Route
+              path="/courselist/:courseid"
+              element={<CoursePage isAuth={isAuth} />}
+            />
+            <Route
+              path="/mylearningdesk"
+              element={<LearningDesk learningDeskId={learningDeskId} />}
+            />
 
-          <Route path={"/about"} element={<AboutUs />} />
+            <Route path={"/about"} element={<AboutUs />} />
 
-          <Route path={"/register"} element={<Register />} />
-          <Route
-            path={"/userprofile"}
-            element={
-              <UserProfile
-                userProfileData={userProfileData}
-                isAuth={isAuth}
-                isLoading={isLoading}
-                error={error}
-                setError={setError}
-                userDateOfBirth={userDateOfBirth}
-                gender={gender}
-              />
-            }
-          />
-        </Routes>
-      </Router>
-    </MyContext.Provider>
+            <Route path={"/register"} element={<Register />} />
+            <Route
+              path={"/userprofile"}
+              element={
+                <UserProfile
+                  userProfileData={userProfileData}
+                  isAuth={isAuth}
+                  isLoading={isLoading}
+                  error={error}
+                  setError={setError}
+                  userDateOfBirth={userDateOfBirth}
+                  gender={gender}
+                />
+              }
+            />
+          </Routes>
+        </Router>
+      </MyContext.Provider>
+    </ThemeProvider>
   );
 }
 
