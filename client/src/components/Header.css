@@ -1,47 +1,42 @@
 .header {
-    margin-top: -3rem;
-    display: flex;
-    align-items: center;
-    column-gap: 36%;
-    font-family: "Jura", sans-serif;
-    font-weight: bold;
-    user-select: none;
+  height: 15vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  column-gap: 36%;
+  font-family: "Jura", sans-serif;
+  font-weight: bold;
+  user-select: none;
 }
-
 .logo {
-    margin-left: 8%;
-    cursor: pointer;
-   
+  margin-left: 8%;
+  cursor: pointer;
 }
 .logo img {
-    width: 16rem;
-    height: 16rem;
+  width: 16rem;
+  height: 16rem;
 }
-
 .navy {
- 
-    display: flex;
-    column-gap: 4rem;
-    font-size: 1.4rem;
+  display: flex;
+  column-gap: 4rem;
+  font-size: 1.4rem;
 }
-.nav-link{
-    text-decoration: none;
-    min-width: fit-content;
+.nav-link {
+  text-decoration: none;
+  min-width: fit-content;
 }
-
 .navy div {
-    position: relative;
-    color: #8b8b8b;
-    transition: 0.6s;
-    -webkit-transition: 0.6s;
-    -moz-transition: 0.6s;
-    -ms-transition: 0.6s;
-    -o-transition: 0.6s;
+  position: relative;
+  color: #8b8b8b;
+  transition: 0.6s;
+  -webkit-transition: 0.6s;
+  -moz-transition: 0.6s;
+  -ms-transition: 0.6s;
+  -o-transition: 0.6s;
 }
 .navy div:hover {
-    color: #046fa5;
+  color: #046fa5;
 }
-
-.user-profile{
-    cursor: pointer;
+.user-profile {
+  cursor: pointer;
 }

@@ -1,41 +1,37 @@
-
-
-main{
-    height: 68vh;
-    display: flex;
-    user-select: none;
-    align-items: center;
-    font-family: "Jura", sans-serif;
-    font-size: xx-large;
+main {
+  height: 75vh;
+  display: flex;
+  user-select: none;
+  align-items: center;
+  font-family: "Jura", sans-serif;
+  font-size: xx-large;
 }
-.info{
-position: absolute;
-top: 30%;
-left: 7%;
+.info {
+  position: absolute;
+  top: 30%;
+  left: 7%;
 }
-
-.paragraph-one{
-    font-weight: bold;
+.paragraph-one {
+  font-weight: bold;
 }
-.paragraph-two{
-    width: 50%;
-   
+.paragraph-two {
+  width: 50%;
 }
-.home-img{
-    position: absolute;
-    top: 25%;
-    left: 65%;
+.home-img {
+  position: absolute;
+  top: 25%;
+  left: 65%;
 }
-.home-img-div{
-    width: 550px;
-    height: 500px;
+.home-img-div {
+  width: 550px;
+  height: 500px;
 }
 .home-img-div img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
-.info button{
-    margin-top: 30px;
+.info button {
+  margin-top: 30px;
   width: 250px;
   height: 60px;
   font-size: 20px;
@@ -47,5 +43,4 @@ left: 7%;
   border-radius: 1rem;
   -webkit-border-radius: 1rem;
   -moz-border-radius: 1rem;
- 
 }
