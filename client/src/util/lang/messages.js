@@ -52,6 +52,16 @@ export const messages = {
     loading: "loading...",
     email: "Email",
     password: "Password",
+    // register page
+    register_f: "Register",
+    first_name: "First name",
+    last_name: "Last name",
+    user_name: "User name",
+    hello: "Hello",
+    you_were_successfully_registered: "you were successfully registered",
+    you_will_be_automatically_directed_to:
+      "You will be automatically directed to ",
+    page: "page",
   },
   [LOCALES.RUSSIAN]: {
     // header
@@ -103,5 +113,15 @@ export const messages = {
     loading: "загрузка ...",
     email: "Эл. адрес",
     password: "Пароль",
+    // register page
+    register_f: "Регистрация",
+    first_name: "Имя",
+    last_name: "Фамилия",
+    user_name: "Имя пользователя",
+    hello: "Здравствуйте!",
+    you_were_successfully_registered: "вы успешно зарегистрированы",
+    you_will_be_automatically_directed_to:
+      "Вы будете автоматически перенаправлены на ",
+    page: "страницу",
   },
 };
