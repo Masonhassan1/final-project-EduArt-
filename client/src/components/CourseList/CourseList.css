@@ -27,6 +27,7 @@ body {
   max-width: 600px;
   margin: 2rem auto;
   position: relative;
+  padding: 0;
 }
 
 .search-form > input {
@@ -38,6 +39,7 @@ body {
   background: #ffffff;
   border: 1px solid #d7ebf1;
   border-radius: 10px;
+  margin-bottom: 0;
 }
 
 .search-form > input::placeholder {
