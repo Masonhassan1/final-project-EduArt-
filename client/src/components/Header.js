@@ -36,6 +36,10 @@ useEffect(()=>{
 })
 },[userProfileColor])
 
+useEffect(()=>{
+  document.querySelector("#user-profile-list").setAttribute("class","hide-user-profile-list")
+},[])
+
   return (
   <div className='header' >
    
