@@ -1,0 +1,216 @@
+.chat-site {
+    height: 80.5vh;
+}
+.share-site-main {
+    height: 89%;
+    overflow: auto;
+    background-color: #f8f8f8;
+}
+
+.share-site-section {
+    width: 95%;
+    margin: auto;
+    padding: 3rem;
+    height: 71.5vh;
+    
+}
+
+.share-site-sended-message-container {
+    display: grid;
+    grid-template-columns: 10% 25% 65%;
+    grid-template-rows: 120px 100%;
+    width: 75%;
+    height: fit-content;
+    margin: 1.5rem auto;
+    padding: 1rem;
+    border: 1px solid rgb(157, 155, 155);
+    box-shadow: 5px 5px 10px gray;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+   
+}
+.share-site-user-img-container {
+    grid-column: 1;
+    grid-row: 1;
+}
+.share-site-user-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+}
+.share-site-user-name {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    color: #7a7878;
+  
+}
+.chatter-name{
+    scale: 1.4 .9;
+}
+.ex-date , .ex-time{
+    font-size: small;
+    color: rgb(0, 98, 255);
+    scale: 1.4  1;
+}
+
+.user-shared-message {
+    grid-column: 1/-1;
+    grid-row: 2;
+    margin-top: 1.5rem;
+    font-size: large;
+    word-break: break-all;
+    white-space: wrap;
+    word-wrap: break-word;
+}
+.like-emoji-container > i {
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.emoji-span{
+    cursor: pointer;
+}
+.dislike-counter ,.like-counter{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    color: tomato;
+}
+.go-up {
+    position: fixed;
+    top: 70%;
+    left: 90%;
+    font-size: xx-large;
+}
+.comment-emoji-container{
+    position: fixed;
+    top: 30%;
+    left: 2%;
+    width: 200px;
+    height: 280px;
+   display: flex;
+   flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    border: 1px solid gray;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+   
+}
+.comment-emoji-container > div{
+    cursor: pointer;
+}
+/* Footer CSS */
+.share-site-footer {
+    background-color: #f8f8f8;
+}
+.share-site-footer-container {
+    width: 100%;
+    height: 12%;
+    display: grid;
+    grid-template-columns: repeat(20, calc(100% / 20));
+    grid-template-rows: repeat(10, calc(100% / 10));
+    border: 2px solid #0404db;
+    border-radius: 1.6rem;
+    -webkit-border-radius: 1.6rem;
+    -moz-border-radius: 1.6rem;
+   
+}
+.textarea-container {
+    grid-column: 5/20;
+    grid-row: 1/9;
+}
+
+.share-site-textarea {
+    width: 100%;
+    height: 115px;
+    white-space: wrap;
+    padding: 2rem;
+    border: none;
+    outline: none;
+    font-size: xx-large;
+}
+.share-site-send-message {
+    grid-column: 20;
+    grid-row: 1/-1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3f2f2;
+    font-size: xx-large;
+    cursor: pointer;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+.share-site-send-message > i {
+    color: gray;
+}
+.share-site-send-message > i:hover {
+    scale: 1.2;
+}
+.message-tool-container {
+    grid-column: 1/5;
+    grid-row: 1/-1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f3f2f2;
+    font-size: xx-large;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+.message-tool-container > div {
+    cursor: pointer;
+}
+.message-tool-container > div > i {
+    color: gray;
+}
+.message-tool-container > div > i:hover {
+    scale: 1.2;
+}
+@keyframes show {
+    to {
+        opacity: 1;
+    }
+}
+.color-input {
+    border: none;
+    cursor: pointer;
+}
+.go-back {
+    grid-column: 7/8;
+    grid-row: 1/-1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(244, 241, 241);
+    font-size: xx-large;
+}
+
+.emoji-container,
+.text-container {
+    grid-column: 1/7;
+    grid-row: 1/-1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(244, 241, 241);
+    opacity: 0;
+    animation: show 1s linear forwards;
+    -webkit-animation: show 1s linear forwards;
+}
+.emoji-container > div {
+    cursor: pointer;
+    font-size: 25px;
+}

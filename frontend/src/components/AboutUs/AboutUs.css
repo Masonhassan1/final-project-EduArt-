@@ -1,0 +1,127 @@
+.about-wrapper {
+  background: linear-gradient(180deg, #ffffff 0.44%, #deeff4 100%);
+  min-height: 83vh;
+  box-sizing: border-box;
+  padding-bottom: 1rem;
+}
+
+.about-title {
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 23px;
+  line-height: 30px;
+  color: #5382a1;
+  text-align: center;
+  margin-top: 0.7rem;
+  margin-bottom: 0;
+}
+
+.about-header {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 53px;
+  color: #5382a1;
+  text-align: center;
+}
+
+.team-info-wrapper {
+  margin: 4rem auto 1rem auto;
+  width: 80%;
+  min-width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.team-info-wrapper .office-location-map {
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  /* background-position: center;
+  background-size: cover; */
+}
+
+.team-info-wrapper a {
+  text-decoration: none;
+}
+
+.teammate-name {
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 47px;
+  color: #5382a1;
+  text-align: center;
+}
+
+.team-info-card .fa-github {
+  font-size: 2.2rem;
+  margin-top: 0.3rem;
+  text-align: center;
+  display: block;
+  color: black;
+}
+
+.team-info-card .fa-github:visited {
+  color: black;
+}
+
+.linkedin-icon {
+  display: block;
+  width: 100px;
+  height: 25px;
+  margin: 0.3rem auto;
+}
+
+.offices {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: 3.7rem auto 1rem auto;
+}
+
+.office {
+  text-align: center;
+  width: 250px;
+}
+
+.office > .fa-location-dot {
+  font-size: 1.5rem;
+  color: #5382a1;
+}
+
+.officeName {
+  margin: 0;
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 23px;
+  color: #5382a1;
+}
+
+.officeTime {
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  margin: 0;
+  color: #5382a1;
+}
+
+.officeLocation {
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: #5382a1;
+  margin: 0;
+}
