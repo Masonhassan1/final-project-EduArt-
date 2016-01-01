@@ -114,7 +114,7 @@ i:hover,
   -webkit-border-radius: 1rem;
   -moz-border-radius: 1rem;
 }
-.header-user-name{
+.header-user-name {
   width: 275px;
   min-width: fit-content;
 }

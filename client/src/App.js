@@ -76,6 +76,8 @@ function App() {
   const logout = () => {
     localStorage.clear();
     setIsAuth(false);
+    setIsAdmin(false);
+    setUserName("");
   };
 
   useEffect(() => {

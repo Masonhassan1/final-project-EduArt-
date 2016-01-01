@@ -49,11 +49,16 @@ function Header({ isAuth, logout, userName, isAdmin }) {
   }, []);
 
   return (
-    <div className="header">
+    <div className="header" style={{ gap: `${isAdmin ? "10%" : "28%"}` }}>
       <div className="logo" onClick={() => navigate("/")}>
         <img className="img front" src={require("../Images/logo.png")} alt="" />
       </div>
       <div className="navy">
+        {isAdmin && (
+          <NavLink className="nav-link" to="/adminpanel">
+            <div className="navy-login user-pro-color">Admin panel</div>
+          </NavLink>
+        )}
         <div className="header-user-name">{userName ? userName : ""}</div>
         <i
           className="fa-solid fa-user user-pro-color"
@@ -64,32 +69,35 @@ function Header({ isAuth, logout, userName, isAdmin }) {
             id="user-profile-list"
             className={showUserPro ? "user-pro-ul" : "hide-userPro-ul"}
           >
-            {isAdmin && (
+            <li
+              className="user-pro-color"
+              onClick={() => navigate("/mylearningdesk")}
+            >
+              Learning desk
+            </li>
+
+            {/* {isAdmin && (
               <li
                 className="user-pro-color"
                 onClick={() => navigate("/adminpanel")}
               >
                 Admin panel
               </li>
-            )}
-            {!isAdmin && (
-              <li
-                className="user-pro-color"
-                onClick={() => navigate("/mylearningdesk")}
-              >
-                Learning desk
-              </li>
-            )}
-            {!isAdmin && (
-              <li
-                className="user-pro-color"
-                onClick={() => navigate("/userprofile")}
-              >
-                My profile
-              </li>
-            )}
+            )} */}
+
+            <li
+              className="user-pro-color"
+              onClick={() => navigate("/userprofile")}
+            >
+              My profile
+            </li>
           </ul>
         </i>
+        {isAuth && isAdmin && (
+          <NavLink className="nav-link" to="/adminpanel">
+            <div className="navy-home user-pro-color">Admin panel</div>
+          </NavLink>
+        )}
         <NavLink className="nav-link" to="/">
           <div className="navy-home user-pro-color">Home</div>
         </NavLink>

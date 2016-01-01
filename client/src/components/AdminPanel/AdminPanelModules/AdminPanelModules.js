@@ -17,6 +17,11 @@ import Checkbox from "@mui/material/Checkbox";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
 
 import axiosConfig from "../../../util/axiosConfig";
 import "./AdminPanelModules.css";
@@ -41,12 +46,11 @@ const MenuProps = {
 
 export default function AdminPanelModules() {
   const [modules, setModules] = useState([]);
+  const [modulesName, setModulesName] = useState([]);
   const [modulesSearchResult, setModulesSearchResult] = useState([]);
   const [updateModuleMode, setUpdateModuleMode] = useState(false);
+
   const [moduleId, setModuleId] = useState("");
-  const [modulesName, setModulesName] = useState([]);
-  const [hasError, setHasError] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [moduleName, setModuleName] = useState("");
   const [moduleDuration, setModuleDuration] = useState("");
   const [moduleZoomLink, setModuleZoomLink] = useState("");
@@ -54,12 +58,17 @@ export default function AdminPanelModules() {
   const [moduleTasks, setModuleTasks] = useState([]);
   const [moduleExtraMat, setModuleExtraMat] = useState("");
 
-  const [showCreateMessage, setShowCreateMessage] = useState(false);
-  const [showUpdateMessage, setShowUpdateMessage] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
+  const [messageText, setMessageText] = useState("");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const [teachersArr, setTeachersArr] = useState([]);
-
   const [personName, setPersonName] = React.useState([]);
+
+  const [currentDelModule, setCurrentDelModule] = useState(null);
+
+  const [hasError, setHasError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
     const {
@@ -82,7 +91,6 @@ export default function AdminPanelModules() {
     try {
       setLoading(true);
       const apiData = await axiosConfig.get(url);
-      console.log("new search results", apiData);
       setModulesSearchResult([...apiData.data]);
       setLoading(false);
       setHasError(false);
@@ -163,7 +171,33 @@ export default function AdminPanelModules() {
       );
 
       resetCreateModuleForm();
-      setShowCreateMessage(true);
+      setShowMessage(true);
+      setMessageText("The module was successfully created.");
+      getModules(`/modules`);
+
+      setLoading(false);
+      setHasError(false);
+    } catch (error) {
+      setLoading(false);
+      setHasError(true);
+    }
+  };
+
+  const deleteModuleRequest = async () => {
+    try {
+      setLoading(true);
+      const jwt = localStorage.getItem("jwt");
+      const response = await axiosConfig.delete(
+        `/modules/${currentDelModule._id}`,
+        {
+          headers: {
+            authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+
+      setShowMessage(true);
+      setMessageText("The module was successfully removed.");
       getModules(`/modules`);
 
       setLoading(false);
@@ -201,7 +235,8 @@ export default function AdminPanelModules() {
         }
       );
 
-      setShowUpdateMessage(true);
+      setShowMessage(true);
+      setMessageText("The module was successfully updated.");
       resetCreateModuleForm();
       getModules(`/modules`);
       setUpdateModuleMode(false);
@@ -215,8 +250,7 @@ export default function AdminPanelModules() {
   };
 
   const updateModule = (mod) => {
-    console.log("update module", mod);
-    setModuleId(mod.id);
+    setModuleId(mod._id);
     setModuleName(mod.name);
     setModuleDuration(mod.noOfDays);
     setModuleZoomLink(mod.zoomLink);
@@ -381,13 +415,29 @@ export default function AdminPanelModules() {
                     sx={{
                       position: "absolute",
                       top: "10px",
-                      right: "-4px",
+                      right: "25px",
                       width: "1rem",
                       height: "1rem",
                       zIndex: "10",
                     }}
                   >
                     <EditIcon />
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setShowDeleteModal(true);
+                      setCurrentDelModule(mod);
+                    }}
+                    sx={{
+                      position: "absolute",
+                      top: "10px",
+                      right: "-4px",
+                      width: "1rem",
+                      height: "1rem",
+                      zIndex: "10",
+                    }}
+                  >
+                    <DeleteForeverIcon />
                   </Button>
                   <Accordion>
                     <AccordionSummary
@@ -491,35 +541,48 @@ export default function AdminPanelModules() {
         </section>
       </div>
       <Snackbar
-        open={showCreateMessage}
+        open={showMessage}
         autoHideDuration={5000}
-        onClose={() => setShowCreateMessage(false)}
+        onClose={() => setShowMessage(false)}
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         key={"bottomright"}
       >
         <Alert
-          onClose={() => setShowCreateMessage(false)}
+          onClose={() => setShowMessage(false)}
           severity="success"
           sx={{ width: "100%", fontSize: "1rem" }}
         >
-          Module has been created successfully.
+          {messageText}
         </Alert>
       </Snackbar>
-      <Snackbar
-        open={showUpdateMessage}
-        autoHideDuration={5000}
-        onClose={() => setShowUpdateMessage(false)}
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-        key={"bottomright1"}
-      >
-        <Alert
-          onClose={() => setShowUpdateMessage(false)}
-          severity="success"
-          sx={{ width: "100%", fontSize: "1rem" }}
-        >
-          Module has been updated successfully.
-        </Alert>
-      </Snackbar>
+      <Dialog open={showDeleteModal} onClose={() => setShowDeleteModal(false)}>
+        <DialogTitle sx={{ color: "red" }}>
+          Do you really want to delete the module?
+        </DialogTitle>
+        <DialogContent>
+          <Box
+            component="form"
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "25ch" },
+            }}
+            noValidate
+            autoComplete="off"
+          ></Box>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={(event) => {
+              deleteModuleRequest(event);
+              setShowDeleteModal(false);
+            }}
+          >
+            Submit
+          </Button>
+          <Button variant="contained" onClick={() => setShowDeleteModal(false)}>
+            Cancel
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
