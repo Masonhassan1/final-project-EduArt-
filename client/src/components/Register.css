@@ -10,7 +10,7 @@
     background: linear-gradient(180deg, rgba(254, 254, 254, 1) 10%, rgba(185, 227, 250, 0.835) 70%);
 }
 
-form {
+.reg-form {
     margin-top: 4rem;
     border: 1px solid rgb(203, 202, 202);
     display: flex;

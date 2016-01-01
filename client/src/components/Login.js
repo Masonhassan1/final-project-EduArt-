@@ -8,7 +8,7 @@ function Login() {
   return (
     <div className='login'>
 
-   <form action="">
+   <form className='log-form' action="">
     <div>Login</div>
     <p>Don´t have an account? <Link className='link' to= "/register">register</Link> </p>
     <p>or sign in via email</p>
