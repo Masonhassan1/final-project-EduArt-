@@ -24,7 +24,12 @@ function Footer() {
       setText(messageText.value);
 
       setTimeout(() => {
-        setResponse(<FormattedMessage id="thankyou" />);
+        setResponse(
+          <FormattedMessage
+            id="thankyou"
+            defaultMessage="Thank you, we've got your message and we'll response as soon as possible"
+          />
+        );
       }, 900);
       messageText.value = "";
     } else {
@@ -42,25 +47,34 @@ function Footer() {
         <div className="star">
           <i className="fa-solid fa-star"></i>{" "}
           <span>
-            <FormattedMessage id="rating" />
+            <FormattedMessage id="rating" defaultMessage="4.8 rating" />
           </span>
         </div>
         <div className="laptop">
           <i className="fa-solid fa-laptop-code"></i>{" "}
           <span>
-            <FormattedMessage id="f_online_courses" />
+            <FormattedMessage
+              id="f_online_courses"
+              defaultMessage="+200 online courses"
+            />
           </span>
         </div>
         <div className="guarantee">
           <i className="fa-solid fa-money-check-dollar"></i>{" "}
           <span>
-            <FormattedMessage id="money_back" />
+            <FormattedMessage
+              id="money_back"
+              defaultMessage="Money back guarantee"
+            />
           </span>
         </div>
         <div className="certificate">
           <i className="fa-solid fa-graduation-cap"></i>{" "}
           <span>
-            <FormattedMessage id="f_certificate" />
+            <FormattedMessage
+              id="f_certificate"
+              defaultMessage="Completion certificate"
+            />
           </span>
         </div>
       </div>
@@ -76,7 +90,10 @@ function Footer() {
         </div>
         <div className={chatForm ? "chat-form" : "hide-chat-form"}>
           <div className="response">
-            <FormattedMessage id="send_question" />
+            <FormattedMessage
+              id="send_question"
+              defaultMessage="Send us your questions"
+            />
           </div>
           <div className="text">{text}</div>
           <div className="response">{response}</div>

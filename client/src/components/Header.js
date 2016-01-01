@@ -103,7 +103,11 @@ function Header({
         <div className="header-user-name">
           {userName ? (
             <p>
-              Logged in as <span>{userName}</span>
+              <FormattedMessage
+                id="logged_in_as"
+                defaultMessage="Logged in as"
+              />
+              <span>{userName}</span>
             </p>
           ) : (
             ""
@@ -122,46 +126,52 @@ function Header({
               className="user-pro-color"
               onClick={() => navigate("/mylearningdesk")}
             >
-              <FormattedMessage id="learning_desk" />
+              <FormattedMessage
+                id="learning_desk"
+                defaultMessage="Learning desk"
+              />
             </li>
             <li
               className="user-pro-color"
               onClick={() => navigate("/userprofile")}
             >
-              <FormattedMessage id="my_profile" />
+              <FormattedMessage id="my_profile" defaultMessage="My profile" />
             </li>
           </ul>
         </i>
         {isAuth && isAdmin && (
           <NavLink className="nav-link" to="/adminpanel">
             <div className="navy-home user-pro-color">
-              <FormattedMessage id="admin_panel" />
+              <FormattedMessage id="admin_panel" defaultMessage="Admin panel" />
             </div>
           </NavLink>
         )}
         <NavLink className="nav-link" to="/">
           <div className="navy-home user-pro-color">
-            <FormattedMessage id="home" />
+            <FormattedMessage id="home" defaultMessage="Home" />
           </div>
         </NavLink>
         <NavLink className="nav-link" to="/courselist">
           <div className="navy-courses user-pro-color">
-            <FormattedMessage id="online_courses" />
+            <FormattedMessage
+              id="online_courses"
+              defaultMessage="Online courses"
+            />
           </div>
         </NavLink>
         <NavLink className="nav-link" to={isAuth ? "/" : "login"}>
           <div className="navy-login user-pro-color" onClick={logout}>
             {isAuth ? (
-              <FormattedMessage id="logout" />
+              <FormattedMessage id="logout" defaultMessage="Logout" />
             ) : (
-              <FormattedMessage id="login" />
+              <FormattedMessage id="login" defaultMessage="Login" />
             )}
           </div>
         </NavLink>
 
         <NavLink className="nav-link" to="/about">
           <div className="navy-login user-pro-color">
-            <FormattedMessage id="about_us" />
+            <FormattedMessage id="about_us" defaultMessage="About us" />
           </div>
         </NavLink>
       </div>

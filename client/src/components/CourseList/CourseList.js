@@ -60,7 +60,10 @@ export default function CourseList() {
   return (
     <div className="course-list-page">
       <p className="courseListTitle">
-        <FormattedMessage id="choose_an_online_course" />
+        <FormattedMessage
+          id="choose_an_online_course"
+          defaultMessage="Choose an online course and transform your career"
+        />
       </p>
       <form className="search-form" onSubmit={(e) => submitForm(e)}>
         <GoSearch className="search-icon" />
@@ -91,7 +94,10 @@ export default function CourseList() {
         ) : !courseArr.length ? (
           <div className="no-results">
             <p>
-              <FormattedMessage id="no_results_found" />
+              <FormattedMessage
+                id="no_results_found"
+                defaultMessage="No results found"
+              />
             </p>
           </div>
         ) : (

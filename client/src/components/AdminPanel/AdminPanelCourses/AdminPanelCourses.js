@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import Box from "@mui/material/Box";
 import { Button, Input } from "@mui/material";
@@ -205,7 +206,12 @@ export default function AdminPanelCourses() {
       resetCreateCourseForm();
       event.target.reset();
       setShowMessage(true);
-      setMessageText("The course was successfully created.");
+      setMessageText(
+        <FormattedMessage
+          id="the_course_was_successfully_created"
+          defaultMessage="The course was successfully created."
+        />
+      );
       getCourses(`/courses`);
 
       setLoading(false);
@@ -223,7 +229,9 @@ export default function AdminPanelCourses() {
 
   return (
     <div>
-      <h3 className="modulesPageTitle">Courses</h3>
+      <h3 className="modulesPageTitle">
+        <FormattedMessage id="courses" defaultMessage="Courses" />
+      </h3>
       <div className="adminPanelModulesWrapper">
         <Box className="moduleWrapper newModuleWrapper" sx={{ p: "1rem" }}>
           <form onSubmit={createCourse}>
@@ -231,7 +239,12 @@ export default function AdminPanelCourses() {
               <Box sx={{ m: "1rem" }}>
                 <TextField
                   id="standard-basic"
-                  label="Course name"
+                  label={
+                    <FormattedMessage
+                      id="admin_course_name"
+                      defaultMessage="Course name"
+                    />
+                  }
                   fullWidth
                   required
                   variant="standard"
@@ -244,11 +257,16 @@ export default function AdminPanelCourses() {
                 <TextField
                   id="standard-select-currency"
                   select
-                  label="Type"
+                  label={<FormattedMessage id="type" defaultMessage="Type" />}
                   sx={{ width: "45%" }}
                   value={courseType}
                   onChange={(event) => setCourseType(event.target.value)}
-                  helperText="Please select the course type"
+                  helperText={
+                    <FormattedMessage
+                      id="please_select_the_course_type"
+                      defaultMessage="Please select the course type"
+                    />
+                  }
                   variant="standard"
                 >
                   {types.map((option) => (
@@ -261,7 +279,12 @@ export default function AdminPanelCourses() {
               <Box sx={{ m: "1rem" }}>
                 <TextField
                   id="outlined-multiline-static"
-                  label="Description"
+                  label={
+                    <FormattedMessage
+                      id="description"
+                      defaultMessage="Description"
+                    />
+                  }
                   fullWidth
                   multiline
                   rows={4}
@@ -290,13 +313,23 @@ export default function AdminPanelCourses() {
                 />
                 <TextField
                   id="standard-basic"
-                  label="Duration"
+                  label={
+                    <FormattedMessage
+                      id="course_duration"
+                      defaultMessage="Duration"
+                    />
+                  }
                   type="number"
                   variant="standard"
                   value={0}
                   disabled
                   // onChange={(event) => setCourseName(event.target.value)}
-                  helperText="This value is calculated based on the modules data"
+                  helperText={
+                    <FormattedMessage
+                      id="this_value_is_calculated"
+                      defaultMessage="This value is calculated based on the modules data."
+                    />
+                  }
                   sx={{ width: "45%" }}
                 />
               </Box>
@@ -312,11 +345,21 @@ export default function AdminPanelCourses() {
                 <TextField
                   id="standard-select-currency"
                   select
-                  label="Language"
+                  label={
+                    <FormattedMessage
+                      id="course_language"
+                      defaultMessage="Language"
+                    />
+                  }
                   sx={{ width: "45%" }}
                   value={courseLanguage}
                   onChange={(event) => setCourseLanguage(event.target.value)}
-                  helperText="Please select the course language"
+                  helperText={
+                    <FormattedMessage
+                      id="please_select_the_course_language"
+                      defaultMessage="Please select the course language"
+                    />
+                  }
                   variant="standard"
                 >
                   {languages.map((option) => (

@@ -12,6 +12,8 @@ export const messages = {
     learning_desk: "Learning desk",
     my_profile: "My profile",
     please_login_first: "Please login first to see your profile options",
+    logged_in_as: "Logged in as",
+
     ///home page
     home_title: "Choose an online course that will move you forward",
     home_text:
@@ -127,6 +129,16 @@ export const messages = {
     task_link: "Task link",
     description: "Description",
     link: "Link",
+    // admin panel - courses page
+    the_course_was_successfully_created: "The course was successfully created.",
+    admin_course_name: "Course name",
+    type: "type",
+    please_select_the_course_type: "Please select the course type",
+    course_duration: "Duration",
+    this_value_is_calculated:
+      "This value is calculated based on the modules data",
+    course_language: "Language",
+    please_select_the_course_language: "Please select the course language",
   },
   [LOCALES.RUSSIAN]: {
     // header
@@ -140,6 +152,7 @@ export const messages = {
     my_profile: "Мой профиль",
     please_login_first:
       "Пожалуйста зарегистрируйтесь, чтоб увидеть свой профиль",
+    logged_in_as: "Вы вошли как",
     ///home page
     home_title: "Выберите онлайн-курс, который продвинет вас вперед",
     home_text:
