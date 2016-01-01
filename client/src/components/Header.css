@@ -28,6 +28,9 @@
     text-decoration: none;
     min-width: fit-content;
 }
+.active{
+    color: red;
+}
 .navy div {
     position: relative;
     color: #8b8b8b;

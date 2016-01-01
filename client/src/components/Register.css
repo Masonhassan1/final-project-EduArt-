@@ -1,0 +1,63 @@
+.register {
+    
+    height: 84.5vh;
+    overflow: hidden;
+    margin: -4rem auto 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: rgba(250, 214, 185, 0.835) ;
+    background: linear-gradient(180deg, rgba(254, 254, 254, 1) 10%, rgba(185, 227, 250, 0.835) 70%);
+}
+
+form {
+    margin-top: 4rem;
+    border: 1px solid rgb(203, 202, 202);
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    caret-color:#39ccf4 ;
+    padding: 4rem 10rem;
+    background-color:#fff;
+    color: #2c768f;
+    font-size: x-large;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+   
+}
+
+input {
+   padding-left: 1rem;
+    margin-bottom: 1.5rem;
+    border: none;
+    outline: none;
+    color: #2c768f;
+    border-radius: .5rem;
+    box-shadow: 2px 2px 10px gray;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    
+   
+}
+
+::placeholder{
+    font-size: large;
+    color: #d2d6d6;
+}
+.register-btn {
+    width: 12rem;
+    border: none;
+    padding: .6rem;
+    font-size: large;
+    font-weight: bold;
+    color: #39aff4;
+    background-color: #cee9fa;
+    border-radius: .5rem;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+  
+}

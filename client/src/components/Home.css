@@ -53,9 +53,9 @@
 }
 .home-btn {
     width: 14rem;
-    height: 3rem;
+    height: 2.5rem;
     position: absolute;
-    right: 8%;
+    right: 4%;
     bottom: 30%;
     border: none;
     outline: none;
@@ -170,7 +170,7 @@
 }
 .display {
     background-image: url("../Images/logo.png");
-    background-color: #f1f3f4;
+    background-color: #f4f6f7;
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: center;
