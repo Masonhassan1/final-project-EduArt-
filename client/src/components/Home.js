@@ -3,6 +3,7 @@ import {useState, useEffect } from 'react'
 import "./Home.css"
 
 function Home() {
+  
   const [time , setTime]=useState(new Date())
   useEffect(()=>{
     document.querySelector(".bracket-one").textContent="{";
@@ -21,8 +22,9 @@ function Home() {
             <div className="yellow"></div>
             <div className="red"></div>
             <div className="green"></div>
-            <p>Choose an online course that will move you forward ...</p>
-            <button>view online courses</button>
+            <p className='paragraph-one'>Choose an online course that will move you forward ...</p>
+         {/*    <p className='paragraph-two'> We are a leader in the field of online education and we are trusted by more than 70,000 users from companies, schools and state institutions.</p> */}
+            <button className='home-btn'>view online courses</button>
            
         </section>
         <section className='frame'>

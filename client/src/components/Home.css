@@ -59,20 +59,28 @@
     -webkit-border-radius: 54% 46% 70% 30% / 53% 6% 94% 47%;
     -moz-border-radius: 54% 46% 70% 30% / 53% 6% 94% 47%;
 }
-p {
+.paragraph-one , .paragraph-two {
     position: absolute;
-    top: 20%;
-    left: 25%;
     font-size: xx-large;
-    color: rgb(4, 54, 63);
+     color: #383838; 
     rotate: x 90deg;
     animation: show-paragraph 0.6s 0.3s linear forwards;
     -webkit-animation: show-paragraph 0.6s 0.3s linear forwards;
 }
 
-button {
+.paragraph-one{
+    top: 20%;
+    left: 25%;
+}
+.paragraph-two{
+    top: 40%;
+    left: 25%;
+    font-size: x-large;
+}
+
+.home-btn {
     width: 12rem;
-    height: 2rem;
+    height: 3rem;
     position: absolute;
     right: 4%;
     bottom: 27%;
@@ -80,7 +88,7 @@ button {
     outline: none;
     color: white;
     font-weight: bold;
-    background-color: rgba(101, 25, 241, 0.8);
+    background-color: #6519f1cc;
     transition: 0.5s;
     border-radius: 1.2rem;
     -webkit-border-radius: 1.2rem;
@@ -91,8 +99,8 @@ button {
     -webkit-transition: 0.5s;
     -moz-transition: 0.5s;
 }
-button:hover {
-    box-shadow: inset 0px 0px 15px 10px rgb(100, 19, 249);
+.home-btn:hover {
+    box-shadow: inset 0px 0px 15px 15px rgb(100, 19, 249);
 }
 @keyframes show-paragraph {
     to {
@@ -107,6 +115,7 @@ button:hover {
 .nodejs {
     position: absolute;
 }
+
 
 .python {
     width: 70px;
