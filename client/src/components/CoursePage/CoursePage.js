@@ -1,17 +1,60 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosConfig from "../../util/axiosConfig";
 import "./CoursePage.css";
+import { MyContext } from "../../App";
+
+export const findLDeskIdAndAddCourse = async (courseid) => {
+  const userId = localStorage.getItem("userId");
+  const url = "/user";
+  const jwt = localStorage.getItem("jwt");
+
+  if (userId && jwt) {
+    const userData = await axiosConfig.get(`${url}/${userId}`, {
+      headers: {
+        authorization: `Bearer ${jwt}`,
+      },
+    });
+    const learningDeskId = userData.data.myLearningDesk._id;
+    console.log("learningDeskId", learningDeskId);
+    if (learningDeskId) {
+      const lDeskData = await addCourseOnDashborad(learningDeskId, courseid);
+      console.log("lDeskData", lDeskData);
+      //navigate('/dashboard');
+      //navigate("/"); // TODO dashboard
+    }
+  }
+};
+export const addCourseOnDashborad = async (learningDeskId, courseId) => {
+  console.log(learningDeskId, courseId);
+  try {
+    const jwt = localStorage.getItem("jwt");
+    if (learningDeskId && jwt) {
+      const lDeskData = await axiosConfig.patch(
+        `/mylearningdesk/${learningDeskId}`,
+        { courseId: courseId },
+        {
+          headers: {
+            authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+      return lDeskData;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export default function CoursePage({ isAuth }) {
+  const contextContent = useContext(MyContext);
+  const { selectedCourse, setSelectedCourse } = contextContent;
   const { courseid } = useParams();
   const [courseInfo, setCourseInfo] = useState([]);
   const [courseStart, setCourseStart] = useState("");
   const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
-
   const bookCourse = async () => {
     /// check ob user eingelogged ist
     // true:
@@ -20,41 +63,18 @@ export default function CoursePage({ isAuth }) {
       // body course_id
       try {
         setLoading(true);
-        const userId = localStorage.getItem("userId");
-        const url = "/user";
-        const jwt = localStorage.getItem("jwt");
-        if (userId && jwt) {
-          const userData = await axiosConfig.get(`${url}/${userId}`, {
-            headers: {
-              authorization: `Bearer ${jwt}`,
-            },
-          });
-          const learningDeskId = userData.data.myLearningDesk._id;
-          console.log("learningDeskId", learningDeskId);
-          if (learningDeskId) {
-            const lDeskData = await axiosConfig.patch(
-              `/mylearningdesk/${learningDeskId}`,
-              { courseId: courseid },
-              {
-                headers: {
-                  authorization: `Bearer ${jwt}`,
-                },
-              }
-            );
-            console.log("lDeskData", lDeskData);
-            //navigate('/dashboard');
-            navigate("/"); // TODO dashboard
-          }
-          setLoading(false);
-          setHasError(false);
-          console.log("book new course");
-        }
+        await findLDeskIdAndAddCourse(courseid);
+        navigate("/"); /// TODO navigate to Dashboard
+        setLoading(false);
+        setHasError(false);
+        console.log("book new course");
       } catch (error) {
         setLoading(false);
         setHasError(true);
       }
     } else {
       // to do save courseId????
+      setSelectedCourse(courseid);
       navigate("/login");
     }
   };
