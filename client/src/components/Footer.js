@@ -7,7 +7,7 @@ function Footer() {
   const [text,setText]=useState("")
   const [response,setResponse]=useState("")
   const [chatForm,setChatForm]= useState(false)
-  const e = document.querySelector(".message")
+  const messageText = document.querySelector(".message")
 
  useEffect(()=>{
   document.querySelector(".message").focus()
@@ -15,8 +15,8 @@ function Footer() {
  
   function textHandler(){
     if(response) setResponse("")
-    setText(e.value)
-    e.value = ""
+    setText(messageText.value)
+    messageText.value = ""
     setTimeout(()=>{
       setResponse("Thank you, we've got your message and we'll response as soon as possible")
     },700)
