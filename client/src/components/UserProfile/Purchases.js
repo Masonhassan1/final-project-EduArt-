@@ -1,5 +1,6 @@
 import { Image } from "cloudinary-react";
 import baseURL from "../../util/constants";
+import { FormattedMessage } from "react-intl";
 import "./UserProfile.css";
 
 function Purchases({ imageData, userPurchases }) {
@@ -33,16 +34,32 @@ function Purchases({ imageData, userPurchases }) {
                   style={{ backgroundColor: userProfileColor }}
                 >
                   <div className="purchase-invoiceNumber">
-                    invoiceNumber: {el.invoiceNumber}
+                    <FormattedMessage
+                      id="invoiceNumber"
+                      defaultMessage="Invoice number: "
+                    />{" "}
+                    {el.invoiceNumber}
                   </div>
                   <div className="purchase-course-name">
-                    Course name: {el.purchasedCourse.courseName}
+                    <FormattedMessage
+                      id="course_name"
+                      defaultMessage="Course name:"
+                    />{" "}
+                    {el.purchasedCourse.courseName}
                   </div>
                   <div className="course-dateOfStart">
-                    Course start: {el.purchasedCourse.dateOfStart.slice(0,10)}
+                    <FormattedMessage
+                      id="course_start"
+                      defaultMessage="Course start:"
+                    />{" "}
+                    {el.purchasedCourse.dateOfStart.slice(0, 10)}
                   </div>
                   <div className="purchase-course-price">
-                    Course price: {el.purchasedCourse.coursePrice}€
+                    <FormattedMessage
+                      id="course_price"
+                      defaultMessage="Course price:"
+                    />{" "}
+                    {el.purchasedCourse.coursePrice}€
                   </div>
                   <a
                     href={`http://localhost:4000/${el.renderedPDF.slice(9)}`}
@@ -64,7 +81,12 @@ function Purchases({ imageData, userPurchases }) {
               );
             })
           ) : (
-            <div>"You have no purchases"</div>
+            <div>
+              <FormattedMessage
+                id="you_have_no_purchases"
+                defaultMessage="You have no purchases"
+              />
+            </div>
           )}{" "}
         </div>
       </div>

@@ -95,6 +95,12 @@ export const messages = {
     male_female: "Male / Female",
     origin: "Origin",
     tel: "Tel",
+    // purchase page
+    invoiceNumber: "Invoice number: ",
+    course_name: "Course name: ",
+    course_start: "Course start: ",
+    course_price: "Course price: ",
+    you_have_no_purchases: "You have no purchases",
   },
   [LOCALES.RUSSIAN]: {
     // header
@@ -189,5 +195,11 @@ export const messages = {
     male_female: "Мужской / Женский",
     origin: "Происхождение",
     tel: "Тел.",
+    // purchase page
+    invoiceNumber: "Номер счета: ",
+    course_name: "Название курса: ",
+    course_start: "Начало курса: ",
+    course_price: "Стоимость курса: ",
+    you_have_no_purchases: "У вас нет покупок",
   },
 };
