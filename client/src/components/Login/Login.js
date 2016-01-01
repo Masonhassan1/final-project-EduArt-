@@ -8,10 +8,12 @@ import "./Login.css";
 function Login({ handelSuccessfullLogin, isAuth }) {
   const contextContent = useContext(MyContext);
   const { selectedCourse, setSelectedCourse } = contextContent;
+
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
   const [loginLoading, setLoginLoading] = useState(false);
   const navigate = useNavigate();
+
   useEffect(() => {
     document.querySelector(".login-email").focus();
   });

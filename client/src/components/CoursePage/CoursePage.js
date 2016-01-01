@@ -48,7 +48,7 @@ export const addCourseOnDashborad = async (learningDeskId, courseId) => {
 
 export default function CoursePage({ isAuth }) {
   const contextContent = useContext(MyContext);
-  const { selectedCourse, setSelectedCourse } = contextContent;
+  const { setSelectedCourse } = contextContent;
   const { courseid } = useParams();
   const [courseInfo, setCourseInfo] = useState([]);
   const [courseStart, setCourseStart] = useState("");
@@ -73,7 +73,7 @@ export default function CoursePage({ isAuth }) {
         setHasError(true);
       }
     } else {
-      // to do save courseId????
+      // save courseId????
       setSelectedCourse(courseid);
       navigate("/login");
     }
