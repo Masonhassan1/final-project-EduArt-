@@ -62,6 +62,30 @@ export const messages = {
     you_will_be_automatically_directed_to:
       "You will be automatically directed to ",
     page: "page",
+    //about us page
+    about_the_project: "About the project",
+    made_with_love: "Made with love, right here in Germany",
+    mon_fri: "Mon-Fri 9am to 4pm",
+    // learning desk
+    my_class: "My class",
+    your_course_hasnt_started: "your course hasn't started yet",
+    your_course_has_already_finished: "your course has already finished",
+    my_courses: "My courses",
+    course_modules: "Course modules",
+    chapter: "Chapter",
+    chapters: "Chapters",
+    m_name: "Name: ",
+    m_duration: "Duration: ",
+    zoom_link: "Zoom Link",
+    teachers: "Teachers",
+    tasks: "Tasks",
+    extra_materials: "Extra materials",
+    course_start_date: "Course Start Date: ",
+    today_is: "Today is: ",
+    current_module: "Current module: ",
+    you_dont_have_any_courses_yet: "You don't have any courses yet",
+    day: "day",
+    of: "of",
   },
   [LOCALES.RUSSIAN]: {
     // header
@@ -79,7 +103,7 @@ export const messages = {
     home_title: "Выберите онлайн-курс, который продвинет вас вперед",
     home_text:
       "Мы являемся лидером в сфере онлайн-образования и нам доверяют более 70 000 пользователей из компаний, школ и государственных учреждений.",
-    home_button: "просмотреть онлайн-курсы",
+    home_button: "онлайн-курсы",
     //footer
     thankyou: "Спасибо, мы получили ваше сообщение и ответим как можно скорее",
     rating: "4.8 рейтинг",
@@ -123,5 +147,29 @@ export const messages = {
     you_will_be_automatically_directed_to:
       "Вы будете автоматически перенаправлены на ",
     page: "страницу",
+    //about us page
+    about_the_project: "О проекте",
+    made_with_love: "Сделано с любовью прямо здесь, в Германии",
+    mon_fri: "Пн-Пт с 9:00 до 16:00",
+    // learning desk
+    my_class: "Мой класс",
+    your_course_hasnt_started: "ваш курс еще не начался",
+    your_course_has_already_finished: "ваш курс уже закончился",
+    my_courses: "Мои курсы",
+    course_modules: "Модули курса",
+    chapter: "Глава",
+    chapters: "Главы",
+    m_name: "Название: ",
+    m_duration: "Длительность: ",
+    zoom_link: "Zoom ссылка",
+    teachers: "Учителя",
+    tasks: "Задачи",
+    extra_materials: "Дополнительные материалы",
+    course_start_date: "Дата начала курса: ",
+    today_is: "Сегодня: ",
+    current_module: "Текущий модуль: ",
+    you_dont_have_any_courses_yet: "У вас еще нет курсов",
+    day: "день",
+    of: "из",
   },
 };
