@@ -47,6 +47,7 @@
 .courseTab > div > div {
   display: flex;
   justify-content: space-around;
+  align-items: flex-start;
 }
 
 .modulesWrapper {
@@ -111,5 +112,22 @@
   font-family: "Jura";
   font-style: normal;
   font-weight: 700;
+  color: #5382a1;
+}
+
+.courseDetails {
+  background: #ffffff;
+  border: 1px solid #deeff4;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.courseDetails > div > p {
+  margin-left: 1rem;
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 1.1rem;
   color: #5382a1;
 }

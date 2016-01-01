@@ -2,7 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { isExpired, decodeToken } from "react-jwt";
-import "./App.css";
+import axios from "axios";
+import Jura from "./Fonts/Jura-Medium.ttf";
+import CssBaseline from "@mui/material/CssBaseline";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import Header from "./components/Header";
 import Home from "./components/Home";
 import CourseList from "./components/CourseList/CourseList";
@@ -11,11 +15,10 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import AboutUs from "./components/AboutUs/AboutUs";
 import UserProfile from "./components/UserProfile/UserProfile";
-import axios from "axios";
+
 import LearningDesk from "./components/LearningDesk/LearningDesk";
-import CssBaseline from "@mui/material/CssBaseline";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Jura from "./Fonts/Jura-Medium.ttf";
+
+import "./App.css";
 
 const theme = createTheme({
   typography: {
