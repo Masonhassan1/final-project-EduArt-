@@ -14,6 +14,7 @@ import AboutUs from "./components/AboutUs/AboutUs";
 import UserProfile from "./components/UserProfile/UserProfile";
 import axios from "axios";
 import LearningDesk from "./components/LearningDesk/LearningDesk";
+import CssBaseline from "@mui/material/CssBaseline";
 
 export const MyContext = React.createContext(null);
 
@@ -94,6 +95,7 @@ function App() {
         userProfileData,
       }}
     >
+      <CssBaseline />
       <Router>
         <Header isAuth={isAuth} logout={logout} />
 

@@ -5,6 +5,16 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import StarIcon from "@mui/icons-material/Star";
+import PeopleIcon from "@mui/icons-material/People";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import EventNoteIcon from "@mui/icons-material/EventNote";
+import TaskIcon from "@mui/icons-material/Task";
 import "./LearningDesk.css";
 import axiosConfig from "../../util/axiosConfig";
 
@@ -49,6 +59,11 @@ export default function LearningDesk(/* { learningDeskId } */) {
   const [loading, setLoading] = useState(false);
 
   const [value, setValue] = React.useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -73,6 +88,7 @@ export default function LearningDesk(/* { learningDeskId } */) {
 
   useEffect(() => {
     if (userProfileData.myLearningDesk) {
+      console.log("userProfile", userProfileData.myLearningDesk);
       getInfo();
       /*  "/courses",
         userProfileData.myLearningDesk.coursesBooked[0].courseId */
@@ -80,47 +96,113 @@ export default function LearningDesk(/* { learningDeskId } */) {
   }, [userProfileData.myLearningDesk]);
 
   return (
-    <section className="myCourses">
-      <h3>My courses</h3>
-
-      {courseArrInfo.length && (
-        <Box sx={{ width: "100%" }}>
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              aria-label="basic tabs example"
+    <section className="learning-desk-page">
+      <aside className="learning-desk-aside">
+        <List
+          sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+          aria-label="contacts"
+        >
+          <ListItem disablePadding>
+            <ListItemButton
+              selected={selectedIndex === 0}
+              onClick={(event) => handleListItemClick(event, 0)}
             >
-              {courseArrInfo.map((course, id) => {
-                return (
-                  <Tab
-                    label={course.courseId.courseName}
-                    {...a11yProps(id)}
-                    key={id}
-                  />
-                );
-              })}
-              {/*    <Tab label="Item One" {...a11yProps(0)} />
+              <ListItemIcon>
+                <StarIcon />
+              </ListItemIcon>
+              <ListItemText primary="Learningdesk" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton
+              selected={selectedIndex === 1}
+              onClick={(event) => handleListItemClick(event, 1)}
+            >
+              <ListItemIcon>
+                <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Participants" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton
+              selected={selectedIndex === 2}
+              onClick={(event) => handleListItemClick(event, 2)}
+            >
+              <ListItemIcon>
+                <MailOutlineIcon />
+              </ListItemIcon>
+              <ListItemText primary="Messages" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton
+              selected={selectedIndex === 3}
+              onClick={(event) => handleListItemClick(event, 3)}
+            >
+              <ListItemIcon>
+                <EventNoteIcon />
+              </ListItemIcon>
+              <ListItemText primary="Timetable" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton
+              selected={selectedIndex === 4}
+              onClick={(event) => handleListItemClick(event, 4)}
+            >
+              <ListItemIcon>
+                <TaskIcon />
+              </ListItemIcon>
+              <ListItemText primary="Homework" />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </aside>
+      <section className="learning-desk-main">
+        <h3 className="learning-desk-main__title">My courses</h3>
+
+        {courseArrInfo.length && (
+          <Box sx={{ width: "100%" }}>
+            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                variant="scrollable"
+                scrollButtons="auto"
+                aria-label="scrollable auto tabs example"
+              >
+                {courseArrInfo.map((course, id) => {
+                  return (
+                    <Tab
+                      label={course.courseId.courseName}
+                      {...a11yProps(id)}
+                      key={id}
+                    />
+                  );
+                })}
+                {/*    <Tab label="Item One" {...a11yProps(0)} />
                 <Tab label="Item Two" {...a11yProps(1)} />
                 <Tab label="Item Three" {...a11yProps(2)} /> */}
-            </Tabs>
-          </Box>
-          {courseArrInfo.map((course, id) => {
-            return (
-              <TabPanel value={value} index={id} key={id}>
-                {course.courseId.courseName}
-              </TabPanel>
-            );
-          })}
+              </Tabs>
+            </Box>
+            {courseArrInfo.map((course, id) => {
+              return (
+                <TabPanel value={value} index={id} key={id}>
+                  {course.courseId.courseName}
+                </TabPanel>
+              );
+            })}
 
-          {/* <TabPanel value={value} index={1}>
+            {/* <TabPanel value={value} index={1}>
           Item Two
         </TabPanel>
         <TabPanel value={value} index={2}>
           Item Three
         </TabPanel> */}
-        </Box>
-      )}
+          </Box>
+        )}
+      </section>
     </section>
   );
 }

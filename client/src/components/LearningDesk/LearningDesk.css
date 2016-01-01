@@ -1,0 +1,45 @@
+.learning-desk-page {
+  padding-top: 2rem;
+  min-height: 85vh;
+  background: linear-gradient(180deg, #ffffff 0%, #d7ebf1 100%);
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  padding: 0 1rem;
+}
+
+.learning-desk-main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.learning-desk-main__title {
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #5382a1;
+  padding-left: 1rem;
+}
+
+.learning-desk-aside {
+  border-right: 1px solid #deeff4;
+  height: 80%;
+  padding-top: 0.2rem;
+  display: grid;
+  justify-content: center;
+}
+
+.learning-desk-aside > ul {
+  background: none;
+}
+
+.learning-desk-aside > ul > li > div > div > span {
+  font-family: "Jura";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+}
