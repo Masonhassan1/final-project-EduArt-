@@ -72,7 +72,8 @@ function Home() {
               <div><span style={{color:"gold"}}>console.log(<span style={{color:"deepskyblue"}}>sum<span style={{color:"gold"}}>(</span><span style={{color:"orange"}}>56,74</span><span style={{color:"gold"}}>)</span></span>);</span></div>
               <div className="cover-one"></div>
               </div>
-              <div className="vsc-terminal-title"> PROBLMES DEBUG TERMINAL</div>
+              <div className="vsc-terminal-title"> <div> PROBLEMS DEBUG TERMINAL</div> 
+                </div>
               <div className="vsc-terminal">Desktop/index.js/  
               <div className='node'>
 

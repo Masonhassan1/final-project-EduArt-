@@ -292,7 +292,7 @@ button:hover{
 }
 .vsc-app{
    display: grid;
-   grid-template-columns:7% 18%  1fr;
+   grid-template-columns:7% 21%  1fr;
    grid-template-rows: 8% 7% 1fr 5% 25%;
    background-color: #202225;
    font-family: "Cascadia";
@@ -349,8 +349,8 @@ button:hover{
     margin-top: 10%;
 }
 .vsc-app-code-area{
-    margin: 5% 0 0 5%;
-    width: 64%;
+    margin: 5% 0 0 6%;
+    width: 68%;
     word-break: break-all;
     grid-column:3 ;
     grid-row:3/4 ;
@@ -384,15 +384,18 @@ button:hover{
 }
 }
 .vsc-terminal-title{
+    
     grid-column: 3;
     grid-row: 4/5;
     font-size: x-small;
     color:  #989175;
     border-top: 1px solid #989175;
 }
-
+.vsc-terminal-title div{
+    margin-left: 2%;
+}
 .vsc-terminal{
-    margin-left: 1%;
+    margin-left: 4%;
     grid-column: 3;
     grid-row: 5/7;
     font-size:x-small;
