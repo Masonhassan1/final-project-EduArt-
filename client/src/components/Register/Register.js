@@ -56,7 +56,7 @@ function Register() {
   formEl.current.reset();
   }
 
-  if(isRegistered){setTimeout(()=> navigate("/login"),3500)}
+  if(isRegistered){setTimeout(()=> navigate("/login"),5500)}
 
   function passwordHandler (){
      if(passwordEl.current.value) setShowPassword(!showPassword)
@@ -76,8 +76,11 @@ function Register() {
      <input  className='reg-input' ref={lastNameEl} type="text"  placeholder='Last name'/>
      <input  className='reg-input' ref={userNameEl} type="text"  placeholder='User name'/>
      <input  className='reg-input' ref={emailEl} type="email"  placeholder='Email'/>
+     <div className="reg-password-div">
+
      <input  className='reg-input' ref={passwordEl} type={showPassword? "text":"password"}  placeholder='Password'/>
      <div className='reg-show-password' onClick={passwordHandler}>{showPassword? <span><i class="fa-solid fa-eye-slash"></i></span>:<span><i class="fa-solid fa-eye"></i></span>}</div>
+     </div>
      <button className='register-btn' onClick={submitHandler}>Register</button>
      {isRegistered? <> <div > Hello <span style={{color:"darkorange",fontStyle:"italic"}}>{user}</span> you were successfully registered</div> <div>Your will be automatically directed to <span style={{color:"darkorange",fontStyle:"italic"}}>login</span> page</div></>:""}
      {isError? <div style={{color:"red"}}>Sorry.. something went wrong. please try again</div>:""}

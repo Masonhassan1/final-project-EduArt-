@@ -11,7 +11,6 @@
 }
 
 .reg-form {
-    position: relative;
     margin-top: 1rem;
     border: 1px solid rgb(203, 202, 202);
     display: flex;
@@ -73,9 +72,12 @@
     color: #351ee7;
     font-style: italic;
 }
+.reg-password-div{
+    position: relative;
+}
 .reg-show-password {
     cursor: pointer;
     position: absolute;
-    top: 424px;
-    left: 460px;
+    top: 8px;
+    left: 300px;
 }

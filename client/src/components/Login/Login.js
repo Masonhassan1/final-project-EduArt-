@@ -62,8 +62,11 @@ function Login({handleSuccessfullLogin}) {
     
     
     <input className='login-input login-email' ref={emailEl} type="email" required placeholder='Email'/>
+    <div className="log-password-div">
+
     <input className='login-input' ref={passwordEl} type={showPassword? "text":"password"}  required placeholder='Password'/>
     <div className='login-show-password' onClick={passwordHandler}>{showPassword? <span><i class="fa-solid fa-eye-slash"></i></span>:<span><i class="fa-solid fa-eye"></i></span>}</div>
+    </div>
     <button className='login-btn' type='submit'>Login</button>
    </form>
     </div>

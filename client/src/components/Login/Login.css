@@ -13,7 +13,7 @@
     color: #f99900 ;
 }
 .log-form {
-    position: relative;
+   
     margin-top: 1.8rem;
     border: 1px solid rgb(203, 202, 202);
     display: flex;
@@ -66,9 +66,12 @@
     -moz-border-radius: .5rem;
   
 }
+.log-password-div{
+    position: relative;
+}
 .login-show-password {
     cursor: pointer;
     position: absolute;
-    top:325px;
-    left: 485px;
+    top:8px;
+    left: 302px;
 }
