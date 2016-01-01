@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {Image} from "cloudinary-react"
 import axios from "axios";
-import Purchase from "./Purchase";
+/* import Purchase from "./Purchase"; */
 import "./UserProfile.css";
 
 function UserProfile({
@@ -364,7 +364,7 @@ console.log("newUpdatedData",newUpdatedData)
         )}
       </section>:""}
 
-      {purchase? <Purchase userProfileData={userProfileData} userImg={userImg}/>:""}
+      {/* {purchase? <Purchase userProfileData={userProfileData} userImg={userImg}/>:""} */}
       {isLoading || profileLoading ? (
         <div className="profile-loading">loading...</div>
       ) : (
