@@ -1,5 +1,4 @@
 import React,{useState,useEffect,useRef} from 'react'
-import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import "./UserProfile.css"
 
@@ -8,7 +7,7 @@ function UserProfile({userProfileData,isAuth,isLoading,setError,error,userDateOf
   const [profileLoading,setProfileLoading] = useState(false)
   const [isError,setIsError]=useState(false)
   const [proColor,setProColor]= useState("")
-  const navigate = useNavigate()
+  
   
   
 
