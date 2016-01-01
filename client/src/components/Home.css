@@ -41,7 +41,9 @@
 .paragraph-two {
     top: 40%;
     left: 25%;
+    color: #8f9090;
     font-size: x-large;
+    text-shadow: none;
 }
 
 @keyframes show-paragraph {
@@ -58,7 +60,6 @@
     border: none;
     outline: none;
     color: #898d90;
-    text-shadow: 1px 1px .5px #747676;
     font-size: 1.2rem;
     font-weight: bold;
     background-color: #dee2e6;
@@ -76,6 +77,7 @@
 }
 .home-btn:hover {
     box-shadow:-1px -1px 8px 0px #bbbdbf;
+    color:#737577 ;
   
 }
 .python,
