@@ -238,12 +238,12 @@ button:hover {
 }
 .pointer {
     position: absolute;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     left: 58%;
     top: 66%;
-    animation: move-pointer 2s 3s forwards , tip 1s 5s;
-    -webkit-animation: move-pointer 2s 3s forwards , tip 1s 5s;
+    animation: move-pointer 2s 2.8s forwards , tip 1s 4.8s;
+    -webkit-animation: move-pointer 2s 2.8s forwards , tip 1s 4.8s;
 }
 .pointer img {
    width: 100%;
@@ -252,7 +252,7 @@ button:hover {
 }
 @keyframes move-pointer {
     to {
-        top: 29%;
+        top: 30%;
         left: 10%;
     }
 }
@@ -268,8 +268,8 @@ button:hover {
     background-color: #202225;
     font-family: "Cascadia";
     opacity: 0;
-    animation: show 1s 6s linear forwards;
-    -webkit-animation: show 1s 6s linear forwards;
+    animation: show 1s 7s linear forwards;
+    -webkit-animation: show 1s 7s linear forwards;
 }
 .vsc-app-title {
     grid-column: -1/1;
@@ -357,28 +357,28 @@ button:hover {
 }
 .cover-one {
     top: 20.7%;
-    animation: move-cover 3s 7.5s linear forwards;
-    -webkit-animation: move-cover 3s 7.5s linear forwards;
+    animation: move-cover 3s 8.5s linear forwards;
+    -webkit-animation: move-cover 3s 8.5s linear forwards;
 }
 .cover-two {
     top: 27%;
-    animation: move-cover 3s 10.5s linear forwards;
-    -webkit-animation: move-cover 3s 10.5s linear forwards;
+    animation: move-cover 3s 11.5s linear forwards;
+    -webkit-animation: move-cover 3s 11.5s linear forwards;
 }
 .cover-three {
     top: 34%;
-    animation: move-cover 2s 13.5s linear forwards;
-    -webkit-animation: move-cover 2s 13.5s linear forwards;
+    animation: move-cover 2s 14.5s linear forwards;
+    -webkit-animation: move-cover 2s 14.5s linear forwards;
 }
 .cover-four {
     top: 40%;
-    animation: move-cover 1s 14.7s linear forwards;
-    -webkit-animation: move-cover 1s 14.7s linear forwards;
+    animation: move-cover 1s 15.7s linear forwards;
+    -webkit-animation: move-cover 1s 15.7s linear forwards;
 }
 .cover-five {
     top: 47%;
-    animation: move-cover 3s 15.6s linear forwards;
-    -webkit-animation: move-cover 3s 15.6s linear forwards;
+    animation: move-cover 3s 16.6s linear forwards;
+    -webkit-animation: move-cover 3s 16.6s linear forwards;
 }
 @keyframes move-cover {
     to {
@@ -404,13 +404,13 @@ button:hover {
 }
 .cover-six {
     top: 80%;
-    animation: move-cover 3.2s 19s linear forwards;
-    -webkit-animation: move-cover 3.2s 19s linear forwards;
+    animation: move-cover 3.2s 20s linear forwards;
+    -webkit-animation: move-cover 3.2s 20s linear forwards;
 }
 .result {
     opacity: 0;
-    animation: show 0.1s 20.9s forwards;
-    -webkit-animation: show 0.1s 20.9s forwards;
+    animation: show 0.1s 21.9s forwards;
+    -webkit-animation: show 0.1s 21.9s forwards;
 }
 @keyframes show {
     to {
