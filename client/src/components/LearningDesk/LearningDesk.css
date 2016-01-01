@@ -44,12 +44,16 @@
   line-height: 21px;
 }
 
+.courseTab > div > div {
+  display: flex;
+  justify-content: space-around;
+}
+
 .modulesWrapper {
   width: 600px;
-  margin: 1rem auto;
+  /* margin: 1rem auto; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   /*  gap: 1rem; */
   border: 1px solid #deeff4;

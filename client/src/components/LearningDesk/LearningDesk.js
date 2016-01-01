@@ -21,6 +21,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./LearningDesk.css";
 import axiosConfig from "../../util/axiosConfig";
+import ReactSpeedometer from "react-d3-speedometer";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -181,7 +182,12 @@ export default function LearningDesk() {
             </Box>
             {courseArrInfo.map((course, id) => {
               return (
-                <TabPanel value={value} index={id} key={id}>
+                <TabPanel
+                  className="courseTab"
+                  value={value}
+                  index={id}
+                  key={id}
+                >
                   <section className="modulesWrapper">
                     <div className="modulesHeader">
                       <p className="modulesHeaderTitle">Course modules</p>
@@ -296,6 +302,62 @@ export default function LearningDesk() {
                         })
                       : ""}
                   </section>
+                  <div>
+                    <div>
+                      <p>
+                        Course Start Date:{" "}
+                        {course.courseId.dateOfStart
+                          .substring(0, 10)
+                          .split("-")
+                          .reverse()
+                          .join(".")}
+                      </p>
+                      <p>
+                        Today is{" "}
+                        {new Date()
+                          .toJSON()
+                          .substring(0, 10)
+                          .split("-")
+                          .reverse()
+                          .join(".")}
+                      </p>
+                      <p>Current module: Module 1</p>
+                    </div>
+                    <ReactSpeedometer
+                      maxValue={40}
+                      value={5}
+                      needleColor="red"
+                      startColor="green"
+                      segments={course.courseId.modulesIncluded.length}
+                      endColor="blue"
+                      customSegmentLabels={course.courseId.modulesIncluded.map(
+                        (mod) => {
+                          return {
+                            text: `${mod.name}`,
+                            position: "INSIDE",
+                            color: "#555",
+                            fontSize: "19px",
+                          };
+                        }
+                      )}
+                      // [{
+                      //   text: "module 1",
+                      //   position: "INSIDE",
+                      //   color: "#555",
+                      //   fontSize: "19px",
+                      // },
+                      // {
+                      //   text: "module 2",
+                      //   position: "INSIDE",
+                      //   color: "#555",
+                      // },
+                      // {
+                      //   text: "module 3",
+                      //   position: "INSIDE",
+                      //   color: "#555",
+                      // },
+                    />
+                  </div>
                 </TabPanel>
               );
             })}
