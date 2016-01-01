@@ -44,7 +44,7 @@ function Home() {
             <div className="pointer"><img src={require("../Images/pointer.png")} alt="" />
             </div>
             <div className="vsc-app">
-              <div className="vsc-app-title">Visual Stdio Code</div>
+              <div className="vsc-app-title">Visual Studio Code</div>
               <div className="vsc-toolbar"> <div>
                 File Edit Selection View Go Run Terminal Help</div>
                 </div> 
