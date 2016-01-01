@@ -1,6 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
+
+import { FormattedMessage, useIntl } from "react-intl";
+
 import moment from "moment";
 import business from "moment-business";
+
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
@@ -9,10 +13,12 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 import ReactSpeedometer from "react-d3-speedometer";
 
 import { MyContext } from "../../../App";
 import axiosConfig from "../../../util/axiosConfig";
+
 import "../LearningDesk.css";
 
 function TabPanel(props) {
@@ -57,6 +63,8 @@ export default function LearningDeskPage() {
   const [loading, setLoading] = useState(false);
 
   const [value, setValue] = React.useState(0);
+
+  const intl = useIntl();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -132,11 +140,21 @@ export default function LearningDeskPage() {
     if (currentCourse) {
       const today = new Date();
       if (today < new Date(currentModulesDate[0].start)) {
-        setCurrentModuleName("your course hasn't started yet");
+        setCurrentModuleName(
+          <FormattedMessage
+            id="your_course_hasnt_started"
+            defaultMessage="your course hasn't started yet"
+          />
+        );
       } else if (
         today > new Date(currentModulesDate[currentModulesDate.length - 1].end)
       ) {
-        setCurrentModuleName("your course has already finished");
+        setCurrentModuleName(
+          <FormattedMessage
+            id="your_course_has_already_finished"
+            defaultMessage="your course has already finished"
+          />
+        );
       } else {
         const modName = currentModulesDate.find(
           (mod) => today >= new Date(mod.start) && today <= new Date(mod.end)
@@ -172,7 +190,9 @@ export default function LearningDeskPage() {
         <div className="error-message"></div>
       ) : (
         <div>
-          <h3 className="learning-desk-main__title">My courses</h3>
+          <h3 className="learning-desk-main__title">
+            <FormattedMessage id="my_courses" defaultMessage="My courses" />
+          </h3>
 
           {courseArrInfo.length > 0 ? (
             <Box sx={{ width: "100%" }}>
@@ -209,12 +229,26 @@ export default function LearningDeskPage() {
                   >
                     <section className="modulesWrapper">
                       <div className="modulesHeader">
-                        <p className="modulesHeaderTitle">Course modules</p>
+                        <p className="modulesHeaderTitle">
+                          <FormattedMessage
+                            id="course_modules"
+                            defaultMessage="Course modules"
+                          />
+                        </p>
                         <p className="modulesChapters">
-                          {course.courseId.modulesIncluded.length} Chapter
-                          {course.courseId.modulesIncluded.length > 1
-                            ? "s"
-                            : ""}
+                          {course.courseId.modulesIncluded.length}
+                          {` `}
+                          {course.courseId.modulesIncluded.length > 1 ? (
+                            <FormattedMessage
+                              id="chapters"
+                              defaultMessage="Chapters"
+                            />
+                          ) : (
+                            <FormattedMessage
+                              id="chapter"
+                              defaultMessage="Chapter"
+                            />
+                          )}
                         </p>
                       </div>
                       {course.courseId.modulesIncluded.length > 0
@@ -229,15 +263,35 @@ export default function LearningDeskPage() {
                                   >
                                     <div>
                                       {" "}
-                                      <p>Name: {mod.name}</p>
-                                      <p>Duration: {mod.noOfDays} days</p>
+                                      <p>
+                                        {" "}
+                                        <FormattedMessage
+                                          id="m_name"
+                                          defaultMessage="Name: "
+                                        />{" "}
+                                        {mod.name}
+                                      </p>
+                                      <p>
+                                        <FormattedMessage
+                                          id="m_duration"
+                                          defaultMessage="Duration: "
+                                        />{" "}
+                                        {mod.noOfDays}{" "}
+                                        <FormattedMessage
+                                          id="days"
+                                          defaultMessage="days"
+                                        />
+                                      </p>
                                       <p>
                                         <a
                                           href={mod.zoomLink}
                                           target="_blank"
                                           rel="noreferrer"
                                         >
-                                          Zoom Link
+                                          <FormattedMessage
+                                            id="zoom_link"
+                                            defaultMessage="Zoom Link"
+                                          />
                                         </a>
                                       </p>
                                     </div>
@@ -250,7 +304,12 @@ export default function LearningDeskPage() {
                                         aria-controls="panel1a-content"
                                         id="panel1a-header"
                                       >
-                                        <Typography>Teachers</Typography>
+                                        <Typography>
+                                          <FormattedMessage
+                                            id="teachers"
+                                            defaultMessage="Teachers"
+                                          />
+                                        </Typography>
                                       </AccordionSummary>
                                       <AccordionDetails>
                                         <Box>
@@ -268,7 +327,12 @@ export default function LearningDeskPage() {
                                         aria-controls="panel2a-content"
                                         id="panel2a-header"
                                       >
-                                        <Typography>Tasks</Typography>
+                                        <Typography>
+                                          <FormattedMessage
+                                            id="tasks"
+                                            defaultMessage="Tasks"
+                                          />
+                                        </Typography>
                                       </AccordionSummary>
                                       <AccordionDetails>
                                         <Box>
@@ -294,7 +358,12 @@ export default function LearningDeskPage() {
                                         aria-controls="panel3a-content"
                                         id="panel3a-header"
                                       >
-                                        <Typography>Extra materials</Typography>
+                                        <Typography>
+                                          <FormattedMessage
+                                            id="extra_materials"
+                                            defaultMessage="Extra materials"
+                                          />
+                                        </Typography>
                                       </AccordionSummary>
                                       <AccordionDetails>
                                         <Box>
@@ -326,7 +395,10 @@ export default function LearningDeskPage() {
                     <section className="courseDetails">
                       <div>
                         <p>
-                          Course Start Date:{" "}
+                          <FormattedMessage
+                            id="course_start_date"
+                            defaultMessage="Course Start Date: "
+                          />
                           {course.courseId.dateOfStart
                             .substring(0, 10)
                             .split("-")
@@ -334,7 +406,10 @@ export default function LearningDeskPage() {
                             .join(".")}
                         </p>
                         <p>
-                          Today is{" "}
+                          <FormattedMessage
+                            id="today_is"
+                            defaultMessage="Today is: "
+                          />
                           {new Date()
                             .toJSON()
                             .substring(0, 10)
@@ -342,7 +417,13 @@ export default function LearningDeskPage() {
                             .reverse()
                             .join(".")}
                         </p>
-                        <p>Current module: {currentModuleName}</p>
+                        <p>
+                          <FormattedMessage
+                            id="current_module"
+                            defaultMessage="Current module: "
+                          />
+                          {currentModuleName}
+                        </p>
                       </div>
                       {course.courseId.modulesIncluded.length > 0 ? (
                         <ReactSpeedometer
@@ -360,11 +441,24 @@ export default function LearningDeskPage() {
                           startColor="#9399ff"
                           endColor="#00bbf0"
                           // segments={course.courseId.modulesIncluded.length}
-                          currentValueText={`${currentLernDay} day${
-                            currentLernDay > 1 ? "s" : ""
-                          } of ${course.courseId.modulesIncluded
-                            .map((val) => val.noOfDays)
-                            .reduce((acc, cur) => acc + cur, 0)}`}
+                          currentValueText={`${currentLernDay} ${
+                            currentLernDay > 1
+                              ? intl.formatMessage({
+                                  defaultMessage: "days",
+                                  id: "days",
+                                })
+                              : intl.formatMessage({
+                                  defaultMessage: "day",
+                                  id: "day",
+                                })
+                          } 
+                            ${intl.formatMessage({
+                              defaultMessage: "of",
+                              id: "of",
+                            })}
+                           ${course.courseId.modulesIncluded
+                             .map((val) => val.noOfDays)
+                             .reduce((acc, cur) => acc + cur, 0)}`}
                           customSegmentStops={course.courseId.modulesIncluded
                             .map((mod, id) => {
                               const newArr =
@@ -399,7 +493,12 @@ export default function LearningDeskPage() {
               })}
             </Box>
           ) : (
-            <p className="noBookedCourses">You don't have any courses yet</p>
+            <p className="noBookedCourses">
+              <FormattedMessage
+                id="you_dont_have_any_courses_yet"
+                defaultMessage="You don't have any courses yet."
+              />
+            </p>
           )}
         </div>
       )}

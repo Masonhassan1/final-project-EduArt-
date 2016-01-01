@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { FormattedMessage, useIntl } from "react-intl";
+
 import { Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -70,6 +72,8 @@ export default function AdminPanelModules() {
 
   const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const intl = useIntl();
 
   const handleChange = (event) => {
     const {
@@ -173,7 +177,12 @@ export default function AdminPanelModules() {
 
       resetCreateModuleForm();
       setShowMessage(true);
-      setMessageText("The module was successfully created.");
+      setMessageText(
+        <FormattedMessage
+          id="the_module_was_successfully_created"
+          defaultMessage="The module was successfully created."
+        />
+      );
       getModules(`/modules`);
 
       setLoading(false);
@@ -198,7 +207,12 @@ export default function AdminPanelModules() {
       );
 
       setShowMessage(true);
-      setMessageText("The module was successfully removed.");
+      setMessageText(
+        <FormattedMessage
+          id="the_module_was_successfully_removed"
+          defaultMessage="The module was successfully removed."
+        />
+      );
       getModules(`/modules`);
 
       setLoading(false);
@@ -237,7 +251,12 @@ export default function AdminPanelModules() {
       );
 
       setShowMessage(true);
-      setMessageText("The module was successfully updated.");
+      setMessageText(
+        <FormattedMessage
+          id="the_module_was_successfully_updated"
+          defaultMessage="The module was successfully updated."
+        />
+      );
       resetCreateModuleForm();
       getModules(`/modules`);
       setUpdateModuleMode(false);
@@ -269,14 +288,18 @@ export default function AdminPanelModules() {
 
   return (
     <div>
-      <h3 className="modulesPageTitle">Modules</h3>
+      <h3 className="modulesPageTitle">
+        <FormattedMessage id="modules" defaultMessage="Modules" />
+      </h3>
       <div className="adminPanelModulesWrapper">
         <Box className="moduleWrapper newModuleWrapper" sx={{ p: "1rem" }}>
           <div>
             <Box sx={{ m: "1rem" }}>
               <TextField
                 id="standard-basic"
-                label="Name"
+                label={
+                  <FormattedMessage id="admin_mod_name" defaultMessage="Name" />
+                }
                 required
                 variant="standard"
                 value={moduleName}
@@ -289,7 +312,12 @@ export default function AdminPanelModules() {
                 required
                 id="standard-basic"
                 type="number"
-                label="Duration, days"
+                label={
+                  <FormattedMessage
+                    id="admin_mod_duration"
+                    defaultMessage="Duration, days"
+                  />
+                }
                 variant="standard"
                 sx={{ width: "95%" }}
                 value={moduleDuration}
@@ -300,7 +328,9 @@ export default function AdminPanelModules() {
             <Box sx={{ m: "1rem" }}>
               <TextField
                 id="standard-basic"
-                label="Zoom link"
+                label={
+                  <FormattedMessage id="zoom_link" defaultMessage="Zoom link" />
+                }
                 variant="standard"
                 sx={{ width: "95%" }}
                 value={moduleZoomLink}
@@ -315,14 +345,19 @@ export default function AdminPanelModules() {
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>Teachers</Typography>
+              <Typography>
+                <FormattedMessage id="teachers" defaultMessage="Teachers" />
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Box sx={{ m: "1rem" }}>
                 <div>
                   <FormControl sx={{ m: 1, width: 300 }}>
                     <InputLabel id="demo-multiple-checkbox-label">
-                      Teachers
+                      <FormattedMessage
+                        id="teachers"
+                        defaultMessage="Teachers"
+                      />
                     </InputLabel>
                     <Select
                       labelId="demo-multiple-checkbox-label"
@@ -330,7 +365,16 @@ export default function AdminPanelModules() {
                       multiple
                       value={personName}
                       onChange={handleChange}
-                      input={<OutlinedInput label="Teachers" />}
+                      input={
+                        <OutlinedInput
+                          label={
+                            <FormattedMessage
+                              id="teachers"
+                              defaultMessage="Teachers"
+                            />
+                          }
+                        />
+                      }
                       renderValue={(selected) => selected.join(", ")}
                       MenuProps={MenuProps}
                     >
@@ -367,7 +411,12 @@ export default function AdminPanelModules() {
               aria-controls="panel3a-content"
               id="panel3a-header"
             >
-              <Typography>Extra materials</Typography>
+              <Typography>
+                <FormattedMessage
+                  id="extra_materials"
+                  defaultMessage="Extra materials"
+                />
+              </Typography>
             </AccordionSummary>
             <ExtraMat
               moduleExtraMat={moduleExtraMat}
@@ -381,14 +430,17 @@ export default function AdminPanelModules() {
                 onClick={updateModuleRequest}
                 sx={{ display: "block", my: "1rem" }}
               >
-                Update module
+                <FormattedMessage
+                  id="update_module"
+                  defaultMessage="Update module"
+                />
               </Button>
               <Button
                 variant="outlined"
                 onClick={cancelUpdateModuleRequest}
                 sx={{ display: "block", my: "1rem" }}
               >
-                Cancel
+                <FormattedMessage id="cancel" defaultMessage="Cancel" />
               </Button>
             </div>
           ) : (
@@ -397,7 +449,10 @@ export default function AdminPanelModules() {
               onClick={createNewModule}
               sx={{ display: "block", mx: "auto", my: "1rem" }}
             >
-              Create new module
+              <FormattedMessage
+                id="create_new_module"
+                defaultMessage="Create new module"
+              />
             </Button>
           )}
         </Box>
@@ -422,7 +477,12 @@ export default function AdminPanelModules() {
               <div className="error-message"></div>
             ) : !modulesSearchResult.length ? (
               <div className="no-results">
-                <p>No results found</p>
+                <p>
+                  <FormattedMessage
+                    id="no_results_found"
+                    defaultMessage="No results found"
+                  />
+                </p>
               </div>
             ) : (
               modulesSearchResult.map((mod) => {
@@ -465,15 +525,31 @@ export default function AdminPanelModules() {
                       >
                         <div>
                           {" "}
-                          <p>Name: {mod.name}</p>
-                          <p>Duration: {mod.noOfDays} days</p>
+                          <p>
+                            <FormattedMessage
+                              id="m_name"
+                              defaultMessage="Name: "
+                            />{" "}
+                            {mod.name}
+                          </p>
+                          <p>
+                            <FormattedMessage
+                              id="m_duration"
+                              defaultMessage="Duration: "
+                            />{" "}
+                            {mod.noOfDays}{" "}
+                            <FormattedMessage id="days" defaultMessage="days" />
+                          </p>
                           <p>
                             <a
                               href={mod.zoomLink}
                               target="_blank"
                               rel="noreferrer"
                             >
-                              Zoom Link
+                              <FormattedMessage
+                                id="zoom_link"
+                                defaultMessage="Zoom Link"
+                              />
                             </a>
                           </p>
                         </div>
@@ -486,7 +562,12 @@ export default function AdminPanelModules() {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                           >
-                            <Typography>Teachers</Typography>
+                            <Typography>
+                              <FormattedMessage
+                                id="teachers"
+                                defaultMessage="Teachers"
+                              />
+                            </Typography>
                           </AccordionSummary>
                           <AccordionDetails>
                             <Box>
@@ -504,7 +585,12 @@ export default function AdminPanelModules() {
                             aria-controls="panel2a-content"
                             id="panel2a-header"
                           >
-                            <Typography>Tasks</Typography>
+                            <Typography>
+                              <FormattedMessage
+                                id="tasks"
+                                defaultMessage="Tasks"
+                              />
+                            </Typography>
                           </AccordionSummary>
                           <AccordionDetails>
                             <Box>
@@ -530,7 +616,12 @@ export default function AdminPanelModules() {
                             aria-controls="panel3a-content"
                             id="panel3a-header"
                           >
-                            <Typography>Extra materials</Typography>
+                            <Typography>
+                              <FormattedMessage
+                                id="extra_materials"
+                                defaultMessage="Extra materials"
+                              />
+                            </Typography>
                           </AccordionSummary>
                           <AccordionDetails>
                             <Box>
@@ -576,7 +667,10 @@ export default function AdminPanelModules() {
       </Snackbar>
       <Dialog open={showDeleteModal} onClose={() => setShowDeleteModal(false)}>
         <DialogTitle sx={{ color: "red" }}>
-          Do you really want to delete the module?
+          <FormattedMessage
+            id="do_you_really_want_to_delete_the_module"
+            defaultMessage="Do you really want to delete the module?"
+          />
         </DialogTitle>
         <DialogContent>
           <Box
@@ -595,10 +689,10 @@ export default function AdminPanelModules() {
               setShowDeleteModal(false);
             }}
           >
-            Submit
+            <FormattedMessage id="submit" defaultMessage="Submit" />
           </Button>
           <Button variant="contained" onClick={() => setShowDeleteModal(false)}>
-            Cancel
+            <FormattedMessage id="cancel" defaultMessage="Cancel" />
           </Button>
         </DialogActions>
       </Dialog>

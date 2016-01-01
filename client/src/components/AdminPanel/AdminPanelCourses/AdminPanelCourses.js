@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { FormattedMessage } from "react-intl";
 
 import Box from "@mui/material/Box";
-import { Button, Input } from "@mui/material";
+import { Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import TranslateIcon from "@mui/icons-material/Translate";
@@ -205,7 +206,12 @@ export default function AdminPanelCourses() {
       resetCreateCourseForm();
       event.target.reset();
       setShowMessage(true);
-      setMessageText("The course was successfully created.");
+      setMessageText(
+        <FormattedMessage
+          id="the_course_was_successfully_created"
+          defaultMessage="The course was successfully created."
+        />
+      );
       getCourses(`/courses`);
 
       setLoading(false);
@@ -223,7 +229,9 @@ export default function AdminPanelCourses() {
 
   return (
     <div>
-      <h3 className="modulesPageTitle">Courses</h3>
+      <h3 className="modulesPageTitle">
+        <FormattedMessage id="courses" defaultMessage="Courses" />
+      </h3>
       <div className="adminPanelModulesWrapper">
         <Box className="moduleWrapper newModuleWrapper" sx={{ p: "1rem" }}>
           <form onSubmit={createCourse}>
@@ -231,7 +239,12 @@ export default function AdminPanelCourses() {
               <Box sx={{ m: "1rem" }}>
                 <TextField
                   id="standard-basic"
-                  label="Course name"
+                  label={
+                    <FormattedMessage
+                      id="admin_course_name"
+                      defaultMessage="Course name"
+                    />
+                  }
                   fullWidth
                   required
                   variant="standard"
@@ -244,11 +257,16 @@ export default function AdminPanelCourses() {
                 <TextField
                   id="standard-select-currency"
                   select
-                  label="Type"
+                  label={<FormattedMessage id="type" defaultMessage="Type" />}
                   sx={{ width: "45%" }}
                   value={courseType}
                   onChange={(event) => setCourseType(event.target.value)}
-                  helperText="Please select the course type"
+                  helperText={
+                    <FormattedMessage
+                      id="please_select_the_course_type"
+                      defaultMessage="Please select the course type"
+                    />
+                  }
                   variant="standard"
                 >
                   {types.map((option) => (
@@ -261,7 +279,12 @@ export default function AdminPanelCourses() {
               <Box sx={{ m: "1rem" }}>
                 <TextField
                   id="outlined-multiline-static"
-                  label="Description"
+                  label={
+                    <FormattedMessage
+                      id="description"
+                      defaultMessage="Description"
+                    />
+                  }
                   fullWidth
                   multiline
                   rows={4}
@@ -284,19 +307,34 @@ export default function AdminPanelCourses() {
                   // label="Start date"
                   variant="standard"
                   sx={{ width: "45%" }}
-                  helperText="Please select the start date of the course"
+                  helperText={
+                    <FormattedMessage
+                      id="please_select_the_start_date"
+                      defaultMessage="Please select the start date of the course"
+                    />
+                  }
                   value={courseStartDate}
                   onChange={(event) => setCourseStartDate(event.target.value)}
                 />
                 <TextField
                   id="standard-basic"
-                  label="Duration"
+                  label={
+                    <FormattedMessage
+                      id="course_duration"
+                      defaultMessage="Duration"
+                    />
+                  }
                   type="number"
                   variant="standard"
                   value={0}
                   disabled
                   // onChange={(event) => setCourseName(event.target.value)}
-                  helperText="This value is calculated based on the modules data"
+                  helperText={
+                    <FormattedMessage
+                      id="this_value_is_calculated"
+                      defaultMessage="This value is calculated based on the modules data."
+                    />
+                  }
                   sx={{ width: "45%" }}
                 />
               </Box>
@@ -312,11 +350,21 @@ export default function AdminPanelCourses() {
                 <TextField
                   id="standard-select-currency"
                   select
-                  label="Language"
+                  label={
+                    <FormattedMessage
+                      id="course_language"
+                      defaultMessage="Language"
+                    />
+                  }
                   sx={{ width: "45%" }}
                   value={courseLanguage}
                   onChange={(event) => setCourseLanguage(event.target.value)}
-                  helperText="Please select the course language"
+                  helperText={
+                    <FormattedMessage
+                      id="please_select_the_course_language"
+                      defaultMessage="Please select the course language"
+                    />
+                  }
                   variant="standard"
                 >
                   {languages.map((option) => (
@@ -327,12 +375,19 @@ export default function AdminPanelCourses() {
                 </TextField>
                 <TextField
                   id="standard-basic"
-                  label="Price, EUR"
+                  label={
+                    <FormattedMessage id="price" defaultMessage="Price, EUR" />
+                  }
                   type="number"
                   variant="standard"
                   value={coursePrice}
                   onChange={(event) => setCoursePrice(event.target.value)}
-                  helperText="Please type the price for the course"
+                  helperText={
+                    <FormattedMessage
+                      id="please_type_the_price_for_the_course"
+                      defaultMessage="Please type the price for the course"
+                    />
+                  }
                   sx={{ width: "45%" }}
                 />
               </Box>
@@ -347,12 +402,22 @@ export default function AdminPanelCourses() {
                 <TextField
                   id="standard-basic"
                   type="file"
-                  label="Course icon"
+                  label={
+                    <FormattedMessage
+                      id="course_icon"
+                      defaultMessage="Course icon"
+                    />
+                  }
                   sx={{ width: "45%" }}
                   name="courseIcon"
                   //value={courseIcon}
                   //onChange={(event) => setCourseIcon(event.target.value)}
-                  helperText="Please select the course icon"
+                  helperText={
+                    <FormattedMessage
+                      id="please_select_the_course_icon"
+                      defaultMessage="Please select the course icon"
+                    />
+                  }
                   variant="standard"
                 ></TextField>
                 <TextField
@@ -362,7 +427,12 @@ export default function AdminPanelCourses() {
                   name="courseImage"
                   //value={courseImage}
                   //onChange={(event) => handleCourseImage(event.target.value)}
-                  helperText="Please select the course image"
+                  helperText={
+                    <FormattedMessage
+                      id="please_select_the_course_image"
+                      defaultMessage="Please select the course image"
+                    />
+                  }
                   sx={{ width: "45%" }}
                 />
               </Box>
@@ -370,7 +440,7 @@ export default function AdminPanelCourses() {
                 <div>
                   <FormControl sx={{ m: 1, width: 300 }}>
                     <InputLabel id="demo-multiple-checkbox-label">
-                      Modules
+                      <FormattedMessage id="modules" defaultMessage="Modules" />
                     </InputLabel>
                     <Select
                       labelId="demo-multiple-checkbox-label"
@@ -378,7 +448,16 @@ export default function AdminPanelCourses() {
                       multiple
                       value={selectedModules}
                       onChange={handleChange}
-                      input={<OutlinedInput label="Modules" />}
+                      input={
+                        <OutlinedInput
+                          label={
+                            <FormattedMessage
+                              id="modules"
+                              defaultMessage="Modules"
+                            />
+                          }
+                        />
+                      }
                       renderValue={(selected) => selected.join(", ")}
                       MenuProps={MenuProps}
                     >
@@ -402,14 +481,17 @@ export default function AdminPanelCourses() {
                   // onClick={updateModuleRequest}
                   sx={{ display: "block", my: "1rem" }}
                 >
-                  Update course
+                  <FormattedMessage
+                    id="update_course"
+                    defaultMessage="Update course"
+                  />
                 </Button>
                 <Button
                   variant="outlined"
                   // onClick={cancelUpdateModuleRequest}
                   sx={{ display: "block", my: "1rem" }}
                 >
-                  Cancel
+                  <FormattedMessage id="cancel" defaultMessage="Cancel" />
                 </Button>
               </div>
             ) : (
@@ -419,7 +501,10 @@ export default function AdminPanelCourses() {
                 // onClick={createCourse}
                 sx={{ display: "block", mx: "auto", my: "1rem" }}
               >
-                Create new course
+                <FormattedMessage
+                  id="create_new_course"
+                  defaultMessage="Create new course"
+                />
               </Button>
             )}
           </form>
@@ -445,7 +530,12 @@ export default function AdminPanelCourses() {
               <div className="error-message"></div>
             ) : !coursesSearchResult.length ? (
               <div className="no-results">
-                <p>No results found</p>
+                <p>
+                  <FormattedMessage
+                    id="no_results_found"
+                    defaultMessage="No results found"
+                  />
+                </p>
               </div>
             ) : (
               coursesSearchResult.map((course) => {
@@ -538,8 +628,8 @@ export default function AdminPanelCourses() {
                         <p style={{ color: "white", marginLeft: "1rem" }}>
                           {course.modulesIncluded
                             .map((mod) => mod.noOfDays)
-                            .reduce((acc, cur) => acc + cur, 0)}
-                          {" days"}
+                            .reduce((acc, cur) => acc + cur, 0)}{" "}
+                          {<FormattedMessage id="days" defaultMessage="days" />}
                         </p>
                       </div>
                       <div
@@ -578,7 +668,10 @@ export default function AdminPanelCourses() {
                         borderBottom: "1px solid white",
                       }}
                     >
-                      Modules:
+                      <FormattedMessage
+                        id="mod_on_card"
+                        defaultMessage="Modules:"
+                      />
                     </p>
                     <div className="adminCardModulesSection">
                       {course.modulesIncluded.map((mod, id) => {

@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { FormattedMessage, useIntl } from "react-intl";
+
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
 import { Button } from "@mui/material";
@@ -10,6 +12,7 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function ModulesTasks({ moduleTasks, setModuleTasks }) {
   const {
@@ -18,6 +21,8 @@ export default function ModulesTasks({ moduleTasks, setModuleTasks }) {
     handleSubmit,
     reset,
   } = useForm();
+
+  const intl = useIntl();
 
   const addNewTask = handleSubmit((data) => {
     setModuleTasks([...moduleTasks, { ...data, editMode: false }]);
@@ -67,21 +72,31 @@ export default function ModulesTasks({ moduleTasks, setModuleTasks }) {
         aria-controls="panel2a-content"
         id="panel2a-header"
       >
-        <Typography>Tasks</Typography>
+        <Typography>
+          <FormattedMessage id="tasks" defaultMessage="Tasks" />
+        </Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Box sx={{ m: "1rem", display: "flex", alignItems: "flex-end" }}>
           <form onSubmit={addNewTask}>
             <TextField
               id="standard-basic"
-              label="Task name"
+              label={
+                <FormattedMessage id="task_name" defaultMessage="Task name" />
+              }
               variant="standard"
               sx={{ width: "40%" }}
               {...register("taskName", {
-                required: "This field is required.",
+                required: intl.formatMessage({
+                  defaultMessage: "This field is required.",
+                  id: "this_field_is_required",
+                }),
                 minLength: {
                   value: 5,
-                  message: "This field should be more than 5 symbols",
+                  message: intl.formatMessage({
+                    defaultMessage: "This field should be more than 5 symbols.",
+                    id: "this_field_should_be_more",
+                  }),
                 },
               })}
               helperText={errors.taskName && errors.taskName.message}
@@ -89,21 +104,29 @@ export default function ModulesTasks({ moduleTasks, setModuleTasks }) {
             />
             <TextField
               id="standard-basic"
-              label="Task link"
+              label={
+                <FormattedMessage id="task_link" defaultMessage="Task link" />
+              }
               variant="standard"
               sx={{ width: "40%", ml: "1rem" }}
               {...register("taskLink", {
-                required: "This field is required.",
+                required: intl.formatMessage({
+                  defaultMessage: "This field is required.",
+                  id: "this_field_is_required",
+                }),
                 minLength: {
                   value: 5,
-                  message: "This field should be more than 5 symbols",
+                  message: intl.formatMessage({
+                    defaultMessage: "This field should be more than 5 symbols.",
+                    id: "this_field_should_be_more",
+                  }),
                 },
               })}
               helperText={errors.taskLink && errors.taskLink.message}
               error={errors.taskLink ? true : false}
             />
             <Button type="submit" sx={{ ml: "1rem" }} variant="outlined">
-              Add
+              <AddIcon />
             </Button>
           </form>
         </Box>
@@ -115,7 +138,12 @@ export default function ModulesTasks({ moduleTasks, setModuleTasks }) {
                   <TextField
                     disabled={!task.mode}
                     id="standard-basic"
-                    label="Task name"
+                    label={
+                      <FormattedMessage
+                        id="task_name"
+                        defaultMessage="Task name"
+                      />
+                    }
                     variant="standard"
                     sx={{ width: "35%", ml: "1rem" }}
                     value={task.taskName}
@@ -124,7 +152,12 @@ export default function ModulesTasks({ moduleTasks, setModuleTasks }) {
                   <TextField
                     disabled={!task.mode}
                     id="standard-basic"
-                    label="Task link"
+                    label={
+                      <FormattedMessage
+                        id="task_link"
+                        defaultMessage="Task link"
+                      />
+                    }
                     variant="standard"
                     sx={{ width: "35%", ml: "1rem" }}
                     value={task.taskLink}

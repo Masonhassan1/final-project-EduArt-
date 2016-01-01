@@ -1,4 +1,6 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
+
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 
@@ -70,7 +72,14 @@ export default function AdminCoursesSearch({
         }}
         renderOption={(props, option) => <li {...props}>{option}</li>}
         freeSolo
-        renderInput={(params) => <TextField {...params} label="Courses ..." />}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label={
+              <FormattedMessage id="courses" defaultMessage="Courses..." />
+            }
+          />
+        )}
       />
     </form>
   );

@@ -1,11 +1,14 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { FormattedMessage, useIntl } from "react-intl";
+
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function ExtraMat({ moduleExtraMat, setModuleExtraMat }) {
   const {
@@ -14,6 +17,8 @@ export default function ExtraMat({ moduleExtraMat, setModuleExtraMat }) {
     handleSubmit,
     reset,
   } = useForm();
+
+  const intl = useIntl();
 
   const addNewExtraMat = handleSubmit((data) => {
     console.log("add new extra mat", data);
@@ -64,11 +69,16 @@ export default function ExtraMat({ moduleExtraMat, setModuleExtraMat }) {
         <form onSubmit={addNewExtraMat}>
           <TextField
             id="standard-basic"
-            label="Description"
+            label={
+              <FormattedMessage id="description" defaultMessage="Description" />
+            }
             variant="standard"
             sx={{ width: "40%" }}
             {...register("description", {
-              required: "This field is required.",
+              required: intl.formatMessage({
+                defaultMessage: "This field is required.",
+                id: "this_field_is_required",
+              }),
             })}
             helperText={errors.description && errors.description.message}
             error={errors.description ? true : false}
@@ -77,11 +87,14 @@ export default function ExtraMat({ moduleExtraMat, setModuleExtraMat }) {
           />
           <TextField
             id="standard-basic"
-            label="Link"
+            label={<FormattedMessage id="link" defaultMessage="Link" />}
             variant="standard"
             sx={{ width: "40%", ml: "1rem" }}
             {...register("link", {
-              required: "This field is required.",
+              required: intl.formatMessage({
+                defaultMessage: "This field is required.",
+                id: "this_field_is_required",
+              }),
             })}
             helperText={errors.link && errors.link.message}
             error={errors.link ? true : false}
@@ -89,7 +102,7 @@ export default function ExtraMat({ moduleExtraMat, setModuleExtraMat }) {
             // onChange={(event) => setModuleTaskLink(event.target.value)}
           />
           <Button type="submit" sx={{ ml: "1rem" }} variant="outlined">
-            Add
+            <AddIcon />
           </Button>
         </form>
       </Box>
@@ -101,7 +114,12 @@ export default function ExtraMat({ moduleExtraMat, setModuleExtraMat }) {
                 <TextField
                   disabled={!mat.mode}
                   id="standard-basic"
-                  label="Description"
+                  label={
+                    <FormattedMessage
+                      id="description"
+                      defaultMessage="Description"
+                    />
+                  }
                   variant="standard"
                   sx={{ width: "35%", ml: "1rem" }}
                   value={mat.description}
@@ -113,7 +131,7 @@ export default function ExtraMat({ moduleExtraMat, setModuleExtraMat }) {
                 <TextField
                   disabled={!mat.mode}
                   id="standard-basic"
-                  label="Link"
+                  label={<FormattedMessage id="link" defaultMessage="Link" />}
                   variant="standard"
                   sx={{ width: "35%", ml: "1rem" }}
                   value={mat.link}

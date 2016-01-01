@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GoSearch } from "react-icons/go";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import axiosConfig from "../../util/axiosConfig";
 import baseURL from "../../util/constants";
@@ -8,6 +9,7 @@ import baseURL from "../../util/constants";
 import "./CourseList.css";
 
 export default function CourseList() {
+  const intl = useIntl();
   const [courseArr, setCourseArr] = useState([]);
   const searchInputRef = React.createRef(null);
   const [hasError, setHasError] = useState(false);
@@ -15,7 +17,7 @@ export default function CourseList() {
 
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [slidesCount, setSlidesCount] = useState(1);
-  const [height, setHeight] = useState(500);
+  const height = 500;
 
   const getAllCourses = async (url) => {
     try {
@@ -58,14 +60,20 @@ export default function CourseList() {
   return (
     <div className="course-list-page">
       <p className="courseListTitle">
-        Choose an online course and transform your career
+        <FormattedMessage
+          id="choose_an_online_course"
+          defaultMessage="Choose an online course and transform your career"
+        />
       </p>
       <form className="search-form" onSubmit={(e) => submitForm(e)}>
         <GoSearch className="search-icon" />
         <input
           type="text"
           name="search"
-          placeholder="Search"
+          placeholder={intl.formatMessage({
+            defaultMessage: "Search",
+            id: "search",
+          })}
           ref={searchInputRef}
         />
       </form>
@@ -85,7 +93,12 @@ export default function CourseList() {
           <div className="error-message"></div>
         ) : !courseArr.length ? (
           <div className="no-results">
-            <p>No results found</p>
+            <p>
+              <FormattedMessage
+                id="no_results_found"
+                defaultMessage="No results found"
+              />
+            </p>
           </div>
         ) : (
           <div className="container">

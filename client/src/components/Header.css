@@ -3,10 +3,11 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  column-gap: 28%;
+  justify-content: space-between;
   font-family: "Jura", sans-serif;
   font-weight: bold;
   user-select: none;
+  flex-wrap: nowrap;
 }
 
 .logo {
@@ -20,12 +21,16 @@
 
 .navy {
   display: flex;
-  column-gap: 4rem;
+  /* column-gap: 4rem; */
+  align-items: center;
+  justify-content: space-between;
   font-size: 1.4rem;
+  margin-right: 4%;
 }
 .nav-link {
   text-decoration: none;
   min-width: fit-content;
+  padding: 1rem;
 }
 
 .navy div,
@@ -46,6 +51,7 @@ i:hover,
 
 #user-profile {
   cursor: pointer;
+  padding: 1rem;
 }
 
 #user-profile .user-pro-ul,
@@ -54,7 +60,7 @@ i:hover,
   list-style: none;
   display: flex;
   column-gap: 30px;
-  top: 23px;
+  top: 33px;
   left: -210px;
   font-size: 20px;
   font-family: "Jura", sans-serif;
@@ -95,33 +101,45 @@ i:hover,
 }
 
 .header-user-name {
-  width: 420px;
+  width: max-content;
+  padding: 1rem 2rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 1rem;
 }
+
+.header-user-name span {
+  font-size: 1.4rem;
+}
+
 .header-user-name:hover {
   overflow: visible;
   word-break: break-word;
   white-space: normal;
 }
 .change-lang select {
-  border: 2px solid #046fa5;
+  /*  border: 2px solid #046fa5; */
+  border: none;
+  outline: none;
   background: transparent;
-  font-family: "Roboto", sans-serif;
+  font-family: "Jura", sans-serif;
   color: #046fa5;
-  font-size: 1em;
+  font-size: 1.3rem;
   border-radius: 5px;
   opacity: 0.5;
   transition: 0.3s;
-  height: 55px;
+  height: 50px;
+  padding: 0 2rem;
+  cursor: pointer;
 }
 .change-lang select :hover {
-  border: 2px solid darkblue;
+  /*  border: 2px solid darkblue; */
   background-color: rgba(365, 365, 365, 0.5);
   cursor: pointer;
   color: darkblue;
   opacity: 0.8;
   transition: 0.3s;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  outline: none;
 }

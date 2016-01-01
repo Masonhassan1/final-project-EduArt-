@@ -1,20 +1,18 @@
 import React, { useState } from "react";
+import { FormattedMessage } from "react-intl";
+
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import StarIcon from "@mui/icons-material/Star";
-import PeopleIcon from "@mui/icons-material/People";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
-// import EventNoteIcon from "@mui/icons-material/EventNote";
-// import TaskIcon from "@mui/icons-material/Task";
 
-import "./AdminPanel.css";
 import AdminPanelModules from "./AdminPanelModules/AdminPanelModules";
 import AdminPanelCourses from "./AdminPanelCourses/AdminPanelCourses";
+
+import "./AdminPanel.css";
 
 export default function AdminPanel() {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -37,7 +35,11 @@ export default function AdminPanel() {
               <ListItemIcon>
                 <LibraryBooksIcon />
               </ListItemIcon>
-              <ListItemText primary="Modules" />
+              <ListItemText
+                primary={
+                  <FormattedMessage id="modules" defaultMessage="Modules" />
+                }
+              />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -48,7 +50,11 @@ export default function AdminPanel() {
               <ListItemIcon>
                 <LocalLibraryIcon />
               </ListItemIcon>
-              <ListItemText primary="Courses" />
+              <ListItemText
+                primary={
+                  <FormattedMessage id="courses" defaultMessage="Courses" />
+                }
+              />
             </ListItemButton>
           </ListItem>
           {/* <ListItem disablePadding>

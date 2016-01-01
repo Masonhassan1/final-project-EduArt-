@@ -87,11 +87,14 @@ function App() {
     setIsAuth(false);
     setIsAdmin(false);
     setUserName("");
+    setLang(LOCALES.ENGLISH);
   };
 
   useEffect(() => {
     if (localStorage.getItem("lang")) {
       setLang(localStorage.getItem("lang"));
+    } else {
+      setLang(LOCALES.ENGLISH);
     }
   }, []);
   useEffect(() => {

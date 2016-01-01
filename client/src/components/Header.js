@@ -9,7 +9,8 @@ import "./Header.css";
 
 const languages = [
   { name: "English", code: LOCALES.ENGLISH },
-  { name: "Russian", code: LOCALES.RUSSIAN },
+  { name: "Deutsch", code: LOCALES.GERMAN },
+  { name: "Русский", code: LOCALES.RUSSIAN },
 ];
 
 function Header({
@@ -24,8 +25,6 @@ function Header({
   const { lang, setLang } = contextContent;
   const [showUserPro, setShowUserPro] = useState(false);
   const navigate = useNavigate();
-
-  console.log("LOCALES", LOCALES.ENGLISH);
 
   function shwoUserProHandler() {
     document
@@ -73,7 +72,7 @@ function Header({
   }, []);
 
   return (
-    <div className="header" style={{ gap: `${isAdmin ? "11%" : "15%"}` }}>
+    <div className="header" /* style={{ gap: `${isAdmin ? "11%" : "15%"}` }} */>
       <div className="logo" onClick={() => navigate("/")}>
         <img className="img front" src={require("../Images/logo.png")} alt="" />
       </div>
@@ -87,21 +86,33 @@ function Header({
               localStorage.setItem("lang", value);
             }}
           >
-            {languages.map(({ name, code }) =>
-              code === localStorage.getItem("lang") ? (
-                <option key={code} value={code}>
-                  {name}
-                </option>
-              ) : (
-                <option key={code} value={code}>
+            {languages.map(
+              ({ name, code }) => (
+                //code === localStorage.getItem("lang") ? (
+                <option key={`${code}${name}`} value={code}>
                   {name}
                 </option>
               )
+              /* ) : (
+                <option key={code} value={code}>
+                  {name}
+                </option>
+              ) */
             )}
           </select>
         </div>
         <div className="header-user-name">
-          {userName ? `Logged in as ${userName}` : ""}
+          {userName ? (
+            <p>
+              <FormattedMessage
+                id="logged_in_as"
+                defaultMessage="Logged in as"
+              />
+              <span>{userName}</span>
+            </p>
+          ) : (
+            ""
+          )}
         </div>
         <i
           className="fa-solid fa-user user-pro-color"
@@ -116,58 +127,63 @@ function Header({
               className="user-pro-color"
               onClick={() => navigate("/mylearningdesk")}
             >
-              Learning desk
+              <FormattedMessage
+                id="learning_desk"
+                defaultMessage="Learning desk"
+              />
             </li>
             <li
               className="user-pro-color"
               onClick={() => navigate("/userprofile")}
             >
-              My profile
+              <FormattedMessage id="my_profile" defaultMessage="My profile" />
             </li>
-            <li
-              className="user-pro-color"
-              onClick={() => navigate("/random")}
-            >
-              Random
+            <li className="user-pro-color" onClick={() => navigate("/random")}>
+              <FormattedMessage id="random" defaultMessage="Random" />
             </li>
           </ul>
         </i>
         {isAuth && isAdmin && (
           <NavLink className="nav-link" to="/adminpanel">
             <div className="navy-home user-pro-color">
-              <FormattedMessage id="admin_panel" />
+              <FormattedMessage id="admin_panel" defaultMessage="Admin panel" />
             </div>
           </NavLink>
         )}
         <NavLink className="nav-link" to="/">
           <div className="navy-home user-pro-color">
-            <FormattedMessage id="home" />
+            <FormattedMessage id="home" defaultMessage="Home" />
           </div>
         </NavLink>
         <NavLink className="nav-link" to="/courselist">
           <div className="navy-courses user-pro-color">
-            <FormattedMessage id="online_courses" />
+            <FormattedMessage
+              id="online_courses"
+              defaultMessage="Online courses"
+            />
           </div>
         </NavLink>
         <NavLink className="nav-link" to={isAuth ? "/" : "login"}>
-          <div className="navy-login user-pro-color" onClick={logout}>
-            {isAuth ? (
-              <FormattedMessage id="logout" />
-            ) : (
-              <FormattedMessage id="login" />
-            )}
-          </div>
+          {isAuth ? (
+            <div className="navy-login user-pro-color" onClick={logout}>
+              <FormattedMessage id="logout" defaultMessage="Logout" />
+            </div>
+          ) : (
+            <div className="navy-login user-pro-color">
+              <FormattedMessage id="login" defaultMessage="Login" />
+            </div>
+          )}
         </NavLink>
 
         <NavLink className="nav-link" to="/about">
           <div className="navy-login user-pro-color">
-            <FormattedMessage id="about_us" />
+            <FormattedMessage id="about_us" defaultMessage="About us" />
           </div>
         </NavLink>
       </div>
-      <div id="alarm">
+      {/*  <div id="alarm">
         <FormattedMessage id="please_login_first" />
-      </div>
+      </div> */}
     </div>
   );
 }

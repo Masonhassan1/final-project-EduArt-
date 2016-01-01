@@ -1,4 +1,6 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
+
 import "./AboutUs.css";
 
 export default function AboutUs() {
@@ -34,8 +36,19 @@ export default function AboutUs() {
   ];
   return (
     <div className="about-wrapper">
-      <p className="about-title">About the project </p>
-      <p className="about-header">Made with love, right here in Germany</p>
+      <p className="about-title">
+        {" "}
+        <FormattedMessage
+          id="about_the_project"
+          defaultMessage="About the project"
+        />
+      </p>
+      <p className="about-header">
+        <FormattedMessage
+          id="made_with_love"
+          defaultMessage="Made with love, right here in Germany"
+        />
+      </p>
       <div className="team-info-wrapper">
         {arrData.map((teammate, id) => {
           return (
@@ -82,26 +95,46 @@ export default function AboutUs() {
         <div className="office">
           <i className="fa-solid fa-location-dot"></i>
           <p className="officeName">Frontend Office</p>
-          <p className="officeTime">Mon-Fri 9am to 4pm</p>
+          <p className="officeTime">
+            <FormattedMessage
+              id="mon_fri"
+              defaultMessage="Mon-Fri 9am to 4pm"
+            />
+          </p>
           <p className="officeLocation">Cologne</p>
         </div>
         <div className="office">
           <i className="fa-solid fa-location-dot"></i>
           <p className="officeName">UX/UI Design Office</p>
-          <p className="officeTime">Mon-Fri 9am to 4pm</p>
+          <p className="officeTime">
+            <FormattedMessage
+              id="mon_fri"
+              defaultMessage="Mon-Fri 9am to 4pm"
+            />
+          </p>
           <p className="officeLocation">Weimar</p>
         </div>
         <div className="office">
           {/* */}
           <i className="fa-solid fa-location-dot"></i>
           <p className="officeName">Frontend Office</p>
-          <p className="officeTime">Mon-Fri 9am to 4pm</p>
+          <p className="officeTime">
+            <FormattedMessage
+              id="mon_fri"
+              defaultMessage="Mon-Fri 9am to 4pm"
+            />
+          </p>
           <p className="officeLocation">Chemnitz</p>
         </div>
         <div className="office">
           <i className="fa-solid fa-location-dot"></i>
           <p className="officeName">Backend Office</p>
-          <p className="officeTime">Mon-Fri 9am to 4pm</p>
+          <p className="officeTime">
+            <FormattedMessage
+              id="mon_fri"
+              defaultMessage="Mon-Fri 9am to 4pm"
+            />
+          </p>
           <p className="officeLocation">Gütersloh</p>
         </div>
       </section>

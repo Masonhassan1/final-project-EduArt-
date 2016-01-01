@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FormattedMessage, useIntl } from "react-intl";
 import { addCourseOnDashborad } from "../CoursePage/CoursePage";
 import { MyContext } from "../../App";
 import axios from "axios";
@@ -7,6 +8,7 @@ import "./Login.css";
 
 function Login({ handelSuccessfullLogin, isAuth, isAdmin }) {
   const contextContent = useContext(MyContext);
+  const intl = useIntl();
   const { selectedCourse, setSelectedCourse } = contextContent;
 
   const [showPassword, setShowPassword] = useState(false);
@@ -79,21 +81,34 @@ function Login({ handelSuccessfullLogin, isAuth, isAdmin }) {
         action="/login"
         onSubmit={submitHandler}
       >
-        <div>Login</div>
+        <div>
+          <FormattedMessage id="login_f" defaultMessage="Login" />
+        </div>
         <p>
-          Don´t have an account?{" "}
+          <FormattedMessage
+            id="dont_have_account"
+            defaultMessage="Don´t have an account?"
+          />
           <Link className="link" to="/register">
-            register
-          </Link>{" "}
+            <FormattedMessage id="register" defaultMessage="register" />
+          </Link>
         </p>
-        <p>or sign in via email</p>
+        <p>
+          <FormattedMessage
+            id="or_sign_in_via_email"
+            defaultMessage="or sign in via email"
+          />
+        </p>
 
         <input
           className="login-input login-email"
           ref={emailEl}
           type="email"
           required
-          placeholder="Email"
+          placeholder={intl.formatMessage({
+            defaultMessage: "Email",
+            id: "email",
+          })}
         />
         <div className="log-password-div">
           <input
@@ -101,7 +116,10 @@ function Login({ handelSuccessfullLogin, isAuth, isAdmin }) {
             ref={passwordEl}
             type={showPassword ? "text" : "password"}
             required
-            placeholder="Password"
+            placeholder={intl.formatMessage({
+              defaultMessage: "Password",
+              id: "password",
+            })}
           />
           <div className="login-show-password" onClick={passwordHandler}>
             {showPassword ? (
@@ -116,17 +134,26 @@ function Login({ handelSuccessfullLogin, isAuth, isAdmin }) {
           </div>
         </div>
         <button id="login-btn" type="submit">
-          Login
+          <FormattedMessage id="login_f" defaultMessage="Login" />
         </button>
         {error ? (
           <div style={{ color: "red" }}>
-            Sorry.. something went wrong. please try again
+            <FormattedMessage
+              id="sorry"
+              defaultMessage="Sorry.. something went wrong. please try again"
+            />
           </div>
         ) : (
           ""
         )}
       </form>
-      {loginLoading ? <div className="login-loading">loading...</div> : ""}
+      {loginLoading ? (
+        <div className="login-loading">
+          <FormattedMessage id="loading" defaultMessage="loading..." />
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
