@@ -49,16 +49,17 @@
     }
 }
 .home-btn {
-    width: 12rem;
+    width: 14rem;
     height: 3rem;
     position: absolute;
     right: 8%;
     bottom: 30%;
     border: none;
     outline: none;
-    color: white;
+    color: #898d90;
+    font-size: 1.2rem;
     font-weight: bold;
-    background-color: #8749facc;
+    background-color: #dee2e6;
     transition: 1s;
     border-radius: 1.2rem;
     -webkit-border-radius: 1.2rem;
@@ -68,11 +69,12 @@
     -webkit-animation: show-paragraph 0.6s 0.9s linear forwards;
     -webkit-transition: 1s;
     -moz-transition: 1s;
-    -ms-transition: 1s;
-    -o-transition: 1s;
+    box-shadow:   2px 2px 8px 0px #bbbdbf;
+   
 }
 .home-btn:hover {
-    box-shadow: inset 0px 0px 25px 5px rgb(106, 28, 250);
+    box-shadow:-2px -2px 8px 0px #bbbdbf;
+    color: #6c6e6f;
 }
 .python,
 .js,
