@@ -15,13 +15,18 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import EditIcon from "@mui/icons-material/Edit";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
 import axiosConfig from "../../../util/axiosConfig";
 import "./AdminPanelModules.css";
-import ExtraMat from "./ExtraMat";
-import AdminModulesSearch from "./AdminModulesSearch";
+import ExtraMat from "./ExtraMaterials/ExtraMat";
+import AdminModulesSearch from "./AdminModulesSearch/AdminModulesSearch";
+import ModulesTasks from "./ModulesTasks/ModulesTasks";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -54,6 +59,12 @@ export default function AdminPanelModules() {
   const [moduleTasks, setModuleTasks] = useState([]);
   const [moduleExtraMat, setModuleExtraMat] = useState("");
 
+  const [showMessage, setShowMessage] = useState(false);
+
+  const handleClose = () => {
+    setShowMessage(false);
+  };
+
   const [teachersArr, setTeachersArr] = useState([]);
 
   const [personName, setPersonName] = React.useState([]);
@@ -73,48 +84,6 @@ export default function AdminPanelModules() {
       return temp._id;
     });
     setModuleTeachers(idTeachers);
-  };
-
-  const addNewTask = handleSubmit((data) => {
-    setModuleTasks([...moduleTasks, { ...data, editMode: false }]);
-    reset();
-  });
-
-  const deleteTask = (id) => {
-    setModuleTasks(moduleTasks.filter((task, index) => index !== id));
-  };
-
-  const changeEditMode = (id) => {
-    setModuleTasks(
-      moduleTasks.map((task, index) => {
-        if (index === id) {
-          task.mode = !task.mode;
-        }
-        return task;
-      })
-    );
-  };
-
-  const changeTaskLink = (newTaskLink, id) => {
-    setModuleTasks(
-      moduleTasks.map((task, index) => {
-        if (index === id) {
-          task.taskLink = newTaskLink;
-        }
-        return task;
-      })
-    );
-  };
-
-  const changeTaskName = (newTaskName, id) => {
-    setModuleTasks(
-      moduleTasks.map((task, index) => {
-        if (index === id) {
-          task.taskName = newTaskName;
-        }
-        return task;
-      })
-    );
   };
 
   const getModulesSearchResult = async (url) => {
@@ -164,6 +133,15 @@ export default function AdminPanelModules() {
     }
   };
 
+  const resetCreateModuleForm = () => {
+    setModuleName("");
+    setModuleDuration("");
+    setModuleZoomLink("");
+    setModuleTeachers("");
+    setModuleTasks([]);
+    setModuleExtraMat("");
+  };
+
   useEffect(() => {
     getModules(`/modules`);
     getTeachers();
@@ -190,6 +168,10 @@ export default function AdminPanelModules() {
           },
         }
       );
+
+      resetCreateModuleForm();
+      setShowMessage(true);
+      getModules(`/modules`);
 
       setLoading(false);
       setHasError(false);
@@ -289,92 +271,10 @@ export default function AdminPanelModules() {
               </Box>
             </AccordionDetails>
           </Accordion>
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2a-content"
-              id="panel2a-header"
-            >
-              <Typography>Tasks</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Box sx={{ m: "1rem", display: "flex", alignItems: "flex-end" }}>
-                <form onSubmit={addNewTask}>
-                  <TextField
-                    id="standard-basic"
-                    label="Task name"
-                    variant="standard"
-                    sx={{ width: "40%" }}
-                    {...register("taskName", {
-                      required: "This field is required.",
-                      minLength: {
-                        value: 5,
-                        message: "This field should be more than 5 symbols",
-                      },
-                    })}
-                    helperText={errors.taskName && errors.taskName.message}
-                    error={errors.taskName ? true : false}
-                  />
-                  <TextField
-                    id="standard-basic"
-                    label="Task link"
-                    variant="standard"
-                    sx={{ width: "40%", ml: "1rem" }}
-                    {...register("taskLink", {
-                      required: "This field is required.",
-                      minLength: {
-                        value: 5,
-                        message: "This field should be more than 5 symbols",
-                      },
-                    })}
-                    helperText={errors.taskLink && errors.taskLink.message}
-                    error={errors.taskLink ? true : false}
-                  />
-                  <Button type="submit" sx={{ ml: "1rem" }} variant="outlined">
-                    Add
-                  </Button>
-                </form>
-              </Box>
-              <Box sx={{ maxWidth: "100%" }}>
-                {moduleTasks.length > 0 &&
-                  moduleTasks.map((task, id) => {
-                    return (
-                      <div key={id}>
-                        <TextField
-                          disabled={!task.mode}
-                          id="standard-basic"
-                          label="Task name"
-                          variant="standard"
-                          sx={{ width: "35%", ml: "1rem" }}
-                          value={task.taskName}
-                          onChange={(event) =>
-                            changeTaskName(event.target.value, id)
-                          }
-                        />
-                        <TextField
-                          disabled={!task.mode}
-                          id="standard-basic"
-                          label="Task link"
-                          variant="standard"
-                          sx={{ width: "35%", ml: "1rem" }}
-                          value={task.taskLink}
-                          onChange={(event) =>
-                            changeTaskLink(event.target.value, id)
-                          }
-                        />
-                        <Button onClick={() => changeEditMode(id)}>
-                          <EditIcon />
-                        </Button>
-
-                        <Button onClick={() => deleteTask(id)}>
-                          <DeleteForeverIcon />
-                        </Button>
-                      </div>
-                    );
-                  })}
-              </Box>
-            </AccordionDetails>
-          </Accordion>
+          <ModulesTasks
+            moduleTasks={moduleTasks}
+            setModuleTasks={setModuleTasks}
+          />
           <Accordion>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -507,6 +407,21 @@ export default function AdminPanelModules() {
           </div>
         </section>
       </div>
+      <Snackbar
+        open={showMessage}
+        autoHideDuration={5000}
+        onClose={() => setShowMessage(false)}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        key={"bottomright"}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          sx={{ width: "100%", fontSize: "1rem" }}
+        >
+          Module has been created successfully.
+        </Alert>
+      </Snackbar>
     </div>
   );
 }
