@@ -43,6 +43,9 @@ function Home() {
             </div>
             <div className="vsc-app">
               <div className="vsc-app-title">Visual Stdio Code</div>
+              <div className="vsc-toolbar"> <div>
+                File Edit Selection View Go Run Terminal Help</div>
+                </div> 
               <div className="vsc-app-icons">
                 <i class="fa-regular fa-file"></i>
                 <i class="fa-solid fa-magnifying-glass"></i>

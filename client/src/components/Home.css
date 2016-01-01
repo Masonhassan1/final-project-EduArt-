@@ -293,7 +293,7 @@ button:hover{
 .vsc-app{
    display: grid;
    grid-template-columns:7% 18%  1fr;
-   grid-template-rows: 8%  1fr 5% 25%;
+   grid-template-rows: 8% 7% 1fr 5% 25%;
    background-color: #202225;
    font-family: "Cascadia";
    opacity: 0;
@@ -309,6 +309,17 @@ button:hover{
     color: #989175;
     border-bottom: 1px solid #989175;
 }
+.vsc-toolbar{
+    grid-column: -1/1;
+    grid-row: 2;
+    font-size: x-small;
+    color: #989175;
+    border-bottom: 1px solid #989175;
+
+}
+.vsc-toolbar div {
+    margin-left: 2%;
+}
 .vsc-app-icons{
     position: relative;
     display: flex;
@@ -316,7 +327,7 @@ button:hover{
     align-items: center;
     row-gap: 1rem;
     grid-column: 1/2;
-    grid-row: 2/6;
+    grid-row: 3/7;
     color: #989175;
     border-right: 1px solid #989175;
     transform-origin: right,center;
@@ -327,7 +338,7 @@ button:hover{
 }
 .vsc-app-workspace{
     grid-column: 2/3;
-    grid-row: 2/6;
+    grid-row: 3/7;
     font-size: x-small;
     text-align: center;
     color:#aaa8a8 ;
@@ -342,7 +353,7 @@ button:hover{
     width: 64%;
     word-break: break-all;
     grid-column:3 ;
-    grid-row:2/3 ;
+    grid-row:3/4 ;
     font-size: small;
   
 }
@@ -359,7 +370,7 @@ button:hover{
    
 }
 .cover-one{
-    top: 40%;
+    top: 47%;
     animation: move-cover 4s 6.7s linear forwards;
     -webkit-animation: move-cover 4s 6.7s linear forwards;
 }
@@ -374,7 +385,7 @@ button:hover{
 }
 .vsc-terminal-title{
     grid-column: 3;
-    grid-row: 3/4;
+    grid-row: 4/5;
     font-size: x-small;
     color:  #989175;
     border-top: 1px solid #989175;
@@ -383,7 +394,7 @@ button:hover{
 .vsc-terminal{
     margin-left: 1%;
     grid-column: 3;
-    grid-row: 4/5;
+    grid-row: 5/7;
     font-size:x-small;
     color:  #58b0da;
     
