@@ -6,12 +6,7 @@
     justify-content: flex-start;
     font-family: "Jura", sans-serif;
     align-items: center;
-<<<<<<< HEAD
-    font-family: "Jura", sans-serif;
-    background: rgba(250, 214, 185, 0.835) ;
-=======
     background: rgba(250, 214, 185, 0.835);
->>>>>>> home-page-branch
     background: linear-gradient(180deg, rgba(254, 254, 254, 1) 10%, rgba(185, 227, 250, 0.835) 70%);
 }
 

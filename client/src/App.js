@@ -5,11 +5,8 @@ import axios from "axios"
 import "./App.css"
 import Header from './components/Header';
 import Home from "./components/Home";
-<<<<<<< HEAD
-=======
 import CourseList from "./components/CourseList/CourseList";
 import CoursePage from "./components/CoursePage/CoursePage";
->>>>>>> home-page-branch
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 
